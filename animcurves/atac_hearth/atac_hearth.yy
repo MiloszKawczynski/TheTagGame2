@@ -1,0 +1,20 @@
+{
+  "$GMAnimCurve":"",
+  "%Name":"atac_hearth",
+  "channels":[
+    {"$GMAnimCurveChannel":"","%Name":"curve1","colour":4290799884,"name":"curve1","points":[
+        {"th0":-0.25,"th1":0.12572886,"tv0":0.0,"tv1":0.46996477,"x":0.0,"y":0.0,},
+        {"th0":-0.056070775,"th1":0.057329,"tv0":-0.27755988,"tv1":0.28475273,"x":0.12572886,"y":1.4557729,},
+        {"th0":-0.18185028,"th1":0.1853424,"tv0":-0.4563113,"tv1":0.46507394,"x":0.5,"y":1.0,},
+        {"th0":-0.5,"th1":0.25,"tv0":0.01307127,"tv1":0.0,"x":1.0,"y":0.0,},
+      ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
+  ],
+  "function":2,
+  "name":"atac_hearth",
+  "parent":{
+    "name":"assets",
+    "path":"folders/_ThirdParty/armezToolbox/ui/example/assets.yy",
+  },
+  "resourceType":"GMAnimCurve",
+  "resourceVersion":"2.0",
+}

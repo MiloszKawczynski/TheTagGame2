@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"atscr_uiExample",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"atscr_uiExample",
+  "parent":{
+    "name":"assets",
+    "path":"folders/_ThirdParty/armezToolbox/ui/example/assets.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

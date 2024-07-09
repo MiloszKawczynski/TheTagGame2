@@ -1,0 +1,21 @@
+{
+  "$GMPath":"",
+  "%Name":"atpth_circle",
+  "closed":false,
+  "kind":1,
+  "name":"atpth_circle",
+  "parent":{
+    "name":"assets",
+    "path":"folders/_ThirdParty/armezToolbox/ui/example/assets.yy",
+  },
+  "points":[
+    {"speed":100.0,"x":1.0,"y":30.0,},
+    {"speed":100.0,"x":29.0,"y":30.0,},
+    {"speed":100.0,"x":29.0,"y":2.0,},
+    {"speed":100.0,"x":1.0,"y":2.0,},
+    {"speed":100.0,"x":0.9539728,"y":29.988743,},
+  ],
+  "precision":8,
+  "resourceType":"GMPath",
+  "resourceVersion":"2.0",
+}
