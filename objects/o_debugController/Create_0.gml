@@ -1,5 +1,8 @@
 event_inherited();
 
+ImGui.__Initialize();
+ImGui.ConfigFlagToggle(ImGuiConfigFlags.DockingEnable);	
+
 global.debug = true;
 global.debugIsGravityOn = false;
 
