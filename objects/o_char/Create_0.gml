@@ -1,7 +1,4 @@
-if (global.debug3DCam)
-{
-	Camera.Target = id;
-}
+Camera.Target = id;
 
 rightKey = ord("D");
 leftKey = ord("A");
