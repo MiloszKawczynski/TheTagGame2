@@ -1,11 +1,12 @@
 if (global.debugIsGravityOn)
 {
 	scr_platformerMovement();
+	scr_platformerCollision();
 }
 else
 {
 	scr_topDownMovement();
+	scr_topDownCollision();
 }
 
-scr_outOfBoundsPrevention();
-scr_collision();
+Camera.MouseLock = mouse_check_button(mb_right);

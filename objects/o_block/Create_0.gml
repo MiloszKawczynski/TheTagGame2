@@ -1,6 +1,1 @@
-height = 3;
-
-for(var i = 0; i < height; i++)
-{
-	fauxton_cube_create(s_cube, x, y, i * 16);
-}
+model = fauxton_model_create(sprite_index, x, y, 0, 0, 0, 0, 1, 1, 1);

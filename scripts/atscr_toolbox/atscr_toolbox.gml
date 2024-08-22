@@ -5,10 +5,21 @@ function animcurve_get_point(curve_id, channel_id, pointx)
 
 function armez_timer(value, step = 0.1, maxValue = 1)
 {
-	value += step;
-	if (value > maxValue)
+	if (step > 0)
 	{
-		value = 0;
+		value += step;
+		if (value > maxValue)
+		{
+			value = 0;
+		}
+	}
+	else if (step < 0)
+	{
+		value += step;
+		if (value < 0)
+		{
+			value = 0;
+		}
 	}
 			
 	return value;
@@ -72,4 +83,26 @@ function path_create(points)
 	}
 	
 	return path;
+}
+
+function log(logMessage)
+{
+	var timeStamp = date_time_string(date_current_datetime());
+	var fullLog = string(timeStamp + ": " + logMessage);
+	var monitoredValue = "";
+	monitoredValue += "x: " + string(o_char.x) + "\n";
+	monitoredValue += "y: " + string(o_char.y) + "\n";
+	monitoredValue += "Speed: " + string(o_char.speed) + "\n";
+	monitoredValue += "HorizontalSpeed: " + string(o_char.horizontalSpeed) + "\n";
+	monitoredValue += "VerticalSpeed: " + string(o_char.verticalSpeed) + "\n";
+	monitoredValue += "IsGrounded: " + string(o_char.isGrounded) + "\n";
+	monitoredValue += "IsOnCliff: " + string(o_char.isOnCliff) + "\n";
+	monitoredValue += "MaximumSpeed: " + string(o_char.maximumSpeed) + "\n";
+	monitoredValue += "CoyoteTime: " + string(o_char.coyoteTime) + "\n";
+	monitoredValue += "JumpBuffor: " + string(o_char.jumpBuffor) + "\n";
+	monitoredValue = string(monitoredValue);
+	
+	show_debug_message(fullLog);
+	ds_list_add(o_debugController.logBuffor, fullLog);
+	ds_list_add(o_debugController.monitoredValue, monitoredValue);
 }

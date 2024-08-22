@@ -124,37 +124,37 @@ function camera_initialize()
 			}
 		
 			// Mouse looking
-			if ( MouseLock ){ // OTHER
-				if ( !is_html && !is_phone ){
-					// Set interpolation values
-					Angle -= (
-						( ( window_width * .5 ) - window_mouse_get_x() ) * Sens.Mouse.x * Sensitivity * LookAxisH
-					);
-					Pitch -= (
-						( ( window_height * .5 ) - window_mouse_get_y() ) * Sens.Mouse.y * Sensitivity * LookAxisV
-					);
-					// Set mouse
-					window_mouse_set( window_width * .5, window_height * .5 );
-				} 
-				else 
-				{	// HTML5 & Mobile
-					if ( mLockP != MouseLock )
-					{
-						mLockP = MouseLock;
-						mousePos = new vector2(window_mouse_get_x(), window_mouse_get_y());
-					}
-					var _a = 2;
-					if ( is_phone ) { _a = 4; }
-					Angle -= ( 
-						( mousePos.x - window_mouse_get_x() ) * Sens.Mouse.x * Sensitivity * LookAxisH * _a
-					);
-					Pitch -= (
-						( mousePos.y - window_mouse_get_y() ) * Sens.Mouse.y * Sensitivity * LookAxisV * _a
-					);
-				}
-			}
-			mLockP = MouseLock;
-			mousePos = new vector2(window_mouse_get_x(), window_mouse_get_y());
+			//if ( MouseLock ){ // OTHER
+			//	if ( !is_html && !is_phone ){
+			//		// Set interpolation values
+			//		Angle -= (
+			//			( ( window_width * .5 ) - window_mouse_get_x() ) * Sens.Mouse.x * Sensitivity * LookAxisH
+			//		);
+			//		Pitch -= (
+			//			( ( window_height * .5 ) - window_mouse_get_y() ) * Sens.Mouse.y * Sensitivity * LookAxisV
+			//		);
+			//		// Set mouse
+			//		window_mouse_set( window_width * .5, window_height * .5 );
+			//	} 
+			//	else 
+			//	{	// HTML5 & Mobile
+			//		if ( mLockP != MouseLock )
+			//		{
+			//			mLockP = MouseLock;
+			//			mousePos = new vector2(window_mouse_get_x(), window_mouse_get_y());
+			//		}
+			//		var _a = 2;
+			//		if ( is_phone ) { _a = 4; }
+			//		Angle -= ( 
+			//			( mousePos.x - window_mouse_get_x() ) * Sens.Mouse.x * Sensitivity * LookAxisH * _a
+			//		);
+			//		Pitch -= (
+			//			( mousePos.y - window_mouse_get_y() ) * Sens.Mouse.y * Sensitivity * LookAxisV * _a
+			//		);
+			//	}
+			//}
+			//mLockP = MouseLock;
+			//mousePos = new vector2(window_mouse_get_x(), window_mouse_get_y());
 		
 			// Joystick looking
 			Pitch -= ( gamepad_axis_value( Device, gp_axisrv) ) *Sens.Joystick.x *Sensitivity *LookAxisV;
