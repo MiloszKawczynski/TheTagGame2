@@ -206,7 +206,7 @@ function scr_platformerMovement()
 			{
 				if (abs(hspeed) > maximumDefaultSpeed)
 				{
-					hspeed -= deceleration * 0.5 * image_xscale;
+					hspeed -= deceleration * maximumSpeedDecelerationFactor * image_xscale;
 					maximumSpeed = abs(hspeed);
 					maximumSpeed = max(maximumSpeed, maximumDefaultSpeed);
 		

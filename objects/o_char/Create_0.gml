@@ -11,6 +11,7 @@ interactionKey = vk_shift;
 
 acceleration = 0.5;
 deceleration = 0.25;
+maximumSpeedDecelerationFactor = 0.25;
 
 maximumSpeed = 6;
 

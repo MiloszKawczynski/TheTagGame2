@@ -119,6 +119,7 @@ if (isStatsOpen)
 	o_char.maximumDefaultSpeed = scr_statitstic("Default Speed",  o_char.maximumDefaultSpeed);
 	o_char.acceleration = scr_statitstic("Acceleration",  o_char.acceleration);
 	o_char.deceleration = scr_statitstic("Deceleration",  o_char.deceleration);
+	o_char.maximumSpeedDecelerationFactor = scr_statitstic("Maximum Speed Deceleration Factor",  o_char.maximumSpeedDecelerationFactor);
 	o_char.jumpForce = scr_statitstic("Jump Height",  o_char.jumpForce);
 	o_char.momentumJumpForce = scr_statitstic("Speed Additional Jump Height",  o_char.momentumJumpForce);
 	o_char.gravitation= scr_statitstic("Gravity",  o_char.gravitation);
