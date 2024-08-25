@@ -285,102 +285,54 @@ function scr_topDownCollision()
 
 function scr_platformerCollision()
 {	
+	if (live_call()) return live_result;
+	
 	if (place_meeting(x + min(16, hspeed), y, o_collision))
 	{	
-		var collisionObject = instance_place(x + min(16, hspeed), y, o_collision);
-		var skipSmth = false;
+		var diff = 0;
 		
-		var collisionDiagonal = instance_place(x + min(16, hspeed), y, o_diagonal)
-		
-		if (collisionDiagonal == noone)
+		while (place_free(x + sign(hspeed), y))
 		{
-			collisionDiagonal = collisionObject;
+			x += sign(hspeed);
+			diff++;
 		}
 		
-		if (vspeed < 0 and sign(hspeed) == collisionDiagonal.image_xscale)
+		if (place_meeting(x + sign(hspeed), y, o_diagonal))
 		{
-			var tempY = y;
-			while (place_meeting(x + min(16, hspeed), y, o_diagonal))
-			{
-				log("lift 1");
-				y--;
-			}
+			var heightAdjustment = 1;
 			
-			if (tempY != y)
-			{
-				return;
-			}
-		}
-		else
-		{
-			if (place_meeting(x + min(16, hspeed), y, o_diagonal))
-			{
-				isGrounded = true;
-				isOnCliff = false;
-				
-				while (place_meeting(x, y, o_diagonal))
-				{
-					log("lift 2");
-					y--;
-				}
-				
-				skipSmth = true;
-			}
-		}
-		
-		if (!skipSmth)
-		{
-			while(place_free(x + sign(hspeed), y))
-			{
-				//tu jest błąd
-				log("shift 1");
-				x += sign(hspeed);
-			}
-		}
-		
-		if (place_free(x + sign(hspeed), y - 1) and isGrounded)
-		{
 			if (place_meeting(x + sign(hspeed), y, o_slope))
 			{
-				hspeed -= slopeAcceleration * image_xscale;
-				maximumSpeed = abs(hspeed);
-				
-				maximumSpeed = max(maximumSpeed, maximumSlopeSpeed);
+				heightAdjustment = 2;
 			}
 			
-			if (place_meeting(x + sign(hspeed), y, o_ramp))
-			{
-				hspeed -= rampAcceleration * image_xscale;
-				maximumSpeed = abs(hspeed);
-				
-				maximumSpeed = max(maximumSpeed, maximumRampSpeed);
-			}
+			y -= (abs(hspeed) - diff) * heightAdjustment;
+			x -= diff;
 			
-			while (place_meeting(x + min(16, hspeed), y, o_diagonal))
-			{
-				//log("lift 3");
-				y--;
-			}
-			
-			if (place_meeting(x + min(16, hspeed), y, o_collision))
+			if (place_meeting(x + min(16, hspeed), y, o_block))
 			{	
-				while (place_free(x + min(16, hspeed), y))
+				while (place_free(x + sign(hspeed), y))
 				{
-					log("shift 2");
 					x += sign(hspeed);
 				}
 				
-				hspeed = 0;
+				while (place_free(x, y + 1))
+				{
+					y++;
+				}
+		
+				hspeed = 0;			
 				maximumSpeed = maximumDefaultSpeed;
+			
+				log("Colision horizontal DIAGONAL");
 			}
 		}
 		else
-		{
+		{		
 			hspeed = 0;			
 			maximumSpeed = maximumDefaultSpeed;
 			
-			log("Colision horizontal");
-			log(string("Colision with: {0}", object_get_name(collisionObject.object_index)));
+			log("Colision horizontal BLOCK");
 		}
 	}
 	
