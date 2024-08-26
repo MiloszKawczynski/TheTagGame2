@@ -287,7 +287,7 @@ function scr_platformerCollision()
 {	
 	if (live_call()) return live_result;
 	
-	if (place_meeting(x + min(16, hspeed), y, o_collision))
+	if (place_meeting(x + hspeed, y, o_collision))
 	{	
 		var diff = 0;
 		
@@ -297,30 +297,30 @@ function scr_platformerCollision()
 			diff++;
 		}
 		
-		if (place_meeting(x + sign(hspeed), y, o_diagonal))
-		{
-			var heightAdjustment = 1;
-			
+		var collisionObject = instance_place(x + sign(hspeed), y, o_collision);
+		
+		if (object_is_ancestor(collisionObject.object_index, o_diagonal) and collisionObject.image_xscale == image_xscale)
+		{				
 			if (place_meeting(x + sign(hspeed), y, o_slope))
 			{
-				heightAdjustment = 2;
+				y -= (abs(hspeed) - diff) * 2;
+			}
+			else
+			{
+				y -= (abs(hspeed) - diff);
 			}
 			
-			y -= (abs(hspeed) - diff) * heightAdjustment;
 			x -= diff;
 			
-			if (place_meeting(x + min(16, hspeed), y, o_block))
+			collisionObject = instance_place(x + hspeed, y, o_collision);
+			
+			if (collisionObject != noone and collisionObject.object_index == o_block)
 			{	
 				while (place_free(x + sign(hspeed), y))
 				{
 					x += sign(hspeed);
 				}
-				
-				while (place_free(x, y + 1))
-				{
-					y++;
-				}
-		
+						
 				hspeed = 0;			
 				maximumSpeed = maximumDefaultSpeed;
 			
@@ -329,16 +329,15 @@ function scr_platformerCollision()
 		}
 		else
 		{		
-			hspeed = 0;			
+			hspeed = 0;				
 			maximumSpeed = maximumDefaultSpeed;
 			
 			log("Colision horizontal BLOCK");
 		}
 	}
 	
-	if place_meeting(x, y + min(16, vspeed), o_collision)
+	if (vspeed != 0 and place_meeting(x, y + min(16, vspeed), o_collision))
 	{	
-		var collisionObject = instance_place(x, y + min(16, vspeed), o_collision);
 		while(place_free(x, y + sign(vspeed)))
 		{
 			y += sign(vspeed);
@@ -362,29 +361,27 @@ function scr_platformerCollision()
 			{
 				isGrounded = true;
 				isOnCliff = false;
-				log("clif 3");
 				coyoteTime = maximumCoyoteTime;
 			}
 		}
 		
 		vspeed = 0;
 		log("Colision vertical");
-		log(string("Colision with: {0}", object_get_name(collisionObject.object_index)));
 	}
 	
-	if (place_meeting(x + min(16, hspeed), y + min(16, vspeed), o_collision) and false)
-	{
-		var collisionObject = instance_place(x + min(16, hspeed), y + min(16, vspeed), o_collision);
-		while(place_free(x + sign(hspeed), y + sign(vspeed)))
-		{
-			x += sign(hspeed);
-			y += sign(vspeed);
-		}
+	//if (place_meeting(x + min(16, hspeed), y + min(16, vspeed), o_collision) and false)
+	//{
+	//	var collisionObject = instance_place(x + min(16, hspeed), y + min(16, vspeed), o_collision);
+	//	while(place_free(x + sign(hspeed), y + sign(vspeed)))
+	//	{
+	//		x += sign(hspeed);
+	//		y += sign(vspeed);
+	//	}
 		
-		hspeed = 0;
-		vspeed = 0;
-		diagonalCounter++;
-		log(string("Colision diagonal: {0}", diagonalCounter));
-		log(string("Colision with: {0}", object_get_name(collisionObject.object_index)));
-	}
+	//	hspeed = 0;
+	//	vspeed = 0;
+	//	diagonalCounter++;
+	//	log(string("Colision diagonal: {0}", diagonalCounter));
+	//	log(string("Colision with: {0}", object_get_name(collisionObject.object_index)));
+	//}
 }
