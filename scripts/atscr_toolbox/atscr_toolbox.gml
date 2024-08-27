@@ -85,7 +85,7 @@ function path_create(points)
 	return path;
 }
 
-function log(logMessage)
+function log(logMessage, color = c_white)
 {
 	var timeStamp = date_time_string(date_current_datetime());
 	var fullLog = string(timeStamp + ": " + logMessage);
@@ -104,5 +104,21 @@ function log(logMessage)
 	
 	show_debug_message(fullLog);
 	ds_list_add(o_debugController.logBuffor, fullLog);
+	ds_list_add(o_debugController.logColor, color);
 	ds_list_add(o_debugController.monitoredValue, monitoredValue);
+}
+
+function closerTo(targetValue, value1, value2)
+{
+	var value1Distance = abs(targetValue - value1);
+	var value2Distance = abs(targetValue - value2);
+	
+	if (value1Distance < value2Distance)
+	{
+		return value1;
+	}
+	else
+	{
+		return value2;
+	}
 }
