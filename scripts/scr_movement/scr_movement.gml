@@ -83,6 +83,8 @@ function scr_TopDownObstaclesInteraction()
 
 function scr_platformerMovement()
 {	
+	if (live_call()) return live_result;
+	
 	horizontalSpeed = hspeed;
 	verticalSpeed = vspeed;
 	
@@ -99,7 +101,7 @@ function scr_platformerMovement()
 			jumpBuffor = 0;		
 			coyoteTime = 0;
 			isGrounded = false;
-			verticalSpeed = -(jumpForce + momentumJumpForce * (abs(horizontalSpeed) / maximumDefaultSpeed));
+			verticalSpeed = -(jumpForce + momentumJumpForce * min((abs(horizontalSpeed) / maximumDefaultSpeed), 1));
 		}
 		else
 		{
@@ -125,7 +127,7 @@ function scr_platformerMovement()
 	
 	speed = point_distance(0, 0, horizontalSpeed, verticalSpeed);
 	
-	direction = point_direction(0, 0, horizontalSpeed, verticalSpeed) + Camera.Forward;
+	direction = point_direction(0, 0, horizontalSpeed, verticalSpeed);
 	
 	if (abs(hspeed) < deceleration)
 	{
@@ -133,49 +135,7 @@ function scr_platformerMovement()
 	}
 	
 	if (isGrounded)
-	{
-		if (groundImOn == noone or instance_place(x, y + 1, o_collision) != groundImOn)
-		{
-			groundImOn = instance_place(x, y + 1, o_collision);
-		}
-		
-		with(groundImOn)
-		{
-			other.isOnCliff = !collision_line(x + 16 * other.image_xscale, y - 16, x + 16 * other.image_xscale, y + 16, o_collision, true, true);
-		}
-
-		if (!isOnCliff)
-		{
-			var isRunningDown = false;
-			
-			while(!place_meeting(x, y + 1, o_collision))
-			{				
-				y++;
-				isRunningDown = true;
-			}
-			
-			if (isRunningDown)
-			{
-				if (place_meeting(x, y + 1, o_ramp))
-				{
-					hspeed += rampAcceleration * sign(hspeed);
-					if (abs(hspeed) > maximumSpeed)
-					{
-						maximumSpeed = abs(hspeed);
-					}
-				}
-			
-				if (place_meeting(x, y + 1, o_slope))
-				{
-					hspeed += slopeAcceleration * sign(hspeed);
-					if (abs(hspeed) > maximumSpeed)
-					{
-						maximumSpeed = abs(hspeed);
-					}
-				}
-			}
-		}
-		
+	{		
 		if (!place_meeting(x, y + 1, o_collision))
 		{
 			isGrounded = false;
@@ -187,6 +147,7 @@ function scr_platformerMovement()
 	if (sign(hspeed) != horizontal and horizontal != 0)
 	{
 		maximumSpeed = maximumDefaultSpeed;
+		isGrounded = true;
 	}
 	
 	if (hspeed != 0)
@@ -230,6 +191,46 @@ function scr_platformerMovement()
 			}
 		}
 	}
+	
+	if (hspeed != 0 and instance_place(x, y + 1, o_diagonal) != noone)
+	{
+		if (instance_place(x, y + 1, o_diagonal).image_xscale != image_xscale)
+		{
+			if (place_meeting(x, y + 1, o_ramp))
+			{
+				hspeed += rampAcceleration * sign(hspeed);
+				if (abs(hspeed) > maximumSpeed)
+				{
+					maximumSpeed = abs(hspeed);
+				}
+			}
+			
+			if (place_meeting(x, y + 1, o_slope))
+			{
+				hspeed += slopeAcceleration * sign(hspeed);
+				if (abs(hspeed) > maximumSpeed)
+				{
+					maximumSpeed = abs(hspeed);
+				}
+			}
+		}
+		else
+		{
+			if (place_meeting(x, y + 1, o_slope))
+			{
+				hspeed -= slopeAcceleration * image_xscale;
+				maximumSpeed = abs(hspeed);
+				maximumSpeed = max(maximumSpeed, maximumSlopeSpeed);
+			}
+			
+			if (place_meeting(x, y + 1, o_ramp))
+			{
+				hspeed -= rampAcceleration * image_xscale;
+				maximumSpeed = abs(hspeed);
+				maximumSpeed = max(maximumSpeed, maximumRampSpeed);
+			}
+		}
+	}
 }
 
 function scr_platformerObstaclesInteraction(horizontal)
@@ -243,6 +244,7 @@ function scr_platformerObstaclesInteraction(horizontal)
 			if (horizontal != sign(hspeed))
 			{
 				hspeed = abs(hspeed) * horizontal;
+				log("EPIC TURN!", c_aqua);
 			}
 		}
 	}
@@ -287,60 +289,11 @@ function scr_platformerCollision()
 {	
 	if (live_call()) return live_result;
 	
-	if (place_meeting(x + hspeed, y, o_collision))
+	if (vspeed != 0 and place_meeting(x, y + vspeed, o_collision))
 	{	
-		var diff = 0;
-		
-		while (place_free(x + sign(hspeed), y))
+		while(place_free(x, y + sign(vspeed) * 0.5))
 		{
-			x += sign(hspeed);
-			diff++;
-		}
-		
-		var collisionObject = instance_place(x + sign(hspeed), y, o_collision);
-		
-		if (object_is_ancestor(collisionObject.object_index, o_diagonal) and collisionObject.image_xscale == image_xscale)
-		{				
-			if (place_meeting(x + sign(hspeed), y, o_slope))
-			{
-				y -= (abs(hspeed) - diff) * 2;
-			}
-			else
-			{
-				y -= (abs(hspeed) - diff);
-			}
-			
-			x -= diff;
-			
-			collisionObject = instance_place(x + hspeed, y, o_collision);
-			
-			if (collisionObject != noone and collisionObject.object_index == o_block)
-			{	
-				while (place_free(x + sign(hspeed), y))
-				{
-					x += sign(hspeed);
-				}
-						
-				hspeed = 0;			
-				maximumSpeed = maximumDefaultSpeed;
-			
-				log("Colision horizontal DIAGONAL");
-			}
-		}
-		else
-		{		
-			hspeed = 0;				
-			maximumSpeed = maximumDefaultSpeed;
-			
-			log("Colision horizontal BLOCK");
-		}
-	}
-	
-	if (vspeed != 0 and place_meeting(x, y + min(16, vspeed), o_collision))
-	{	
-		while(place_free(x, y + sign(vspeed)))
-		{
-			y += sign(vspeed);
+			y += sign(vspeed) * 0.5;
 		}
 		
 		if (!isGrounded)
@@ -361,17 +314,45 @@ function scr_platformerCollision()
 			{
 				isGrounded = true;
 				isOnCliff = false;
+				canBeOnCliff = false;
 				coyoteTime = maximumCoyoteTime;
 			}
 		}
 		
 		vspeed = 0;
-		log("Colision vertical");
 	}
 	
-	//if (place_meeting(x + min(16, hspeed), y + min(16, vspeed), o_collision) and false)
+	if (place_meeting(x + hspeed, y, o_collision))
+	{
+		if (!place_meeting(x + hspeed, y - abs(hspeed) - 1, o_collision))
+		{
+			while (place_meeting(x + hspeed, y, o_collision))
+			{
+				y -= 0.5;
+			}
+		}
+		else
+		{
+			while (!place_meeting(x + sign(hspeed), y, o_collision))
+			{
+				x += sign(hspeed) * 0.5;
+			}
+			
+			hspeed = 0;
+			maximumSpeed = maximumDefaultSpeed;
+		}
+	}
+	
+	if (vspeed >= 0 and !place_meeting(x + hspeed, y + 1, o_collision) and place_meeting(x + hspeed, y + abs(hspeed) + max(1, 1 * abs(hspeed) / maximumDefaultSpeed), o_collision))
+	{
+		while (!place_meeting(x + hspeed, y + 0.5, o_collision))
+		{
+			y += 0.5;
+		}
+	}
+	
+	//if (place_meeting(x + min(16, hspeed), y + min(16, vspeed), o_collision))
 	//{
-	//	var collisionObject = instance_place(x + min(16, hspeed), y + min(16, vspeed), o_collision);
 	//	while(place_free(x + sign(hspeed), y + sign(vspeed)))
 	//	{
 	//		x += sign(hspeed);
@@ -380,8 +361,6 @@ function scr_platformerCollision()
 		
 	//	hspeed = 0;
 	//	vspeed = 0;
-	//	diagonalCounter++;
-	//	log(string("Colision diagonal: {0}", diagonalCounter));
-	//	log(string("Colision with: {0}", object_get_name(collisionObject.object_index)));
+	//	log("Colision diagonal");
 	//}
 }
