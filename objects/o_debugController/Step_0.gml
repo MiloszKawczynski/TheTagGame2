@@ -1,4 +1,4 @@
-ImGui.SetNextWindowSize(300, 600, ImGuiCond.Once);
+ImGui.SetNextWindowSize(300, 700, ImGuiCond.Once);
 
 var isMouseInputPossible = false;
 var step = false;
@@ -83,10 +83,10 @@ if (ImGui.Begin("Debug"))
 	ImGui.SameLine();
 	isAutoScrollOn = ImGui.Checkbox("AutoScroll", isAutoScrollOn);
 	
-	ImGui.BeginChild("Log",, 100, true);
+	ImGui.BeginChild("Log",, 200, true);
 	for(var i = 0; i < ds_list_size(logBuffor); i++)
 	{
-		ImGui.Text(ds_list_find_value(logBuffor, i));
+		ImGui.TextColored(ds_list_find_value(logBuffor, i), ds_list_find_value(logColor, i));
 		if (ImGui.IsItemHovered()) 
 		{
 			ImGui.BeginTooltip();
