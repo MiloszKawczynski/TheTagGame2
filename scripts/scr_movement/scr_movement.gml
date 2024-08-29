@@ -312,6 +312,11 @@ function scr_platformerCollision()
 {	
 	if (live_call()) return live_result;
 	
+	while (place_meeting(x, y, o_collision))
+	{
+		y -= 0.5;
+	}
+	
 	if (vspeed != 0 and place_meeting(x, y + vspeed, o_collision))
 	{	
 		while(place_free(x, y + sign(vspeed) * 0.5))
