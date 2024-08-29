@@ -268,18 +268,29 @@ function pipeline_render_to_screen()
 		gpu_set_state(gm_DefaultState);
 		exit;
 	}
+	
+	if (!surface_exists(screenSurface))
+	{
+		screenSurface = surface_create(800, 450);
+	}
+	
+	surface_set_target(screenSurface);
+	draw_clear_alpha(c_white, 1);
 
 	// Draw application surface & Post-processing
+	var width = surface_get_width( application_surface );
+	var height = surface_get_height( application_surface );
+	var xScale = gui_width / width;
+	var yScale = gui_height / height;
+	
 	if (Camera.pTo <= 90)
 	{
 		draw_surface_stretched( application_surface, 0, 0, gui_width, gui_height );
 	}
 	else
 	{
-		var width = surface_get_width( application_surface );
-		var height = surface_get_height( application_surface );
-		var xScale = gui_width / width;
-		var yScale = gui_height / height;
 		draw_surface_general( application_surface, 0, 0, width, height, gui_width, gui_height, xScale, yScale, 180, c_white, c_white, c_white, c_white, 1);
 	}
+	
+	surface_reset_target();
 }
