@@ -1,9 +1,19 @@
-ImGui.DockSpaceOverViewport();
+var dockspaceID = ImGui.DockSpaceOverViewport();
 
-ImGui.SetNextWindowSize(300, 700, ImGuiCond.Once);
+if (init)
+{
+	ImGui.DockBuilderRemoveNode(dockspaceID);
+	ImGui.DockBuilderAddNode(dockspaceID);
+	
+	var docs = ImGui.DockBuilderSplitNode(dockspaceID, ImGuiDir.Left, 0.11);
 
-var isMouseInputPossible = false;
-var step = false;
+	ImGui.DockBuilderDockWindow("Debug", docs[1]);
+	ImGui.DockBuilderDockWindow("Game", docs[2]);
+
+	ImGui.DockBuilderFinish(dockspaceID);
+	
+	init = false;
+}
 
 if (ImGui.Begin("Debug")) 
 {	
@@ -53,6 +63,8 @@ if (ImGui.Begin("Debug"))
 	
 	ImGui.Separator();
 	ImGui.Text("Camera");
+	
+	isApplicationSurfaceEnabled = ImGui.Checkbox("Application surface", isApplicationSurfaceEnabled);
 
 	ImGui.BeginGroup();
 	ImGui.Dummy(19, 0);
@@ -137,10 +149,25 @@ if (ImGui.Begin("Debug"))
 	ImGui.Text(string("Logs: {0}", ds_list_size(logBuffor)));
 	ImGui.End();
 }
-
 if (ImGui.Begin("Game"))
 {
-	ImGui.Surface(RenderPipeline.screenSurface,,, ImGui.GetWindowWidth(), ImGui.GetWindowHeight());
+	var width = ImGui.GetWindowWidth();
+	var height = width * 9 / 16;
+	
+	if (height > ImGui.GetWindowHeight())
+	{
+		height = ImGui.GetWindowHeight();
+		width = height * 16 / 9;
+	}
+
+	if (isApplicationSurfaceEnabled)
+	{
+		ImGui.Surface(application_surface,,, width, height);
+	}
+	else
+	{
+		ImGui.Surface(RenderPipeline.screenSurface,,, width, height);
+	}
 	ImGui.End();
 }
 
@@ -181,11 +208,7 @@ if (keyboard_check_pressed(vk_escape))
 	game_end();
 }
 
-if (mouse_check_button_pressed(mb_right))
+if (keyboard_check_pressed(ord("R")))
 {
-	//var dir = point_direction(o_char.x, o_char.y, window_mouse_get_x(), window_mouse_get_y());
-	//o_char.x = window_mouse_get_x();
-	//o_char.y = window_mouse_get_y();
-	////o_char.x += lengthdir_x(32, dir);
-	////o_char.y += lengthdir_y(32, dir);
+	game_restart();
 }
