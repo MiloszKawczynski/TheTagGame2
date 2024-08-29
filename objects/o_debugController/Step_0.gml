@@ -1,3 +1,5 @@
+ImGui.DockSpaceOverViewport();
+
 ImGui.SetNextWindowSize(300, 700, ImGuiCond.Once);
 
 var isMouseInputPossible = false;
@@ -133,6 +135,12 @@ if (ImGui.Begin("Debug"))
 	ImGui.EndChild();
 	
 	ImGui.Text(string("Logs: {0}", ds_list_size(logBuffor)));
+	ImGui.End();
+}
+
+if (ImGui.Begin("Game"))
+{
+	ImGui.Surface(RenderPipeline.screenSurface,,, ImGui.GetWindowWidth(), ImGui.GetWindowHeight());
 	ImGui.End();
 }
 
