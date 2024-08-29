@@ -39,7 +39,6 @@ if (ImGui.Begin("Debug"))
 	ImGui.Text(string("hSpeed: {0}", o_char.horizontalSpeed));
 	ImGui.Text(string("vSpeed: {0}", o_char.verticalSpeed));
 	ImGui.Text(string("isGrounded: {0}", o_char.isGrounded));
-	ImGui.TextColored(string("isOnCliff: {0}", o_char.isOnCliff), c_red);
 	ImGui.Text(string("maxSpeed: {0}", o_char.maximumSpeed));
 	ImGui.Text(string("coyoteTime: {0}", o_char.coyoteTime));
 	ImGui.Text(string("jumpBuffor: {0}", o_char.jumpBuffor));
@@ -108,7 +107,6 @@ if (ImGui.Begin("Debug"))
 
 if (isStatsOpen)
 {
-	
 	isStatsOpen = ImGui.Begin("Clea Stats", isStatsOpen, ImGuiWindowFlags.None, ImGuiReturnMask.Pointer);
 
 	var width = 400;

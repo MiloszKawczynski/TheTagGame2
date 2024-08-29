@@ -38,7 +38,6 @@ coyoteTime = 0;
 maximumCoyoteTime = 10;
 
 isGrounded = false;
-isOnCliff = true;
 groundImOn = noone;
 
 obstacleRange = 60;

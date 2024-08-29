@@ -313,7 +313,6 @@ function scr_platformerCollision()
 			if (place_meeting(x, y + 1, o_collision))
 			{
 				isGrounded = true;
-				isOnCliff = false;
 				canBeOnCliff = false;
 				coyoteTime = maximumCoyoteTime;
 			}

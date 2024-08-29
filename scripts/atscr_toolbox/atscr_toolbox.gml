@@ -96,7 +96,6 @@ function log(logMessage, color = c_white)
 	monitoredValue += "HorizontalSpeed: " + string(o_char.horizontalSpeed) + "\n";
 	monitoredValue += "VerticalSpeed: " + string(o_char.verticalSpeed) + "\n";
 	monitoredValue += "IsGrounded: " + string(o_char.isGrounded) + "\n";
-	monitoredValue += "IsOnCliff: " + string(o_char.isOnCliff) + "\n";
 	monitoredValue += "MaximumSpeed: " + string(o_char.maximumSpeed) + "\n";
 	monitoredValue += "CoyoteTime: " + string(o_char.coyoteTime) + "\n";
 	monitoredValue += "JumpBuffor: " + string(o_char.jumpBuffor) + "\n";
