@@ -135,10 +135,34 @@ function scr_platformerMovement()
 	}
 	
 	if (isGrounded)
-	{		
+	{			
+		if (instance_place(x, y + 1, o_collision) != noone)
+		{
+			groundImOn = instance_place(x, y + 1, o_collision);
+		}
+		
 		if (!place_meeting(x, y + 1, o_collision))
 		{
 			isGrounded = false;
+			
+			if (vspeed == 0)
+			{
+				var verticalDirection = 1
+				if (groundImOn.image_xscale == image_xscale)
+				{
+					verticalDirection = -1
+				}
+				
+				if (groundImOn.object_index == o_slope)
+				{
+					vspeed = abs(hspeed) * 0.5 * verticalDirection;
+				}
+				
+				if (groundImOn.object_index == o_ramp)
+				{			
+					vspeed = abs(hspeed) * 0.25 * verticalDirection;
+				}
+			}
 		}
 	}
 	
@@ -147,7 +171,6 @@ function scr_platformerMovement()
 	if (sign(hspeed) != horizontal and horizontal != 0)
 	{
 		maximumSpeed = maximumDefaultSpeed;
-		isGrounded = true;
 	}
 	
 	if (hspeed != 0)
