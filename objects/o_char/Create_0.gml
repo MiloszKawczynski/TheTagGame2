@@ -43,5 +43,3 @@ groundImOn = noone;
 obstacleRange = 60;
 minimumObstacleJumpForce = 5;
 maximumObstacleJumpForce = 10;
-
-diagonalCounter = 0;

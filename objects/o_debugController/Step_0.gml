@@ -72,7 +72,6 @@ if (ImGui.Begin("Debug"))
 	{
 		ds_list_clear(logBuffor);
 		ds_list_clear(monitoredValue);
-		o_char.diagonalCounter = 0;
 	}
 	ImGui.SameLine();
 	if (ImGui.Button("Log!"))
@@ -101,7 +100,6 @@ if (ImGui.Begin("Debug"))
 	ImGui.EndChild();
 	
 	ImGui.Text(string("Logs: {0}", ds_list_size(logBuffor)));
-	ImGui.Text(string("Diagonal Coutner: {0}", o_char.diagonalCounter));
 	ImGui.End();
 }
 
