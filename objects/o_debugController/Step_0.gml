@@ -52,15 +52,47 @@ if (ImGui.Begin("Debug"))
 	ImGui.Separator();
 	ImGui.Text("Camera");
 
+	ImGui.BeginGroup();
 	ImGui.Dummy(19, 0);
 	ImGui.SameLine();
 	if (ImGui.ArrowButton("Pitch +", 2)) {Camera.Pitch += 10};
 	
 	if (ImGui.ArrowButton("Angle +", 0)) {Camera.Angle += 10};
 	ImGui.SameLine();
-	if (ImGui.ArrowButton("Pitch -", 3)) {Camera.Pitch -= 10};
+	if (ImGui.Button("o", 19, 19)) 
+	{
+		if (Camera.Pitch == 90.1)
+		{
+			if (global.debugIsGravityOn)
+			{		
+				Camera.Pitch = 130;
+				Camera.Angle = 90;
+			}
+			else
+			{
+				Camera.Pitch = 50;
+				Camera.Angle = 90;
+			}
+		}
+		else
+		{
+			Camera.Pitch = 90.1
+		}
+	};
 	ImGui.SameLine();
 	if (ImGui.ArrowButton("Angle -", 1)) {Camera.Angle -= 10};
+	
+	ImGui.Dummy(19, 0);
+	ImGui.SameLine();
+	if (ImGui.ArrowButton("Pitch -", 3)) {Camera.Pitch -= 10};
+	ImGui.EndGroup();
+	
+	ImGui.SameLine();
+	ImGui.BeginGroup();
+	
+	Camera.Zoom = ImGui.VSliderFloat("Zoom", 19, 60, Camera.Zoom, 0.5, 2);
+	
+	ImGui.EndGroup();
 	
 	ImGui.Text(string("Angle: {0}", Camera.Angle));
 	ImGui.Text(string("Pitch: {0}", Camera.Pitch));
