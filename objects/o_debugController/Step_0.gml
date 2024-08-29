@@ -44,7 +44,7 @@ if (ImGui.Begin("Debug"))
 	ImGui.Text(string("jumpBuffor: {0}", o_char.jumpBuffor));
 	ImGui.PopStyleColor(1);
 	
-	if (ImGui.Button("Clea")) 
+	if (ImGui.Button("Player")) 
 	{
 		 isStatsOpen = true;
 	}
