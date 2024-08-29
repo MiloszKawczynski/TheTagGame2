@@ -373,16 +373,31 @@ function scr_platformerCollision()
 		}
 	}
 	
-	//if (place_meeting(x + min(16, hspeed), y + min(16, vspeed), o_collision))
-	//{
-	//	while(place_free(x + sign(hspeed), y + sign(vspeed)))
-	//	{
-	//		x += sign(hspeed);
-	//		y += sign(vspeed);
-	//	}
+	if (place_meeting(x + hspeed, y + vspeed, o_collision))
+	{
+		var collisionObject = instance_place(x + hspeed, y + vspeed, o_collision);
 		
-	//	hspeed = 0;
-	//	vspeed = 0;
-	//	log("Colision diagonal");
-	//}
+		while (place_free(x + sign(hspeed), y + sign(vspeed)))
+		{
+			x += sign(hspeed) * 0.5;
+			y += sign(vspeed) * 0.5;
+		}
+		
+		if (object_is_ancestor(collisionObject.object_index, o_diagonal))
+		{
+			hspeed = 0;
+			vspeed = 0;
+		}
+		else
+		{
+			if (closerTo(0, hspeed, vspeed) == hspeed)
+			{
+				hspeed = 0;
+			}
+			else
+			{
+				vspeed = 0;
+			}
+		}
+	}
 }
