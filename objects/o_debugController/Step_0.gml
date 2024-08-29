@@ -71,12 +71,13 @@ if (ImGui.Begin("Debug"))
 	if (ImGui.Button("Clear"))
 	{
 		ds_list_clear(logBuffor);
+		ds_list_clear(logColor);
 		ds_list_clear(monitoredValue);
 	}
 	ImGui.SameLine();
 	if (ImGui.Button("Log!"))
 	{
-		log("Log!");
+		log("Log!", c_yellow);
 	}
 	ImGui.SameLine();
 	isAutoScrollOn = ImGui.Checkbox("AutoScroll", isAutoScrollOn);
