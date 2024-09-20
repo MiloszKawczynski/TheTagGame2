@@ -40,3 +40,12 @@ monitoredValue = ds_list_create();
 isApplicationSurfaceEnabled = false;
 
 init = true;
+
+choosedPlayerIndex = 0;
+
+isRightKeyBindingOn = false;
+isLeftKeyBindingOn = false;
+isUpKeyBindingOn = false;
+isDownKeyBindingOn = false;
+isJumpKeyBindingOn = false;
+isInteractionKeyBindingOn = false;

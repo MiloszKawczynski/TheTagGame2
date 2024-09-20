@@ -33,18 +33,37 @@ if (ImGui.Begin("Debug"))
 		game_restart();
 	}
 	
-	ImGui.Separator();
-	ImGui.Text("Clea");
+	if (ImGui.Button("Add Player"))
+	{
+		instance_create_layer(o_char.x + 16, o_char.y + 16, "players", o_char, 
+		{
+			player : 1
+		});
+	}
+	ImGui.SameLine();
+	if (ImGui.Button("Delete Player"))
+	{
+		if (instance_number(o_char) > 0)
+		{
+			instance_destroy(instance_find(o_char, choosedPlayerIndex));
+		}
+	}
 	
-	ImGui.Text(string("x: {0}", o_char.x));
-	ImGui.Text(string("y: {0}", o_char.y));
-	ImGui.Text(string("Speed: {0}", o_char.speed));
-	ImGui.Text(string("hSpeed: {0}", o_char.horizontalSpeed));
-	ImGui.Text(string("vSpeed: {0}", o_char.verticalSpeed));
-	ImGui.Text(string("isGrounded: {0}", o_char.isGrounded));
-	ImGui.Text(string("maxSpeed: {0}", o_char.maximumSpeed));
-	ImGui.Text(string("coyoteTime: {0}", o_char.coyoteTime));
-	ImGui.Text(string("jumpBuffor: {0}", o_char.jumpBuffor));
+	ImGui.Separator();
+	
+	choosedPlayerIndex = ImGui.InputInt("Choosed Players", choosedPlayerIndex, 1);
+	choosedPlayerIndex = clamp(choosedPlayerIndex, 0, instance_number(o_char) - 1);
+	var choosedPlayer = instance_find(o_char, choosedPlayerIndex);
+	
+	ImGui.Text(string("x: {0}", choosedPlayer.x));
+	ImGui.Text(string("y: {0}", choosedPlayer.y));
+	ImGui.Text(string("Speed: {0}", choosedPlayer.speed));
+	ImGui.Text(string("hSpeed: {0}", choosedPlayer.horizontalSpeed));
+	ImGui.Text(string("vSpeed: {0}", choosedPlayer.verticalSpeed));
+	ImGui.Text(string("isGrounded: {0}", choosedPlayer.isGrounded));
+	ImGui.Text(string("maxSpeed: {0}", choosedPlayer.maximumSpeed));
+	ImGui.Text(string("coyoteTime: {0}", choosedPlayer.coyoteTime));
+	ImGui.Text(string("jumpBuffor: {0}", choosedPlayer.jumpBuffor));
 	
 	if (ImGui.Button("Player")) 
 	{
@@ -172,24 +191,37 @@ if (isStatsOpen)
 	var input_width = 50;
 	var spacing = 10;
 	
-	o_char.maximumDefaultSpeed = scr_statitstic("Default Speed",  o_char.maximumDefaultSpeed);
-	o_char.acceleration = scr_statitstic("Acceleration",  o_char.acceleration);
-	o_char.deceleration = scr_statitstic("Deceleration",  o_char.deceleration);
-	o_char.maximumSpeedDecelerationFactor = scr_statitstic("Maximum Speed Deceleration Factor",  o_char.maximumSpeedDecelerationFactor);
-	o_char.jumpForce = scr_statitstic("Jump Height",  o_char.jumpForce);
-	o_char.momentumJumpForce = scr_statitstic("Speed Additional Jump Height",  o_char.momentumJumpForce);
-	o_char.gravitation= scr_statitstic("Gravity",  o_char.gravitation);
-	o_char.slopeAcceleration = scr_statitstic("Slope Acceleration",  o_char.slopeAcceleration);
-	o_char.rampAcceleration = scr_statitstic("Ramp Acceleration",  o_char.rampAcceleration);
-	o_char.maximumSlopeSpeed = scr_statitstic("Slope Deceleration",  o_char.maximumSlopeSpeed);
-	o_char.maximumRampSpeed = scr_statitstic("Ramp Deceleration",  o_char.maximumRampSpeed);
-	o_char.slopeSpeedTransitionFactor = scr_statitstic("Slope Speed Transition Factor",  o_char.slopeSpeedTransitionFactor);
-	o_char.maximumCoyoteTime = scr_statitstic("Coyote Time",  o_char.maximumCoyoteTime);
-	o_char.obstacleRange = scr_statitstic("Obstacle Range",  o_char.obstacleRange);
-	o_char.minimumObstacleJumpForce = scr_statitstic("Minimum Obstacle Jump",  o_char.minimumObstacleJumpForce);
-	o_char.maximumObstacleJumpForce = scr_statitstic("Maximum Obstacle Jump",  o_char.maximumObstacleJumpForce);
-	o_char.maximumJumpBuffor = scr_statitstic("Maximum Jump Buffor",  o_char.maximumJumpBuffor);
-	o_char.color = ImGui.ColorEdit3("Color", o_char.color);
+	var choosedPlayer = instance_find(o_char, choosedPlayerIndex);
+	
+	choosedPlayer.maximumDefaultSpeed = scr_statitstic("Default Speed",  choosedPlayer.maximumDefaultSpeed);
+	choosedPlayer.acceleration = scr_statitstic("Acceleration",  choosedPlayer.acceleration);
+	choosedPlayer.deceleration = scr_statitstic("Deceleration",  choosedPlayer.deceleration);
+	choosedPlayer.maximumSpeedDecelerationFactor = scr_statitstic("Maximum Speed Deceleration Factor",  choosedPlayer.maximumSpeedDecelerationFactor);
+	choosedPlayer.jumpForce = scr_statitstic("Jump Height",  choosedPlayer.jumpForce);
+	choosedPlayer.momentumJumpForce = scr_statitstic("Speed Additional Jump Height",  choosedPlayer.momentumJumpForce);
+	choosedPlayer.gravitation= scr_statitstic("Gravity",  choosedPlayer.gravitation);
+	choosedPlayer.slopeAcceleration = scr_statitstic("Slope Acceleration",  choosedPlayer.slopeAcceleration);
+	choosedPlayer.rampAcceleration = scr_statitstic("Ramp Acceleration",  choosedPlayer.rampAcceleration);
+	choosedPlayer.maximumSlopeSpeed = scr_statitstic("Slope Deceleration",  choosedPlayer.maximumSlopeSpeed);
+	choosedPlayer.maximumRampSpeed = scr_statitstic("Ramp Deceleration",  choosedPlayer.maximumRampSpeed);
+	choosedPlayer.slopeSpeedTransitionFactor = scr_statitstic("Slope Speed Transition Factor",  choosedPlayer.slopeSpeedTransitionFactor);
+	choosedPlayer.maximumCoyoteTime = scr_statitstic("Coyote Time",  choosedPlayer.maximumCoyoteTime);
+	choosedPlayer.obstacleRange = scr_statitstic("Obstacle Range",  choosedPlayer.obstacleRange);
+	choosedPlayer.minimumObstacleJumpForce = scr_statitstic("Minimum Obstacle Jump",  choosedPlayer.minimumObstacleJumpForce);
+	choosedPlayer.maximumObstacleJumpForce = scr_statitstic("Maximum Obstacle Jump",  choosedPlayer.maximumObstacleJumpForce);
+	choosedPlayer.maximumJumpBuffor = scr_statitstic("Maximum Jump Buffor",  choosedPlayer.maximumJumpBuffor);
+	choosedPlayer.color = ImGui.ColorEdit3("Color", choosedPlayer.color);
+	
+	ImGui.Separator();
+	
+	scr_keyPresets(choosedPlayer);
+	
+	choosedPlayer.rightKey = scr_keyBinding(choosedPlayer.rightKey, "Right Key", isRightKeyBindingOn, "isRightKeyBindingOn");
+	choosedPlayer.leftKey = scr_keyBinding(choosedPlayer.leftKey, "Left Key", isLeftKeyBindingOn, "isLeftKeyBindingOn");
+	choosedPlayer.upKey = scr_keyBinding(choosedPlayer.upKey, "Up Key", isUpKeyBindingOn, "isUpKeyBindingOn");
+	choosedPlayer.downKey = scr_keyBinding(choosedPlayer.downKey, "Down Key", isDownKeyBindingOn, "isDownKeyBindingOn");
+	choosedPlayer.jumpKey = scr_keyBinding(choosedPlayer.jumpKey, "Jump Key", isJumpKeyBindingOn, "isJumpKeyBindingOn");
+	choosedPlayer.interactionKey = scr_keyBinding(choosedPlayer.interactionKey, "Interaction Key", isInteractionKeyBindingOn, "isInteractionKeyBindingOn");
 	
 	ImGui.End();
 }
