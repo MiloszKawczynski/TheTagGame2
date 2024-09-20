@@ -1,5 +1,3 @@
-//model = fauxton_model_create(s_3dtest, x, y, 0, 0, 0, 0, 1, 1, 1);
-
 if (player == 0)
 {
 	rightKey = ord("D");
