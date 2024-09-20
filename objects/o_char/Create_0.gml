@@ -1,13 +1,27 @@
-rightKey = ord("D");
-//rightKey = vk_right;
-leftKey = ord("A");
-//leftKey = vk_left;
-upKey = ord("W");
-//upKey = vk_up;
-downKey = ord("S");
-//downKey = vk_down;
-jumpKey = vk_space;
-interactionKey = vk_shift;
+//model = fauxton_model_create(s_3dtest, x, y, 0, 0, 0, 0, 1, 1, 1);
+
+if (player == 0)
+{
+	rightKey = ord("D");
+	leftKey = ord("A");
+	upKey = ord("W");
+	downKey = ord("S");
+	jumpKey = vk_space;
+	interactionKey = vk_lshift;
+	color = c_red;
+}
+
+if (player == 1)
+{
+	rightKey = vk_right;
+	leftKey = vk_left;
+	upKey = vk_up;
+	downKey = vk_down;
+	jumpKey = vk_rshift;
+	interactionKey = vk_rcontrol;
+	color = c_blue;
+}
+
 
 acceleration = 0.5;
 deceleration = 0.25;
