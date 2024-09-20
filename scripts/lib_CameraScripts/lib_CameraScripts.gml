@@ -16,7 +16,7 @@ function __SYSTEMCAMERAVARS()
 	PitchRangePosition = 45;
 	var p = clamp(PitchRange, 1, 180);
 	PitchClamp = new vector2(PitchRangePosition - p*.5, PitchRangePosition + p*.5);
-	ZoomClamp  = new vector2(0.5, 2);
+	ZoomClamp  = new vector2(0.5, 20);
 	
 	// Enablers
 	enable_pitch = true;

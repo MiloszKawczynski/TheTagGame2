@@ -6,22 +6,17 @@ ImGui.ConfigFlagToggle(ImGuiConfigFlags.DockingEnable);
 isStatsOpen = false;
 
 global.debug = true;
-global.debugIsGravityOn = true;
+global.debugIsGravityOn = false;
+global.debugCameraAxis = false;
+global.debugAutoCamera = true;
 
-if (global.debugIsGravityOn)
-{		
-	Camera.Pitch = 130;
-	Camera.Angle = 90;
-}
-else
-{
-	Camera.Pitch = 50;
-	Camera.Angle = 80;
-}
 Camera.Zoom = 2;
-Camera.Target = o_char;
+Camera.Target = o_cameraTarget;
 
-flatMatrix = matrix_build(0, 0, 1, 0, 0, 0, 1, 1, 1);
+scr_gravitationChange();
+
+flat0Matrix = matrix_build(0, 0, 0, 0, 0, 0, 1, 1, 1);
+flat1Matrix = matrix_build(0, 0, 1, 0, 0, 0, 1, 1, 1);
 debugMatrix = matrix_build(0, 0, 33, 0, 0, 0, 1, 1, 1);
 
 //window_set_fullscreen(true);

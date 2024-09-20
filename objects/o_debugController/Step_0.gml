@@ -25,16 +25,7 @@ if (ImGui.Begin("Debug"))
 	{
 		global.debugIsGravityOn = !global.debugIsGravityOn;
 		
-		if (global.debugIsGravityOn)
-		{		
-			Camera.Pitch = 130;
-			Camera.Angle = 90;
-		}
-		else
-		{
-			Camera.Pitch = 50;
-			Camera.Angle = 90;
-		}
+		scr_gravitationChange();
 	}
 	
 	if(ImGui.Button("Reset"))
@@ -54,7 +45,6 @@ if (ImGui.Begin("Debug"))
 	ImGui.Text(string("maxSpeed: {0}", o_char.maximumSpeed));
 	ImGui.Text(string("coyoteTime: {0}", o_char.coyoteTime));
 	ImGui.Text(string("jumpBuffor: {0}", o_char.jumpBuffor));
-	ImGui.PopStyleColor(1);
 	
 	if (ImGui.Button("Player")) 
 	{
@@ -77,16 +67,7 @@ if (ImGui.Begin("Debug"))
 	{
 		if (Camera.Pitch == 90.1)
 		{
-			if (global.debugIsGravityOn)
-			{		
-				Camera.Pitch = 130;
-				Camera.Angle = 90;
-			}
-			else
-			{
-				Camera.Pitch = 50;
-				Camera.Angle = 90;
-			}
+			scr_gravitationChange();
 		}
 		else
 		{
@@ -104,9 +85,17 @@ if (ImGui.Begin("Debug"))
 	ImGui.SameLine();
 	ImGui.BeginGroup();
 	
-	Camera.Zoom = ImGui.VSliderFloat("Zoom", 19, 60, Camera.Zoom, 0.5, 2);
+	Camera.Zoom = ImGui.VSliderFloat("Zoom", 19, 60, Camera.Zoom, 0.5, 20);
+	if (ImGui.IsItemEdited())
+	{
+		global.debugAutoCamera = false;
+	}
+	
 	
 	ImGui.EndGroup();
+	
+	global.debugCameraAxis = ImGui.Checkbox("Camera Axis", global.debugCameraAxis);
+	global.debugAutoCamera = ImGui.Checkbox("Auto Camera", global.debugAutoCamera);
 	
 	ImGui.Text(string("Angle: {0}", Camera.Angle));
 	ImGui.Text(string("Pitch: {0}", Camera.Pitch));
@@ -147,6 +136,9 @@ if (ImGui.Begin("Debug"))
 	ImGui.EndChild();
 	
 	ImGui.Text(string("Logs: {0}", ds_list_size(logBuffor)));
+	
+	ImGui.Separator();
+	
 	ImGui.End();
 }
 if (ImGui.Begin("Game"))
@@ -197,6 +189,7 @@ if (isStatsOpen)
 	o_char.minimumObstacleJumpForce = scr_statitstic("Minimum Obstacle Jump",  o_char.minimumObstacleJumpForce);
 	o_char.maximumObstacleJumpForce = scr_statitstic("Maximum Obstacle Jump",  o_char.maximumObstacleJumpForce);
 	o_char.maximumJumpBuffor = scr_statitstic("Maximum Jump Buffor",  o_char.maximumJumpBuffor);
+	o_char.color = ImGui.ColorEdit3("Color", o_char.color);
 	
 	ImGui.End();
 }
