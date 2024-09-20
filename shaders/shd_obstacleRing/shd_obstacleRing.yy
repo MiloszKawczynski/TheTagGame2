@@ -1,7 +1,7 @@
 {
   "$GMShader":"",
-  "%Name":"shd_bloom",
-  "name":"shd_bloom",
+  "%Name":"shd_obstacleRing",
+  "name":"shd_obstacleRing",
   "parent":{
     "name":"6_Shaders",
     "path":"folders/6_Shaders.yy",
