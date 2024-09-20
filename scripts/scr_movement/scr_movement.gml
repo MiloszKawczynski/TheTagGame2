@@ -2,18 +2,18 @@ function scr_topDownMovement()
 {	
 	isGrounded = false;
 	
-	var horizontal = keyboard_check(rightKey) - keyboard_check(leftKey);
-	var vertical = keyboard_check(downKey) - keyboard_check(upKey);
+	desiredHorizontalDirection = keyboard_check(rightKey) - keyboard_check(leftKey);
+	desiredVerticalDirection = keyboard_check(downKey) - keyboard_check(upKey);
 	
-	horizontalSpeed += horizontal * acceleration;
-	verticalSpeed += vertical * acceleration;
+	horizontalSpeed += desiredHorizontalDirection * acceleration;
+	verticalSpeed += desiredVerticalDirection * acceleration;
 	
-	if (horizontal == 0)
+	if (desiredHorizontalDirection == 0)
 	{
 		horizontalSpeed -= sign(horizontalSpeed) * deceleration;
 	}
 	
-	if (vertical == 0)
+	if (desiredVerticalDirection == 0)
 	{
 		verticalSpeed -= sign(verticalSpeed) * deceleration;
 	}
@@ -28,7 +28,14 @@ function scr_topDownMovement()
 	}
 	
 	speed = point_distance(0, 0, horizontalSpeed, verticalSpeed);
-	direction = point_direction(0, 0, horizontalSpeed, verticalSpeed) + Camera.Forward;
+	if (global.debugCameraAxis)
+	{
+		direction = point_direction(0, 0, horizontalSpeed, verticalSpeed) + Camera.Forward;
+	}
+	else
+	{
+		direction = point_direction(0, 0, horizontalSpeed, verticalSpeed);
+	}
 	
 	if (abs(speed) < deceleration)
 	{
@@ -47,7 +54,6 @@ function scr_topDownMovement()
 	
 	if (speed > maximumDefaultSpeed)
 	{
-		log("stop");
 		speed -= deceleration;
 		maximumSpeed = speed;
 		
@@ -55,6 +61,11 @@ function scr_topDownMovement()
 		{
 			maximumSpeed = maximumDefaultSpeed
 		}
+	}
+	
+	if (speed > deceleration * 2)
+	{
+		lastDirection = direction;
 	}
 	
 	scr_TopDownObstaclesInteraction();
@@ -67,14 +78,23 @@ function scr_TopDownObstaclesInteraction()
 	{
 		if (keyboard_check_pressed(interactionKey))
 		{
-			var newSpeedRatio = (speed + lerp(minimumObstacleJumpForce, maximumObstacleJumpForce, 1 - (dist / obstacleRange))) / speed;
-			horizontalSpeed *= newSpeedRatio;
-			verticalSpeed *= newSpeedRatio;
+			var obstacleSpeedBoost = lerp(minimumObstacleJumpForce, maximumObstacleJumpForce, 1 - (dist / obstacleRange));
+			
+			if (speed != 0)
+			{
+				var newSpeedRatio = (speed + obstacleSpeedBoost) / speed;
+				horizontalSpeed *= newSpeedRatio;
+				verticalSpeed *= newSpeedRatio;
+			}
+			else
+			{
+				horizontalSpeed = lengthdir_x(obstacleSpeedBoost, lastDirection);
+				verticalSpeed = lengthdir_y(obstacleSpeedBoost, lastDirection);
+			}
 			speed = point_distance(0, 0, horizontalSpeed, verticalSpeed);
 			direction = point_direction(0, 0, horizontalSpeed, verticalSpeed) + Camera.Forward;
 			if (speed > maximumSpeed)
 			{
-				log("boost");
 				maximumSpeed = speed;
 			}
 		}
@@ -83,14 +103,12 @@ function scr_TopDownObstaclesInteraction()
 
 function scr_platformerMovement()
 {	
-	if (live_call()) return live_result;
-	
 	horizontalSpeed = hspeed;
 	verticalSpeed = vspeed;
 	
-	var horizontal = keyboard_check(rightKey) - keyboard_check(leftKey);
+	desiredHorizontalDirection = keyboard_check(rightKey) - keyboard_check(leftKey);
 	
-	horizontalSpeed += horizontal * acceleration;
+	horizontalSpeed += desiredHorizontalDirection * acceleration;
 		
 	jumpBuffor = armez_timer(jumpBuffor, -1);
 		
@@ -118,7 +136,7 @@ function scr_platformerMovement()
 		coyoteTime = armez_timer(coyoteTime, -1);
 	}
 	
-	if (horizontal == 0)
+	if (desiredHorizontalDirection == 0)
 	{
 		horizontalSpeed -= sign(horizontalSpeed) * deceleration;
 	}
@@ -166,9 +184,9 @@ function scr_platformerMovement()
 		}
 	}
 	
-	scr_platformerObstaclesInteraction(horizontal)
+	scr_platformerObstaclesInteraction()
 	
-	if (sign(hspeed) != horizontal and horizontal != 0)
+	if (sign(hspeed) != desiredHorizontalDirection and desiredHorizontalDirection != 0)
 	{
 		maximumSpeed = maximumDefaultSpeed;
 	}
@@ -178,7 +196,7 @@ function scr_platformerMovement()
 		image_xscale = sign(hspeed);
 	}
 	
-	if (horizontal != 0)
+	if (desiredHorizontalDirection != 0)
 	{
 		if (place_meeting(x, y + 1, o_block) and isGrounded and maximumSpeed != maximumDefaultSpeed)
 		{
@@ -256,7 +274,7 @@ function scr_platformerMovement()
 	}
 }
 
-function scr_platformerObstaclesInteraction(horizontal)
+function scr_platformerObstaclesInteraction()
 {
 	var dist = distance_to_object(o_obstacle);
 	if (dist < instance_nearest(x, y, o_char).obstacleRange)
@@ -264,9 +282,9 @@ function scr_platformerObstaclesInteraction(horizontal)
 		if (keyboard_check_pressed(interactionKey))
 		{
 			vspeed -= lerp(minimumObstacleJumpForce, maximumObstacleJumpForce, 1 - (dist / obstacleRange));
-			if (horizontal != sign(hspeed))
+			if (desiredHorizontalDirection != sign(hspeed))
 			{
-				hspeed = abs(hspeed) * horizontal;
+				hspeed = abs(hspeed) * desiredHorizontalDirection;
 				log("EPIC TURN!", c_aqua);
 			}
 		}
@@ -275,78 +293,152 @@ function scr_platformerObstaclesInteraction(horizontal)
 
 function scr_topDownCollision()
 {	
+	if (live_call()) return live_result;
+	
 	if (place_meeting(x + hspeed, y, o_collision))
-	{	
-		while(place_free(x + sign(hspeed), y))
-		{
-			x += sign(hspeed);
-		}
-
-		hspeed = 0;
-	}
-	
-	if place_meeting(x, y + vspeed, o_collision)
-	{	
-		while(place_free(x, y + sign(vspeed)))
-		{
-			y += sign(vspeed);
-		}
-		
-		vspeed = 0;
-	}
-	
-	if place_meeting(x + hspeed, y + vspeed, o_collision)
 	{
-		while(place_free(x + sign(hspeed), y + sign(vspeed)))
+		if (!place_meeting(x + hspeed, y - abs(hspeed) - 1, o_collision))
 		{
-			x += sign(hspeed);
-			y += sign(vspeed);
+			while (place_meeting(x + hspeed, y, o_collision))
+			{
+				y -= 0.5;
+			}
 		}
-		
-		hspeed = 0;
-		vspeed = 0;
+		else if (!place_meeting(x + hspeed, y + abs(hspeed) + 1, o_collision))
+		{
+			while (place_meeting(x + hspeed, y, o_collision))
+			{
+				y += 0.5;
+			}
+		}
+		else
+		{
+			while (!place_meeting(x + sign(hspeed), y, o_collision))
+			{
+				x += sign(hspeed) * 0.5;
+			}
+			
+			hspeed = 0;
+			horizontalSpeed = 0;
+			maximumSpeed = maximumDefaultSpeed;
+		}
+	}
+	
+	if (place_meeting(x, y + vspeed, o_collision))
+	{
+		if (!place_meeting(x - abs(vspeed * 2) - 1, y + vspeed, o_collision))
+		{
+			if (instance_place(x, y + vspeed, o_collision).object_index == o_ramp)
+			{
+				vspeed *= 0.5;
+			}
+			
+			while (place_meeting(x, y + vspeed, o_collision))
+			{
+				x -= 0.5;
+			}
+		}
+		else if (!place_meeting(x + abs(vspeed * 2) + 1, y + vspeed, o_collision))
+		{
+			if (instance_place(x, y + vspeed, o_collision).object_index == o_ramp)
+			{
+				vspeed *= 0.5;
+			}
+			
+			while (place_meeting(x, y + vspeed, o_collision))
+			{
+				x += 0.5;
+			}
+		}
+		else
+		{
+			while (!place_meeting(x, y + sign(vspeed), o_collision))
+			{
+				y += sign(vspeed) * 0.5;
+			}
+			
+			vspeed = 0;
+			verticalSpeed = 0;
+			maximumSpeed = maximumDefaultSpeed;
+		}
 	}
 }
 
 function scr_platformerCollision()
 {	
-	if (live_call()) return live_result;
-	
 	while (place_meeting(x, y, o_collision))
 	{
 		y -= 0.5;
 	}
 	
-	if (vspeed != 0 and place_meeting(x, y + vspeed, o_collision))
-	{	
-		while(place_free(x, y + sign(vspeed) * 0.5))
-		{
-			y += sign(vspeed) * 0.5;
-		}
-		
-		if (!isGrounded)
-		{
-			if (place_meeting(x, y + 1, o_diagonal))
+	if (vspeed < 0)
+	{
+		if (place_meeting(x, y + vspeed, o_collision))
+		{	
+			var slopeSlide = false;
+			
+			if (desiredHorizontalDirection != 1 and !place_meeting(x - abs(vspeed * 2) - 1, y + vspeed, o_collision))
 			{
-				if (instance_place(x, y + 1, o_diagonal).image_xscale != sign(horizontalSpeed) and hspeed != 0)
+				while (place_meeting(x, y + vspeed, o_collision))
 				{
-					hspeed += vspeed * slopeSpeedTransitionFactor * image_xscale;
-					if (abs(hspeed) > maximumSpeed)
+					x -= 0.5;
+				}
+				slopeSlide = true;
+			}
+			
+			if (desiredHorizontalDirection != -1 and !place_meeting(x + abs(vspeed * 2) + 1, y + vspeed, o_collision))
+			{
+				while (place_meeting(x, y + vspeed, o_collision))
+				{
+					x += 0.5;
+				}
+				slopeSlide = true;
+			}
+			
+			if (!slopeSlide)
+			{
+				while(place_free(x, y + sign(vspeed) * 0.5))
+				{
+					y += sign(vspeed) * 0.5;
+				}
+				vspeed = 0;
+			}
+		}
+	}
+	
+	if (vspeed > 0)
+	{
+		if (place_meeting(x, y + vspeed, o_collision))
+		{	
+			while(place_free(x, y + sign(vspeed) * 0.5))
+			{
+				y += sign(vspeed) * 0.5;
+			}
+		
+			if (!isGrounded)
+			{
+				if (place_meeting(x, y + 1, o_diagonal))
+				{
+					if (instance_place(x, y + 1, o_diagonal).image_xscale != sign(horizontalSpeed) and hspeed != 0)
 					{
-						maximumSpeed = abs(hspeed);
+						hspeed += vspeed * slopeSpeedTransitionFactor * image_xscale;
+						if (abs(hspeed) > maximumSpeed)
+						{
+							maximumSpeed = abs(hspeed);
+						}
 					}
+				}
+		
+				if (place_meeting(x, y + 1, o_collision))
+				{
+					isGrounded = true;
+					canBeOnCliff = false;
+					coyoteTime = maximumCoyoteTime;
 				}
 			}
 		
-			if (place_meeting(x, y + 1, o_collision))
-			{
-				isGrounded = true;
-				canBeOnCliff = false;
-				coyoteTime = maximumCoyoteTime;
-			}
+			vspeed = 0;
 		}
-		
-		vspeed = 0;
 	}
 	
 	if (place_meeting(x + hspeed, y, o_collision))
@@ -360,13 +452,23 @@ function scr_platformerCollision()
 		}
 		else
 		{
-			while (!place_meeting(x + sign(hspeed), y, o_collision))
+			if (!place_meeting(x + hspeed, y + abs(hspeed) + 1, o_collision))
 			{
-				x += sign(hspeed) * 0.5;
+				while (place_meeting(x + hspeed, y, o_collision))
+				{
+					y += 0.5;
+				}
 			}
+			else
+			{
+				while (!place_meeting(x + sign(hspeed), y, o_collision))
+				{
+					x += sign(hspeed) * 0.5;
+				}
 			
-			hspeed = 0;
-			maximumSpeed = maximumDefaultSpeed;
+				hspeed = 0;
+				maximumSpeed = maximumDefaultSpeed;
+			}
 		}
 	}
 	

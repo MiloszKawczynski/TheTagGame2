@@ -39,8 +39,11 @@ rampAcceleration = 0.05;
 
 slopeSpeedTransitionFactor = 0.5;
 
+desiredHorizontalDirection = 0;
+desiredVerticalDirection = 0;
 horizontalSpeed = 0;
 verticalSpeed = 0;
+lastDirection = 0;
 
 gravitation = 0.25;
 jumpForce = 7;

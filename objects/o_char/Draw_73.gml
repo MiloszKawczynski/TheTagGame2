@@ -1,4 +1,4 @@
-if (live_call()) return live_result;
+//if (live_call()) return live_result;
 
 matrix_set(matrix_world, o_debugController.debugMatrix);
 draw_set_color(c_black);
