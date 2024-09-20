@@ -35,8 +35,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"s_clea",
-    "path":"sprites/s_clea/s_clea.yy",
+    "name":"idleCycle",
+    "path":"sprites/idleCycle/idleCycle.yy",
   },
   "spriteMaskId":null,
   "visible":true,
