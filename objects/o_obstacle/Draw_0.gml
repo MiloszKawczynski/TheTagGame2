@@ -1,5 +1,3 @@
-if (live_call()) return live_result;
-
 for(var i = 0; i < instance_number(o_char); i++)
 {
 	var char = instance_find(o_char, i);
@@ -8,6 +6,11 @@ for(var i = 0; i < instance_number(o_char); i++)
 
 	if (dist < char.obstacleRange)
 	{
+		if (!surface_exists(surface))
+		{
+			surface = surface_create(maximumObstacleRange * 2, maximumObstacleRange * 2);	
+		}
+		
 		surface_set_target(surface);
 			draw_clear_alpha(characterColor, 1);
 			draw_set_color(characterColor);
@@ -22,7 +25,3 @@ for(var i = 0; i < instance_number(o_char); i++)
 		shader_reset();
 	}	
 }
-
-shader_set(shd_default);
-	fauxton_model_draw_override(model);
-shader_reset();

@@ -20,7 +20,7 @@ if (instance_number(o_char) > 1)
 	x = sumX / instance_number(o_char);
 	y = sumY / instance_number(o_char);
 
-	if (global.debugAutoCamera)
+	if (global.debugAutoCamera and !global.debugEdit)
 	{
 		Camera.Zoom = (highestDistanceBetweenPlayers / 450) * 1.25;
 		Camera.Zoom = clamp(Camera.Zoom, 1, 20);
@@ -31,8 +31,13 @@ else
 	x = o_char.x;
 	y = o_char.y;
 	
-	if (global.debugAutoCamera)
+	if (global.debugAutoCamera and !global.debugEdit)
 	{
 		Camera.Zoom = 2;
 	}
+}
+
+if (global.debugEdit)
+{
+	camera_set_view_pos(view_camera[1],  x - (camera_get_view_width(view_camera[1]) / 2), y - (camera_get_view_height(view_camera[1]) / 2))
 }

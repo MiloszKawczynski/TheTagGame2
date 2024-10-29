@@ -1,6 +1,8 @@
 event_inherited();
 
 ImGui.__Initialize();
+
+init = true;
 ImGui.ConfigFlagToggle(ImGuiConfigFlags.DockingEnable);	
 
 isStatsOpen = false;
@@ -9,17 +11,22 @@ global.debug = true;
 global.debugIsGravityOn = false;
 global.debugCameraAxis = false;
 global.debugAutoCamera = true;
+global.debugOutOfViewCulling = false;
+global.debugEdit = false;
 
-Camera.Zoom = 2;
-Camera.Target = o_cameraTarget;
-
-scr_gravitationChange();
+if (!global.debugEdit)
+{
+	Camera.Zoom = 2;
+	Camera.Target = o_cameraTarget;
+	
+	scr_gravitationChange();
+}
 
 flat0Matrix = matrix_build(0, 0, 0, 0, 0, 0, 1, 1, 1);
 flat1Matrix = matrix_build(0, 0, 1, 0, 0, 0, 1, 1, 1);
 debugMatrix = matrix_build(0, 0, 33, 0, 0, 0, 1, 1, 1);
 
-//window_set_fullscreen(true);
+window_set_fullscreen(true);
 
 ui = new UI();
 
@@ -39,8 +46,6 @@ monitoredValue = ds_list_create();
 
 isApplicationSurfaceEnabled = false;
 
-init = true;
-
 choosedPlayerIndex = 0;
 
 isRightKeyBindingOn = false;
@@ -49,3 +54,45 @@ isUpKeyBindingOn = false;
 isDownKeyBindingOn = false;
 isJumpKeyBindingOn = false;
 isInteractionKeyBindingOn = false;
+
+pseudo2D = false;
+
+gameWindowWidth = 0;
+gameWindowHeight = 0;
+
+if (!global.debugEdit)
+{
+	oldPitch = Camera.Pitch;
+	oldAngle = Camera.Angle;
+	cursorX = 0;
+	cursorY = 0;
+	cursorXPressed = 0;
+	cursorYPressed = 0;
+	
+	editorMirror = false;
+	editorFlip = false;
+	editorFullView = true;
+	editorSlopeCreation = false;
+	editorFileName = "";
+	
+	editorObjects = ds_list_create();
+	ds_list_add(editorObjects, o_block, o_ramp, o_slope, o_obstacle);
+	editorCurrentObjectIndex = 0;
+	editorCurrentObject = o_block;
+	enum EditorDirectionType
+	{
+		topLeft,
+		topRight,
+		bottomLeft,
+		bottomRight
+	}
+	
+	editorDirection = EditorDirectionType.bottomRight;
+}
+else
+{
+	layer_background_visible(layer_background_get_id(layer_get_id("SolidBlue")), false);
+}
+
+currentTab = 0;
+previousTab = 0;

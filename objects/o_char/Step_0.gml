@@ -11,11 +11,9 @@ else
 	scr_topDownCollision();
 }
 
-Camera.MouseLock = mouse_check_button(mb_right);
-
 if (hspeed == 0)
 {
-	sprite_index = idleCycle;
+	sprite_index = s_cleaIdle;
 }
 else
 {
@@ -23,12 +21,12 @@ else
 	
 	if (abs(hspeed) > maximumDefaultSpeed)
 	{
-		sprite_index = runCycle;
+		sprite_index = s_cleaRun;
 	}
 	else
 	{
-		sprite_index = walkCycle;
+		sprite_index = s_cleaWalk;
 	}
 }
 
-mask_index = s_clea;
+mask_index = s_idleCycle;

@@ -28,7 +28,7 @@ function scr_topDownMovement()
 	}
 	
 	speed = point_distance(0, 0, horizontalSpeed, verticalSpeed);
-	if (global.debugCameraAxis)
+	if (global.debugCameraAxis and !global.debugEdit)
 	{
 		direction = point_direction(0, 0, horizontalSpeed, verticalSpeed) + Camera.Forward;
 	}
@@ -92,7 +92,16 @@ function scr_TopDownObstaclesInteraction()
 				verticalSpeed = lengthdir_y(obstacleSpeedBoost, lastDirection);
 			}
 			speed = point_distance(0, 0, horizontalSpeed, verticalSpeed);
-			direction = point_direction(0, 0, horizontalSpeed, verticalSpeed) + Camera.Forward;
+			
+			if (!global.debugEdit)
+			{
+				direction = point_direction(0, 0, horizontalSpeed, verticalSpeed) + Camera.Forward;
+			}
+			else
+			{
+				direction = point_direction(0, 0, horizontalSpeed, verticalSpeed);
+			}
+			
 			if (speed > maximumSpeed)
 			{
 				maximumSpeed = speed;
@@ -297,14 +306,14 @@ function scr_topDownCollision()
 	
 	if (place_meeting(x + hspeed, y, o_collision))
 	{
-		if (!place_meeting(x + hspeed, y - abs(hspeed) - 1, o_collision))
+		if (!place_meeting(x + hspeed, y - abs(hspeed) - 1, o_collision) and desiredVerticalDirection == 0)
 		{
 			while (place_meeting(x + hspeed, y, o_collision))
 			{
 				y -= 0.5;
 			}
 		}
-		else if (!place_meeting(x + hspeed, y + abs(hspeed) + 1, o_collision))
+		else if (!place_meeting(x + hspeed, y + abs(hspeed) + 1, o_collision) and desiredVerticalDirection == 0)
 		{
 			while (place_meeting(x + hspeed, y, o_collision))
 			{
@@ -326,7 +335,7 @@ function scr_topDownCollision()
 	
 	if (place_meeting(x, y + vspeed, o_collision))
 	{
-		if (!place_meeting(x - abs(vspeed * 2) - 1, y + vspeed, o_collision))
+		if (!place_meeting(x - abs(vspeed * 2) - 1, y + vspeed, o_collision) and desiredHorizontalDirection == 0)
 		{
 			if (instance_place(x, y + vspeed, o_collision).object_index == o_ramp)
 			{
@@ -338,7 +347,7 @@ function scr_topDownCollision()
 				x -= 0.5;
 			}
 		}
-		else if (!place_meeting(x + abs(vspeed * 2) + 1, y + vspeed, o_collision))
+		else if (!place_meeting(x + abs(vspeed * 2) + 1, y + vspeed, o_collision) and desiredHorizontalDirection == 0)
 		{
 			if (instance_place(x, y + vspeed, o_collision).object_index == o_ramp)
 			{
@@ -361,6 +370,21 @@ function scr_topDownCollision()
 			verticalSpeed = 0;
 			maximumSpeed = maximumDefaultSpeed;
 		}
+	}
+	
+	if (place_meeting(x + hspeed, y + vspeed, o_collision))
+	{
+		while (!place_meeting(x + sign(hspeed), y + sign(vspeed), o_collision))
+		{
+			x += sign(hspeed) * 0.5;
+			y += sign(vspeed) * 0.5;
+		}
+			
+		hspeed = 0;
+		vspeed = 0;
+		horizontalSpeed = 0;
+		verticalSpeed = 0;
+		maximumSpeed = maximumDefaultSpeed;
 	}
 }
 
@@ -472,7 +496,7 @@ function scr_platformerCollision()
 		}
 	}
 	
-	if (vspeed >= 0 and !place_meeting(x + hspeed, y + 1, o_collision) and place_meeting(x + hspeed, y + abs(hspeed) + max(1, 1 * abs(hspeed) / maximumDefaultSpeed), o_collision))
+	if (vspeed >= 0 and !place_meeting(x + hspeed, y + 1, o_collision) and place_meeting(x + hspeed, y + ceil(abs(hspeed)) + 1, o_collision))
 	{
 		while (!place_meeting(x + hspeed, y + 0.5, o_collision))
 		{
@@ -480,7 +504,7 @@ function scr_platformerCollision()
 		}
 	}
 	
-	if (place_meeting(x + hspeed, y + vspeed, o_collision))
+	if (place_meeting(x + hspeed, y + vspeed, o_collision) and abs(vspeed) >= 1)
 	{
 		var collisionObject = instance_place(x + hspeed, y + vspeed, o_collision);
 		

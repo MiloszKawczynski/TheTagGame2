@@ -269,13 +269,13 @@ function pipeline_render_to_screen()
 		exit;
 	}
 	
-	if (!surface_exists(screenSurface))
-	{
-		screenSurface = surface_create(800, 450);
-	}
+	//if (!surface_exists(screenSurface))
+	//{
+	//	screenSurface = surface_create(800, 450);
+	//}
 	
-	surface_set_target(screenSurface);
-	draw_clear_alpha(c_white, 1);
+	//surface_set_target(screenSurface);
+	//draw_clear_alpha(c_white, 1);
 
 	// Draw application surface & Post-processing
 	var width = surface_get_width( application_surface );
@@ -292,5 +292,5 @@ function pipeline_render_to_screen()
 		draw_surface_general( application_surface, 0, 0, width, height, gui_width, gui_height, xScale, yScale, 180, c_white, c_white, c_white, c_white, 1);
 	}
 	
-	surface_reset_target();
+	//surface_reset_target();
 }

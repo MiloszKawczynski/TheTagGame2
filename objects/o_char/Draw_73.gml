@@ -1,8 +1,5 @@
 //if (live_call()) return live_result;
-
-matrix_set(matrix_world, o_debugController.debugMatrix);
-draw_set_color(c_black);
-draw_set_alpha(1);
-draw_set_color(c_lime);
-draw_circle(x, y, 2, false);
-matrix_reset();
+if (global.debugEdit)
+{
+	draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, image_yscale, 0, c_white, 1);
+}

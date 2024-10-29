@@ -1,1 +1,0 @@
-model = fauxton_model_create(sprite_index, x, y, 0, 0, 0, 0, image_xscale, image_yscale, 1);

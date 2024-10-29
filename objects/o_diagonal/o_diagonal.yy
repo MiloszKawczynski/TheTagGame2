@@ -1,7 +1,9 @@
 {
   "$GMObject":"",
   "%Name":"o_diagonal",
-  "eventList":[],
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":73,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+  ],
   "managed":true,
   "name":"o_diagonal",
   "overriddenProperties":[],
