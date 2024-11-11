@@ -13,3 +13,12 @@ function instance_nearest_notme(_x, _y, obj)
     }
     return inst;
 }
+
+function wait(time)
+{
+	var tend = get_timer() + (time * 1000000);
+	while(get_timer() < tend)
+	{
+		//do nothing
+	}
+}

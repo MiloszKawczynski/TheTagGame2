@@ -46,11 +46,8 @@ reset = function()
 	if (isGameOn)
 	{
 		isGameOn = false;
-		var tend = get_timer() + 1500000;
-		while(get_timer() < tend)
-		{
-			//do nothing
-		}
+
+		wait(1.5);
 	
 		startStop();
 	}
