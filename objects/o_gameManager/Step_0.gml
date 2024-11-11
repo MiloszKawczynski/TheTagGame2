@@ -6,8 +6,7 @@ if (isGameOn)
 
 	if (chaseTime mod (maximumChaseTime div changesPerChase) == 0)
 	{
-		isGravitationOn = !isGravitationOn;
-		global.debugIsGravityOn = isGravitationOn;
+		global.debugIsGravityOn = !global.debugIsGravityOn;
 		scr_gravitationChange();
 		log("CHANGE!", c_yellow);
 	}

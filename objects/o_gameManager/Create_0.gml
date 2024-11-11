@@ -9,10 +9,12 @@ isGameOn = false;
 reset = function()
 {
 	chaseTime = maximumChaseTime;
-	isGravitationOn = false;
 
-	global.debugIsGravityOn = isGravitationOn;
-	isGameOn = false;
+	if (global.debugIsGravityOn)
+	{
+		global.debugIsGravityOn = !global.debugIsGravityOn;
+		scr_gravitationChange();
+	}
 	
 	with(o_char)
 	{
@@ -26,9 +28,35 @@ reset = function()
 			}
 		}
 		
+		speed = 0;
+		hspeed = 0;
+		vspeed = 0;
+		desiredHorizontalDirection = 0;
+		desiredVerticalDirection = 0;
+		horizontalSpeed = 0;
+		verticalSpeed = 0;
+		
 		isChasing = !isChasing;
 		nearestPlayer = id;
 		canCaught = false;
+	}
+	
+	o_debugController.previousTab = -1;
+	
+	if (isGameOn)
+	{
+		isGameOn = false;
+		var tend = get_timer() + 1500000;
+		while(get_timer() < tend)
+		{
+			//do nothing
+		}
+	
+		startStop();
+	}
+	else
+	{
+		isGameOn = false;
 	}
 }
 
