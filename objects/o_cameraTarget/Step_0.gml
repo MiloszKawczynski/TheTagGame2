@@ -22,15 +22,8 @@ if (instance_number(o_char) > 1)
 
 	if (global.debugAutoCamera and !global.debugEdit)
 	{
-		//var screenDimension = 450;
-		
-		//if (abs(y - instance_furthest(x, y, o_char).y) < abs(x - instance_furthest(x, y, o_char).x))
-		//{
-		//	screenDimension = 800;
-		//}
-		
 		Camera.Zoom = (highestDistanceBetweenPlayers / 225) * cameraMarginFactor;
-		Camera.Zoom = clamp(Camera.Zoom, 1, 20);
+		Camera.Zoom = clamp(Camera.Zoom, 1, 3);
 	}
 }
 else

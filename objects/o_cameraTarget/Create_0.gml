@@ -1,1 +1,1 @@
-cameraMarginFactor = 3.5;
+cameraMarginFactor = 2;
