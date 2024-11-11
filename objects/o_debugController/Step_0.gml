@@ -1,4 +1,4 @@
-if (!o_gameManager.isGameOn)
+if (!o_gameManager.isGameOn and !hide)
 {
 
 	if (ImGui.Begin("Debug"))
@@ -80,9 +80,10 @@ if (keyboard_check_pressed(vk_escape))
 	game_end();
 }
 
-if (keyboard_check_pressed(ord("R")))
+if (keyboard_check_pressed(vk_f1))
 {
-	//room_restart();
+	hide = !hide;
+	previousTab = -1;
 }
 
 if (o_gameManager.isGameOn and keyboard_check_pressed(ord("P")))

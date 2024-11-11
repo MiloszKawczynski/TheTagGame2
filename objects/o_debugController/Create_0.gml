@@ -99,3 +99,5 @@ layer_background_visible(layer_background_get_id(layer_get_id("SolidBlue")), fal
 
 currentTab = 0;
 previousTab = 0;
+
+hide = false;
