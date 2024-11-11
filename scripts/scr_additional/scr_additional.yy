@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"ImGui",
+  "%Name":"scr_additional",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"ImGui",
+  "name":"scr_additional",
   "parent":{
-    "name":"ImGui_GM",
-    "path":"folders/_ThirdParty/ImGui_GM/ImGui_GM.yy",
+    "name":"5_Scripts",
+    "path":"folders/5_Scripts.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

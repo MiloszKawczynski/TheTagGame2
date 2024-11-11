@@ -63,6 +63,17 @@ function scr_topDownMovement()
 		}
 	}
 	
+	if (speed < maximumDefaultSpeed and (desiredHorizontalDirection != 0 or desiredVerticalDirection != 0))
+	{
+		speed += acceleration;
+		maximumSpeed = speed;
+		
+		if (abs(maximumSpeed - maximumDefaultSpeed) <= acceleration)
+		{
+			maximumSpeed = maximumDefaultSpeed
+		}
+	}
+	
 	if (speed > deceleration * 2)
 	{
 		lastDirection = direction;
@@ -268,14 +279,14 @@ function scr_platformerMovement()
 		{
 			if (place_meeting(x, y + 1, o_slope))
 			{
-				hspeed -= slopeAcceleration * image_xscale;
+				hspeed -= slopeDeceleration * image_xscale;
 				maximumSpeed = abs(hspeed);
 				maximumSpeed = max(maximumSpeed, maximumSlopeSpeed);
 			}
 			
 			if (place_meeting(x, y + 1, o_ramp))
 			{
-				hspeed -= rampAcceleration * image_xscale;
+				hspeed -= rampDeceleration * image_xscale;
 				maximumSpeed = abs(hspeed);
 				maximumSpeed = max(maximumSpeed, maximumRampSpeed);
 			}

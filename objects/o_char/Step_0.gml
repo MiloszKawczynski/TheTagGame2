@@ -11,6 +11,29 @@ else
 	scr_topDownCollision();
 }
 
+if (isChasing)
+{
+	nearestPlayer = instance_nearest_notme(x, y, o_char);
+
+	if (distance_to_object(nearestPlayer) < obstacleRange and !collision_line(x, y, nearestPlayer.x, nearestPlayer.y, o_collision, true, true))
+	{
+		canCaught = true;
+	}
+	else
+	{
+		canCaught = false;
+	}
+	
+	if (canCaught)
+	{
+		if (keyboard_check_pressed(interactionKey))
+		{
+			log(string("Player {0} CAUGHT!", player), color);
+			o_gameManager.reset();
+		}
+	}
+}
+
 if (hspeed == 0)
 {
 	sprite_index = s_cleaIdle;

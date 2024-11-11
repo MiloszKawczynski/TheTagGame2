@@ -1,3 +1,17 @@
+function scr_debugPreload()
+{
+	scr_levelLoad("basic");
+	scr_rulesPresetLoad("default");
+	scr_statsPresetLoad("default");
+	
+	instance_create_layer(o_char.x, o_char.y, "players", o_char, 
+	{
+		player : 1
+	});
+		
+	o_gameManager.reset();
+}
+
 function scr_docking()
 {
 	var dockspaceID 
@@ -16,11 +30,13 @@ function scr_docking()
 
 	    ImGui.DockBuilderDockWindow("Debug", docs[1]);
 	    ImGui.DockBuilderDockWindow("Edit", docs[1]);
-	    ImGui.DockBuilderDockWindow("Players Data", docs[1]);
+	    ImGui.DockBuilderDockWindow("Game", docs[1]);
 
 	    ImGui.DockBuilderFinish(dockspaceID);
 
 		ImGui.SetWindowFocus("Debug");
+
+		scr_debugPreload();
 
 	    init = false;
 	}
@@ -34,6 +50,8 @@ function scr_managePlayersNumber()
 		{
 			player : 1
 		});
+		
+		o_gameManager.reset();
 	}
 	ImGui.SameLine();
 	if (ImGui.Button("Delete Player"))
@@ -42,6 +60,8 @@ function scr_managePlayersNumber()
 		{
 			instance_destroy(instance_find(o_char, choosedPlayerIndex));
 		}
+		
+		o_gameManager.reset();
 	}
 }
 
@@ -49,9 +69,7 @@ function scr_gameOptions()
 {
 	ImGui.Text("Game Options");
 	
-	var buttonGameModeName;
-	if (global.debugIsGravityOn) {buttonGameModeName = "Top-Down";} else {buttonGameModeName = "Platformer";}
-	if(ImGui.Button(buttonGameModeName))
+	if(ImGui.Button("Top-Down / Platformer"))
 	{
 		global.debugIsGravityOn = !global.debugIsGravityOn;
 		
@@ -127,6 +145,9 @@ function scr_cameraControll()
 	
 	ImGui.EndGroup();
 	
+	o_cameraTarget.cameraMarginFactor = ImGui.InputFloat("Margin Factor", o_cameraTarget.cameraMarginFactor, 0.5);
+	o_cameraTarget.cameraMarginFactor = clamp(o_cameraTarget.cameraMarginFactor, 1, 3);
+	
 	global.debugCameraAxis = ImGui.Checkbox("Camera Axis", global.debugCameraAxis);
 	global.debugAutoCamera = ImGui.Checkbox("Auto Camera", global.debugAutoCamera);
 	global.debugOutOfViewCulling = ImGui.Checkbox("Out of View Culling", global.debugOutOfViewCulling);
@@ -138,7 +159,7 @@ function scr_cameraControll()
 	ImGui.Separator();
 }
 
-function scr_logs()
+function scr_logsOptions()
 {
 	if (ImGui.Button("Clear"))
 	{
@@ -154,6 +175,13 @@ function scr_logs()
 	ImGui.SameLine();
 	isAutoScrollOn = ImGui.Checkbox("AutoScroll", isAutoScrollOn);
 	
+	scr_logs();
+	
+	ImGui.Separator();
+}
+
+function scr_logs()
+{
 	ImGui.BeginChild("Log",, 200, true);
 	for(var i = 0; i < ds_list_size(logBuffor); i++)
 	{
@@ -173,36 +201,88 @@ function scr_logs()
 	ImGui.EndChild();
 	
 	ImGui.Text(string("Logs: {0}", ds_list_size(logBuffor)));
-	
-	ImGui.Separator();
 }
 
-function scr_playerStats()
+function scr_playersStats()
+{
+    if (ImGui.CollapsingHeader("Stats"))
+    {
+        o_gameManager.maximumDefaultSpeed = scr_statitstic("Default Speed",  o_gameManager.maximumDefaultSpeed);
+        o_gameManager.acceleration = scr_statitstic("Acceleration",  o_gameManager.acceleration);
+        o_gameManager.deceleration = scr_statitstic("Deceleration",  o_gameManager.deceleration);
+        o_gameManager.maximumSpeedDecelerationFactor = scr_statitstic("Maximum Speed Deceleration Factor",  o_gameManager.maximumSpeedDecelerationFactor);
+        o_gameManager.jumpForce = scr_statitstic("Jump Height",  o_gameManager.jumpForce);
+        o_gameManager.momentumJumpForce = scr_statitstic("Speed Additional Jump Height",  o_gameManager.momentumJumpForce);
+        o_gameManager.gravitation = scr_statitstic("Gravity",  o_gameManager.gravitation);
+        o_gameManager.slopeAcceleration = scr_statitstic("Slope Acceleration",  o_gameManager.slopeAcceleration);
+        o_gameManager.slopeDeceleration = scr_statitstic("Slope Deceleration",  o_gameManager.slopeDeceleration);
+        o_gameManager.rampAcceleration = scr_statitstic("Ramp Acceleration",  o_gameManager.rampAcceleration);
+        o_gameManager.rampDeceleration = scr_statitstic("Ramp Deceleration",  o_gameManager.rampDeceleration);
+        o_gameManager.maximumSlopeSpeed = scr_statitstic("Slope Max Speed",  o_gameManager.maximumSlopeSpeed);
+        o_gameManager.maximumRampSpeed = scr_statitstic("Ramp Max Speed",  o_gameManager.maximumRampSpeed);
+        o_gameManager.slopeSpeedTransitionFactor = scr_statitstic("Slope Speed Transition Factor",  o_gameManager.slopeSpeedTransitionFactor);
+        o_gameManager.maximumCoyoteTime = scr_statitstic("Coyote Time",  o_gameManager.maximumCoyoteTime);
+        o_gameManager.obstacleRange = scr_statitstic("Obstacle Range",  o_gameManager.obstacleRange);
+        o_gameManager.minimumObstacleJumpForce = scr_statitstic("Minimum Obstacle Jump",  o_gameManager.minimumObstacleJumpForce);
+        o_gameManager.maximumObstacleJumpForce = scr_statitstic("Maximum Obstacle Jump",  o_gameManager.maximumObstacleJumpForce);
+        o_gameManager.maximumJumpBuffor = scr_statitstic("Maximum Jump Buffor",  o_gameManager.maximumJumpBuffor);
+
+        with(o_char)
+		{
+			setupStats();
+		}
+		
+		returnList = scr_fileSearchList("stats", statsPresetFileName, statsPresetsFiles);
+		
+		statsPresetFileName = ds_list_find_value(returnList, 0);
+		statsPresetsFiles = ds_list_find_value(returnList, 1);
+		
+		ds_list_destroy(returnList);
+    }
+
+    ImGui.Separator();
+}
+
+function scr_playerModificators()
 {
     var choosedPlayer = instance_find(o_char, choosedPlayerIndex);
 
-    if (ImGui.CollapsingHeader("Stats"))
+    if (ImGui.CollapsingHeader("Modificators"))
     {
-		ImGui.Text(string("Player {0} Stats", choosedPlayerIndex));
+		ImGui.Text(string("Player {0} Modificators", choosedPlayerIndex));
 		
-        choosedPlayer.maximumDefaultSpeed = scr_statitstic("Default Speed",  choosedPlayer.maximumDefaultSpeed);
-        choosedPlayer.acceleration = scr_statitstic("Acceleration",  choosedPlayer.acceleration);
-        choosedPlayer.deceleration = scr_statitstic("Deceleration",  choosedPlayer.deceleration);
-        choosedPlayer.maximumSpeedDecelerationFactor = scr_statitstic("Maximum Speed Deceleration Factor",  choosedPlayer.maximumSpeedDecelerationFactor);
-        choosedPlayer.jumpForce = scr_statitstic("Jump Height",  choosedPlayer.jumpForce);
-        choosedPlayer.momentumJumpForce = scr_statitstic("Speed Additional Jump Height",  choosedPlayer.momentumJumpForce);
-        choosedPlayer.gravitation = scr_statitstic("Gravity",  choosedPlayer.gravitation);
-        choosedPlayer.slopeAcceleration = scr_statitstic("Slope Acceleration",  choosedPlayer.slopeAcceleration);
-        choosedPlayer.rampAcceleration = scr_statitstic("Ramp Acceleration",  choosedPlayer.rampAcceleration);
-        choosedPlayer.maximumSlopeSpeed = scr_statitstic("Slope Deceleration",  choosedPlayer.maximumSlopeSpeed);
-        choosedPlayer.maximumRampSpeed = scr_statitstic("Ramp Deceleration",  choosedPlayer.maximumRampSpeed);
-        choosedPlayer.slopeSpeedTransitionFactor = scr_statitstic("Slope Speed Transition Factor",  choosedPlayer.slopeSpeedTransitionFactor);
-        choosedPlayer.maximumCoyoteTime = scr_statitstic("Coyote Time",  choosedPlayer.maximumCoyoteTime);
-        choosedPlayer.obstacleRange = scr_statitstic("Obstacle Range",  choosedPlayer.obstacleRange);
-        choosedPlayer.minimumObstacleJumpForce = scr_statitstic("Minimum Obstacle Jump",  choosedPlayer.minimumObstacleJumpForce);
-        choosedPlayer.maximumObstacleJumpForce = scr_statitstic("Maximum Obstacle Jump",  choosedPlayer.maximumObstacleJumpForce);
-        choosedPlayer.maximumJumpBuffor = scr_statitstic("Maximum Jump Buffor",  choosedPlayer.maximumJumpBuffor);
-        choosedPlayer.color = ImGui.ColorEdit3("Color", choosedPlayer.color);
+		choosedPlayer.maximumDefaultSpeedModificator = scr_statitstic("Default Speed Modificator",  choosedPlayer.maximumDefaultSpeedModificator);
+		choosedPlayer.accelerationModificator = scr_statitstic("Acceleration Modificator",  choosedPlayer.accelerationModificator);
+		choosedPlayer.decelerationModificator = scr_statitstic("Deceleration Modificator",  choosedPlayer.decelerationModificator);
+		choosedPlayer.maximumSpeedDecelerationFactorModificator = scr_statitstic("Maximum Speed Deceleration Factor Modificator",  choosedPlayer.maximumSpeedDecelerationFactorModificator);
+		choosedPlayer.jumpForceModificator = scr_statitstic("Jump Height Modificator",  choosedPlayer.jumpForceModificator);
+		choosedPlayer.momentumJumpForceModificator = scr_statitstic("Speed Additional Jump Height Modificator",  choosedPlayer.momentumJumpForceModificator);
+		choosedPlayer.gravitationModificator = scr_statitstic("Gravity Modificator",  choosedPlayer.gravitationModificator);
+		choosedPlayer.slopeAccelerationModificator = scr_statitstic("Slope Acceleration Modificator",  choosedPlayer.slopeAccelerationModificator);
+		choosedPlayer.slopeDecelerationModificator = scr_statitstic("Slope Deceleration Modificator",  choosedPlayer.slopeDecelerationModificator);
+		choosedPlayer.rampAccelerationModificator = scr_statitstic("Ramp Acceleration Modificator",  choosedPlayer.rampAccelerationModificator);
+		choosedPlayer.rampDecelerationModificator = scr_statitstic("Ramp Deceleration Modificator",  choosedPlayer.rampDecelerationModificator);
+		choosedPlayer.maximumSlopeSpeedModificator = scr_statitstic("Slope Max Speed Modificator",  choosedPlayer.maximumSlopeSpeedModificator);
+		choosedPlayer.maximumRampSpeedModificator = scr_statitstic("Ramp Max Speed Modificator",  choosedPlayer.maximumRampSpeedModificator);
+		choosedPlayer.slopeSpeedTransitionFactorModificator = scr_statitstic("Slope Speed Transition Factor Modificator",  choosedPlayer.slopeSpeedTransitionFactorModificator);
+		choosedPlayer.maximumCoyoteTimeModificator = scr_statitstic("Coyote Time Modificator",  choosedPlayer.maximumCoyoteTimeModificator);
+		choosedPlayer.obstacleRangeModificator = scr_statitstic("Obstacle Range Modificator",  choosedPlayer.obstacleRangeModificator);
+		choosedPlayer.minimumObstacleJumpForceModificator = scr_statitstic("Minimum Obstacle Jump Modificator",  choosedPlayer.minimumObstacleJumpForceModificator);
+		choosedPlayer.maximumObstacleJumpForceModificator = scr_statitstic("Maximum Obstacle Jump Modificator",  choosedPlayer.maximumObstacleJumpForceModificator);
+		choosedPlayer.maximumJumpBufforModificator = scr_statitstic("Maximum Jump Buffor Modificator",  choosedPlayer.maximumJumpBufforModificator);
+		choosedPlayer.color = ImGui.ColorEdit3("Color", choosedPlayer.color);
+		
+		with(choosedPlayer)
+		{
+			setupStats();
+		}
+		
+		returnList = scr_fileSearchList("modificators", modificatorsPresetFileName, modificatorsPresetsFiles);
+		
+		modificatorsPresetFileName = ds_list_find_value(returnList, 0);
+		modificatorsPresetsFiles = ds_list_find_value(returnList, 1);
+		
+		ds_list_destroy(returnList);
     }
 
     ImGui.Separator();
@@ -233,7 +313,8 @@ function scr_playerData()
 	choosedPlayerIndex = ImGui.InputInt("Choosed Players", choosedPlayerIndex, 1);
 	choosedPlayerIndex = clamp(choosedPlayerIndex, 0, instance_number(o_char) - 1);	
 	
-	scr_playerStats();
+	scr_playersStats();
+	scr_playerModificators();
 	
 	for(var i = 0; i < instance_number(o_char); i++)
 	{
@@ -253,15 +334,16 @@ function scr_playerData()
 			ImGui.PushStyleColor(ImGuiCol.Text, c_red, 1);
 		}
 		
-		ImGui.Text(string("x: {0}", choosedPlayer.x));
-		ImGui.Text(string("y: {0}", choosedPlayer.y));
-		ImGui.Text(string("Speed: {0}", choosedPlayer.speed));
-		ImGui.Text(string("hSpeed: {0}", choosedPlayer.horizontalSpeed));
-		ImGui.Text(string("vSpeed: {0}", choosedPlayer.verticalSpeed));
-		ImGui.Text(string("isGrounded: {0}", choosedPlayer.isGrounded));
-		ImGui.Text(string("maxSpeed: {0}", choosedPlayer.maximumSpeed));
-		ImGui.Text(string("coyoteTime: {0}", choosedPlayer.coyoteTime));
-		ImGui.Text(string("jumpBuffor: {0}", choosedPlayer.jumpBuffor));
+		ImGui.Text(string("isChasing: {0}", choosedPlayer.isChasing));
+		//ImGui.Text(string("x: {0}", choosedPlayer.x));
+		//ImGui.Text(string("y: {0}", choosedPlayer.y));
+		//ImGui.Text(string("Speed: {0}", choosedPlayer.speed));
+		//ImGui.Text(string("hSpeed: {0}", choosedPlayer.horizontalSpeed));
+		//ImGui.Text(string("vSpeed: {0}", choosedPlayer.verticalSpeed));
+		//ImGui.Text(string("isGrounded: {0}", choosedPlayer.isGrounded));
+		//ImGui.Text(string("maxSpeed: {0}", choosedPlayer.maximumSpeed));
+		//ImGui.Text(string("coyoteTime: {0}", choosedPlayer.coyoteTime));
+		//ImGui.Text(string("jumpBuffor: {0}", choosedPlayer.jumpBuffor));
 		
 		if (i == choosedPlayerIndex)
 		{
@@ -269,11 +351,6 @@ function scr_playerData()
 		}
 		
 		ImGui.Separator();
-	}
-	
-	if (ImGui.Button("Player")) 
-	{
-		isStatsOpen = true;
 	}
 	
 	ImGui.Separator();
@@ -380,6 +457,13 @@ function scr_createSlope(_x, _y, _xSpawn, _ySpawn, mirror = false, flip = false,
 	{				
 		rotate = true;
 	}
+	
+	var rampMirror = 1;
+	
+	if (mirror)
+	{
+		rampMirror = -1;
+	}
 						
 	if (rotate)
 	{
@@ -387,7 +471,7 @@ function scr_createSlope(_x, _y, _xSpawn, _ySpawn, mirror = false, flip = false,
 		{			
 			if (editorCurrentObject == o_ramp)
 			{
-				instance = instance_create_layer(_xSpawn + (counter * 16), _ySpawn, "level", editorCurrentObject);
+				instance = instance_create_layer(_xSpawn + (counter * 16 * rampMirror), _ySpawn, "level", editorCurrentObject);
 			}
 			else
 			{			
@@ -417,8 +501,8 @@ function scr_createSlope(_x, _y, _xSpawn, _ySpawn, mirror = false, flip = false,
 			{
 				if (editorCurrentObject == o_ramp)
 				{
-					instance = instance_create_layer(_xSpawn - 8 + (16 * counter), _ySpawn, "level", o_block);
-					instance = instance_create_layer(_xSpawn + 8 + (16 * counter), _ySpawn, "level", o_block);
+					instance = instance_create_layer(_xSpawn - 8 + (16 * counter * rampMirror), _ySpawn, "level", o_block);
+					instance = instance_create_layer(_xSpawn + 8 + (16 * counter * rampMirror), _ySpawn, "level", o_block);
 				}
 				else
 				{
@@ -434,8 +518,8 @@ function scr_createSlope(_x, _y, _xSpawn, _ySpawn, mirror = false, flip = false,
 				{
 					if (trimX < trimH + 1)
 					{
-						instance = instance_create_layer(_xSpawn - 8 + (16 * counter), _ySpawn, "level", o_block);
-						instance = instance_create_layer(_xSpawn + 8 + (16 * counter), _ySpawn, "level", o_block);
+						instance = instance_create_layer(_xSpawn - 8 + (16 * counter * rampMirror), _ySpawn, "level", o_block);
+						instance = instance_create_layer(_xSpawn + 8 + (16 * counter * rampMirror), _ySpawn, "level", o_block);
 					}
 				}
 				else
@@ -451,7 +535,7 @@ function scr_createSlope(_x, _y, _xSpawn, _ySpawn, mirror = false, flip = false,
 		{
 			if (editorCurrentObject == o_ramp)
 			{
-				instance = instance_create_layer(_xSpawn + (counter * 16), _ySpawn, "level", editorCurrentObject);
+				instance = instance_create_layer(_xSpawn + (counter * 16 * rampMirror), _ySpawn, "level", editorCurrentObject);
 			}
 			else
 			{			
@@ -488,8 +572,8 @@ function scr_createSlope(_x, _y, _xSpawn, _ySpawn, mirror = false, flip = false,
 				{
 					if (trimX < trimH + 1)
 					{
-						instance = instance_create_layer(_xSpawn - 8 + (16 * counter), _ySpawn, "level", o_block);
-						instance = instance_create_layer(_xSpawn + 8 + (16 * counter), _ySpawn, "level", o_block);
+						instance = instance_create_layer(_xSpawn - 8 + (16 * counter * rampMirror), _ySpawn, "level", o_block);
+						instance = instance_create_layer(_xSpawn + 8 + (16 * counter * rampMirror), _ySpawn, "level", o_block);
 					}
 				}
 				else
@@ -504,8 +588,8 @@ function scr_createSlope(_x, _y, _xSpawn, _ySpawn, mirror = false, flip = false,
 			{
 				if (editorCurrentObject == o_ramp)
 				{
-					instance = instance_create_layer(_xSpawn - 8 + (16 * counter), _ySpawn, "level", o_block);
-					instance = instance_create_layer(_xSpawn + 8 + (16 * counter), _ySpawn, "level", o_block);
+					instance = instance_create_layer(_xSpawn - 8 + (16 * counter * rampMirror), _ySpawn, "level", o_block);
+					instance = instance_create_layer(_xSpawn + 8 + (16 * counter * rampMirror), _ySpawn, "level", o_block);
 				}
 				else
 				{
@@ -529,6 +613,14 @@ function scr_deleteRegion(x1, y1, x2, y2)
 	ds_list_clear(collisionList);
 			
 	collision_rectangle_list(x1, y1, x2, y2, o_obstacle, true, true, collisionList, false);
+	for(var i = 0; i < ds_list_size(collisionList); i++)
+	{
+		instance_destroy(ds_list_find_value(collisionList, i));
+	}
+	
+	ds_list_clear(collisionList);
+	
+	collision_rectangle_list(x1, y1, x2, y2, o_start, true, true, collisionList, false);
 	for(var i = 0; i < ds_list_size(collisionList); i++)
 	{
 		instance_destroy(ds_list_find_value(collisionList, i));
@@ -565,7 +657,7 @@ function scr_editorLogic()
 		if (mouse_check_button_released(mb_left))
 		{	
 			var counter = 0;
-			
+						
 			for(var _x = cursorXPressed; _x <= cursorX; _x += 16)
 			{
 				for(var _y = cursorYPressed; _y <= cursorY; _y += 16)
@@ -586,7 +678,14 @@ function scr_editorLogic()
 						
 						if (editorMirror)
 						{
-							scr_createSlope(_x, _y, room_width - _xSpawn, _ySpawn, true,, counter);
+							if (editorCurrentObject == o_ramp)
+							{
+								scr_createSlope(_x, _y, room_width - _xSpawn, _ySpawn, true,, counter);
+							}
+							else
+							{
+								scr_createSlope(_x, _y, room_width - _xSpawn, _ySpawn, true,, counter);
+							}
 						}
 						
 						if (editorFlip)
@@ -767,16 +866,18 @@ function scr_editorLogic()
 
 function scr_serializeObject(objectType, file)
 {
-	function objectSerialized(_x, _y, _object) constructor
+	function objectSerialized(_x, _y, _imageXScale, _imageYScale, _object) constructor
 	{	
 		xPos = _x;
 		yPos = _y;
+		imageXScale = _imageXScale;
+		imageYScale = _imageYScale;
 		objectType = _object;
 	}
 	
 	with (objectType) 
     {
-        var instanceSerialized = new objectSerialized(x, y, objectType);
+        var instanceSerialized = new objectSerialized(x, y, image_xscale, image_yscale, objectType);
 
 		file_text_write_string(file, json_stringify(instanceSerialized));
 		file_text_writeln(file);
@@ -785,9 +886,9 @@ function scr_serializeObject(objectType, file)
     }
 }
 
-function scr_levelSave()
+function scr_levelSave(levelName = editorFileName)
 {
-    var fileName = string("{0}.json", editorFileName);
+    var fileName = string("level_{0}.json", levelName);
     if (file_exists(fileName))
     {
         file_delete(fileName);
@@ -800,15 +901,17 @@ function scr_levelSave()
 	scr_serializeObject(o_block, file);
 	scr_serializeObject(o_slope, file);
 	scr_serializeObject(o_ramp, file);
+	scr_serializeObject(o_obstacle, file);
+	scr_serializeObject(o_start, file);
    
     file_text_close(file);
 	
-	log(string("Level {0} Saved", editorFileName));
+	log(string("Level {0} Saved", levelName));
 }
 
-function scr_levelLoad()
+function scr_levelLoad(levelName = editorFileName)
 {
-    var fileName = string("{0}.json", editorFileName);
+    var fileName = string("level_{0}.json", levelName);
     
     if (file_exists(fileName))
     {
@@ -821,12 +924,132 @@ function scr_levelLoad()
             var instanceData = json_parse(jsonString);
 
             var newInstance = instance_create_layer(instanceData.xPos, instanceData.yPos, "Level", instanceData.objectType);
+			newInstance.image_xscale = instanceData.imageXScale;
+			newInstance.image_yscale = instanceData.imageYScale;
         }
 
         file_text_close(file);
+		
+		log(string("Level {0} Loaded", levelName));
+		return;
     }
 	
-	log(string("Level {0} Loaded", editorFileName));
+	log(string("Level {0} Doesnt exist", levelName), c_red);
+}
+
+function scr_fileDelete(fileName)
+{	
+	file_delete(fileName);
+    
+	log(string("File {0} Deleted", fileName));
+}
+
+function scr_getFiles(prefix = "", suffix = ".json") 
+{
+    var fileList = [];
+
+    var filePattern = prefix + "*" + suffix;
+    var file = file_find_first(filePattern, fa_none);
+
+    while (file != "") 
+	{
+        fileList[array_length(fileList)] = file;
+        file = file_find_next();
+    }
+
+    file_find_close();
+    return fileList;
+}
+
+function scr_fileSearchList(fileType, fileName, files)
+{
+	var returnList = ds_list_create();
+	
+	fileName = ImGui.InputText("File name: ##" + fileType, fileName);
+	
+	var fileTypeAsPrefix = fileType + "_";
+	
+	for (var i = 0; i < array_length(files); i++) 
+	{
+		var name = string_replace(files[i], fileTypeAsPrefix, "");
+		name = string_replace(name, ".json", "");
+		
+	    if (ImGui.Selectable(name)) 
+		{
+			fileName = name;
+		}
+	}
+	
+	if (ImGui.Button("Save ##stats"))
+	{
+		switch(fileType)
+		{
+			case("level"):
+			{
+				scr_levelSave();
+				break;
+			}
+			case("rules"):
+			{
+				scr_rulesPresetSave()
+				break;
+			}
+			case("stats"):
+			{
+				scr_statsPresetSave()
+				break;
+			}
+			case("modificators"):
+			{
+				scr_modificatorsPresetSave(, instance_find(o_char, choosedPlayerIndex));
+				break;
+			}
+		}
+		files = scr_getFiles(fileTypeAsPrefix);
+	}
+	
+	ImGui.SameLine();
+	
+	if (ImGui.Button("Load ##" + fileType))
+	{
+		switch(fileType)
+		{
+			case("level"):
+			{
+				scr_levelLoad();
+				break;
+			}
+			case("rules"):
+			{
+				scr_rulesPresetLoad()
+				break;
+			}
+			case("stats"):
+			{
+				scr_statsPresetLoad()
+				break;
+			}
+			case("modificators"):
+			{
+				scr_modificatorsPresetLoad(, instance_find(o_char, choosedPlayerIndex));
+				break;
+			}
+		}
+	}
+	
+	ImGui.SameLine();
+	
+	if (ImGui.Button("Delete ##" + fileType))
+	{
+		file_delete(string("{0}{1}.json", fileTypeAsPrefix, fileName));
+		files = scr_getFiles(fileTypeAsPrefix);
+	}
+	
+	ImGui.Separator();
+	
+	ds_list_add(returnList, fileName, files);
+	
+	return returnList;
 }
 
 function scr_editorOptions()
@@ -854,59 +1077,394 @@ function scr_editorOptions()
 	}
 	ImGui.EndDisabled();
 	
-	editorFileName = ImGui.InputText("File name: ", editorFileName);
-	if (ImGui.Button("Save"))
-	{
-		scr_levelSave();
-	}
+	returnList = scr_fileSearchList("level", editorFileName, editorFiles);
+		
+	editorFileName = ds_list_find_value(returnList, 0);
+	editorFiles = ds_list_find_value(returnList, 1);
+		
+	ds_list_destroy(returnList);
 	
-	if (ImGui.Button("Load"))
-	{
-		scr_levelLoad();
-	}
-	
-	if (ImGui.BeginCombo("Objects", object_get_name(ds_list_find_value(editorObjects, editorCurrentObjectIndex)), ImGuiComboFlags.HeightLarge)) 
-	{
-	    var maxWidth = ImGui.GetContentRegionAvailX();
+	var buttonSize = 64;
+	var itemsPerRow = 5;
+	var totalItems = ds_list_size(editorObjects);
 
-	    for (var i = 0; i < ds_list_size(editorObjects); i++) 
+	for (var i = 0; i < totalItems; i++) 
+	{
+	    var object = ds_list_find_value(editorObjects, i);
+	    var sprite = object_get_sprite(object);
+	    var spriteBboxWidth = sprite_get_bbox_right(sprite) - sprite_get_bbox_left(sprite);
+	    var spriteBboxHeight = sprite_get_bbox_bottom(sprite) - sprite_get_bbox_top(sprite);
+		
+		var spriteWidth = sprite_get_width(sprite);
+		var spriteHeight = sprite_get_height(sprite);
+		
+		var scale = 2;
+		var selectionAlpha = 0.5;
+		
+		if (i == editorCurrentObjectIndex)
 		{
-	        var object = ds_list_find_value(editorObjects, i);
-	        var sprite = object_get_sprite(object);
-			var spriteWidth = sprite_get_width(sprite);
-			var spriteHeight = sprite_get_height(sprite);
-	        var isSelected = (editorCurrentObjectIndex == i);
+			selectionAlpha = 1;
+		}
+    
+	    ImGui.PushStyleVar(ImGuiStyleVar.FramePadding, (buttonSize - spriteBboxWidth * scale) / 2, (buttonSize - spriteBboxHeight * scale) / 2);
 
-	        if (ImGui.Selectable(object_get_name(object), isSelected, 0, maxWidth, 32)) 
-			{
-	            editorCurrentObjectIndex = i;
-	            editorCurrentObject = object;
-				
-				if (editorCurrentObject == o_ramp or editorCurrentObject == o_slope)
-				{
-					editorSlopeCreation = true;
-				}
-				else
-				{
-					editorSlopeCreation = false;
-				}
+	    if (ImGui.ImageButton(string("sprite {0}", i), sprite, 0, c_white, selectionAlpha, c_white, 0, spriteWidth * scale, spriteHeight * scale))
+		{
+			editorCurrentObjectIndex = i;
+	        editorCurrentObject = object;
+
+	        if (editorCurrentObject == o_ramp or editorCurrentObject == o_slope)
+	        {
+	            editorSlopeCreation = true;
 	        }
+	        else
+	        {
+	            editorSlopeCreation = false;
+	        }
+		}
 
-	        var cursorX = ImGui.GetCursorPosX();
+		ImGui.PopStyleVar();
+
+	    if (i + 1 != totalItems and (i + 1) % itemsPerRow != 0)
+	    {
 	        ImGui.SameLine();
-	        ImGui.SetCursorPosX(cursorX + maxWidth - spriteWidth * 2);
-	        ImGui.Image(sprite, 0,,, spriteWidth * 2, spriteHeight * 2);
-
-	        if (isSelected) 
-			{
-	            ImGui.SetItemDefaultFocus();
-	        }
 	    }
-
-	    ImGui.EndCombo();
 	}
-
-
 	
 	ImGui.Separator();
+}
+
+function scr_serializeRulesPreset(file)
+{
+	function rulesPresetSerialized(_maximumChaseTime, _changesPerChase) constructor
+	{	
+		maximumChaseTime = _maximumChaseTime;
+		changesPerChase = _changesPerChase;
+	}
+	
+    var instanceSerialized = new rulesPresetSerialized(o_gameManager.maximumChaseTime, o_gameManager.changesPerChase);
+
+	file_text_write_string(file, json_stringify(instanceSerialized));
+	file_text_writeln(file);
+		
+	delete instanceSerialized;
+}
+
+function scr_rulesPresetSave(rulesPresetName = rulesPresetFileName)
+{
+    var fileName = string("rules_{0}.json", rulesPresetName);
+    if (file_exists(fileName))
+    {
+        file_delete(fileName);
+    }
+    
+    var objectList = ds_map_create();
+
+    var file = file_text_open_write(fileName);
+
+	scr_serializeRulesPreset(file);
+   
+    file_text_close(file);
+	
+	log(string("Rules Preset {0} Saved", rulesPresetName));
+}
+
+function scr_rulesPresetLoad(rulesPresetName = rulesPresetFileName)
+{
+    var fileName = string("rules_{0}.json", rulesPresetName);
+    
+    if (file_exists(fileName))
+    {
+        var file = file_text_open_read(fileName);
+
+        while (!file_text_eof(file))
+        {
+            var jsonString = file_text_read_string(file);
+			file_text_readln(file);
+            var instanceData = json_parse(jsonString);
+
+            o_gameManager.maximumChaseTime = instanceData.maximumChaseTime;
+			o_gameManager.changesPerChase = instanceData.changesPerChase;
+			o_gameManager.reset();
+        }
+
+        file_text_close(file);
+		
+		log(string("Rules Preset {0} Loaded", rulesPresetName));
+		return;
+    }
+	
+	log(string("Rules Preset {0} Doesnt exist", rulesPresetName), c_red);
+}
+
+function scr_serializeStatsPreset(file)
+{
+    function statsPresetSerialized(_maximumDefaultSpeed, _acceleration, _deceleration, _maximumSpeedDecelerationFactor, _jumpForce, _momentumJumpForce, _gravitation, _slopeAcceleration, _slopeDeceleration, _rampAcceleration, _rampDeceleration, _maximumSlopeSpeed, _maximumRampSpeed, _slopeSpeedTransitionFactor, _maximumCoyoteTime, _obstacleRange, _maximumObstacleJumpForce, _minimumObstacleJumpForce, _maximumJumpBuffor) constructor
+    {   
+        maximumDefaultSpeed = _maximumDefaultSpeed;
+        acceleration = _acceleration;
+        deceleration = _deceleration;
+        maximumSpeedDecelerationFactor = _maximumSpeedDecelerationFactor;
+        jumpForce = _jumpForce;
+        momentumJumpForce = _momentumJumpForce;
+        gravitation = _gravitation;
+        slopeAcceleration = _slopeAcceleration;
+        slopeDeceleration = _slopeDeceleration;
+        rampAcceleration = _rampAcceleration;
+        rampDeceleration = _rampDeceleration;
+        maximumSlopeSpeed = _maximumSlopeSpeed;
+        maximumRampSpeed = _maximumRampSpeed;
+        slopeSpeedTransitionFactor = _slopeSpeedTransitionFactor;
+        maximumCoyoteTime = _maximumCoyoteTime;
+        obstacleRange = _obstacleRange;
+        maximumObstacleJumpForce = _maximumObstacleJumpForce;
+        minimumObstacleJumpForce = _minimumObstacleJumpForce;
+        maximumJumpBuffor = _maximumJumpBuffor;
+    }
+    
+    var instanceSerialized = new statsPresetSerialized(
+        o_gameManager.maximumDefaultSpeed,
+        o_gameManager.acceleration,
+        o_gameManager.deceleration,
+        o_gameManager.maximumSpeedDecelerationFactor,
+        o_gameManager.jumpForce,
+        o_gameManager.momentumJumpForce,
+        o_gameManager.gravitation,
+        o_gameManager.slopeAcceleration,
+        o_gameManager.slopeDeceleration,
+        o_gameManager.rampAcceleration,
+        o_gameManager.rampDeceleration,
+        o_gameManager.maximumSlopeSpeed,
+        o_gameManager.maximumRampSpeed,
+        o_gameManager.slopeSpeedTransitionFactor,
+        o_gameManager.maximumCoyoteTime,
+        o_gameManager.obstacleRange,
+        o_gameManager.maximumObstacleJumpForce,
+        o_gameManager.minimumObstacleJumpForce,
+        o_gameManager.maximumJumpBuffor
+    );
+
+    file_text_write_string(file, json_stringify(instanceSerialized));
+    file_text_writeln(file);
+    
+    delete instanceSerialized;
+}
+
+function scr_statsPresetSave(statsPresetName = statsPresetFileName)
+{
+    var fileName = string("stats_{0}.json", statsPresetName);
+    if (file_exists(fileName))
+    {
+        file_delete(fileName);
+    }
+    
+    var objectList = ds_map_create();
+
+    var file = file_text_open_write(fileName);
+
+	scr_serializeStatsPreset(file);
+   
+    file_text_close(file);
+	
+	log(string("Stats Preset {0} Saved", statsPresetName));
+}
+
+function scr_statsPresetLoad(statsPresetName = statsPresetFileName)
+{
+    var fileName = string("stats_{0}.json", statsPresetName);
+    
+    if (file_exists(fileName))
+    {
+        var file = file_text_open_read(fileName);
+
+        while (!file_text_eof(file))
+        {
+            var jsonString = file_text_read_string(file);
+            file_text_readln(file);
+            var instanceData = json_parse(jsonString);
+
+            o_gameManager.maximumDefaultSpeed = instanceData.maximumDefaultSpeed;
+            o_gameManager.acceleration = instanceData.acceleration;
+            o_gameManager.deceleration = instanceData.deceleration;
+            o_gameManager.maximumSpeedDecelerationFactor = instanceData.maximumSpeedDecelerationFactor;
+            o_gameManager.jumpForce = instanceData.jumpForce;
+            o_gameManager.momentumJumpForce = instanceData.momentumJumpForce;
+            o_gameManager.gravitation = instanceData.gravitation;
+            o_gameManager.slopeAcceleration = instanceData.slopeAcceleration;
+            o_gameManager.slopeDeceleration = instanceData.slopeDeceleration;
+            o_gameManager.rampAcceleration = instanceData.rampAcceleration;
+            o_gameManager.rampDeceleration = instanceData.rampDeceleration;
+            o_gameManager.maximumSlopeSpeed = instanceData.maximumSlopeSpeed;
+            o_gameManager.maximumRampSpeed = instanceData.maximumRampSpeed;
+            o_gameManager.slopeSpeedTransitionFactor = instanceData.slopeSpeedTransitionFactor;
+            o_gameManager.maximumCoyoteTime = instanceData.maximumCoyoteTime;
+            o_gameManager.obstacleRange = instanceData.obstacleRange;
+            o_gameManager.maximumObstacleJumpForce = instanceData.maximumObstacleJumpForce;
+            o_gameManager.minimumObstacleJumpForce = instanceData.minimumObstacleJumpForce;
+            o_gameManager.maximumJumpBuffor = instanceData.maximumJumpBuffor;
+        }
+		
+		with(o_char)
+		{
+			setupStats();
+		}
+
+        file_text_close(file);
+		
+		log(string("Stats Preset {0} Loaded", statsPresetName));
+		return;
+    }
+	
+	log(string("Stats Preset {0} Doesnt exist", statsPresetName), c_red);
+}
+
+function scr_serializeModificatorsPreset(file, choosedPlayer)
+{
+    function modificatorsPresetSerialized(_maximumDefaultSpeed, _acceleration, _deceleration, _maximumSpeedDecelerationFactor, _jumpForce, _momentumJumpForce, _gravitation, _slopeAcceleration, _slopeDeceleration, _rampAcceleration, _rampDeceleration, _maximumSlopeSpeed, _maximumRampSpeed, _slopeSpeedTransitionFactor, _maximumCoyoteTime, _obstacleRange, _maximumObstacleJumpForce, _minimumObstacleJumpForce, _maximumJumpBuffor, _color) constructor
+    {   
+        maximumDefaultSpeed = _maximumDefaultSpeed;
+        acceleration = _acceleration;
+        deceleration = _deceleration;
+        maximumSpeedDecelerationFactor = _maximumSpeedDecelerationFactor;
+        jumpForce = _jumpForce;
+        momentumJumpForce = _momentumJumpForce;
+        gravitation = _gravitation;
+        slopeAcceleration = _slopeAcceleration;
+        slopeDeceleration = _slopeDeceleration;
+        rampAcceleration = _rampAcceleration;
+        rampDeceleration = _rampDeceleration;
+        maximumSlopeSpeed = _maximumSlopeSpeed;
+        maximumRampSpeed = _maximumRampSpeed;
+        slopeSpeedTransitionFactor = _slopeSpeedTransitionFactor;
+        maximumCoyoteTime = _maximumCoyoteTime;
+        obstacleRange = _obstacleRange;
+        maximumObstacleJumpForce = _maximumObstacleJumpForce;
+        minimumObstacleJumpForce = _minimumObstacleJumpForce;
+        maximumJumpBuffor = _maximumJumpBuffor;
+        color = _color;
+    }
+    
+    var instanceSerialized = new modificatorsPresetSerialized(
+        choosedPlayer.maximumDefaultSpeedModificator,
+        choosedPlayer.accelerationModificator,
+        choosedPlayer.decelerationModificator,
+        choosedPlayer.maximumSpeedDecelerationFactorModificator,
+        choosedPlayer.jumpForceModificator,
+        choosedPlayer.momentumJumpForceModificator,
+        choosedPlayer.gravitationModificator,
+        choosedPlayer.slopeAccelerationModificator,
+        choosedPlayer.slopeDecelerationModificator,
+        choosedPlayer.rampAccelerationModificator,
+        choosedPlayer.rampDecelerationModificator,
+        choosedPlayer.maximumSlopeSpeedModificator,
+        choosedPlayer.maximumRampSpeedModificator,
+        choosedPlayer.slopeSpeedTransitionFactorModificator,
+        choosedPlayer.maximumCoyoteTimeModificator,
+        choosedPlayer.obstacleRangeModificator,
+        choosedPlayer.maximumObstacleJumpForceModificator,
+        choosedPlayer.minimumObstacleJumpForceModificator,
+        choosedPlayer.maximumJumpBufforModificator,
+        choosedPlayer.color
+    );
+
+    file_text_write_string(file, json_stringify(instanceSerialized));
+    file_text_writeln(file);
+    
+    delete instanceSerialized;
+}
+
+function scr_modificatorsPresetSave(modificatorsPresetName = modificatorsPresetFileName, choosedPlayer)
+{
+    var fileName = string("modificators_{0}.json", modificatorsPresetName);
+    if (file_exists(fileName))
+    {
+        file_delete(fileName);
+    }
+    
+    var objectList = ds_map_create();
+
+    var file = file_text_open_write(fileName);
+
+	scr_serializeModificatorsPreset(file, choosedPlayer);
+   
+    file_text_close(file);
+	
+	log(string("Modificators Preset {0} Saved", modificatorsPresetName));
+}
+
+function scr_modificatorsPresetLoad(modificatorsPresetName = modificatorsPresetFileName, choosedPlayer)
+{
+    var fileName = string("modificators_{0}.json", modificatorsPresetName, choosedPlayer);
+    
+    if (file_exists(fileName))
+    {
+        var file = file_text_open_read(fileName);
+
+        while (!file_text_eof(file))
+        {
+            var jsonString = file_text_read_string(file);
+            file_text_readln(file);
+            var instanceData = json_parse(jsonString);
+
+            choosedPlayer.maximumDefaultSpeedModificator = instanceData.maximumDefaultSpeed;
+            choosedPlayer.accelerationModificator = instanceData.acceleration;
+            choosedPlayer.decelerationModificator = instanceData.deceleration;
+            choosedPlayer.maximumSpeedDecelerationFactorModificator = instanceData.maximumSpeedDecelerationFactor;
+            choosedPlayer.jumpForceModificator = instanceData.jumpForce;
+            choosedPlayer.momentumJumpForceModificator = instanceData.momentumJumpForce;
+            choosedPlayer.gravitationModificator = instanceData.gravitation;
+            choosedPlayer.slopeAccelerationModificator = instanceData.slopeAcceleration;
+            choosedPlayer.slopeDecelerationModificator = instanceData.slopeDeceleration;
+            choosedPlayer.rampAccelerationModificator = instanceData.rampAcceleration;
+            choosedPlayer.rampDecelerationModificator = instanceData.rampDeceleration;
+            choosedPlayer.maximumSlopeSpeedModificator = instanceData.maximumSlopeSpeed;
+            choosedPlayer.maximumRampSpeedModificator = instanceData.maximumRampSpeed;
+            choosedPlayer.slopeSpeedTransitionFactorModificator = instanceData.slopeSpeedTransitionFactor;
+            choosedPlayer.maximumCoyoteTimeModificator = instanceData.maximumCoyoteTime;
+            choosedPlayer.obstacleRangeModificator = instanceData.obstacleRange;
+            choosedPlayer.maximumObstacleJumpForceModificator = instanceData.maximumObstacleJumpForce;
+            choosedPlayer.minimumObstacleJumpForceModificator = instanceData.minimumObstacleJumpForce;
+            choosedPlayer.maximumJumpBufforModificator = instanceData.maximumJumpBuffor;
+            choosedPlayer.maximumJumpBufforModificator = instanceData.maximumJumpBuffor;
+            choosedPlayer.color = instanceData.color;
+        }
+		
+		with(choosedPlayer)
+		{
+			setupStats();
+		}
+
+        file_text_close(file);
+		
+		log(string("Modificators Preset {0} Loaded", modificatorsPresetName));
+		return;
+    }
+	
+	log(string("Modificators Preset {0} Doesnt exist", modificatorsPresetName), c_red);
+}
+
+function scr_gameRules()
+{
+	returnList = scr_fileSearchList("rules", rulesPresetFileName, rulesPresetsFiles);
+		
+	rulesPresetFileName = ds_list_find_value(returnList, 0);
+	rulesPresetsFiles = ds_list_find_value(returnList, 1);
+		
+	ds_list_destroy(returnList);
+	
+	if (ImGui.Button("START / STOP"))
+	{
+		o_gameManager.startStop();
+	}
+	
+	if (ImGui.Button("Restart"))
+	{
+		o_gameManager.reset();
+	}
+	
+	var timeInSeconds = o_gameManager.maximumChaseTime / 60;
+	timeInSeconds = ImGui.InputInt("Chase Time (sek)", timeInSeconds);
+	o_gameManager.maximumChaseTime = timeInSeconds * 60
+	o_gameManager.changesPerChase = ImGui.InputInt("Changes Per Chase", o_gameManager.changesPerChase);
+	
 }

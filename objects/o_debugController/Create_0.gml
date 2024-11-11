@@ -5,8 +5,6 @@ ImGui.__Initialize();
 init = true;
 ImGui.ConfigFlagToggle(ImGuiConfigFlags.DockingEnable);	
 
-isStatsOpen = false;
-
 global.debug = true;
 global.debugIsGravityOn = false;
 global.debugCameraAxis = false;
@@ -60,39 +58,44 @@ pseudo2D = false;
 gameWindowWidth = 0;
 gameWindowHeight = 0;
 
-if (!global.debugEdit)
+
+oldPitch = Camera.Pitch;
+oldAngle = Camera.Angle;
+cursorX = 0;
+cursorY = 0;
+cursorXPressed = 0;
+cursorYPressed = 0;
+	
+editorMirror = false;
+editorFlip = false;
+editorFullView = true;
+editorSlopeCreation = false;
+	
+editorObjects = ds_list_create();
+ds_list_add(editorObjects, o_block, o_ramp, o_slope, o_obstacle, o_start);
+editorCurrentObjectIndex = 0;
+editorCurrentObject = o_block;
+enum EditorDirectionType
 {
-	oldPitch = Camera.Pitch;
-	oldAngle = Camera.Angle;
-	cursorX = 0;
-	cursorY = 0;
-	cursorXPressed = 0;
-	cursorYPressed = 0;
-	
-	editorMirror = false;
-	editorFlip = false;
-	editorFullView = true;
-	editorSlopeCreation = false;
-	editorFileName = "";
-	
-	editorObjects = ds_list_create();
-	ds_list_add(editorObjects, o_block, o_ramp, o_slope, o_obstacle);
-	editorCurrentObjectIndex = 0;
-	editorCurrentObject = o_block;
-	enum EditorDirectionType
-	{
-		topLeft,
-		topRight,
-		bottomLeft,
-		bottomRight
-	}
-	
-	editorDirection = EditorDirectionType.bottomRight;
+	topLeft,
+	topRight,
+	bottomLeft,
+	bottomRight
 }
-else
-{
-	layer_background_visible(layer_background_get_id(layer_get_id("SolidBlue")), false);
-}
+	
+editorDirection = EditorDirectionType.bottomRight;
+	
+editorFileName = "";
+rulesPresetFileName = "";
+statsPresetFileName = "";
+modificatorsPresetFileName = "";
+	
+editorFiles = scr_getFiles("level_");
+rulesPresetsFiles = scr_getFiles("rules_");
+statsPresetsFiles = scr_getFiles("stats_");
+modificatorsPresetsFiles = scr_getFiles("modificators_");
+
+layer_background_visible(layer_background_get_id(layer_get_id("SolidBlue")), false);
 
 currentTab = 0;
 previousTab = 0;

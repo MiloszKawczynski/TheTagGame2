@@ -283,7 +283,7 @@ function pipeline_render_to_screen()
 	var xScale = gui_width / width;
 	var yScale = gui_height / height;
 	
-	if (Camera.pTo <= 90)
+	if (Camera.pTo <= 90 or global.debugEdit)
 	{
 		draw_surface_stretched( application_surface, 0, 0, gui_width, gui_height );
 	}

@@ -21,7 +21,14 @@ if (global.debugEdit)
 		yScale = -1;
 	}
 	
-	draw_sprite_ext(object_get_sprite(editorCurrentObject), 0, cursorX + objectWidth / 2, cursorY + objectHeight / 2, xScale, yScale, 0, c_white, 1);
+	if (editorCurrentObject == o_start)
+	{
+		draw_sprite_ext(object_get_sprite(editorCurrentObject), instance_number(o_start), cursorX + objectWidth / 2, cursorY + objectHeight / 2, xScale, yScale, 0, c_white, 1);
+	}
+	else
+	{
+		draw_sprite_ext(object_get_sprite(editorCurrentObject), 0, cursorX + objectWidth / 2, cursorY + objectHeight / 2, xScale, yScale, 0, c_white, 1);
+	}
 	draw_rectangle(cursorX, cursorY, cursorX + objectWidth, cursorY + objectHeight, true);
 	
 	if (cursorX != cursorXPressed or cursorY != cursorYPressed)

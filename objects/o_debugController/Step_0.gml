@@ -1,36 +1,51 @@
-if (ImGui.Begin("Debug"))
+if (!o_gameManager.isGameOn)
 {
-	currentTab = 0;
-	
-	scr_gameOptions();
-	
-	scr_cameraControll();
-	
-	scr_logs();
-	
-	ImGui.End();
-}
 
-if (ImGui.Begin("Edit"))
-{
-	currentTab = 1;
+	if (ImGui.Begin("Debug"))
+	{
+		currentTab = 0;
+	
+		scr_gameOptions();
+		scr_cameraControll();
+		scr_logsOptions();
+	
+		ImGui.End();
+	}
+
+	if (ImGui.Begin("Edit"))
+	{
+		currentTab = 1;
 		
-	scr_editorLogic();
-	
-	scr_gameOptions();
-	
-	scr_editorOptions();
-	
-	scr_logs();
+		scr_editorLogic();
+		
+		scr_gameOptions();
+		scr_editorOptions();
+		scr_logsOptions();
 			
-	ImGui.End();
-}
+		ImGui.End();
+	}
 
-if (ImGui.Begin("Players Data"))
+	if (ImGui.Begin("Game"))
+	{	
+	    currentTab = 2;
+
+	    scr_gameOptions();
+	    scr_playerData();
+	    scr_gameRules();
+	    scr_logsOptions();
+
+	    ImGui.End();
+	}
+}
+else
 {
-	currentTab = 2;
-	
-	scr_playerData();
+	ImGui.SetNextWindowPos(0, 0);
+	ImGui.SetNextWindowSize(300, 150);
+	ImGui.SetNextWindowBgAlpha(0.25);
+	if (ImGui.Begin("Logs"))
+	{	
+		scr_logs();
+	}
 }
 
 scr_docking();
@@ -67,5 +82,12 @@ if (keyboard_check_pressed(vk_escape))
 
 if (keyboard_check_pressed(ord("R")))
 {
-	room_restart();
+	//room_restart();
+}
+
+if (o_gameManager.isGameOn and keyboard_check_pressed(ord("P")))
+{
+	o_gameManager.startStop();
+
+	previousTab = -1;
 }
