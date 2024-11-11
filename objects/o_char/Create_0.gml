@@ -16,8 +16,8 @@ if (player == 1)
 	leftKey = vk_left;
 	upKey = vk_up;
 	downKey = vk_down;
-	jumpKey = vk_rshift;
-	interactionKey = vk_rcontrol;
+	jumpKey = vk_rcontrol;
+	interactionKey = vk_rshift;
 	color = c_blue;
 	isChasing = true;
 }
