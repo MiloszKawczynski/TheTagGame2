@@ -159,13 +159,18 @@ function scr_cameraControll()
 	ImGui.Separator();
 }
 
+function scr_clearLog()
+{
+	ds_list_clear(logBuffor);
+	ds_list_clear(logColor);
+	ds_list_clear(monitoredValue);
+}
+
 function scr_logsOptions()
 {
 	if (ImGui.Button("Clear"))
 	{
-		ds_list_clear(logBuffor);
-		ds_list_clear(logColor);
-		ds_list_clear(monitoredValue);
+		scr_clearLog();
 	}
 	ImGui.SameLine();
 	if (ImGui.Button("Log!"))
