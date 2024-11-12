@@ -53,3 +53,32 @@ else
 }
 
 mask_index = s_idleCycle;
+
+if (maximumSpeed > maximumDefaultSpeed)
+{
+	while (ds_list_size(afterimageList) >= floor(maximumSpeed - maximumDefaultSpeed))
+	{
+		if (ds_list_size(afterimageList) == 0)
+		{
+			break;
+		}
+		
+		ds_list_delete(afterimageList, 0);
+	}
+	
+	var afterimage = 
+	{
+	    xx: x,
+	    yy: y,
+		spriteIndex: sprite_index,
+	    imageIndex: image_index,
+	    xScale: image_xscale,
+	    yScale: image_yscale
+	};
+
+	ds_list_add(afterimageList, afterimage);
+}
+else
+{
+	ds_list_delete(afterimageList, 0);
+}

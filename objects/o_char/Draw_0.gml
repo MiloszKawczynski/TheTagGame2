@@ -1,13 +1,6 @@
 if (!global.debugEdit)
 {
-	if (global.debugIsGravityOn)
-	{
-		draw_sprite_3d(sprite_index, image_index, x, y, 16, 0, 0, 0, image_xscale, 1, 1, true);
-	}
-	else
-	{
-		draw_sprite_3d(sprite_index, image_index, x, y, 16, Camera.Pitch, 0, 90 - Camera.Angle, image_xscale, 1, 1, false);
-	}
+	draw_sprite_3d_in_game(sprite_index, image_index, x, y, 16 + z, 0, 0, 0, image_xscale, 1, 1);
 }
 
 if (canCaught)
@@ -31,4 +24,18 @@ if (canCaught)
 			draw_surface(surface, x - maximumCaughtRange, y - maximumCaughtRange);
 		matrix_reset();
 	shader_reset();
+}
+
+for (var i = 0; i < ds_list_size(afterimageList); i++) 
+{
+	var order = ds_list_size(afterimageList) - i;
+	
+    var frame = ds_list_find_value(afterimageList, i);
+	var uniform = function(i, color)
+	{
+		setAfterImageUniform(0.75 - (0.05 * i), color);
+	}
+	var arguments = [order, color];
+
+	draw_sprite_3d_in_game(frame.spriteIndex, frame.imageIndex, frame.xx, frame.yy, 16 + z, 0, 0, 0, frame.xScale, frame.yScale, 1, shd_afterimage, uniform, arguments);
 }

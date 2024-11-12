@@ -212,6 +212,7 @@
     {"id":{"name":"scr_debugController","path":"scripts/scr_debugController/scr_debugController.yy",},},
     {"id":{"name":"scr_fauxtonAddition","path":"scripts/scr_fauxtonAddition/scr_fauxtonAddition.yy",},},
     {"id":{"name":"scr_movement","path":"scripts/scr_movement/scr_movement.yy",},},
+    {"id":{"name":"shd_afterimage","path":"shaders/shd_afterimage/shd_afterimage.yy",},},
     {"id":{"name":"shd_default","path":"shaders/shd_default/shd_default.yy",},},
     {"id":{"name":"shd_gmdefault","path":"shaders/shd_gmdefault/shd_gmdefault.yy",},},
     {"id":{"name":"shd_grass_sway","path":"shaders/shd_grass_sway/shd_grass_sway.yy",},},

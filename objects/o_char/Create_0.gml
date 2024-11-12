@@ -93,4 +93,11 @@ surface = surface_create(maximumCaughtRange * 2, maximumCaughtRange * 2);
 circleRadius = shader_get_uniform(shd_obstacleRing, "circleRadius");
 
 nearestPlayer = id;
-canCaught = false;
+canCaught = false;afterimageList = ds_list_create();
+afterimageList = ds_list_create();
+
+setAfterImageUniform = function(alphaDecay, color)
+{
+	shader_set_uniform_f(shader_get_uniform(shd_afterimage, "alphaDecay"), alphaDecay);	
+	shader_set_uniform_f(shader_get_uniform(shd_afterimage, "color"), color_get_red(color) / 255, color_get_green(color) / 255, color_get_blue(color) / 255);	
+}

@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"shd_afterimage",
+  "name":"shd_afterimage",
+  "parent":{
+    "name":"6_Shaders",
+    "path":"folders/6_Shaders.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}
