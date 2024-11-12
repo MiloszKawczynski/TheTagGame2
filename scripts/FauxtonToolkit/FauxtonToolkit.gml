@@ -146,43 +146,42 @@
 		}
 		
 	}
-	function fauxton_sprite_draw(sprite, index, col, alp)
+	function fauxton_sprite_draw(sprite, index, col, alp, shader = shd_gmdefault, uniforms = undefined, arguments = [])
 	{
-		///@func fauxton_sprite_draw(sprite, index,color, alpha)
-		shader_set(shd_gmdefault);
+		///@func fauxton_sprite_draw(sprite, index,color, alpha, shader, uniforms, arguments)
+		shader_set(shader);
+		if (uniforms != undefined)
+		{
+	        method_call(uniforms, arguments)
+	    }
 		draw_sprite_ext( sprite, index,	0, 0, 1, -1, 0, col, alp );
+		shader_reset();
 	}
-	function draw_sprite_3d( sprite, subimg, _x, _y, _z, _xr, _yr, _zr, _xs, _ys, _zs, _fc )
+	function draw_sprite_3d( sprite, subimg, _x, _y, _z, _xr, _yr, _zr, _xs, _ys, _zs, _fc, shader = shd_gmdefault, uniforms = undefined, arguments = [], enable_lighting = false)
 	{
-		///@func draw_sprite_3d(sprite, subimg, x, y, z, xrotation, yrotation, zrotation, xscale, yscale, zscale, facing_camera, *enable_lighting)
+		///@func draw_sprite_3d(sprite, subimg, x, y, z, xrotation, yrotation, zrotation, xscale, yscale, zscale, facing_camera, shader, uniforms, arguments, enable_lighting)
 		fauxton_sprite_set(_x, _y, _z, _xr, _yr, _zr, _xs, _ys, _zs, _fc);
 		
 		var _col = c_white;
-		if ( argument_count > 12 )
+		if ( enable_lighting )
 		{
-			if ( argument[12] == true )
-			{
-				_col = 	fauxton_calculate_sprite_lighting(_x, _y, _z, c_white);
-			}
+			_col = 	fauxton_calculate_sprite_lighting(_x, _y, _z, c_white);
 		}
 		
-		fauxton_sprite_draw(sprite, subimg, _col, 1);
+		fauxton_sprite_draw(sprite, subimg, _col, 1, shader, uniforms, arguments);
 		matrix_reset();
 	}
-	function draw_sprite_3d_ext( sprite, subimg, _x, _y, _z, _xr, _yr, _zr, _xs, _ys, _zs, _c, _a, _fc )
+	function draw_sprite_3d_ext( sprite, subimg, _x, _y, _z, _xr, _yr, _zr, _xs, _ys, _zs, _c, _a, _fc, shader = shd_gmdefault, uniforms = undefined, arguments = [], enable_lighting = false)
 	{
-		///@func draw_sprite_3d_ext(sprite, subimg, x, y, z, xrotation, yrotation, zrotation, xscale, yscale, zscale, blend, alpha, facing_camera, *enable_lighting)
+		///@func draw_sprite_3d_ext(sprite, subimg, x, y, z, xrotation, yrotation, zrotation, xscale, yscale, zscale, blend, alpha, facing_camera, shader, uniforms, arguments, enable_lighting)
 		fauxton_sprite_set(_x, _y, _z, _xr, _yr, _zr, _xs, _ys, _zs, _fc);
 		
 		var _col = _c;
-		if ( argument_count > 14 )
+		if (enable_lighting)
 		{
-			if ( argument[14] == true )
-			{
-				_col = 	fauxton_calculate_sprite_lighting(_x, _y, _z, _c);
-			}
+			_col = 	fauxton_calculate_sprite_lighting(_x, _y, _z, _c);
 		}
-		fauxton_sprite_draw(sprite, subimg, _col, _a);
+		fauxton_sprite_draw(sprite, subimg, _col, _a, shader, uniforms, arguments);
 		matrix_reset();
 	}
 	
