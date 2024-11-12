@@ -31,7 +31,7 @@ ui = new UI();
 with(ui)
 {
 	mainLayer = new Layer();
-	mainLayer.setGrid(10, 10);
+	mainLayer.setGrid(10, 10, false);
 
 	pushLayer(mainLayer);
 }
@@ -72,7 +72,7 @@ editorFullView = true;
 editorSlopeCreation = false;
 	
 editorObjects = ds_list_create();
-ds_list_add(editorObjects, o_block, o_ramp, o_slope, o_obstacle, o_start);
+ds_list_add(editorObjects, o_block, o_ramp, o_slope, o_obstacle, o_start, o_slopeTop);
 editorCurrentObjectIndex = 0;
 editorCurrentObject = o_block;
 enum EditorDirectionType
