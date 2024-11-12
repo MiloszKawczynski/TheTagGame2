@@ -1,8 +1,6 @@
 if (isGameOn)
 {
 	chaseTime--;
-	
-	log(string(chaseTime));
 
 	if (chaseTime mod (maximumChaseTime div changesPerChase) == 0)
 	{

@@ -55,6 +55,8 @@ reset = function()
 	{
 		isGameOn = false;
 	}
+	
+	
 }
 
 startStop = function()
