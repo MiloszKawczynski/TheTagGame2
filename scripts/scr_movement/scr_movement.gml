@@ -313,8 +313,6 @@ function scr_platformerObstaclesInteraction()
 
 function scr_topDownCollision()
 {	
-	if (live_call()) return live_result;
-	
 	if (place_meeting(x + hspeed, y, o_collision))
 	{
 		if (!place_meeting(x + hspeed, y - abs(hspeed) - 1, o_collision) and desiredVerticalDirection == 0)
