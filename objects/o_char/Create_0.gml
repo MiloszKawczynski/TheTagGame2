@@ -19,7 +19,7 @@ if (player == 1)
 	jumpKey = vk_rcontrol;
 	interactionKey = vk_rshift;
 	color = c_blue;
-	isChasing = true;
+	isChasing = false;
 }
 
 maximumDefaultSpeedModificator = 0;
