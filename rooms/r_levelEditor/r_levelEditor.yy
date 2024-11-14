@@ -19,10 +19,10 @@
   "isDnd":false,
   "layers":[
     {"$GMREffectLayer":"","%Name":"vignette","depth":0,"effectEnabled":true,"effectType":"_filter_vignette","gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"vignette","properties":[
-        {"name":"g_VignetteEdges","type":0,"value":"1",},
-        {"name":"g_VignetteEdges","type":0,"value":"1.5",},
-        {"name":"g_VignetteSharpness","type":0,"value":"2",},
-        {"name":"g_VignetteTexture","type":2,"value":"_filter_vignette_texture",},
+        {"name":"g_VignetteEdges","type":0,"value":"0",},
+        {"name":"g_VignetteEdges","type":0,"value":"1.25",},
+        {"name":"g_VignetteSharpness","type":0,"value":"8",},
+        {"name":"g_VignetteTexture","type":2,"value":null,},
       ],"resourceType":"GMREffectLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"gmlive","depth":100,"effectEnabled":true,"effectType":null,"gridX":8,"gridY":8,"hierarchyFrozen":true,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"$GMRInstance":"v1","%Name":"inst_262F7D7_1","colour":4294967295,"frozen":true,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_262F7D7_1","objectId":null,"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":-64.0,"y":8.0,},

@@ -119,6 +119,7 @@
   },
   "name":"TheTagGame2",
   "resources":[
+    {"id":{"name":"ac_vignettePulse","path":"animcurves/ac_vignettePulse/ac_vignettePulse.yy",},},
     {"id":{"name":"atac_hearth","path":"animcurves/atac_hearth/atac_hearth.yy",},},
     {"id":{"name":"atac_scroll","path":"animcurves/atac_scroll/atac_scroll.yy",},},
     {"id":{"name":"ImGui_GM","path":"extensions/ImGui_GM/ImGui_GM.yy",},},
@@ -196,6 +197,7 @@
     {"id":{"name":"scr_debugController","path":"scripts/scr_debugController/scr_debugController.yy",},},
     {"id":{"name":"scr_fauxtonAddition","path":"scripts/scr_fauxtonAddition/scr_fauxtonAddition.yy",},},
     {"id":{"name":"scr_movement","path":"scripts/scr_movement/scr_movement.yy",},},
+    {"id":{"name":"scr_visualEffects","path":"scripts/scr_visualEffects/scr_visualEffects.yy",},},
     {"id":{"name":"shd_afterimage","path":"shaders/shd_afterimage/shd_afterimage.yy",},},
     {"id":{"name":"shd_default","path":"shaders/shd_default/shd_default.yy",},},
     {"id":{"name":"shd_gmdefault","path":"shaders/shd_gmdefault/shd_gmdefault.yy",},},

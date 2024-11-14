@@ -124,3 +124,9 @@ obstacleRange = 60;
 maximumObstacleJumpForce = 10;
 minimumObstacleJumpForce = 5;
 maximumJumpBuffor = 10;
+
+//---
+
+vignetteTime = 0;
+vignettePulse = false;
+pulseCounter = 0;

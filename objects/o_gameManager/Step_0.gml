@@ -1,6 +1,26 @@
 if (isGameOn)
 {
 	chaseTime--;
+	
+	for (var i = 0; i < 4; i++)
+	{
+		if ((chaseTime - (i * 40)) mod (maximumChaseTime div changesPerChase) == 0)
+		{
+			vignettePulse = true;
+		}
+	}
+	
+	if (vignettePulse)
+	{
+		scr_vignettePulse();
+	}
+	else
+	{
+		if (pulseCounter == 0)
+		{
+			scr_vignettePullBack();
+		}
+	}
 
 	if (chaseTime mod (maximumChaseTime div changesPerChase) == 0)
 	{
