@@ -27,6 +27,10 @@ if (isChasing)
 		if (keyboard_check_pressed(interactionKey))
 		{
 			log(string("Player {0} CAUGHT!", player), color);
+			with(o_char)
+			{
+				isChasing = !isChasing;
+			}
 			o_gameManager.reset();
 		}
 	}

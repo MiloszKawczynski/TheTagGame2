@@ -6,8 +6,16 @@ isGravitationOn = false;
 
 isGameOn = false;
 
+points = [0, 0];
+rounds = 0;
+
 reset = function()
 {
+	with(o_debugController)
+	{
+		scr_clearLog();
+	}
+	
 	chaseTime = maximumChaseTime;
 
 	if (global.debugIsGravityOn)
@@ -36,9 +44,10 @@ reset = function()
 		horizontalSpeed = 0;
 		verticalSpeed = 0;
 		
-		isChasing = !isChasing;
 		nearestPlayer = id;
 		canCaught = false;
+		
+		log(string("P{0}: {1}", player + 1, other.points[player]), color);
 	}
 	
 	o_debugController.previousTab = -1;
@@ -49,14 +58,42 @@ reset = function()
 
 		wait(1.5);
 	
-		startStop();
+		rounds++;
+		
+		if (rounds > 15)
+		{
+			var indexOfWinner = 0;
+			for(var i = 0; i < array_length(points); i++)
+			{
+				if (points[i] > points[indexOfWinner])
+				{
+					indexOfWinner = i;
+				}
+			}
+			
+			if (points[0] == points[1])
+			{
+				log(string("Round {0}/15", rounds));
+			
+				startStop();
+			}
+			else
+			{			
+				log("END");
+				log(string("WINNER: Player {0}", indexOfWinner), c_orange);
+			}
+		}
+		else
+		{		
+			log(string("Round {0}/16", rounds));
+			
+			startStop();
+		}
 	}
 	else
 	{
 		isGameOn = false;
 	}
-	
-	
 }
 
 startStop = function()

@@ -16,11 +16,11 @@ if (isGameOn)
 			if (!isChasing)
 			{
 				log(string("Player {0} ESCAPED!", player), color);
+				
+				other.points[player]++;
 			}
 		}
 		
 		reset();
-		
-		log("END!", c_red);
 	}
 }
