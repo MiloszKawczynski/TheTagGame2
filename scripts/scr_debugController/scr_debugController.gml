@@ -1,15 +1,20 @@
 function scr_debugPreload()
 {
-	scr_levelLoad("basic");
+	scr_levelLoad("santa");
 	scr_rulesPresetLoad("default");
 	scr_statsPresetLoad("default");
 	
-	instance_create_layer(o_char.x, o_char.y, "players", o_char, 
-	{
-		player : 1
-	});
+	scr_addPlayer(1);
 		
 	o_gameManager.reset();
+}
+
+function scr_addPlayer(idNumber)
+{
+	instance_create_layer(o_char.x, o_char.y, "players", o_char, 
+	{
+		player : idNumber
+	});
 }
 
 function scr_docking()
