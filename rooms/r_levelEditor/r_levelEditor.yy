@@ -19,8 +19,8 @@
   "isDnd":false,
   "layers":[
     {"$GMREffectLayer":"","%Name":"vignette","depth":0,"effectEnabled":true,"effectType":"_filter_vignette","gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"vignette","properties":[
-        {"name":"g_VignetteEdges","type":0,"value":"0",},
-        {"name":"g_VignetteEdges","type":0,"value":"1.25",},
+        {"name":"g_VignetteEdges","type":0,"value":"1",},
+        {"name":"g_VignetteEdges","type":0,"value":"1.1",},
         {"name":"g_VignetteSharpness","type":0,"value":"8",},
         {"name":"g_VignetteTexture","type":2,"value":null,},
       ],"resourceType":"GMREffectLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
