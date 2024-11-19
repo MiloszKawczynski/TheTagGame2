@@ -20,7 +20,9 @@ for(var i = 0; i < instance_number(o_char); i++)
 		shader_set(shd_obstacleRing)
 		shader_set_uniform_f(circleRadius, dist / maximumObstacleRange);
 			matrix_set(matrix_world, o_debugController.flat0Matrix);
-				draw_surface(surface, x - maximumObstacleRange, y - maximumObstacleRange);
+				gpu_set_blendmode(bm_add);
+					draw_surface(surface, x - maximumObstacleRange, y - maximumObstacleRange);
+				gpu_set_blendmode(bm_normal);
 			matrix_reset();
 		shader_reset();
 	}	
