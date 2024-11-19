@@ -103,3 +103,12 @@ setAfterImageUniform = function(alphaDecay, color)
 }
 
 z = 0;
+
+runTrailSystem = part_system_copy(ps_runTrail, 0);
+runTrailType = part_type_copy(ps_runTrail, 0);
+part_type_color1(runTrailType, color)
+part_emitter_type(runTrailSystem, 0, runTrailType);
+
+part_system_automatic_draw(runTrailSystem, false);
+
+runTrailSurface = undefined;

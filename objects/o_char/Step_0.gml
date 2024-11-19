@@ -84,3 +84,14 @@ else
 {
 	ds_list_delete(afterimageList, 0);
 }
+
+if (speed >= maximumDefaultSpeed)
+{
+	part_type_direction(runTrailType, direction + 180 - 5, direction + 180 + 5, 0, 2);
+	part_emitter_region(runTrailSystem, 0, x - 8, x + 8, y - 4, y + 4, ps_shape_rectangle, ps_distr_linear);
+	part_emitter_stream(runTrailSystem, 0, runTrailType, 1);
+}
+else
+{
+	part_emitter_stream(runTrailSystem, 0, runTrailType, 0);
+}

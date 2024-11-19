@@ -23,6 +23,7 @@ if (!global.debugEdit)
 flat0Matrix = matrix_build(0, 0, 0, 0, 0, 0, 1, 1, 1);
 flat1Matrix = matrix_build(0, 0, 1, 0, 0, 0, 1, 1, 1);
 debugMatrix = matrix_build(0, 0, 33, 0, 0, 0, 1, 1, 1);
+characterMatrix = matrix_build(0, 12, 16, 0, 0, 0, 1, 1, 1);
 
 window_set_fullscreen(true);
 
