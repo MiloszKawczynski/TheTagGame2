@@ -151,8 +151,6 @@ dialogNode = function(_x, _y) constructor
 	
 	ds_map_add(content, "EN", "sample text");
 	ds_map_add(content, "PL", "przykładowy tekst");
-	ds_map_add(content, "FR", "przykładowy tekst");
-	ds_map_add(content, "GR", "przykładowy tekst");
 	
 	selectedLanguageLeft = "EN";
 	selectedLanguageRight = "PL";
