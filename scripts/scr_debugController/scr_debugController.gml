@@ -1529,7 +1529,7 @@ function scr_dialogLogic()
 	{
 		if (ImGui.MenuItem("Add Node")) 
 		{
-			ds_list_add(allDialogNodes, new dialogNode(ImGui.GetCursorScreenPosX(), ImGui.GetCursorScreenPosY()));
+			ds_list_add(allDialogNodes, new dialogNode(ImGui.GetCursorScreenPosX() - panX, ImGui.GetCursorScreenPosY() - panY));
 		}
 			
 		ImGui.EndPopup();
