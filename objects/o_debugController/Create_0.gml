@@ -105,3 +105,51 @@ currentTab = 0;
 previousTab = 0;
 
 hide = false;
+
+dialog = undefined;
+dialogPosition = [0, 350];
+dialogSize = [800, 100];
+dialogTextPosition = [20, 20];
+dialogPortraitPosition = [100, 100];
+dialogTest = "";
+
+panX = 0
+panY = 0
+zoom = 1;
+
+sizePercent = 100;
+
+dialogIsConnectionLineGrabbed = false;
+
+allDialogNodes = ds_list_create();
+
+isAnyNodeGrabbed = false;
+
+dialogNode = function(_x, _y) constructor
+{
+	xPos = _x;
+	yPos = _y;
+	
+	content = ds_map_create();
+	
+	ds_map_add(content, "EN", "sample text");
+	ds_map_add(content, "PL", "przykładowy tekst");
+	ds_map_add(content, "FR", "przykładowy tekst");
+	ds_map_add(content, "GR", "przykładowy tekst");
+	
+	selectedLanguageLeft = "EN";
+	selectedLanguageRight = "PL";
+	
+	in = undefined;
+	out = undefined;
+	
+	xIn = _x;
+	yIn = _y;
+	
+	xOut = _x;
+	yOut = _y;
+	
+	isGrabbed = false;
+}
+
+dialog = new dialogMain(260, 4, ord("E"), c_black, 0.25, 2, s_dialogBubble, f_test);

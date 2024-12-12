@@ -1,18 +1,31 @@
 if (!o_gameManager.isGameOn and !hide)
-{
-
-	if (ImGui.Begin("Debug"))
+{	
+	if (currentTab == 3)			
+	{
+		if (ImGui.Begin("DialogMain",, ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoBringToFrontOnFocus))
+		{				
+			scr_dialogLogic();
+	
+			scr_dialogNodes();
+		}
+		ImGui.End();
+	}
+	else
+	{
+		scr_placeHolder();
+	}
+	
+	if (ImGui.Begin("Debug",, ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoBringToFrontOnFocus))
 	{
 		currentTab = 0;
 	
 		scr_gameOptions();
 		scr_cameraControll();
 		scr_logsOptions();
-	
-		ImGui.End();
 	}
+	ImGui.End();
 
-	if (ImGui.Begin("Edit"))
+	if (ImGui.Begin("Edit",, ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoBringToFrontOnFocus))
 	{
 		currentTab = 1;
 		
@@ -21,11 +34,10 @@ if (!o_gameManager.isGameOn and !hide)
 		scr_gameOptions();
 		scr_editorOptions();
 		scr_logsOptions();
-			
-		ImGui.End();
 	}
+	ImGui.End();
 
-	if (ImGui.Begin("Game"))
+	if (ImGui.Begin("Game",, ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoBringToFrontOnFocus))
 	{	
 	    currentTab = 2;
 
@@ -33,12 +45,51 @@ if (!o_gameManager.isGameOn and !hide)
 	    scr_playerData();
 	    scr_gameRules();
 	    scr_logsOptions();
-
-	    ImGui.End();
 	}
+	ImGui.End();
+	
+	if (ImGui.Begin("Dialog",, ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoBringToFrontOnFocus))
+	{	
+	    currentTab = 3;
+
+		if (dialog != undefined)
+		{
+			dialog.logic();
+		}
+
+	    scr_gameOptions();
+		
+		if (ImGui.Button("Spawn Node"))
+		{
+			ds_list_add(allDialogNodes, new dialogNode(500, 500));
+		}
+		
+		sizePercent = ImGui.InputFloat("Size %", sizePercent);
+
+		if (ImGui.Button("Copy % of Width"))
+		{
+			clipboard_set_text(camera_get_view_width(view_camera[0]) * (sizePercent / 100));
+		}
+		
+		ImGui.SameLine();
+		
+		if (ImGui.Button("Copy % of Height"))
+		{
+			clipboard_set_text(camera_get_view_height(view_camera[0]) * (sizePercent / 100));
+		}
+		
+		ImGui.InputInt2("Dialog Position", dialogPosition);
+		ImGui.InputInt2("Dialog Size", dialogSize);
+		ImGui.InputInt2("Text Position", dialogTextPosition);
+		ImGui.InputInt2("Portrait Position", dialogPortraitPosition);
+		
+	    scr_logsOptions();
+	}
+	ImGui.End();
 }
 else
 {
+	
 	ImGui.SetNextWindowPos(0, 0);
 	ImGui.SetNextWindowSize(300, 150);
 	ImGui.SetNextWindowBgAlpha(0.25);
@@ -46,6 +97,7 @@ else
 	{	
 		scr_logs();
 	}
+
 }
 
 scr_docking();
@@ -65,6 +117,13 @@ if (currentTab != previousTab)
 	{
 		global.debugEdit = true;
 			
+		view_set_visible(0, false);
+		view_set_visible(1, true);
+		view_set_visible(2, false);
+	}
+	
+	if (currentTab == 3)
+	{		
 		view_set_visible(0, false);
 		view_set_visible(1, true);
 		view_set_visible(2, false);

@@ -19,33 +19,38 @@ function scr_addPlayer(idNumber)
 
 function scr_docking()
 {
-	var dockspaceID 
+    if (init)
+    {
+		var dockspaceID = ImGui.GetID("MyDockspace");
+		
+        ImGui.DockBuilderRemoveNode(dockspaceID);
+        ImGui.DockBuilderAddNode(dockspaceID, ImGuiDockNodeFlags.AutoHideTabBar);
 
-	dockspaceID = ImGui.GetID("MyDockspace");
+        ImGui.DockBuilderSetNodePos(dockspaceID, 0, 0);
+        ImGui.DockBuilderSetNodeSize(dockspaceID, 1920, 1080);
 
-	if (init)
-	{
-	    ImGui.DockBuilderRemoveNode(dockspaceID);
-	    ImGui.DockBuilderAddNode(dockspaceID);
+        var docks = ImGui.DockBuilderSplitNode(dockspaceID, ImGuiDir.Left, 0.22);
+        var leftDockID = docks[1];
+        var rightDockID = docks[2];
 
-	    ImGui.DockBuilderSetNodePos(dockspaceID, 0, 0);
-	    ImGui.DockBuilderSetNodeSize(dockspaceID, 1920 * 0.22, 1080);
+        ImGui.DockBuilderDockWindow("Debug", leftDockID);
+        ImGui.DockBuilderDockWindow("Edit", leftDockID);
+        ImGui.DockBuilderDockWindow("Game", leftDockID);
+        ImGui.DockBuilderDockWindow("Dialog", leftDockID);
 
-	    var docs = ImGui.DockBuilderSplitNode(dockspaceID, ImGuiDir.Left, 0.22);
+        ImGui.DockBuilderDockWindow("Placeholder", rightDockID);
+        ImGui.DockBuilderDockWindow("DialogMain", rightDockID);
 
-	    ImGui.DockBuilderDockWindow("Debug", docs[1]);
-	    ImGui.DockBuilderDockWindow("Edit", docs[1]);
-	    ImGui.DockBuilderDockWindow("Game", docs[1]);
+        ImGui.DockBuilderFinish(dockspaceID);
 
-	    ImGui.DockBuilderFinish(dockspaceID);
-
-		ImGui.SetWindowFocus("Debug");
+        ImGui.SetWindowFocus("Debug");
 
 		scr_debugPreload();
 
-	    init = false;
-	}
+        init = false;
+    }
 }
+
 
 function scr_managePlayersNumber()
 {
@@ -58,7 +63,9 @@ function scr_managePlayersNumber()
 		
 		o_gameManager.reset();
 	}
+	
 	ImGui.SameLine();
+	
 	if (ImGui.Button("Delete Player"))
 	{
 		if (instance_number(o_char) > 0)
@@ -1477,4 +1484,310 @@ function scr_gameRules()
 	o_gameManager.maximumChaseTime = timeInSeconds * 60
 	o_gameManager.changesPerChase = ImGui.InputInt("Changes Per Chase", o_gameManager.changesPerChase);
 	
+}
+
+function scr_dialogLogic()
+{	
+	if (mouse_check_button_pressed(mb_middle))
+	{
+		cursorXPressed = display_mouse_get_x() - panX;
+		cursorYPressed = display_mouse_get_y() - panY;
+	}
+								
+	if (mouse_check_button(mb_middle))
+	{
+		panX = display_mouse_get_x() - cursorXPressed;
+		panY = display_mouse_get_y() - cursorYPressed;
+	}
+			
+	if (mouse_check_button_pressed(mb_right) and ImGui.IsMouseHoveringRect(ImGui.GetWindowPosX(), 0, 1920, 1080))
+	{
+		ImGui.OpenPopup("ContextMenu");
+	}
+	
+	if (ImGui.BeginPopup("ContextMenu")) 
+	{
+		if (ImGui.MenuItem("Add Node")) 
+		{
+			ds_list_add(allDialogNodes, new dialogNode(ImGui.GetCursorScreenPosX(), ImGui.GetCursorScreenPosY()));
+		}
+			
+		ImGui.EndPopup();
+	}
+}
+
+function scr_dialogNodes()
+{	
+	for(var i = 0; i < ds_list_size(allDialogNodes); i++)
+	{
+		var node = ds_list_find_value(allDialogNodes, i);
+		
+		ImGui.SetNextWindowPos(node.xPos, node.yPos, ImGuiCond.Once);
+		ImGui.SetNextWindowSize(350, 300);
+			
+		scr_dialogNode(node, i);
+	}
+}
+
+function scr_dialogNode(node, i)
+{	
+	ImGui.SetNextWindowPos(node.xPos + panX, node.yPos + panY);
+	if (ImGui.BeginChild(i, 350, 300, ImGuiChildFlags.Borders))
+	{
+		if (!mouse_check_button(mb_middle))
+		{
+			node.xPos = ImGui.GetWindowPosX() - panX;
+			node.yPos = ImGui.GetWindowPosY() - panY;
+		}
+		
+		if (ImGui.IsMouseHoveringRect(
+		node.xPos + panX, 
+		node.yPos + panY, 
+		node.xPos + panX + 350, 
+		node.yPos + panY + 300)
+		and !isAnyNodeGrabbed)
+		{
+			if (mouse_check_button_pressed(mb_left))
+			{
+				cursorXPressed = display_mouse_get_x() - node.xPos;
+				cursorYPressed = display_mouse_get_y() - node.yPos;
+				
+				node.isGrabbed = true;
+				isAnyNodeGrabbed = true;
+			}
+		}
+		
+		if (node.isGrabbed)
+		{
+			if (mouse_check_button(mb_left))
+			{
+				node.xPos = display_mouse_get_x() - cursorXPressed;
+				node.yPos = display_mouse_get_y() - cursorYPressed;
+			}
+			else
+			{
+				node.isGrabbed = false;
+				isAnyNodeGrabbed = false;
+			}
+		}
+		
+		ImGui.Text("Dialog Node");
+
+		var windowWidth = ImGui.GetWindowWidth() - 10;
+		var textHeight = ImGui.GetTextLineHeight() * 6;
+					
+		scr_nodeContentEditor(node, i, windowWidth, textHeight);
+
+		scr_nodeActions(node, i);
+			
+		scr_nodeInput(node, windowWidth);
+			
+		ImGui.SameLine();
+		ImGui.SetCursorPosX(windowWidth - 15);
+			
+		scr_nodeOutput(node);
+	}
+		
+	ImGui.EndChild();
+}
+
+function scr_nodeActions(node, i)
+{
+	if (ImGui.Button("Action ##" + string(i))) 
+	{
+		var languageContent = ds_map_find_value(node.content, node.selectedLanguageLeft);
+		dialog.init(s_clea, s_cleaRed, languageContent);
+	}
+}
+
+function scr_nodeContentEditor(node, i, windowWidth, textHeight)
+{
+	ImGui.PushFont(fontRoboto);
+	ImGui.BeginGroup();
+					
+	scr_dialogTextEditor(node, i, windowWidth, textHeight, "left")
+					
+	ImGui.EndGroup();
+	ImGui.SameLine();
+	ImGui.BeginGroup();
+					
+	scr_dialogTextEditor(node, i, windowWidth, textHeight, "right")
+					
+	ImGui.EndGroup();
+	ImGui.PopFont();
+}
+
+function scr_dialogTextEditor(node, i, windowWidth, textHeight, name)
+{
+	if (ImGui.BeginTabBar("##LanguagesTabBar" + name + string(i))) 
+	{
+		var numberOfLanguages = ds_map_size(node.content);
+		var key = ds_map_find_first(node.content);
+
+		for (var j = 0; j < numberOfLanguages; j++)
+		{
+			if (ImGui.BeginTabItem(key)) 
+			{
+				node.selectedLanguageLeft = key;
+				
+				var languageContent = ds_map_find_value(node.content, key);
+				
+				ImGui.InputTextMultiline("##DialogText" + name + string(i) + "_" + string(j), languageContent, windowWidth / 2, textHeight);
+				
+				ds_map_replace(node.content, key, languageContent);
+
+				ImGui.EndTabItem();
+			}
+							
+			key = ds_map_find_next(node.content, key);
+		}
+
+		ImGui.EndTabBar();
+	}
+}
+
+function scr_nodeInput(node, windowWidth)
+{
+	var isColorPushed = false
+	if (node.in != undefined)
+	{
+		ImGui.PushStyleColor(ImGuiCol.Button, c_aqua, 1.0);
+				
+		isColorPushed = true
+	}
+			
+	if (ImGui.Button("##Input", 20, 20))
+	{
+		if (node.in != undefined)
+		{
+			node.in.out = undefined;
+			node.in = undefined;
+		}
+	}
+			
+	if (ImGui.IsItemHovered())
+	{
+		if (node.isGrabbed)
+		{
+			isAnyNodeGrabbed = false;
+			node.isGrabbed = false;
+		}
+	}
+			
+	if (isColorPushed)
+	{
+		ImGui.PopStyleColor();
+	}
+	
+	if (ImGui.BeginDragDropSource())
+	{
+		dialogIsConnectionLineGrabbed = true;
+		ImGui.SetDragDropPayload("IN", node);
+		ImGui.Text("<-");
+		ImGui.EndDragDropSource();
+	}
+	
+	node.xIn = ImGui.GetCursorScreenPosX();
+	node.yIn = ImGui.GetCursorScreenPosY() - 15;
+			
+	node.xOut = ImGui.GetCursorScreenPosX() + windowWidth - 15;
+	node.yOut = node.yIn;
+			
+	if (ImGui.BeginDragDropTarget())
+	{
+		var payload = ImGui.AcceptDragDropPayload("OUT")
+		if (payload != undefined)
+		{
+			if (node.in != undefined)
+			{
+				node.in.out = undefined;
+			}
+					
+			node.in = payload;
+			payload.out = node;
+		}
+		dialogIsConnectionLineGrabbed = false;
+		ImGui.EndDragDropTarget();
+	}
+}
+
+function scr_nodeOutput(node)
+{
+	var isColorPushed = false
+	if (node.out != undefined)
+	{
+		ImGui.PushStyleColor(ImGuiCol.Button, c_aqua, 1.0);
+				
+		isColorPushed = true
+						
+		var x1 = node.xOut;
+		var y1 = node.yOut;
+						
+		var x2 = node.out.xIn;
+		var y2 = node.out.yIn;
+						
+		var x05 = (x1 + x2) / 2;
+						
+		ImGui.DrawListAddBezierCubic(ImGui.GetForegroundDrawList(), x1, y1, x05, y1, x05, y2, x2, y2, c_aqua, 1);
+	}
+			
+	if (ImGui.Button("##Output", 20, 20))
+	{
+		if (node.out != undefined)
+		{
+			node.out.in = undefined;
+			node.out = undefined;
+		}
+	}
+	
+	if (ImGui.IsItemHovered())
+	{
+		if (node.isGrabbed)
+		{
+			isAnyNodeGrabbed = false;
+			node.isGrabbed = false;
+		}
+	}
+			
+	if (isColorPushed)
+	{
+		ImGui.PopStyleColor();
+	}
+			
+	if (ImGui.BeginDragDropSource())
+	{
+		dialogIsConnectionLineGrabbed = true;
+		ImGui.SetDragDropPayload("OUT", node);
+		ImGui.Text("->");
+		ImGui.EndDragDropSource();
+	}
+	
+	if (ImGui.BeginDragDropTarget())
+	{
+		var payload = ImGui.AcceptDragDropPayload("IN")
+		if (payload != undefined)
+		{
+			if (node.out != undefined)
+			{
+				node.out.in = undefined;
+			}
+					
+			node.out = payload;
+			payload.in = node;
+		}
+		dialogIsConnectionLineGrabbed = false;
+		ImGui.EndDragDropTarget();
+	}
+}
+
+function scr_nodesOptions()
+{
+	
+}
+
+function scr_placeHolder()
+{
+	ImGui.SetNextWindowBgAlpha(0);
+	ImGui.Begin("Placeholder", 0, ImGuiWindowFlags.NoInputs | ImGuiWindowFlags.NoDecoration | ImGuiWindowFlags.NoMove)
+	ImGui.End();
 }
