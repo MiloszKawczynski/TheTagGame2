@@ -301,6 +301,7 @@
     {"id":{"name":"s_cleaWalk","path":"sprites/s_cleaWalk/s_cleaWalk.yy",},},
     {"id":{"name":"s_cube","path":"sprites/s_cube/s_cube.yy",},},
     {"id":{"name":"s_debug","path":"sprites/s_debug/s_debug.yy",},},
+    {"id":{"name":"s_dialogBubble","path":"sprites/s_dialogBubble/s_dialogBubble.yy",},},
     {"id":{"name":"s_gameManager","path":"sprites/s_gameManager/s_gameManager.yy",},},
     {"id":{"name":"s_ground","path":"sprites/s_ground/s_ground.yy",},},
     {"id":{"name":"s_idleCycle","path":"sprites/s_idleCycle/s_idleCycle.yy",},},
