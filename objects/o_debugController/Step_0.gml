@@ -83,6 +83,42 @@ if (!o_gameManager.isGameOn and !hide)
 		ImGui.InputInt2("Text Position", dialogTextPosition);
 		ImGui.InputInt2("Portrait Position", dialogPortraitPosition);
 		
+		ImGui.Separator();
+		
+		if (selectedNode != undefined)
+		{
+			ImGui.BeginDisabled(selectedNode.in == undefined);
+		}
+		else
+		{
+			ImGui.BeginDisabled(true);
+		}
+		
+		if (ImGui.Button("<- Prev"))
+		{
+			selectedNode = selectedNode.in;
+		}
+		
+		ImGui.EndDisabled();
+		
+		ImGui.SameLine();
+		
+		if (selectedNode != undefined)
+		{
+			ImGui.BeginDisabled(selectedNode.out == undefined);
+		}
+		else
+		{
+			ImGui.BeginDisabled(true);
+		}
+		
+		if (ImGui.Button("Next ->"))
+		{
+			selectedNode = selectedNode.out;
+		}
+		
+		ImGui.EndDisabled();
+		
 	    scr_logsOptions();
 	}
 	ImGui.End();
