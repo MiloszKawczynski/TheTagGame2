@@ -26,7 +26,7 @@
   "origin":4,
   "parent":{
     "name":"Example",
-    "path":"folders/_ThirdParty/ImGui_GM/Example.yy",
+    "path":"folders/_ThirdParty/ImGui/Example.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
