@@ -1508,6 +1508,24 @@ function scr_resetNodeStyle()
 
 function scr_dialogLogic()
 {	
+	if (abs(targetPanX - panX) > 1)
+	{
+		panX = lerp(panX, targetPanX, 0.1);
+	}
+	else
+	{
+		panX = targetPanX;
+	}
+	
+	if (abs(targetPanY - panY) > 1)
+	{
+		panY = lerp(panY, targetPanY, 0.1);
+	}
+	else
+	{
+		panY = targetPanY;
+	}
+	
 	if (mouse_check_button_pressed(mb_middle))
 	{
 		cursorXPressed = display_mouse_get_x() - panX;
@@ -1518,6 +1536,8 @@ function scr_dialogLogic()
 	{
 		panX = display_mouse_get_x() - cursorXPressed;
 		panY = display_mouse_get_y() - cursorYPressed;
+		targetPanX = panX;
+		targetPanY = panY;
 	}
 			
 	if (mouse_check_button_pressed(mb_right) and ImGui.IsMouseHoveringRect(ImGui.GetWindowPosX(), 0, 1920, 1080))
@@ -1597,6 +1617,11 @@ function scr_dialogNode(node, i)
 				
 				node.isGrabbed = true;
 				isAnyNodeGrabbed = true;
+				
+				if (ImGui.IsMouseDoubleClicked(ImGuiMouseButton.Left))
+				{
+					scr_centerNode();
+				}
 				
 				selectedNode = node;
 			}
@@ -1875,6 +1900,12 @@ function scr_nodeOutput(node)
 function scr_nodesOptions()
 {
 	
+}
+
+function scr_centerNode()
+{
+	targetPanX = 748.8 - selectedNode.xPos + (1920 * 0.22) - 200;
+	targetPanY = 540 - selectedNode.yPos - 150;
 }
 
 function scr_placeHolder()

@@ -97,6 +97,7 @@ if (!o_gameManager.isGameOn and !hide)
 		if (ImGui.Button("<- Prev"))
 		{
 			selectedNode = selectedNode.in;
+			scr_centerNode();
 		}
 		
 		ImGui.EndDisabled();
@@ -115,6 +116,7 @@ if (!o_gameManager.isGameOn and !hide)
 		if (ImGui.Button("Next ->"))
 		{
 			selectedNode = selectedNode.out;
+			scr_centerNode();
 		}
 		
 		ImGui.EndDisabled();

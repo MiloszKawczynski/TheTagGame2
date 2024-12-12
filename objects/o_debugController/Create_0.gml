@@ -115,6 +115,10 @@ dialogTest = "";
 
 panX = 0
 panY = 0
+
+targetPanX = 0
+targetPanY = 0
+
 zoom = 1;
 
 sizePercent = 100;
