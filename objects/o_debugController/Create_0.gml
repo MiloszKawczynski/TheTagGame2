@@ -125,8 +125,25 @@ allDialogNodes = ds_list_create();
 
 isAnyNodeGrabbed = false;
 
+c_selectedBlueBorder = make_color_rgb(255 * 0.2, 255 * 0.6, 255);
+c_selectedBlueBackground = make_color_rgb(255 * 0.1, 255 * 0.2, 255 * 0.4);
+c_errorRedBackground = make_color_rgb(255 * 0.3, 255 * 0.1, 255 * 0.1);
+
+selectedNode = undefined;
+startNode = undefined;
+
 dialogNode = function(_x, _y) constructor
 {
+	if (other.selectedNode == undefined)
+	{
+		other.selectedNode = self;
+	}
+	
+	if (other.startNode == undefined)
+	{
+		other.startNode = self;
+	}
+	
 	xPos = _x;
 	yPos = _y;
 	

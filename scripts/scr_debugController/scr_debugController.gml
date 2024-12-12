@@ -1486,6 +1486,26 @@ function scr_gameRules()
 	
 }
 
+function scr_setNodeStyleSelected()
+{
+    ImGui.PushStyleColor(ImGuiCol.Border, c_selectedBlueBorder, 1);
+    ImGui.PushStyleColor(ImGuiCol.ChildBg, c_selectedBlueBackground, 1);
+    ImGui.PushStyleVar(ImGuiStyleVar.FrameBorderSize, 2);
+}
+
+function scr_setNodeStyleError() 
+{
+    ImGui.PushStyleColor(ImGuiCol.Border, c_red, 1);
+    ImGui.PushStyleColor(ImGuiCol.ChildBg, c_errorRedBackground, 1);
+    ImGui.PushStyleVar(ImGuiStyleVar.FrameBorderSize, 2);
+}
+
+function scr_resetNodeStyle() 
+{
+    ImGui.PopStyleColor(2);
+    ImGui.PopStyleVar(1);
+}
+
 function scr_dialogLogic()
 {	
 	if (mouse_check_button_pressed(mb_middle))
@@ -1524,8 +1544,34 @@ function scr_dialogNodes()
 		
 		ImGui.SetNextWindowPos(node.xPos, node.yPos, ImGuiCond.Once);
 		ImGui.SetNextWindowSize(350, 300);
+		
+		var isSelected = false;
+		
+		if (selectedNode == node)
+		{
+			scr_setNodeStyleSelected()
+			isSelected = true;
+		}
+		
+		var isNotValid = false;
+		
+		if (node.in == undefined and startNode != node)
+		{
+			scr_setNodeStyleError();
+			isNotValid = true;
+		}
 			
 		scr_dialogNode(node, i);
+		
+		if (isNotValid)
+		{
+			scr_resetNodeStyle();
+		}
+		
+		if (isSelected)
+		{
+			scr_resetNodeStyle();
+		}
 	}
 }
 
@@ -1554,6 +1600,8 @@ function scr_dialogNode(node, i)
 				
 				node.isGrabbed = true;
 				isAnyNodeGrabbed = true;
+				
+				selectedNode = node;
 			}
 		}
 		
@@ -1572,6 +1620,29 @@ function scr_dialogNode(node, i)
 		}
 		
 		ImGui.Text("Dialog Node");
+		
+		var isStart = false;
+		
+		if (node == startNode)
+		{
+			isStart = true;
+		}
+		
+		ImGui.Checkbox("## Starting Node " + string(i), isStart)
+		var isClicked = ImGui.IsItemClicked();
+		if (isClicked)
+		{
+			if (isStart)
+			{
+				startNode = undefined;
+			}
+			else
+			{
+				startNode = node;
+			}
+		}
+		ImGui.SameLine();
+		ImGui.Text("Starting Node");
 
 		var windowWidth = ImGui.GetWindowWidth() - 10;
 		var textHeight = ImGui.GetTextLineHeight() * 6;
