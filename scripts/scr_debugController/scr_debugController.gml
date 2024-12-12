@@ -1694,9 +1694,18 @@ function scr_dialogTextEditor(node, i, windowWidth, textHeight, name)
 
 		for (var j = 0; j < numberOfLanguages; j++)
 		{
+			
 			if (ImGui.BeginTabItem(key)) 
-			{
-				node.selectedLanguageLeft = key;
+			{								
+				if (name == "left")
+				{
+					node.selectedLanguageLeft = key;
+				}
+				
+				if (name == "right")
+				{
+					node.selectedLanguageRight = key;
+				}
 				
 				var languageContent = ds_map_find_value(node.content, key);
 				
