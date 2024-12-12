@@ -1654,7 +1654,7 @@ function scr_dialogNode(node, i)
 		scr_nodeInput(node, windowWidth);
 			
 		ImGui.SameLine();
-		ImGui.SetCursorPosX(windowWidth - 15);
+		ImGui.SetCursorPosX(windowWidth - 45);
 			
 		scr_nodeOutput(node);
 	}
@@ -1753,7 +1753,7 @@ function scr_nodeInput(node, windowWidth)
 	if (ImGui.BeginDragDropSource())
 	{
 		dialogIsConnectionLineGrabbed = true;
-		ImGui.SetDragDropPayload("IN", node);
+		ImGui.SetDragDropPayload("INPAYLOAD", node);
 		ImGui.Text("<-");
 		ImGui.EndDragDropSource();
 	}
@@ -1766,20 +1766,27 @@ function scr_nodeInput(node, windowWidth)
 			
 	if (ImGui.BeginDragDropTarget())
 	{
-		var payload = ImGui.AcceptDragDropPayload("OUT")
-		if (payload != undefined)
+		var payload = ImGui.AcceptDragDropPayload("OUTPAYLOAD")
+		
+		if (payload != node)
 		{
-			if (node.in != undefined)
+			if (payload != undefined)
 			{
-				node.in.out = undefined;
-			}
+				if (node.in != undefined)
+				{
+					node.in.out = undefined;
+				}
 					
-			node.in = payload;
-			payload.out = node;
+				node.in = payload;
+				payload.out = node;
+			}
+			dialogIsConnectionLineGrabbed = false;
 		}
-		dialogIsConnectionLineGrabbed = false;
 		ImGui.EndDragDropTarget();
 	}
+	
+	ImGui.SameLine();
+	ImGui.Text("IN");
 }
 
 function scr_nodeOutput(node)
@@ -1801,6 +1808,9 @@ function scr_nodeOutput(node)
 						
 		ImGui.DrawListAddBezierCubic(ImGui.GetForegroundDrawList(), x1, y1, x05, y1, x05, y2, x2, y2, c_aqua, 1);
 	}
+	
+	ImGui.Text("OUT");
+	ImGui.SameLine();
 			
 	if (ImGui.Button("##Output", 20, 20))
 	{
@@ -1828,25 +1838,30 @@ function scr_nodeOutput(node)
 	if (ImGui.BeginDragDropSource())
 	{
 		dialogIsConnectionLineGrabbed = true;
-		ImGui.SetDragDropPayload("OUT", node);
+		ImGui.SetDragDropPayload("OUTPAYLOAD", node);
 		ImGui.Text("->");
 		ImGui.EndDragDropSource();
 	}
 	
 	if (ImGui.BeginDragDropTarget())
 	{
-		var payload = ImGui.AcceptDragDropPayload("IN")
-		if (payload != undefined)
-		{
-			if (node.out != undefined)
+		var payload = ImGui.AcceptDragDropPayload("INPAYLOAD")
+		
+		if (payload != node)
+		{		
+			if (payload != undefined)
 			{
-				node.out.in = undefined;
-			}
+				if (node.out != undefined)
+				{
+					node.out.in = undefined;
+				}
 					
-			node.out = payload;
-			payload.in = node;
+				node.out = payload;
+				payload.in = node;
+			}
+			dialogIsConnectionLineGrabbed = false;
 		}
-		dialogIsConnectionLineGrabbed = false;
+		
 		ImGui.EndDragDropTarget();
 	}
 }
