@@ -1542,9 +1542,6 @@ function scr_dialogNodes()
 	{
 		var node = ds_list_find_value(allDialogNodes, i);
 		
-		ImGui.SetNextWindowPos(node.xPos, node.yPos, ImGuiCond.Once);
-		ImGui.SetNextWindowSize(350, 300);
-		
 		var isSelected = false;
 		
 		if (selectedNode == node)
@@ -1578,7 +1575,7 @@ function scr_dialogNodes()
 function scr_dialogNode(node, i)
 {	
 	ImGui.SetNextWindowPos(node.xPos + panX, node.yPos + panY);
-	if (ImGui.BeginChild(i, 350, 300, ImGuiChildFlags.Borders))
+	if (ImGui.BeginChild(i, 400, 300, ImGuiChildFlags.Borders))
 	{
 		if (!mouse_check_button(mb_middle))
 		{
@@ -1589,7 +1586,7 @@ function scr_dialogNode(node, i)
 		if (ImGui.IsMouseHoveringRect(
 		node.xPos + panX, 
 		node.yPos + panY, 
-		node.xPos + panX + 350, 
+		node.xPos + panX + 400, 
 		node.yPos + panY + 300)
 		and !isAnyNodeGrabbed)
 		{
@@ -1676,13 +1673,13 @@ function scr_nodeContentEditor(node, i, windowWidth, textHeight)
 	ImGui.PushFont(fontRoboto);
 	ImGui.BeginGroup();
 					
-	scr_dialogTextEditor(node, i, windowWidth, textHeight, "left")
+	scr_dialogTextEditor(node, i, windowWidth - 10, textHeight, "left")
 					
 	ImGui.EndGroup();
 	ImGui.SameLine();
 	ImGui.BeginGroup();
 					
-	scr_dialogTextEditor(node, i, windowWidth, textHeight, "right")
+	scr_dialogTextEditor(node, i, windowWidth - 10, textHeight, "right")
 					
 	ImGui.EndGroup();
 	ImGui.PopFont();
