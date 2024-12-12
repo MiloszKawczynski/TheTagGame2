@@ -2,6 +2,9 @@ event_inherited();
 
 ImGui.__Initialize();
 
+fontDefault = ImGui.AddFontDefault();
+fontRoboto = ImGui.AddFontFromFile("fonts/Roboto-Regular.ttf", 18);
+
 init = true;
 ImGui.ConfigFlagToggle(ImGuiConfigFlags.DockingEnable);	
 
