@@ -1671,7 +1671,9 @@ function scr_dialogNode(node, i)
 					
 		scr_nodeContentEditor(node, i, windowWidth, textHeight);
 
-		scr_nodeActions(node, i);
+		scr_nodeActions(node, i, "EN");
+		ImGui.SameLine();
+		scr_nodeActions(node, i, "PL");
 			
 		scr_nodeInput(node, windowWidth);
 			
@@ -1684,11 +1686,11 @@ function scr_dialogNode(node, i)
 	ImGui.EndChild();
 }
 
-function scr_nodeActions(node, i)
+function scr_nodeActions(node, i, key)
 {
-	if (ImGui.Button("Action ##" + string(i))) 
+	if (ImGui.Button("Action " + key + "##" + string(i))) 
 	{
-		var languageContent = ds_map_find_value(node.content, node.selectedLanguageLeft);
+		var languageContent = ds_map_find_value(node.content, key);
 		dialog.init(s_clea, s_cleaRed, languageContent);
 	}
 }
@@ -1698,54 +1700,25 @@ function scr_nodeContentEditor(node, i, windowWidth, textHeight)
 	ImGui.PushFont(fontRoboto);
 	ImGui.BeginGroup();
 					
-	scr_dialogTextEditor(node, i, windowWidth - 10, textHeight, "left")
+	scr_dialogTextEditor(node, i, windowWidth - 10, textHeight, "EN")
 					
 	ImGui.EndGroup();
 	ImGui.SameLine();
 	ImGui.BeginGroup();
 					
-	scr_dialogTextEditor(node, i, windowWidth - 10, textHeight, "right")
+	scr_dialogTextEditor(node, i, windowWidth - 10, textHeight, "PL")
 					
 	ImGui.EndGroup();
 	ImGui.PopFont();
 }
 
-function scr_dialogTextEditor(node, i, windowWidth, textHeight, name)
+function scr_dialogTextEditor(node, i, windowWidth, textHeight, key)
 {
-	if (ImGui.BeginTabBar("##LanguagesTabBar" + name + string(i))) 
-	{
-		var numberOfLanguages = ds_map_size(node.content);
-		var key = ds_map_find_first(node.content);
-
-		for (var j = 0; j < numberOfLanguages; j++)
-		{
-			
-			if (ImGui.BeginTabItem(key)) 
-			{								
-				if (name == "left")
-				{
-					node.selectedLanguageLeft = key;
-				}
+	var languageContent = ds_map_find_value(node.content, key);
+	
+	languageContent = ImGui.InputTextMultiline("##DialogText" + key + string(i), languageContent, windowWidth / 2, textHeight);
 				
-				if (name == "right")
-				{
-					node.selectedLanguageRight = key;
-				}
-				
-				var languageContent = ds_map_find_value(node.content, key);
-				
-				ImGui.InputTextMultiline("##DialogText" + name + string(i) + "_" + string(j), languageContent, windowWidth / 2, textHeight);
-				
-				ds_map_replace(node.content, key, languageContent);
-
-				ImGui.EndTabItem();
-			}
-							
-			key = ds_map_find_next(node.content, key);
-		}
-
-		ImGui.EndTabBar();
-	}
+	ds_map_replace(node.content, key, languageContent);
 }
 
 function scr_nodeInput(node, windowWidth)
