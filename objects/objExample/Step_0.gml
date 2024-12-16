@@ -406,7 +406,7 @@ if (main_open) {
 			ImGui.Separator();
 			ImGui.Text("You can load TTF/OTF font files from disk!");
 		    ImGui.PushFont(font_roboto);
-			ImGui.TextColored("And use them wherever!", c_aqua);
+			ImGui.TextColored("And usłążćśńóe them wherever!", c_aqua);
 			ImGui.Text("Pretty neat, right?!");
 			ImGui.PopFont();
 			ImGui.Text("And back to the default font ^_^");
