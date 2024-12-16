@@ -1692,18 +1692,34 @@ function scr_nodeActions(node, i, key)
 	if (ImGui.Button("Action " + key + "##" + string(i))) 
 	{
 		var languageContent = ds_map_find_value(node.content, key);
-		dialog.init(s_clea, s_cleaRed, languageContent);
+		
+		var dialogToTest = "";
+		var nextNode = node;
+		
+		while(nextNode != undefined)
+		{
+			dialogToTest += ds_map_find_value(nextNode.content, key);
+			nextNode = nextNode.out;
+			
+			if (nextNode != undefined)
+			{
+				dialogToTest += " ¶";
+			}
+		}
+		
+		dialog.init(s_clea, s_cleaRed, dialogToTest);
 	}
 	
 	ImGui.SameLine();
 	
 	ImGui.BeginDisabled(node.cursorPos == -1 or node.focusedKey != key);
-	if (ImGui.Button("Next line " + key + "##" + string(i)))
+	if (ImGui.Button("Next line ##" + key + "," + string(i)))
 	{
 		var languageContent = ds_map_find_value(node.content, key);
 		languageContent = string_insert("` ", languageContent, node.cursorPos);
 		ds_map_replace(node.content, key, languageContent);
 	}
+	
 	ImGui.EndDisabled();
 }
 
