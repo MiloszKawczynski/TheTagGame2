@@ -82,6 +82,8 @@ if (!o_gameManager.isGameOn and !hide)
 		ImGui.InputInt2("Dialog Size", dialogSize);
 		ImGui.InputInt2("Text Position", dialogTextPosition);
 		ImGui.InputInt2("Portrait Position", dialogPortraitPosition);
+		dialog.width = ImGui.InputInt("Width", dialog.width);
+		dialog.lines = ImGui.InputInt("Lines", dialog.lines);
 		
 		ImGui.Separator();
 		
