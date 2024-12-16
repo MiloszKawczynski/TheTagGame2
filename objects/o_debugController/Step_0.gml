@@ -84,6 +84,8 @@ if (!o_gameManager.isGameOn and !hide)
 		ImGui.InputInt2("Portrait Position", dialogPortraitPosition);
 		dialog.width = ImGui.InputInt("Width", dialog.width);
 		dialog.lines = ImGui.InputInt("Lines", dialog.lines);
+		dialog.baseSpeed = ImGui.InputInt("Base Speed", dialog.baseSpeed);
+		dialog.fastSpeed = ImGui.InputInt("Fast Speed", dialog.fastSpeed);
 		
 		ImGui.Separator();
 		
