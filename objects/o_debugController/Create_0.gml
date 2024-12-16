@@ -135,6 +135,7 @@ c_errorRedBackground = make_color_rgb(255 * 0.3, 255 * 0.1, 255 * 0.1);
 
 selectedNode = undefined;
 startNode = undefined;
+showCursor = true;
 
 dialogNode = function(_x, _y) constructor
 {

@@ -1730,7 +1730,19 @@ function scr_dialogTextEditor(node, i, windowWidth, textHeight, key)
         
 		if (node.cursorPos != -1 and node.focusedKey == key)
 		{
-			ImGui.Text(string_insert("|", languageContent, node.cursorPos));
+			if (current_second mod 2 == showCursor)
+			{
+				showCursor = !showCursor;
+			}
+			
+			if (showCursor)
+			{
+				ImGui.Text(string_insert("|", languageContent, node.cursorPos));
+			}
+			else
+			{
+				ImGui.Text(string_insert(" ", languageContent, node.cursorPos));
+			}
 		}
 		else
 		{
