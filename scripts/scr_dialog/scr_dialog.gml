@@ -1,5 +1,3 @@
-//Można zmienić funkcje zaczynające się od _ ze względu na starość projektu
-
 function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprite, _font) constructor
 {
 	width = _width;
@@ -307,14 +305,9 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 	
 	static logic = function()
 	{
-		if (keyboard_check_released(key)
-		or keyboard_check_released(vk_enter)
-		or keyboard_check_released(vk_space))
+		if (keyboard_check_released(key))
 		{
 			keyboard_clear(key);
-			keyboard_clear(vk_enter);
-			keyboard_clear(vk_space);
-			//mouse_clear(mb_left)
 			if (box.isDialogEnded)
 			{
 				box.isDialogEnded = false;

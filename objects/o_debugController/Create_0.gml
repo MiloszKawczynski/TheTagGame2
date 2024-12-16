@@ -156,6 +156,8 @@ dialogNode = function(_x, _y) constructor
 	ds_map_add(content, "EN", "sample text");
 	ds_map_add(content, "PL", "przykładowy tekst");
 	
+	focusedKey = "EN";
+	
 	in = undefined;
 	out = undefined;
 	
@@ -166,6 +168,8 @@ dialogNode = function(_x, _y) constructor
 	yOut = _y;
 	
 	isGrabbed = false;
+	
+	cursorPos = -1;
 }
 
-dialog = new dialogMain(260, 4, ord("E"), c_black, 0.25, 2, s_dialogBubble, f_test);
+dialog = new dialogMain(260, 4, vk_enter, c_black, 0.25, 2, s_dialogBubble, f_test);

@@ -1714,12 +1714,93 @@ function scr_nodeContentEditor(node, i, windowWidth, textHeight)
 
 function scr_dialogTextEditor(node, i, windowWidth, textHeight, key)
 {
-	var languageContent = ds_map_find_value(node.content, key);
+    var languageContent = ds_map_find_value(node.content, key);
+
+	if (ImGui.BeginChild("##DialogTextFrame" + key + string(i), windowWidth / 2, textHeight, true))
+    {
+		ImGui.PushTextWrapPos(windowWidth / 2);
+        
+		if (node.cursorPos != -1 and node.focusedKey == key)
+		{
+			ImGui.Text(string_insert("|", languageContent, node.cursorPos));
+		}
+		else
+		{
+			ImGui.Text(languageContent);
+		}
+        
+        ImGui.PopTextWrapPos();
+
+		if (ImGui.IsWindowFocused())
+        {			
+			node.focusedKey = key;
+			if (node.cursorPos == -1)
+			{
+				node.cursorPos = string_length(languageContent) + 1;
+				keyboard_string = 0;
+			}
+			
+			if (keyboard_lastkey == vk_backspace)
+			{
+				if (node.cursorPos != 1)
+				{
+					languageContent = string_delete(languageContent, node.cursorPos - 1, 1);
+					node.cursorPos--;
+				}
+			}
+			else if (keyboard_lastkey == vk_delete)
+			{
+				languageContent = string_delete(languageContent, node.cursorPos, 1);
+			}
+			else if (keyboard_lastkey == vk_shift or keyboard_lastkey == vk_lalt or keyboard_lastkey == vk_ralt)
+			{
+				//
+			}
+			else
+			{
+				if (keyboard_lastkey != vk_enter)
+				{
+					if (keyboard_lastkey == vk_left)
+					{
+						node.cursorPos--;
+					}
+					else if (keyboard_lastkey == vk_right)
+					{
+						node.cursorPos++;
+					}
+					else if (keyboard_lastkey != vk_nokey)
+					{					
+						while (keyboard_lastchar != string_char_at(keyboard_string, 0))
+						{
+							languageContent = string_insert(string_char_at(keyboard_string, 0), languageContent, node.cursorPos);
+							node.cursorPos++;
+							keyboard_string = string_delete(keyboard_string, 0, 1);
+						}
+						
+						keyboard_string = string_delete(keyboard_string, 0, 1);
+						languageContent = string_insert(keyboard_lastchar, languageContent, node.cursorPos);
+						node.cursorPos++;
+					}
+				}
+			}
+			
+			node.cursorPos = clamp(node.cursorPos, 1, string_length(languageContent) + 1);
+			
+			keyboard_lastchar = "";
+			keyboard_lastkey = vk_nokey;
+        }
+
+        ds_map_replace(node.content, key, languageContent);
+    }
+
+    ImGui.EndChild();
 	
-	languageContent = ImGui.InputTextMultiline("##DialogText" + key + string(i), languageContent, windowWidth / 2, textHeight);
-				
-	ds_map_replace(node.content, key, languageContent);
+	if (ImGui.IsItemClicked())
+	{
+		node.cursorPos = -1;
+	}
 }
+
 
 function scr_nodeInput(node, windowWidth)
 {
