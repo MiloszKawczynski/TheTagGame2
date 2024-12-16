@@ -1717,7 +1717,15 @@ function scr_dialogTextEditor(node, i, windowWidth, textHeight, key)
     var languageContent = ds_map_find_value(node.content, key);
 
 	if (ImGui.BeginChild("##DialogTextFrame" + key + string(i), windowWidth / 2, textHeight, true))
-    {
+    {		
+		if (ImGui.IsWindowHovered())
+		{
+			if (ImGui.IsMouseClicked(ImGuiMouseButton.Left))
+			{
+				node.cursorPos = -1;
+			}
+		}
+		
 		ImGui.PushTextWrapPos(windowWidth / 2);
         
 		if (node.cursorPos != -1 and node.focusedKey == key)
@@ -1733,6 +1741,7 @@ function scr_dialogTextEditor(node, i, windowWidth, textHeight, key)
 
 		if (ImGui.IsWindowFocused())
         {			
+			
 			node.focusedKey = key;
 			if (node.cursorPos == -1)
 			{
@@ -1770,11 +1779,14 @@ function scr_dialogTextEditor(node, i, windowWidth, textHeight, key)
 					}
 					else if (keyboard_lastkey != vk_nokey)
 					{					
-						while (keyboard_lastchar != string_char_at(keyboard_string, 0))
+						for(var failSafe = 0; failSafe < 10; failSafe++)
 						{
-							languageContent = string_insert(string_char_at(keyboard_string, 0), languageContent, node.cursorPos);
-							node.cursorPos++;
-							keyboard_string = string_delete(keyboard_string, 0, 1);
+							if (keyboard_lastchar != string_char_at(keyboard_string, 0))
+							{
+								languageContent = string_insert(string_char_at(keyboard_string, 0), languageContent, node.cursorPos);
+								node.cursorPos++;
+								keyboard_string = string_delete(keyboard_string, 0, 1);
+							}
 						}
 						
 						keyboard_string = string_delete(keyboard_string, 0, 1);
@@ -1794,11 +1806,6 @@ function scr_dialogTextEditor(node, i, windowWidth, textHeight, key)
     }
 
     ImGui.EndChild();
-	
-	if (ImGui.IsItemClicked())
-	{
-		node.cursorPos = -1;
-	}
 }
 
 
