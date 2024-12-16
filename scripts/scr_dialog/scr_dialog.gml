@@ -511,4 +511,11 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 			}
 		}
 	}
+	
+	static drawDebug = function(_x, _y, cursorX, cursorY)
+	{
+		draw_set_color(c_red);
+		draw_set_font(font);
+		draw_rectangle(_x + cursorX, _y + cursorY, _x + width, _y + (lines * string_height("A")), true);
+	}
 }

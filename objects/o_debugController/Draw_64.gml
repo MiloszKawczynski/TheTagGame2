@@ -11,6 +11,8 @@ if (dialog != undefined and dialog.isSpeaking)
 	dialogTextPosition[1],
 	dialogPortraitPosition[0],
 	dialogPortraitPosition[1])
+	
+	dialog.drawDebug(dialogPosition[0], dialogPosition[1], dialogTextPosition[0], dialogTextPosition[1]);
 }
 
 ImGui.__Render();
