@@ -1673,6 +1673,7 @@ function scr_dialogNode(node, i)
 
 		scr_nodeActions(node, i, "EN");
 		ImGui.SameLine();
+		ImGui.SetCursorPosX((windowWidth / 2) + 10);
 		scr_nodeActions(node, i, "PL");
 			
 		scr_nodeInput(node, windowWidth);
@@ -1693,6 +1694,17 @@ function scr_nodeActions(node, i, key)
 		var languageContent = ds_map_find_value(node.content, key);
 		dialog.init(s_clea, s_cleaRed, languageContent);
 	}
+	
+	ImGui.SameLine();
+	
+	ImGui.BeginDisabled(node.cursorPos == -1 or node.focusedKey != key);
+	if (ImGui.Button("Next line " + key + "##" + string(i)))
+	{
+		var languageContent = ds_map_find_value(node.content, key);
+		languageContent = string_insert("` ", languageContent, node.cursorPos);
+		ds_map_replace(node.content, key, languageContent);
+	}
+	ImGui.EndDisabled();
 }
 
 function scr_nodeContentEditor(node, i, windowWidth, textHeight)
