@@ -478,7 +478,7 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 							{
 								waveXFinalPos--;
 							}
-							//shiftX=animcurve_get_point(ac_dialogWaveX,ac.waveH.chanel,waveXFinalPos)
+							shiftX=animcurve_get_point(ac_dialogWaveX,ac.waveH.chanel,waveXFinalPos)
 						}
 						
 						if (ac.waveV != noone)
@@ -488,7 +488,7 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 							{
 								waveYFinalPos--;
 							}
-							//shiftY=animcurve_get_point(ac_dialogWaveY,ac.waveV.chanel,waveYFinalPos)
+							shiftY=animcurve_get_point(ac_dialogWaveY,ac.waveV.chanel,waveYFinalPos)
 						}
 					}
 					
