@@ -1789,7 +1789,9 @@ function scr_dialogTextEditor(node, i, windowWidth, textHeight, key)
 			if (node.cursorPos == -1)
 			{
 				node.cursorPos = string_length(languageContent) + 1;
-				keyboard_string = 0;
+				keyboard_string = "";
+				keyboard_key = vk_nokey;
+				keyboard_lastchar = "";
 			}
 			
 			if (keyboard_lastkey == vk_backspace)
