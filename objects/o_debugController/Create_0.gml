@@ -114,6 +114,12 @@ dialogPortraitPosition = [100, 100];
 dialogTest = "";
 dialogOverImGui = false;
 
+dialogDictionaryEntry = function(_key, _value) constructor
+{
+	key = _key;
+	value = _value;
+}
+
 panX = 0
 panY = 0
 

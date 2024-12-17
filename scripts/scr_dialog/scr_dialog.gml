@@ -16,6 +16,8 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 	
 	isSpeaking = false;
 	
+	dictionary = ds_list_create();
+	
 	function dialogBox() constructor
 	{
 		lineList = ds_list_create();
@@ -192,19 +194,19 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 	accentList = ds_list_create();
 	
 	//To jest miejsce na fale do twoich akcentów
-	whisperWave = new dialogWave(false, 1, 0, false);
-	melodicWave = new dialogWave(true, 1, 0, false);
+	//whisperWave = new dialogWave(false, 1, 0, false);
+	//melodicWave = new dialogWave(true, 1, 0, false);
 	
-	sadWave = new dialogWave(false, 0.5, 1, false);
+	//sadWave = new dialogWave(false, 0.5, 1, false);
 	
-	demonicWaveH = new dialogWave(false, 1, 1, false);
-	demonicWaveV = new dialogWave(true, 1, 2, false);
+	//demonicWaveH = new dialogWave(false, 1, 1, false);
+	//demonicWaveV = new dialogWave(true, 1, 2, false);
 	
 	accentImportant = new dialogAccent("Important", c_red, 1, "*", true);
-	accentWhisper = new dialogAccent("Whisper", c_blue, 0.1, "~", true,,, whisperWave);
-	accentMelodic = new dialogAccent("Melodic", make_color_rgb(72, 212, 86), 1, "@", true,, melodicWave);
-	accentSad = new dialogAccent("Sad", c_navy, 0.5, "$", true,,, sadWave);
-	accentDemonic = new dialogAccent("Demonic", c_red, 1, "^", true,, demonicWaveH, demonicWaveV);
+	accentWhisper = new dialogAccent("Whisper", c_blue, 0.1, "~", true);
+	accentMelodic = new dialogAccent("Melodic", make_color_rgb(72, 212, 86), 1, "@", true);
+	accentSad = new dialogAccent("Sad", c_navy, 0.5, "$", true);
+	accentDemonic = new dialogAccent("Demonic", c_red, 1, "^", true);
 	
 	//Dodaj wszystkie akcenty do listy
 	ds_list_add(accentList, accentImportant);
@@ -322,7 +324,15 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 		//Zmiana wszystkich liter na małe ze względu na czcionkę. Nieprzydatne w innych projektach
 		//Miejsce na przeprzygotowanie stringa do printu np. Zamiana końcówek ze względu na płeć
 		//dialogText = string_lower(_dialog)
+		
 		dialogText = _dialog;
+		
+		for (var i = 0; i < ds_list_size(dictionary); i++)
+		{
+			var entry = ds_list_find_value(dictionary, i);
+				
+			dialogText = string_replace_all(dialogText, entry.key, entry.value);
+		}
 
 		box.isDialogEnded = false;
 		
