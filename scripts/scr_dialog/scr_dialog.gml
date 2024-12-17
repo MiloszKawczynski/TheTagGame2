@@ -128,12 +128,19 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 		wavePos = 0;
 	}
 
-	function dialogAccent(_color, _textSpeed, _markup, _hideMarkup, _waveH=noone, _waveV=noone) constructor
+	function dialogAccent(_name, _color, _textSpeed, _markup, _hideMarkup = true, _sdfEffects = undefined, _waveH=noone, _waveV=noone) constructor
 	{
+		name = _name;
 		color = _color;
 		textSpeed = _textSpeed;
 		markup = _markup;
 		hideMarkup = _hideMarkup;
+		sdfEffects = _sdfEffects
+		isSdfEnable = false;
+		if  (sdfEffects != undefined)
+		{
+			isSdfEnable = true;
+		}
 		waveH = _waveH;
 		waveV = _waveV;
 	
@@ -168,12 +175,11 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 	demonicWaveH = new dialogWave(false, 1, 1, false);
 	demonicWaveV = new dialogWave(true, 1, 2, false);
 	
-	//To jest miejsce na twoje akcenty
-	accentImportant = new dialogAccent(c_red, 1, "*", true);
-	accentWhisper = new dialogAccent(c_blue, 0.1, "~", true,, whisperWave);
-	accentMelodic = new dialogAccent(make_color_rgb(72, 212, 86), 1, "@", true, melodicWave);
-	accentSad = new dialogAccent(c_navy, 0.5, "$", true,, sadWave);
-	accentDemonic = new dialogAccent(c_red, 1, "^", true, demonicWaveH, demonicWaveV);
+	accentImportant = new dialogAccent("Important", c_red, 1, "*", true);
+	accentWhisper = new dialogAccent("Whisper", c_blue, 0.1, "~", true,,, whisperWave);
+	accentMelodic = new dialogAccent("Melodic", make_color_rgb(72, 212, 86), 1, "@", true,, melodicWave);
+	accentSad = new dialogAccent("Sad", c_navy, 0.5, "$", true,,, sadWave);
+	accentDemonic = new dialogAccent("Demonic", c_red, 1, "^", true,, demonicWaveH, demonicWaveV);
 	
 	//Dodaj wszystkie akcenty do listy
 	ds_list_add(accentList, accentImportant);
@@ -438,16 +444,28 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 				var skipLetter = false;
 				var shiftX = 0
 				var shiftY = 0
+				
+				font_enable_effects(font, false);
+				
 				for(var o = 0; o < ds_list_size(accentList); o++)
 				{
 					var ac = ds_list_find_value(accentList, o);
 					
 					if (ac.isActive)
 					{
-						draw_set_color(ac.color);
 						if (drawSpeed != fastSpeed)
 						{
 							drawSpeed = baseSpeed * ac.textSpeed;
+						}
+						
+						if (ac.isSdfEnable)
+						{
+							draw_set_color(c_white);
+							font_enable_effects(font, true, ac.sdfEffects);
+						}
+						else
+						{
+							draw_set_color(ac.color);
 						}
 						
 						if (ac.waveH != noone)
@@ -485,10 +503,19 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 							
 							if (ac.isActive)
 							{
-								draw_set_color(ac.color);
 								if (drawSpeed != fastSpeed)
 								{
 									drawSpeed = baseSpeed * ac.textSpeed;
+								}
+								
+								if (ac.isSdfEnable)
+								{
+									draw_set_color(c_white);
+									font_enable_effects(font, true, ac.sdfEffects);
+								}
+								else
+								{
+									draw_set_color(ac.color);
 								}
 							}
 						}
