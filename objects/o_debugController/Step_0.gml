@@ -78,6 +78,7 @@ if (!o_gameManager.isGameOn and !hide)
 			clipboard_set_text(camera_get_view_height(view_camera[0]) * (sizePercent / 100));
 		}
 		
+		dialogOverImGui = ImGui.Checkbox("Dialog Over ImGui", dialogOverImGui);
 		ImGui.InputInt2("Dialog Position", dialogPosition);
 		ImGui.InputInt2("Dialog Size", dialogSize);
 		ImGui.InputInt2("Text Position", dialogTextPosition);

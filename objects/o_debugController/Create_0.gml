@@ -112,6 +112,7 @@ dialogSize = [800, 100];
 dialogTextPosition = [20, 20];
 dialogPortraitPosition = [100, 100];
 dialogTest = "";
+dialogOverImGui = false;
 
 panX = 0
 panY = 0
