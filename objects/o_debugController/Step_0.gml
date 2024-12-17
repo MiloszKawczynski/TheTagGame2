@@ -84,9 +84,9 @@ if (!o_gameManager.isGameOn and !hide)
 		ImGui.InputInt2("Text Position", dialogTextPosition);
 		ImGui.InputInt2("Portrait Position", dialogPortraitPosition);
 		dialog.width = ImGui.InputInt("Width", dialog.width);
-		dialog.lines = ImGui.InputInt("Lines", dialog.lines);
-		dialog.baseSpeed = ImGui.InputInt("Base Speed", dialog.baseSpeed);
-		dialog.fastSpeed = ImGui.InputInt("Fast Speed", dialog.fastSpeed);
+		dialog.lines = ImGui.InputInt("Lines", dialog.lines, 1);
+		//dialog.baseSpeed = ImGui.InputInt("Base Speed", dialog.baseSpeed);
+		dialog.fastSpeed = ImGui.InputInt("Fast Speed", dialog.fastSpeed, 0.25);
 		
 		ImGui.Separator();
 		
@@ -151,7 +151,7 @@ if (!o_gameManager.isGameOn and !hide)
 				}
 				
 				accent.color = ImGui.ColorEdit3("Color ## Accent" + string(i), accent.color);
-				accent.textSpeed = ImGui.InputFloat("Speed ## Accent" + string(i), accent.textSpeed);
+				accent.textSpeed = ImGui.InputFloat("Speed ## Accent" + string(i), accent.textSpeed, 0.25);
 				accent.markup = ImGui.InputText("Markup ## Accent" + string(i), accent.markup);
 				
 				accent.markup = string_char_at(accent.markup, 0);
@@ -197,12 +197,12 @@ if (!o_gameManager.isGameOn and !hide)
 					if (accent.sdfEffects.outlineEnable)
 					{
 					
-						accent.sdfEffects.outlineDistance = ImGui.InputFloat("Outline Distance ## Accent" + string(i), accent.sdfEffects.outlineDistance)
+						accent.sdfEffects.outlineDistance = ImGui.InputFloat("Outline Distance ## Accent" + string(i), accent.sdfEffects.outlineDistance, 1)
 						accent.sdfEffects.outlineDistance = clamp (accent.sdfEffects.outlineDistance, 0, 64);
 						
 						accent.sdfEffects.outlineColour = ImGui.ColorEdit3("Outline Color ## Accent" + string(i), accent.sdfEffects.outlineColour)
 						
-						accent.sdfEffects.outlineAlpha = ImGui.InputFloat("Outline Alpha ## Accent" + string(i), accent.sdfEffects.outlineAlpha)
+						accent.sdfEffects.outlineAlpha = ImGui.InputFloat("Outline Alpha ## Accent" + string(i), accent.sdfEffects.outlineAlpha, 0.25)
 						accent.sdfEffects.outlineAlpha = clamp (accent.sdfEffects.outlineAlpha, 0, 1);
 					}
 					
@@ -213,18 +213,18 @@ if (!o_gameManager.isGameOn and !hide)
 					if (accent.sdfEffects.glowEnable)
 					{
 						ImGui.SetNextItemWidth(64);
-						accent.sdfEffects.glowStart = ImGui.InputFloat("Glow Start ## Accent" + string(i), accent.sdfEffects.glowStart)
+						accent.sdfEffects.glowStart = ImGui.InputFloat("Glow Start ## Accent" + string(i), accent.sdfEffects.glowStart, 1)
 						accent.sdfEffects.glowStart = clamp (accent.sdfEffects.glowStart, 0, 64);
 						
 						ImGui.SameLine();
 						
 						ImGui.SetNextItemWidth(64);
-						accent.sdfEffects.glowEnd = ImGui.InputFloat("Glow End ## Accent" + string(i), accent.sdfEffects.glowEnd)
+						accent.sdfEffects.glowEnd = ImGui.InputFloat("Glow End ## Accent" + string(i), accent.sdfEffects.glowEnd, 1)
 						accent.sdfEffects.glowEnd = clamp (accent.sdfEffects.glowEnd, 0, 64);
 						
 						accent.sdfEffects.glowColour = ImGui.ColorEdit3("Glow Color ## Accent" + string(i), accent.sdfEffects.glowColour)
 						
-						accent.sdfEffects.glowAlpha = ImGui.InputFloat("Glow Alpha ## Accent" + string(i), accent.sdfEffects.glowAlpha)
+						accent.sdfEffects.glowAlpha = ImGui.InputFloat("Glow Alpha ## Accent" + string(i), accent.sdfEffects.glowAlpha, 0.25)
 						accent.sdfEffects.glowAlpha = clamp (accent.sdfEffects.glowAlpha, 0, 1);
 					}
 					
@@ -234,20 +234,20 @@ if (!o_gameManager.isGameOn and !hide)
 					
 					if (accent.sdfEffects.dropShadowEnable)
 					{
-						accent.sdfEffects.dropShadowSoftness = ImGui.InputFloat("Shadow Softness ## Accent" + string(i), accent.sdfEffects.dropShadowSoftness)
+						accent.sdfEffects.dropShadowSoftness = ImGui.InputFloat("Shadow Softness ## Accent" + string(i), accent.sdfEffects.dropShadowSoftness, 1)
 						accent.sdfEffects.dropShadowSoftness = clamp (accent.sdfEffects.dropShadowSoftness, 0, 64);
 						
 						ImGui.SetNextItemWidth(64);
-						accent.sdfEffects.dropShadowOffsetX = ImGui.InputFloat("Shadow Offset x ## Accent" + string(i), accent.sdfEffects.dropShadowOffsetX)
+						accent.sdfEffects.dropShadowOffsetX = ImGui.InputFloat("Shadow Offset x ## Accent" + string(i), accent.sdfEffects.dropShadowOffsetX, 1)
 						
 						ImGui.SameLine();
 						
 						ImGui.SetNextItemWidth(64);
-						accent.sdfEffects.dropShadowOffsetY = ImGui.InputFloat("Shadow Offset y ## Accent" + string(i), accent.sdfEffects.dropShadowOffsetY)
+						accent.sdfEffects.dropShadowOffsetY = ImGui.InputFloat("Shadow Offset y ## Accent" + string(i), accent.sdfEffects.dropShadowOffsetY, 1)
 						
 						accent.sdfEffects.dropShadowColour = ImGui.ColorEdit3("Shadow Color ## Accent" + string(i), accent.sdfEffects.dropShadowColour)
 						
-						accent.sdfEffects.dropShadowAlpha = ImGui.InputFloat("Shadow Alpha ## Accent" + string(i), accent.sdfEffects.dropShadowAlpha)
+						accent.sdfEffects.dropShadowAlpha = ImGui.InputFloat("Shadow Alpha ## Accent" + string(i), accent.sdfEffects.dropShadowAlpha, 0.25)
 						accent.sdfEffects.dropShadowAlpha = clamp (accent.sdfEffects.dropShadowAlpha, 0, 1);
 					}
 				}

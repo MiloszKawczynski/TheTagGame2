@@ -124,6 +124,7 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 		waveSpeed = _speed;
 		chanel = _chanel;
 		sync = _sync;
+		factor = 1;
 		
 		wavePos = 0;
 	}
@@ -142,8 +143,29 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 			isSdfEnable = true;
 		}
 		
-		waveH = _waveH;
-		waveV = _waveV;
+		waveH =
+		{
+			isEnable: false,
+			isHorizontalOrVertical: true,
+			waveSpeed: 1,
+			chanel: 0,
+			sync: true,
+			factor: 1,
+		
+			wavePos: 0
+		}
+		
+		waveV =
+		{
+			isEnable: false,
+			isHorizontalOrVertical: false,
+			waveSpeed: 1,
+			chanel: 0,
+			sync: true,
+			factor: 1,
+		
+			wavePos: 0
+		}
 		
 		isOpen = false;
 	
@@ -355,36 +377,6 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 		draw_set_font(font);
 		draw_set_color(baseColor);
 		
-		if (talkerChange)
-		{
-			if (talkerChangeX < 1)
-			{
-				talkerChangeX += 0.07;
-			}
-			else
-			{
-				talkerChangeX = 0;
-				talkerChange = false;
-				if (talker != firstPerson)
-				{
-					talker = firstPerson;
-				}
-				else
-				{
-					talker = secondPerson;
-				}
-			}
-		}
-		
-		if talker==firstPerson
-		{
-			//talkerShift=(animcurve_get_point(ac_talkerChange,0,talkerChangeX)*-92);
-		}
-		else
-		{
-			//talkerShift=(animcurve_get_point(ac_talkerChange,0,talkerChangeX)*92)-91;
-		}
-		
 		talkerShift = 0;
 		
 		draw_sprite_stretched(textboxSprite, 0, _x, _y, width, height)
@@ -471,24 +463,26 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 							draw_set_color(ac.color);
 						}
 						
-						if (ac.waveH != noone)
+						if (ac.waveH.isEnable)
 						{
 							var waveXFinalPos = ac.waveH.wavePos + (j * 0.1 * !ac.waveH.sync);
 							while(waveXFinalPos > 1)
 							{
 								waveXFinalPos--;
 							}
-							shiftX=animcurve_get_point(ac_dialogWaveX,ac.waveH.chanel,waveXFinalPos)
+							
+							shiftX = animcurve_get_point(ac_dialogWaveX,ac.waveH.chanel,waveXFinalPos) * ac.waveH.factor;
 						}
 						
-						if (ac.waveV != noone)
+						if (ac.waveV.isEnable)
 						{
 							var waveYFinalPos = ac.waveV.wavePos + ( j * 0.1 * !ac.waveV.sync);
 							while(waveYFinalPos > 1)
 							{
 								waveYFinalPos--;
 							}
-							shiftY=animcurve_get_point(ac_dialogWaveY,ac.waveV.chanel,waveYFinalPos)
+							
+							shiftY = animcurve_get_point(ac_dialogWaveY,ac.waveV.chanel,waveYFinalPos) * ac.waveV.factor;
 						}
 					}
 					
