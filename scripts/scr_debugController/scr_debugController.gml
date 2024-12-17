@@ -1691,6 +1691,7 @@ function scr_nodeActions(node, i, key)
 {
 	if (ImGui.Button("Action " + key + "##" + string(i))) 
 	{
+		node.focusedKey = "";
 		var languageContent = ds_map_find_value(node.content, key);
 		
 		var dialogToTest = "";
@@ -1718,6 +1719,8 @@ function scr_nodeActions(node, i, key)
 		var languageContent = ds_map_find_value(node.content, key);
 		languageContent = string_insert("` ", languageContent, node.cursorPos);
 		ds_map_replace(node.content, key, languageContent);
+		node.cursorPos += 2;
+		node.focusedKey = "";
 	}
 	
 	ImGui.EndDisabled();
@@ -1756,7 +1759,7 @@ function scr_dialogTextEditor(node, i, windowWidth, textHeight, key)
 		
 		ImGui.PushTextWrapPos(windowWidth / 2);
         
-		if (node.cursorPos != -1 and node.focusedKey == key)
+		if (selectedNode == node and node.cursorPos != -1 and node.focusedKey == key)
 		{
 			if (current_second mod 2 == showCursor)
 			{
