@@ -141,8 +141,11 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 		{
 			isSdfEnable = true;
 		}
+		
 		waveH = _waveH;
 		waveV = _waveV;
+		
+		isOpen = false;
 	
 		isActive = false;
 		lastPlace = -1;

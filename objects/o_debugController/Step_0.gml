@@ -132,8 +132,24 @@ if (!o_gameManager.isGameOn and !hide)
 		for (var i = 0; i < ds_list_size(dialog.accentList); i++)
 		{
 			var accent = ds_list_find_value(dialog.accentList, i);
-			if (ImGui.CollapsingHeader(accent.name))
+			
+			if (accent.isOpen)
 			{
+				ImGui.SetNextItemOpen(true);
+				accent.isOpen = false;
+			}
+			
+			if (ImGui.CollapsingHeader(accent.name + "##" + string(i)))
+			{
+				var newName = accent.name;
+				newName = ImGui.InputText("name ## Accent" + string(i), newName);
+				
+				if (accent.name != newName)
+				{
+					accent.name = newName;
+					accent.isOpen = true;
+				}
+				
 				accent.color = ImGui.ColorEdit3("Color ## Accent" + string(i), accent.color);
 				accent.textSpeed = ImGui.InputFloat("Speed ## Accent" + string(i), accent.textSpeed);
 				accent.markup = ImGui.InputText("Markup ## Accent" + string(i), accent.markup);
