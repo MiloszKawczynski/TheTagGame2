@@ -279,7 +279,18 @@ if (!o_gameManager.isGameOn and !hide)
 					accent.waveV.sync = ImGui.Checkbox("Is Sync ##V Accent" + string(i), accent.waveV.sync);
 					accent.waveV.factor = ImGui.InputFloat("Wave Factor ##V Accent" + string(i), accent.waveV.factor, 1);
 				}
+				
+				if (ImGui.Button("Remove"))
+				{
+					ds_list_delete(dialog.accentList, i);
+					i--;
+				}
 			}
+		}
+		
+		if (ImGui.Button("Add Accent"))
+		{
+			ds_list_add(dialog.accentList, new dialog.dialogAccent("New Accent " + string(ds_list_size(dialog.accentList)), c_red, dialog.baseSpeed, "*"));
 		}
 		
 	    scr_logsOptions();
