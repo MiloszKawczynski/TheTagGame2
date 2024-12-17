@@ -251,6 +251,34 @@ if (!o_gameManager.isGameOn and !hide)
 						accent.sdfEffects.dropShadowAlpha = clamp (accent.sdfEffects.dropShadowAlpha, 0, 1);
 					}
 				}
+				
+				ImGui.Separator();
+				
+				accent.waveH.isEnable = ImGui.Checkbox("Horizontal Wave ## Accent" + string(i), accent.waveH.isEnable);
+				
+				if (accent.waveH.isEnable)
+				{
+					accent.waveH.waveSpeed = ImGui.InputFloat("Wave Speed ##H Accent" + string(i), accent.waveH.waveSpeed, 1);					
+					accent.waveH.chanel = ImGui.InputInt("Wave Channel ##H Accent" + string(i), accent.waveH.chanel, 1);
+					accent.waveH.chanel = clamp(accent.waveH.chanel , 0, array_length(animcurve_get(ac_dialogWaveX).channels) - 1);
+					
+					accent.waveH.sync = ImGui.Checkbox("Is Sync ##H Accent" + string(i), accent.waveH.sync);
+					accent.waveH.factor = ImGui.InputFloat("Wave Factor ##H Accent" + string(i), accent.waveH.factor, 1);
+				}
+				
+				ImGui.Separator();
+				
+				accent.waveV.isEnable = ImGui.Checkbox("Vertical Wave ##V Accent" + string(i), accent.waveV.isEnable);
+				
+				if (accent.waveV.isEnable)
+				{
+					accent.waveV.waveSpeed = ImGui.InputFloat("Wave Speed ##V Accent" + string(i), accent.waveV.waveSpeed, 1);
+					accent.waveV.chanel = ImGui.InputInt("Wave Channel ##V Accent" + string(i), accent.waveV.chanel, 1);
+					accent.waveV.chanel = clamp(accent.waveV.chanel , 0, array_length(animcurve_get(ac_dialogWaveY).channels) - 1);
+					
+					accent.waveV.sync = ImGui.Checkbox("Is Sync ##V Accent" + string(i), accent.waveV.sync);
+					accent.waveV.factor = ImGui.InputFloat("Wave Factor ##V Accent" + string(i), accent.waveV.factor, 1);
+				}
 			}
 		}
 		
