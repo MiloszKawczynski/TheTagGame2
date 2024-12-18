@@ -110,7 +110,9 @@ dialog = undefined;
 dialogPosition = [0, 350];
 dialogSize = [800, 100];
 dialogTextPosition = [20, 20];
-dialogPortraitPosition = [100, 100];
+dialogPortraitPosition = [100, 200];
+dialogPortraitScale = 0.15;
+dialogPortraitSpacing = 150;
 dialogTest = "";
 dialogOverImGui = false;
 

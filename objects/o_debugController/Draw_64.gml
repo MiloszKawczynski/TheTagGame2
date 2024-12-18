@@ -12,7 +12,9 @@ if (!dialogOverImGui)
 		dialogTextPosition[0],
 		dialogTextPosition[1],
 		dialogPortraitPosition[0],
-		dialogPortraitPosition[1])
+		dialogPortraitPosition[1],
+		dialogPortraitSpacing,
+		dialogPortraitScale)
 	
 		dialog.drawDebug(dialogPosition[0], dialogPosition[1], dialogTextPosition[0], dialogTextPosition[1]);
 	}	
@@ -33,7 +35,9 @@ if (dialogOverImGui)
 		dialogTextPosition[0],
 		dialogTextPosition[1],
 		dialogPortraitPosition[0],
-		dialogPortraitPosition[1])
+		dialogPortraitPosition[1],
+		dialogPortraitSpacing,
+		dialogPortraitScale)
 	
 		dialog.drawDebug(dialogPosition[0], dialogPosition[1], dialogTextPosition[0], dialogTextPosition[1]);
 	}	

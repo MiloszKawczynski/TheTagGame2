@@ -350,7 +350,7 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 		}
 	}
 	
-	static draw = function(_x, _y, width, height, cursorX, cursorY, portraitX, portraitY, portraitSpacing = 100, size = 1)
+	static draw = function(_x, _y, width, height, cursorX, cursorY, portraitX, portraitY, portraitSpacing = 100, portraitScale = 1, size = 1)
 	{
 		///@func draw(_x, _y, width, height, cursorX, cursorY, portraitX, portraitY, size = 1)
 		
@@ -376,6 +376,11 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 		{
 			var talker = ds_list_find_value(talkers, i);
 			
+			if (talker.sprite == undefined)
+			{
+				continue;
+			}
+			
 			var alpha = 0.25;
 			
 			if (talker.isActive)
@@ -385,12 +390,12 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 			
 			if (talker.isMirrored)
 			{
-				draw_sprite_ext(talker.sprite, talker.image, cw - (portraitX + (right * portraitSpacing)), portraitY, -1, 1, 0, c_white, alpha);
+				draw_sprite_ext(talker.sprite, talker.image, cw - (portraitX + (right * portraitSpacing)), portraitY, -portraitScale, portraitScale, 0, c_white, alpha);
 				right++;
 			}
 			else
 			{
-				draw_sprite_ext(talker.sprite, talker.image, portraitX + (left * portraitSpacing), portraitY, 1, 1, 0, c_white, alpha);
+				draw_sprite_ext(talker.sprite, talker.image, portraitX + (left * portraitSpacing), portraitY, portraitScale, portraitScale, 0, c_white, alpha);
 				left++;
 			}
 		}

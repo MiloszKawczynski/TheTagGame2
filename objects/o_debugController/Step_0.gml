@@ -83,6 +83,8 @@ if (!o_gameManager.isGameOn and !hide)
 		ImGui.InputInt2("Dialog Size", dialogSize);
 		ImGui.InputInt2("Text Position", dialogTextPosition);
 		ImGui.InputInt2("Portrait Position", dialogPortraitPosition);
+		dialogPortraitSpacing = ImGui.InputFloat("Portrait Spacing", dialogPortraitSpacing);
+		dialogPortraitScale = ImGui.InputFloat("Portrait Scale", dialogPortraitScale);
 		dialog.width = ImGui.InputInt("Width", dialog.width);
 		dialog.lines = ImGui.InputInt("Lines", dialog.lines, 1);
 		//dialog.baseSpeed = ImGui.InputInt("Base Speed", dialog.baseSpeed);
