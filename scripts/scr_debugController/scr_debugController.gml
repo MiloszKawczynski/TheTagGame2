@@ -1844,12 +1844,15 @@ function scr_nodeActions(node, i, key)
 		node.focusedKey = "";
 		var languageContent = ds_map_find_value(node.content, key);
 		
+		var allTalkers = ds_list_create();
+		
 		var dialogToTest = "";
 		var nextNode = node;
 		
 		while(nextNode != undefined)
 		{
 			dialogToTest += ds_map_find_value(nextNode.content, key);
+			ds_list_add(allTalkers, nextNode.talkers);
 			nextNode = nextNode.out;
 			
 			if (nextNode != undefined)
@@ -1858,7 +1861,7 @@ function scr_nodeActions(node, i, key)
 			}
 		}
 		
-		dialog.init(s_clea, s_cleaRed, dialogToTest);
+		dialog.init(dialogToTest, allTalkers);
 	}
 	
 	ImGui.SameLine();

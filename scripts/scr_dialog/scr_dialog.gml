@@ -11,8 +11,8 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 	
 	dialogText = "";
 	drawSpeed = baseSpeed;
-	firstPerson = noone;
-	secondPerson = noone;
+	allTalkers = undefined;
+	talkers = undefined;
 	
 	isSpeaking = false;
 	
@@ -282,16 +282,18 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 		}
 	}
 	
-	static init = function(_firstPerson, _secondPerson, _dialog)
+	static init = function(_dialog, _allTalkers = undefined)
 	{
 		isSpeaking = true;
 		
-		firstPerson = _firstPerson;
-		secondPerson = _secondPerson;
+		allTalkers = _allTalkers;
+		
+		boxIndex = 0;
+		
+		talkers = ds_list_find_value(allTalkers, boxIndex);
 		
 		//<-Lock Player
 	
-		talker = firstPerson;
 		prepareForTalkerChange = false;
 		talkerChange = false;
 		talkerChangeX = 0;
@@ -332,6 +334,8 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 			if (box.isDialogEnded)
 			{
 				box.isDialogEnded = false;
+				boxIndex++;
+				talkers = ds_list_find_value(allTalkers, boxIndex);
 				if (prepareForTalkerChange)
 				{
 					prepareForTalkerChange = false;
@@ -346,7 +350,7 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 		}
 	}
 	
-	static draw = function(_x, _y, width, height, cursorX, cursorY, portraitX, portraitY, size = 1)
+	static draw = function(_x, _y, width, height, cursorX, cursorY, portraitX, portraitY, portraitSpacing = 100, size = 1)
 	{
 		///@func draw(_x, _y, width, height, cursorX, cursorY, portraitX, portraitY, size = 1)
 		
@@ -364,6 +368,33 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 		talkerShift = 0;
 		
 		draw_sprite_stretched(textboxSprite, 0, _x, _y, width, height)
+		
+		var left = 0;
+		var right = 0;
+		
+		for (var i = 0; i < ds_list_size(talkers) ; i++)
+		{
+			var talker = ds_list_find_value(talkers, i);
+			
+			var alpha = 0.25;
+			
+			if (talker.isActive)
+			{
+				alpha = 1;
+			}
+			
+			if (talker.isMirrored)
+			{
+				draw_sprite_ext(talker.sprite, talker.image, cw - (portraitX + (right * portraitSpacing)), portraitY, -1, 1, 0, c_white, alpha);
+				right++;
+			}
+			else
+			{
+				draw_sprite_ext(talker.sprite, talker.image, portraitX + (left * portraitSpacing), portraitY, 1, 1, 0, c_white, alpha);
+				left++;
+			}
+		}
+		
 		
 		//draw_sprite_ext(
 		//firstPerson,
