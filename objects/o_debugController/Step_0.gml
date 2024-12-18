@@ -3,11 +3,11 @@ if (!o_gameManager.isGameOn and !hide)
 	if (currentTab == 3)			
 	{
 		if (ImGui.Begin("DialogMain",, ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoBringToFrontOnFocus))
-		{				
+		{							
 			scr_dialogLogic();
 	
 			scr_dialogNodes();
-		}
+		}	
 		ImGui.End();
 	}
 	else

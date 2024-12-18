@@ -178,6 +178,17 @@ dialogNode = function(_x, _y) constructor
 	isGrabbed = false;
 	
 	cursorPos = -1;
+	
+	talkers = ds_list_create();
+	
+	talker = function(_name) constructor
+	{
+		name = _name
+		isActive = false;
+		sprite = undefined
+		image = 0;
+		isMirrored = false;
+	}
 }
 
 dialog = new dialogMain(780, 3, vk_enter, c_black, 0.25, 2, s_dialogBubble, f_test);

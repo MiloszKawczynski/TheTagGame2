@@ -1683,6 +1683,62 @@ function scr_dialogNode(node, i)
 			
 		scr_nodeOutput(node);
 	}
+	
+	for (var j = 0; j < ds_list_size(node.talkers); j++)
+	{
+		var talker = ds_list_find_value(node.talkers, j);
+		
+		ImGui.BeginGroup();
+		ImGui.Button(talker.name + "##" + string(j), 80, 80);
+		talker.isActive = ImGui.Checkbox("## Active" + string(j), talker.isActive);
+		ImGui.SameLine();		
+		//if (ImGui.ArrowButton("## Mirrored" + string(j), 1)) 
+		if (ImGui.ArrowButton("Pitch +", 2))
+		{
+			talker.isMirrored = !talker.isMirrored;
+		}
+		ImGui.EndGroup()
+		
+		if (ImGui.IsItemHovered())
+		{
+			if (node.isGrabbed)
+			{
+				isAnyNodeGrabbed = false;
+				node.isGrabbed = false;
+			}
+		}
+		
+		if (ImGui.BeginDragDropSource())
+		{
+			ImGui.SetDragDropPayload("Talker", j);
+			ImGui.Text("o");
+			ImGui.EndDragDropSource();
+		}
+		
+		if (ImGui.BeginDragDropTarget())
+		{
+			var payload = ImGui.AcceptDragDropPayload("Talker")
+			
+			if (payload != undefined)
+			{
+				var swap = ds_list_find_value(node.talkers, payload);
+				ds_list_replace(node.talkers, payload, ds_list_find_value(node.talkers, j));
+				ds_list_replace(node.talkers, j, swap);
+			}
+		
+			ImGui.EndDragDropTarget();
+		}
+		
+		ImGui.SameLine();
+	}
+
+	if (ds_list_size(node.talkers) < 4)
+	{
+		if (ImGui.Button("+", 80, 80))
+		{
+			ds_list_add(node.talkers, new node.talker(string(ds_list_size(node.talkers))));
+		}
+	}
 		
 	ImGui.EndChild();
 }

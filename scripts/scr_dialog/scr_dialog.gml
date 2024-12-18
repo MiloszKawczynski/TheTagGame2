@@ -193,22 +193,12 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 	
 	accentList = ds_list_create();
 	
-	//To jest miejsce na fale do twoich akcentów
-	//whisperWave = new dialogWave(false, 1, 0, false);
-	//melodicWave = new dialogWave(true, 1, 0, false);
-	
-	//sadWave = new dialogWave(false, 0.5, 1, false);
-	
-	//demonicWaveH = new dialogWave(false, 1, 1, false);
-	//demonicWaveV = new dialogWave(true, 1, 2, false);
-	
 	accentImportant = new dialogAccent("Important", c_red, 1, "*", true);
 	accentWhisper = new dialogAccent("Whisper", c_blue, 0.1, "~", true);
 	accentMelodic = new dialogAccent("Melodic", make_color_rgb(72, 212, 86), 1, "@", true);
 	accentSad = new dialogAccent("Sad", c_navy, 0.5, "$", true);
 	accentDemonic = new dialogAccent("Demonic", c_red, 1, "^", true);
 	
-	//Dodaj wszystkie akcenty do listy
 	ds_list_add(accentList, accentImportant);
 	ds_list_add(accentList, accentWhisper);
 	ds_list_add(accentList, accentMelodic);	
@@ -219,12 +209,6 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 	{	
 		if (dialogText == "")
 		{
-		//	instance_destroy(instance_nearest(0, 0, o_dialog));//Jak będziesz z tego korzystał w innych projektach zmień kurwa
-		//	//Serio zmień zasadę działania dialogu z 
-		//	//Stwórz -> Przygotuj -> Wygeneruj -> Usuń -> Powtórz
-		//	//Na
-		//	//Stwórz -> Przygotuj -> Wygeneruj -\
-		//	//              \___________________/
 			isSpeaking = false;
 			return;
 		}
@@ -305,7 +289,7 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 		firstPerson = _firstPerson;
 		secondPerson = _secondPerson;
 		
-		//<-Zablokowanie gracza
+		//<-Lock Player
 	
 		talker = firstPerson;
 		prepareForTalkerChange = false;
@@ -320,10 +304,6 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 		}
 
 		drawSpeed = baseSpeed;
-		
-		//Zmiana wszystkich liter na małe ze względu na czcionkę. Nieprzydatne w innych projektach
-		//Miejsce na przeprzygotowanie stringa do printu np. Zamiana końcówek ze względu na płeć
-		//dialogText = string_lower(_dialog)
 		
 		dialogText = _dialog;
 		
@@ -370,12 +350,6 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 	{
 		///@func draw(_x, _y, width, height, cursorX, cursorY, portraitX, portraitY, size = 1)
 		
-		
-		//ac_talkerChange - zmiana rozmówcy
-		//ac_dialogWaveX - fale poziome
-		//ac_dialogWaveY - fale pionowe
-		//Wymagane krzywe animacji
-		
 		cursorX = _x + cursorX;
 		cursorY = _y + cursorY;
 		
@@ -391,27 +365,27 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 		
 		draw_sprite_stretched(textboxSprite, 0, _x, _y, width, height)
 		
-		draw_sprite_ext(
-		firstPerson,
-		0,
-		portraitX + talkerShift,
-		portraitY + sin(current_time / 800) * 2,
-		3.5 + abs(sin(current_time / 700)) * 0.25,
-		3.5 + abs(sin(current_time / 700)) * 0.25,
-		sin(current_time / 500) * 15,
-		c_white,
-		1);
+		//draw_sprite_ext(
+		//firstPerson,
+		//0,
+		//portraitX + talkerShift,
+		//portraitY + sin(current_time / 800) * 2,
+		//3.5 + abs(sin(current_time / 700)) * 0.25,
+		//3.5 + abs(sin(current_time / 700)) * 0.25,
+		//sin(current_time / 500) * 15,
+		//c_white,
+		//1);
 		
-		draw_sprite_ext(
-		secondPerson,
-		0,
-		cw + portraitX - (2 * portraitX) + (92 + talkerShift),
-		portraitY + sin(current_time / 800) * 2,
-		-1 * (3.5 + abs(sin(current_time / 700)) * 0.25),
-		3.5 + abs(sin(current_time / 700)) * 0.25,
-		sin(current_time / 500) * 15,
-		c_white,
-		1);
+		//draw_sprite_ext(
+		//secondPerson,
+		//0,
+		//cw + portraitX - (2 * portraitX) + (92 + talkerShift),
+		//portraitY + sin(current_time / 800) * 2,
+		//-1 * (3.5 + abs(sin(current_time / 700)) * 0.25),
+		//3.5 + abs(sin(current_time / 700)) * 0.25,
+		//sin(current_time / 500) * 15,
+		//c_white,
+		//1);
 		
 		speak(box.getActiveLine());
 		
