@@ -349,8 +349,6 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 	
 	static draw = function(_x, _y, width, height, cursorX, cursorY, portraitX, portraitY, portraitSpacing = 100, portraitScale = 1, size = 1)
 	{
-		///@func draw(_x, _y, width, height, cursorX, cursorY, portraitX, portraitY, size = 1)
-		
 		cursorX = _x + cursorX;
 		cursorY = _y + cursorY;
 		
