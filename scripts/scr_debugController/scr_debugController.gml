@@ -1551,6 +1551,26 @@ function scr_dialogLogic()
 		{
 			ds_list_add(allDialogNodes, new dialogNode(ImGui.GetCursorScreenPosX() - panX, ImGui.GetCursorScreenPosY() - panY));
 		}
+		
+		ImGui.BeginDisabled(selectedNode == undefined)
+		
+		if (ImGui.MenuItem("Duplicate Node")) 
+		{
+			var duplicateNode = new dialogNode(ImGui.GetCursorScreenPosX() - panX, ImGui.GetCursorScreenPosY() - panY);
+			ds_map_copy(duplicateNode.content, selectedNode.content);
+			ds_list_copy(duplicateNode.talkers, selectedNode.talkers);
+			ds_list_add(allDialogNodes, duplicateNode);
+		}
+		
+		if (ImGui.MenuItem("Remove Node")) 
+		{
+			ds_list_delete(allDialogNodes, ds_list_find_index(allDialogNodes, selectedNode));
+			delete selectedNode;
+			selectedNode = undefined;
+			startNode = undefined;
+		}
+		
+		ImGui.EndDisabled();
 			
 		ImGui.EndPopup();
 	}
