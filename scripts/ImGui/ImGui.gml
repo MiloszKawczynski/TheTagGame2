@@ -3369,12 +3369,13 @@ function ImGui() constructor {
 		return __imgui_invisible_button(_id, width, height, flags);
 	}
 
-	/// @function ArrowButton(str_id)
+	/// @function ArrowButton(str_id, dirYY)
 	/// @argument {String} str_id
+	/// @argument {Real} dirYY
 	/// @context ImGui
 	/// @return {Bool}
-	static ArrowButton = function(str_id) {
-		return __imgui_arrow_button(str_id);
+	static ArrowButton = function(str_id, dirYY) {
+		return __imgui_arrow_button(str_id, dirYY);
 	}
 
 	/// @function Image(sprite, subimg, color, alpha, width, height)
