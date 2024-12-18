@@ -144,6 +144,9 @@ selectedNode = undefined;
 startNode = undefined;
 showCursor = true;
 
+allSprites = ds_list_create();
+list_all_sprites(allSprites);
+
 dialogNode = function(_x, _y) constructor
 {
 	if (other.selectedNode == undefined)

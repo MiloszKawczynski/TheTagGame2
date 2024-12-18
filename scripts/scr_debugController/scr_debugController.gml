@@ -1626,7 +1626,7 @@ function scr_dialogNodes()
 function scr_dialogNode(node, i)
 {	
 	ImGui.SetNextWindowPos(node.xPos + panX, node.yPos + panY);
-	if (ImGui.BeginChild(i, 400, 300, ImGuiChildFlags.Borders))
+	if (ImGui.BeginChild(i, 400, 350, ImGuiChildFlags.Borders))
 	{
 		if (!mouse_check_button(mb_middle))
 		{
@@ -1638,7 +1638,7 @@ function scr_dialogNode(node, i)
 		node.xPos + panX, 
 		node.yPos + panY, 
 		node.xPos + panX + 400, 
-		node.yPos + panY + 300)
+		node.yPos + panY + 350)
 		and !isAnyNodeGrabbed)
 		{
 			if (mouse_check_button_pressed(mb_left))
@@ -1720,14 +1720,77 @@ function scr_dialogNode(node, i)
 		var talker = ds_list_find_value(node.talkers, j);
 		
 		ImGui.BeginGroup();
-		ImGui.Button(talker.name + "##" + string(j), 80, 80);
+		
+		if (talker.sprite == undefined)
+		{
+			ImGui.Button(talker.name + "##" + string(j), 80, 80);
+		}
+		else
+		{			
+			var spriteBboxWidth = sprite_get_bbox_right(talker.sprite) - sprite_get_bbox_left(talker.sprite);
+			var spriteBboxHeight = sprite_get_bbox_bottom(talker.sprite) - sprite_get_bbox_top(talker.sprite);
+
+			ImGui.PushStyleVar(ImGuiStyleVar.FramePadding, 80 - (spriteBboxWidth), 80 - (spriteBboxHeight));
+			ImGui.PushStyleVar(ImGuiStyleVar.ItemSpacing, 0, 0);
+			
+			if (ImGui.ImageButton(talker.name + "##image" + string(j), talker.sprite, talker.image, c_white, 1, c_black, 0, 80, 80)) 
+			{
+			}
+			ImGui.PopStyleVar(2);
+		}
+		
+		ImGui.SetNextItemWidth(80);
+		if (ImGui.BeginCombo("##Sprites" + string(j), talker.sprite, ImGuiComboFlags.HeightLarge))
+		{
+			for (var o = 0; o < ds_list_size(allSprites); o++)
+	        {				
+				var sprite = asset_get_index(ds_list_find_value(allSprites, o));
+				
+				if (!string_count("clea", ds_list_find_value(allSprites, o)))
+				{
+					continue;
+				}
+				
+				var isSelected = (talker.sprite == sprite);
+				ImGui.PushID(o);
+				var spriteBboxWidth = sprite_get_bbox_right(sprite) - sprite_get_bbox_left(sprite);
+				var spriteBboxHeight = sprite_get_bbox_bottom(sprite) - sprite_get_bbox_top(sprite);
+
+				ImGui.PushStyleVar(ImGuiStyleVar.FramePadding, 80 - (spriteBboxWidth), 80 - (spriteBboxHeight));
+				ImGui.PushStyleVar(ImGuiStyleVar.ItemSpacing, 0, 0);
+				if (ImGui.ImageButton(string("sprite {0}", 0), sprite, 0, c_white, 1, c_white, 0, 80, 80))
+				{
+					talker.sprite = sprite;
+				}
+				ImGui.PopStyleVar(2);
+				ImGui.PopID();
+
+				if (isSelected)
+				{
+					ImGui.SetItemDefaultFocus();  
+				}
+			}
+		
+			ImGui.EndCombo();
+		}
+		
 		talker.isActive = ImGui.Checkbox("## Active" + string(j), talker.isActive);
-		ImGui.SameLine();		
-		//if (ImGui.ArrowButton("## Mirrored" + string(j), 1)) 
-		if (ImGui.ArrowButton("Pitch +", 2))
+		
+		ImGui.SameLine();
+		
+		if (ImGui.ArrowButton("## Mirrored" + string(j), talker.isMirrored ? ImGuiDir.Left : ImGuiDir.Right)) 
 		{
 			talker.isMirrored = !talker.isMirrored;
 		}
+		
+		ImGui.SameLine();
+		
+		if (ImGui.Button("x ##" + string(j), 20, 20))
+		{
+			ds_list_delete(node.talkers, j);
+			j--;
+		}
+		
 		ImGui.EndGroup()
 		
 		if (ImGui.IsItemHovered())
@@ -1765,7 +1828,7 @@ function scr_dialogNode(node, i)
 
 	if (ds_list_size(node.talkers) < 4)
 	{
-		if (ImGui.Button("+", 80, 80))
+		if (ImGui.Button("+ ##" + string(i), 80, 80))
 		{
 			ds_list_add(node.talkers, new node.talker(string(ds_list_size(node.talkers))));
 		}
