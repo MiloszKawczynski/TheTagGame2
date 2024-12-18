@@ -240,7 +240,7 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 					dialogText = string_replace(dialogText, "¶", "");
 					isEnter = true;
 					isBoxEnd = true;
-					prepareForTalkerChange = true;
+					nodeChange = true;
 				}
 				
 				if (string_width(string_copy(dialogText, 1, j)) > width)
@@ -250,7 +250,7 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 					{
 						dialogText = string_replace(dialogText, "¶", "");
 						isBoxEnd = true;
-						prepareForTalkerChange = true;
+						nodeChange = true;
 					}
 				}
 				
@@ -294,9 +294,7 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 		
 		//<-Lock Player
 	
-		prepareForTalkerChange = false;
-		talkerChange = false;
-		talkerChangeX = 0;
+		nodeChange = false;
 		
 		box.clear();
 	
@@ -334,12 +332,11 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 			if (box.isDialogEnded)
 			{
 				box.isDialogEnded = false;
-				boxIndex++;
-				talkers = ds_list_find_value(allTalkers, boxIndex);
-				if (prepareForTalkerChange)
+				if (nodeChange)
 				{
-					prepareForTalkerChange = false;
-					talkerChange = true;
+					nodeChange = false;
+					boxIndex++;
+					talkers = ds_list_find_value(allTalkers, boxIndex);
 				}
 				prepere();
 			}
@@ -364,8 +361,6 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 		draw_set_valign(fa_middle);
 		draw_set_font(font);
 		draw_set_color(baseColor);
-		
-		talkerShift = 0;
 		
 		draw_sprite_stretched(textboxSprite, 0, _x, _y, width, height)
 		
@@ -399,29 +394,6 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 				left++;
 			}
 		}
-		
-		
-		//draw_sprite_ext(
-		//firstPerson,
-		//0,
-		//portraitX + talkerShift,
-		//portraitY + sin(current_time / 800) * 2,
-		//3.5 + abs(sin(current_time / 700)) * 0.25,
-		//3.5 + abs(sin(current_time / 700)) * 0.25,
-		//sin(current_time / 500) * 15,
-		//c_white,
-		//1);
-		
-		//draw_sprite_ext(
-		//secondPerson,
-		//0,
-		//cw + portraitX - (2 * portraitX) + (92 + talkerShift),
-		//portraitY + sin(current_time / 800) * 2,
-		//-1 * (3.5 + abs(sin(current_time / 700)) * 0.25),
-		//3.5 + abs(sin(current_time / 700)) * 0.25,
-		//sin(current_time / 500) * 15,
-		//c_white,
-		//1);
 		
 		speak(box.getActiveLine());
 		
@@ -546,7 +518,7 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 				}
 				
 				draw_text_transformed(
-				cursorX + spacingX + talkerShift + shiftX,
+				cursorX + spacingX + shiftX,
 				cursorY + spacingY + shiftY,
 				string_char_at(box.getLineText(i), j + 1),
 				size,
