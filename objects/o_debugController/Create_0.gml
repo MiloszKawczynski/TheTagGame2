@@ -181,6 +181,22 @@ dialogNode = function(_x, _y) constructor
 	
 	talkers = ds_list_create();
 	
+	static cutRelations = function()
+	{
+		if (in != undefined)
+		{
+			in.out = undefined;
+		}
+		
+		if (out != undefined)
+		{
+			out.in = undefined;
+		}
+		
+		in = undefined;
+		out = undefined;
+	}
+	
 	talker = function(_name) constructor
 	{
 		name = _name

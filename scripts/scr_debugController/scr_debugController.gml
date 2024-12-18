@@ -1558,16 +1558,27 @@ function scr_dialogLogic()
 		{
 			var duplicateNode = new dialogNode(ImGui.GetCursorScreenPosX() - panX, ImGui.GetCursorScreenPosY() - panY);
 			ds_map_copy(duplicateNode.content, selectedNode.content);
-			ds_list_copy(duplicateNode.talkers, selectedNode.talkers);
+			
+			for(var i = 0; i < ds_list_size(selectedNode.talkers); i++)
+			{
+				ds_list_add(duplicateNode.talkers, variable_clone(ds_list_find_value(selectedNode.talkers, i)));
+			}
+			
 			ds_list_add(allDialogNodes, duplicateNode);
 		}
 		
 		if (ImGui.MenuItem("Remove Node")) 
 		{
+			if (selectedNode == startNode)
+			{
+				startNode = undefined;
+			}
+			
+			selectedNode.cutRelations();
 			ds_list_delete(allDialogNodes, ds_list_find_index(allDialogNodes, selectedNode));
 			delete selectedNode;
 			selectedNode = undefined;
-			startNode = undefined;
+			isAnyNodeGrabbed = false
 		}
 		
 		ImGui.EndDisabled();
