@@ -1727,15 +1727,17 @@ function scr_dialogNode(node, i)
 		}
 		else
 		{			
-			var spriteBboxWidth = sprite_get_bbox_right(talker.sprite) - sprite_get_bbox_left(talker.sprite);
-			var spriteBboxHeight = sprite_get_bbox_bottom(talker.sprite) - sprite_get_bbox_top(talker.sprite);
-
-			ImGui.PushStyleVar(ImGuiStyleVar.FramePadding, 80 - (spriteBboxWidth), 80 - (spriteBboxHeight));
+			ImGui.PushStyleVar(ImGuiStyleVar.FramePadding, 0, 0);
 			ImGui.PushStyleVar(ImGuiStyleVar.ItemSpacing, 0, 0);
 			
-			if (ImGui.ImageButton(talker.name + "##image" + string(j), talker.sprite, talker.image, c_white, 1, c_black, 0, 80, 80)) 
+			var alpha = 1;
+			
+			if (!talker.isActive)
 			{
+				alpha = 0.75;
 			}
+
+			ImGui.ImageButton(talker.name + "##image" + string(j), talker.sprite, talker.image, c_white, alpha, c_black, 0, 80, 80)
 			ImGui.PopStyleVar(2);
 		}
 		
@@ -1746,17 +1748,15 @@ function scr_dialogNode(node, i)
 	        {				
 				var sprite = asset_get_index(ds_list_find_value(allSprites, o));
 				
-				if (!string_count("clea", ds_list_find_value(allSprites, o)))
+				if (!string_count("VN", ds_list_find_value(allSprites, o)))
 				{
 					continue;
 				}
 				
 				var isSelected = (talker.sprite == sprite);
 				ImGui.PushID(o);
-				var spriteBboxWidth = sprite_get_bbox_right(sprite) - sprite_get_bbox_left(sprite);
-				var spriteBboxHeight = sprite_get_bbox_bottom(sprite) - sprite_get_bbox_top(sprite);
-
-				ImGui.PushStyleVar(ImGuiStyleVar.FramePadding, 80 - (spriteBboxWidth), 80 - (spriteBboxHeight));
+				
+				ImGui.PushStyleVar(ImGuiStyleVar.FramePadding, 0, 0);
 				ImGui.PushStyleVar(ImGuiStyleVar.ItemSpacing, 0, 0);
 				if (ImGui.ImageButton(string("sprite {0}", 0), sprite, 0, c_white, 1, c_white, 0, 80, 80))
 				{

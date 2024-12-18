@@ -64,7 +64,7 @@
   "resourceVersion":"2.0",
   "sequence":{
     "$GMSequence":"",
-    "%Name":"ats_button",
+    "%Name":"s_cube",
     "autoRecord":true,
     "backdropHeight":768,
     "backdropImageOpacity":0.5,
@@ -88,7 +88,7 @@
       "resourceType":"KeyframeStore<MomentsEventKeyframe>",
       "resourceVersion":"2.0",
     },
-    "name":"ats_button",
+    "name":"s_cube",
     "playback":1,
     "playbackSpeed":10.0,
     "playbackSpeedType":0,
