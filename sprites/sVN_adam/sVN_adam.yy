@@ -10,7 +10,7 @@
   "collisionTolerance":0,
   "DynamicTexturePage":false,
   "edgeFiltering":false,
-  "For3D":true,
+  "For3D":false,
   "frames":[
     {"$GMSpriteFrame":"","%Name":"d1092321-847e-4eb1-8589-c909be0d02d9","name":"d1092321-847e-4eb1-8589-c909be0d02d9","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
@@ -81,8 +81,8 @@
   "swatchColours":null,
   "swfPrecision":0.5,
   "textureGroupId":{
-    "name":"Default",
-    "path":"texturegroups/Default",
+    "name":"Portraits",
+    "path":"texturegroups/Portraits",
   },
   "type":0,
   "VTile":false,
