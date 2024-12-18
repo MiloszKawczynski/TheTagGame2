@@ -1653,8 +1653,8 @@ function scr_dialogBoxEditor()
 	dialogPortraitScale = ImGui.InputFloat("Portrait Scale", dialogPortraitScale);
 	dialog.width = ImGui.InputInt("Width", dialog.width);
 	dialog.lines = ImGui.InputInt("Lines", dialog.lines, 1);
-	//dialog.baseSpeed = ImGui.InputInt("Base Speed", dialog.baseSpeed);
-	dialog.fastSpeed = ImGui.InputInt("Fast Speed", dialog.fastSpeed, 0.25);
+	dialog.baseSpeed = ImGui.InputFloat("Base Speed", dialog.baseSpeed, 0.25)
+	dialog.fastSpeed = ImGui.InputFloat("Fast Speed", dialog.fastSpeed, 0.25);
 	
 	ImGui.Separator();
 }
