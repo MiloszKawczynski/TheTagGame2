@@ -193,3 +193,27 @@ function list_all_fonts(list)
     }
     return 0;
 }
+
+function ds_list_convert_to_array(list)
+{
+	var arrayList = array_create(0);
+	
+	for (var i = 0; i < ds_list_size(list); i++)
+	{
+		array_push(arrayList, ds_list_find_value(list, i));
+	}
+	
+	return arrayList;
+}
+
+function ds_array_convert_to_list(array)
+{
+	var list = ds_list_create();
+	
+	for (var i = 0; i < array_length(array); i++)
+	{
+		ds_list_add(list, array[i]);
+	}
+	
+	return list;
+}
