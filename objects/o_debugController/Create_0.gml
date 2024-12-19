@@ -113,7 +113,6 @@ dialogTextPosition = [20, 20];
 dialogPortraitPosition = [100, 200];
 dialogPortraitScale = 0.15;
 dialogPortraitSpacing = 150;
-dialogTest = "";
 dialogOverImGui = false;
 
 dialogDictionaryEntry = function(_key, _value) constructor
@@ -127,8 +126,6 @@ panY = 0
 
 targetPanX = 0
 targetPanY = 0
-
-zoom = 1;
 
 sizePercent = 100;
 

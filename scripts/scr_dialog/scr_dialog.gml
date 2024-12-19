@@ -193,18 +193,6 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 	
 	accentList = ds_list_create();
 	
-	accentImportant = new dialogAccent("Important", c_red, 1, "*", true);
-	accentWhisper = new dialogAccent("Whisper", c_blue, 0.1, "~", true);
-	accentMelodic = new dialogAccent("Melodic", make_color_rgb(72, 212, 86), 1, "@", true);
-	accentSad = new dialogAccent("Sad", c_navy, 0.5, "$", true);
-	accentDemonic = new dialogAccent("Demonic", c_red, 1, "^", true);
-	
-	ds_list_add(accentList, accentImportant);
-	ds_list_add(accentList, accentWhisper);
-	ds_list_add(accentList, accentMelodic);	
-	ds_list_add(accentList, accentSad);	
-	ds_list_add(accentList, accentDemonic);	
-	
 	static prepere = function()
 	{	
 		if (dialogText == "")
