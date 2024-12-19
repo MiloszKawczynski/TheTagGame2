@@ -997,7 +997,7 @@ function scr_fileSearchList(fileType, fileName, files)
 		}
 	}
 	
-	if (ImGui.Button("Save ##stats"))
+	if (ImGui.Button("Save ## + fileType"))
 	{
 		switch(fileType)
 		{
@@ -1021,6 +1021,12 @@ function scr_fileSearchList(fileType, fileName, files)
 				scr_modificatorsPresetSave(, instance_find(o_char, choosedPlayerIndex));
 				break;
 			}
+			case("dialogbox"):
+			{
+				scr_dialogBoxPresetSave();
+				break;
+			}
+				
 		}
 		files = scr_getFiles(fileTypeAsPrefix);
 	}
@@ -1049,6 +1055,11 @@ function scr_fileSearchList(fileType, fileName, files)
 			case("modificators"):
 			{
 				scr_modificatorsPresetLoad(, instance_find(o_char, choosedPlayerIndex));
+				break;
+			}
+			case("dialogbox"):
+			{
+				scr_dialogBoxPresetLoad();
 				break;
 			}
 		}
@@ -1625,6 +1636,13 @@ function scr_dialogNodes()
 
 function scr_dialogBoxEditor()
 {
+	returnList = scr_fileSearchList("dialogbox", dialogPresetFileName, dialogPresetFiles)
+	
+	dialogPresetFileName = ds_list_find_value(returnList, 0);
+	dialogPresetFiles = ds_list_find_value(returnList, 1);
+		
+	ds_list_destroy(returnList);
+	
 	if (ImGui.Button("Spawn Node"))
 	{
 		ds_list_add(allDialogNodes, new dialogNode(500, 500));
@@ -2319,6 +2337,92 @@ function scr_dialogTextEditor(node, i, windowWidth, textHeight, key)
     ImGui.EndChild();
 }
 
+function scr_serializeDialogBoxPreset(file)
+{
+	function dialogBoxPresetSerialized(_dialog, _dialogPosition, _dialogSize, _dialogTextPosition, _dialogPortraitPosition, _dialogPortraitScale, _dialogPortraitSpacing) constructor
+	{	
+		dialog = _dialog;
+		
+		dialogAccent = ds_list_convert_to_array(dialog.accentList);
+		dialogDictionary = ds_list_convert_to_array(dialog.dictionary);
+		
+		dialogPosition = _dialogPosition;
+		dialogSize = _dialogSize;
+		dialogTextPosition = _dialogTextPosition;
+		dialogPortraitPosition = _dialogPortraitPosition;
+		dialogPortraitScale = _dialogPortraitScale;
+		dialogPortraitSpacing = _dialogPortraitSpacing;
+	}
+	
+    var instanceSerialized = new dialogBoxPresetSerialized(dialog, dialogPosition, dialogSize, dialogTextPosition, dialogPortraitPosition, dialogPortraitScale, dialogPortraitSpacing);
+
+	file_text_write_string(file, json_stringify(instanceSerialized));
+	file_text_writeln(file);
+		
+	delete instanceSerialized;
+}
+
+function scr_dialogBoxPresetSave(dialogPresetName = dialogPresetFileName)
+{
+    var fileName = string("dialogbox_{0}.json", dialogPresetName);
+    if (file_exists(fileName))
+    {
+        file_delete(fileName);
+    }
+    
+    var objectList = ds_map_create();
+
+    var file = file_text_open_write(fileName);
+
+	scr_serializeDialogBoxPreset(file);
+   
+    file_text_close(file);
+	
+	log(string("Dialog Box Preset {0} Saved", dialogPresetName));
+}
+
+function scr_dialogBoxPresetLoad(dialogPresetName = dialogPresetFileName)
+{
+    var fileName = string("dialogbox_{0}.json", dialogPresetName);
+    
+    if (file_exists(fileName))
+    {
+        var file = file_text_open_read(fileName);
+
+        while (!file_text_eof(file))
+        {
+            var jsonString = file_text_read_string(file);
+			file_text_readln(file);
+            var instanceData = json_parse(jsonString);
+					
+			if (dialog != undefined)
+			{
+				delete dialog;
+				dialog = undefined;
+			}
+					
+			dialog = instanceData.dialog;
+			static_set(dialog, static_get(dialogMain))
+			
+			dialog.accentList = ds_array_convert_to_list(instanceData.dialogAccent);
+			dialog.dictionary = ds_array_convert_to_list(instanceData.dialogDictionary);
+			
+			dialogPosition = instanceData.dialogPosition;
+			dialogSize = instanceData.dialogSize;
+			dialogTextPosition = instanceData.dialogTextPosition;
+			dialogPortraitPosition = instanceData.dialogPortraitPosition;
+			dialogPortraitScale = instanceData.dialogPortraitScale;
+			dialogPortraitSpacing = instanceData.dialogPortraitSpacing;
+        }
+
+        file_text_close(file);
+		
+		log(string("Dialog Box Preset {0} Loaded", dialogPresetName));
+		return;
+    }
+	
+	log(string("Dialog Box Preset {0} Doesnt exist", dialogPresetName), c_red);
+}
 
 function scr_nodeInput(node, windowWidth)
 {
