@@ -18,7 +18,7 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 	
 	dictionary = ds_list_create();
 	
-	function dialogBox() constructor
+	static dialogBox = function() constructor
 	{
 		lineList = ds_list_create();
 		isDialogEnded = false;
@@ -86,7 +86,7 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 		}
 	}
 
-	function dialogLine() constructor
+	static dialogLine = function() constructor
 	{
 		drawnLetters = 0;
 		lineText = "";
@@ -120,7 +120,7 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 		}
 	}
 	
-	function dialogWave(_isHorizontalOrVertical, _speed, _chanel, _sync) constructor
+	static dialogWave = function(_isHorizontalOrVertical, _speed, _chanel, _sync) constructor
 	{
 		isHorizontalOrVertical = _isHorizontalOrVertical;
 		waveSpeed = _speed;
@@ -131,7 +131,7 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 		wavePos = 0;
 	}
 
-	function dialogAccent(_name, _color, _textSpeed, _markup, _hideMarkup = true, _sdfEffects = undefined, _waveH=noone, _waveV=noone) constructor
+	static dialogAccent = function(_name, _color, _textSpeed, _markup, _hideMarkup = true, _sdfEffects = undefined, _waveH=noone, _waveV=noone) constructor
 	{
 		name = _name;
 		color = _color;
