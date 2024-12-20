@@ -206,6 +206,19 @@ dialogNode = function(_x, _y) constructor
 		out = undefined;
 	}
 	
+	static getMyIndex = function()
+	{
+		for (var i = 0; i < ds_list_size(other.allDialogNodes); i++)
+		{
+			if (ds_list_find_value(other.allDialogNodes, i) == self)
+			{
+				return i;
+			}
+		}
+		
+		return -1;
+	}
+	
 	static talker = function(_name) constructor
 	{
 		name = _name
