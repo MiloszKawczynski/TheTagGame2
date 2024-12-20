@@ -148,7 +148,7 @@ showCursor = true;
 allSprites = ds_list_create();
 list_all_sprites(allSprites);
 
-dialogNode = function(_x, _y) constructor
+function dialogNode(_x, _y) constructor
 {
 	if (other.selectedNode == undefined)
 	{
@@ -183,6 +183,9 @@ dialogNode = function(_x, _y) constructor
 	
 	xOut = _x;
 	yOut = _y;
+	
+	inIndex = -1;
+	outIndex = -1;
 	
 	isGrabbed = false;
 	
