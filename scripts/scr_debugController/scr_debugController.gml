@@ -1568,11 +1568,11 @@ function scr_dialogLogic()
 		if (ImGui.MenuItem("Duplicate Node")) 
 		{
 			var duplicateNode = new dialogNode(ImGui.GetCursorScreenPosX() - panX, ImGui.GetCursorScreenPosY() - panY);
-			ds_map_copy(duplicateNode.content, selectedNode.content);
 			
-			for(var i = 0; i < ds_list_size(selectedNode.talkers); i++)
+			for(var i = 0; i < array_length(selectedNode.talkers); i++)
 			{
-				ds_list_add(duplicateNode.talkers, variable_clone(ds_list_find_value(selectedNode.talkers, i)));
+				array_push(duplicateNode.talkers, variable_clone(selectedNode.talkers[i]));
+			}
 			
 			for(var i = 0; i < array_length(selectedNode.languages); i++)
 			{
@@ -2052,9 +2052,9 @@ function scr_dialogNode(node, i)
 		scr_nodeOutput(node);
 	}
 	
-	for (var j = 0; j < ds_list_size(node.talkers); j++)
+	for (var j = 0; j < array_length(node.talkers); j++)
 	{
-		var talker = ds_list_find_value(node.talkers, j);
+		var talker = node.talkers[j];
 		
 		ImGui.BeginGroup();
 		
@@ -2124,7 +2124,7 @@ function scr_dialogNode(node, i)
 		
 		if (ImGui.Button("x ##" + string(j), 20, 20))
 		{
-			ds_list_delete(node.talkers, j);
+			array_delete(node.talkers, j, 1);
 			j--;
 		}
 		
@@ -2152,9 +2152,9 @@ function scr_dialogNode(node, i)
 			
 			if (payload != undefined)
 			{
-				var swap = ds_list_find_value(node.talkers, payload);
-				ds_list_replace(node.talkers, payload, ds_list_find_value(node.talkers, j));
-				ds_list_replace(node.talkers, j, swap);
+				var swap = node.talkers[payload];
+				node.talkers[payload] = node.talkers[j];
+				node.talkers[j] = swap;
 			}
 		
 			ImGui.EndDragDropTarget();
@@ -2163,11 +2163,11 @@ function scr_dialogNode(node, i)
 		ImGui.SameLine();
 	}
 
-	if (ds_list_size(node.talkers) < 4)
+	if (array_length(node.talkers) < 4)
 	{
 		if (ImGui.Button("+ ##" + string(i), 80, 80))
 		{
-			ds_list_add(node.talkers, new node.talker(string(ds_list_size(node.talkers))));
+			array_push(node.talkers, new node.talker(string(array_length(node.talkers))));
 		}
 	}
 		

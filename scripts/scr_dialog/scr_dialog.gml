@@ -353,9 +353,9 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 		var left = 0;
 		var right = 0;
 		
-		for (var i = 0; i < ds_list_size(talkers) ; i++)
+		for (var i = 0; i < array_length(talkers) ; i++)
 		{
-			var talker = ds_list_find_value(talkers, i);
+			var talker = talkers[i];
 			
 			if (talker.sprite == undefined)
 			{

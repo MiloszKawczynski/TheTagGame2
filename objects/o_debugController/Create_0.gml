@@ -188,7 +188,7 @@ dialogNode = function(_x, _y) constructor
 	
 	cursorPos = -1;
 	
-	talkers = ds_list_create();
+	talkers = array_create(0);
 	
 	static cutRelations = function()
 	{
@@ -206,7 +206,7 @@ dialogNode = function(_x, _y) constructor
 		out = undefined;
 	}
 	
-	talker = function(_name) constructor
+	static talker = function(_name) constructor
 	{
 		name = _name
 		isActive = false;
