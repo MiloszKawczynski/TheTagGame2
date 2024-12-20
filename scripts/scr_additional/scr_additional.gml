@@ -217,3 +217,14 @@ function ds_array_convert_to_list(array)
 	
 	return list;
 }
+
+function array_find_value_by_key(array, key)
+{
+	for (var i = 0; i < array_length(array); i++)
+	{
+		if (array[i].key == key)
+		{
+			return array[i];
+		}
+	}
+}
