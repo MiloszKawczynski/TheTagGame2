@@ -905,7 +905,7 @@ function scr_serializeObject(objectType, file)
 
 function scr_levelSave(levelName = editorFileName)
 {
-    var fileName = string("level_{0}.json", levelName);
+    var fileName = get_project_path() + "content/" + string("level_{0}.json", levelName);
     if (file_exists(fileName))
     {
         file_delete(fileName);
@@ -926,7 +926,7 @@ function scr_levelSave(levelName = editorFileName)
 
 function scr_levelLoad(levelName = editorFileName)
 {
-    var fileName = string("level_{0}.json", levelName);
+    var fileName = get_project_path() + "content/" + string("level_{0}.json", levelName);
     
     if (file_exists(fileName))
     {
@@ -954,7 +954,7 @@ function scr_levelLoad(levelName = editorFileName)
 
 function scr_fileDelete(fileName)
 {	
-	file_delete(fileName);
+	file_delete("content/" + fileName);
     
 	log(string("File {0} Deleted", fileName));
 }
@@ -963,7 +963,7 @@ function scr_getFiles(prefix = "", suffix = ".json")
 {
     var fileList = [];
 
-    var filePattern = prefix + "*" + suffix;
+    var filePattern = get_project_path() + "content/" + prefix + "*" + suffix;
     var file = file_find_first(filePattern, fa_none);
 
     while (file != "") 
@@ -1187,7 +1187,7 @@ function scr_serializeRulesPreset(file)
 
 function scr_rulesPresetSave(rulesPresetName = rulesPresetFileName)
 {
-    var fileName = string("rules_{0}.json", rulesPresetName);
+    var fileName = get_project_path() + "content/" + string("rules_{0}.json", rulesPresetName);
     if (file_exists(fileName))
     {
         file_delete(fileName);
@@ -1204,7 +1204,7 @@ function scr_rulesPresetSave(rulesPresetName = rulesPresetFileName)
 
 function scr_rulesPresetLoad(rulesPresetName = rulesPresetFileName)
 {
-    var fileName = string("rules_{0}.json", rulesPresetName);
+    var fileName = get_project_path() + "content/" + string("rules_{0}.json", rulesPresetName);
     
     if (file_exists(fileName))
     {
@@ -1285,7 +1285,7 @@ function scr_serializeStatsPreset(file)
 
 function scr_statsPresetSave(statsPresetName = statsPresetFileName)
 {
-    var fileName = string("stats_{0}.json", statsPresetName);
+    var fileName = get_project_path() + "content/" + string("stats_{0}.json", statsPresetName);
     if (file_exists(fileName))
     {
         file_delete(fileName);
@@ -1302,7 +1302,7 @@ function scr_statsPresetSave(statsPresetName = statsPresetFileName)
 
 function scr_statsPresetLoad(statsPresetName = statsPresetFileName)
 {
-    var fileName = string("stats_{0}.json", statsPresetName);
+    var fileName = get_project_path() + "content/" + string("stats_{0}.json", statsPresetName);
     
     if (file_exists(fileName))
     {
@@ -1406,7 +1406,7 @@ function scr_serializeModificatorsPreset(file, choosedPlayer)
 
 function scr_modificatorsPresetSave(modificatorsPresetName = modificatorsPresetFileName, choosedPlayer)
 {
-    var fileName = string("modificators_{0}.json", modificatorsPresetName);
+    var fileName = get_project_path() + "content/" + string("modificators_{0}.json", modificatorsPresetName);
     if (file_exists(fileName))
     {
         file_delete(fileName);
@@ -1423,7 +1423,7 @@ function scr_modificatorsPresetSave(modificatorsPresetName = modificatorsPresetF
 
 function scr_modificatorsPresetLoad(modificatorsPresetName = modificatorsPresetFileName, choosedPlayer)
 {
-    var fileName = string("modificators_{0}.json", modificatorsPresetName, choosedPlayer);
+    var fileName = get_project_path() + "content/" + string("modificators_{0}.json", modificatorsPresetName, choosedPlayer);
     
     if (file_exists(fileName))
     {
@@ -2386,7 +2386,7 @@ function scr_serializeDialogBoxPreset(file)
 
 function scr_dialogBoxPresetSave(dialogPresetName = dialogPresetFileName)
 {
-    var fileName = string("dialogbox_{0}.json", dialogPresetName);
+    var fileName = get_project_path() + "content/" + string("dialogbox_{0}.json", dialogPresetName);
     if (file_exists(fileName))
     {
         file_delete(fileName);
@@ -2403,7 +2403,7 @@ function scr_dialogBoxPresetSave(dialogPresetName = dialogPresetFileName)
 
 function scr_dialogBoxPresetLoad(dialogPresetName = dialogPresetFileName)
 {
-    var fileName = string("dialogbox_{0}.json", dialogPresetName);
+    var fileName = get_project_path() + "content/" + string("dialogbox_{0}.json", dialogPresetName);
     
     if (file_exists(fileName))
     {
@@ -2483,7 +2483,8 @@ function scr_serializeDialog(file)
 
 function scr_dialogSave(dialogName = dialogFileName)
 {
-    var fileName = string("dialog_{0}.json", dialogName);
+	var fileName = get_project_path() + "content/" + string("dialog_{0}.json", dialogName);
+	log(fileName);
     if (file_exists(fileName))
     {
         file_delete(fileName);
@@ -2500,7 +2501,7 @@ function scr_dialogSave(dialogName = dialogFileName)
 
 function scr_dialogLoad(dialogName = dialogFileName)
 {
-    var fileName = string("dialog_{0}.json", dialogName);
+    var fileName = get_project_path() + "content/" + string("dialog_{0}.json", dialogName);
     
     if (file_exists(fileName))
     {

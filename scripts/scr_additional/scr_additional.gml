@@ -228,3 +228,19 @@ function array_find_value_by_key(array, key)
 		}
 	}
 }
+
+function get_project_path()
+{
+	var projectPath = "";
+	
+	if (RUN_FROM_IDE)
+	{
+		projectPath = PROJECT_DIR;
+	}
+	else
+	{
+		projectPath = working_directory;
+	}
+	
+	return projectPath;
+}
