@@ -1580,9 +1580,9 @@ function scr_dialogLogic()
 		
 		if (ImGui.MenuItem("Remove Node")) 
 		{
-			if (selectedNode == startNode)
+			if (selectedNode == ds_list_find_value(allDialogNodes, startNodeIndex))
 			{
-				startNode = undefined;
+				startNodeIndex = -1;
 			}
 			
 			selectedNode.cutRelations();
@@ -1614,7 +1614,7 @@ function scr_dialogNodes()
 		
 		var isNotValid = false;
 		
-		if (node.in == undefined and startNode != node)
+		if (node.in == undefined and ds_list_find_value(allDialogNodes, startNodeIndex) != node)
 		{
 			scr_setNodeStyleError();
 			isNotValid = true;
@@ -2007,7 +2007,7 @@ function scr_dialogNode(node, i)
 		
 		var isStart = false;
 		
-		if (node == startNode)
+		if (node == ds_list_find_value(allDialogNodes, startNodeIndex))
 		{
 			isStart = true;
 		}
@@ -2018,11 +2018,11 @@ function scr_dialogNode(node, i)
 		{
 			if (isStart)
 			{
-				startNode = undefined;
+				startNodeIndex = -1;
 			}
 			else
 			{
-				startNode = node;
+				startNodeIndex = i;
 			}
 		}
 		ImGui.SameLine();

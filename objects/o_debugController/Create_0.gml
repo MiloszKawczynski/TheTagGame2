@@ -142,7 +142,7 @@ c_selectedBlueBackground = make_color_rgb(255 * 0.1, 255 * 0.2, 255 * 0.4);
 c_errorRedBackground = make_color_rgb(255 * 0.3, 255 * 0.1, 255 * 0.1);
 
 selectedNode = undefined;
-startNode = undefined;
+startNodeIndex = -1;
 showCursor = true;
 
 allSprites = ds_list_create();
@@ -155,9 +155,9 @@ dialogNode = function(_x, _y) constructor
 		other.selectedNode = self;
 	}
 	
-	if (other.startNode == undefined)
+	if (other.startNodeIndex == -1)
 	{
-		other.startNode = self;
+		other.startNodeIndex = ds_list_size(other.allDialogNodes);
 	}
 	
 	xPos = _x;
