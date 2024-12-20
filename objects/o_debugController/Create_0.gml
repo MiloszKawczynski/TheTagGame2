@@ -163,12 +163,17 @@ dialogNode = function(_x, _y) constructor
 	xPos = _x;
 	yPos = _y;
 	
-	content = ds_map_create();
+	static language = function(_key) constructor
+	{
+		key = _key;
+		content = ""
+	}
 	
-	ds_map_add(content, "EN", "sample text");
-	ds_map_add(content, "PL", "przykładowy tekst");
+	languages = array_create(0);
 	
-	focusedKey = "EN";
+	array_push(languages, new language("EN"), new language("PL"));
+	
+	focusedLanuguage = "EN";
 	
 	in = undefined;
 	out = undefined;

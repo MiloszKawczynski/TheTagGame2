@@ -1573,6 +1573,12 @@ function scr_dialogLogic()
 			for(var i = 0; i < ds_list_size(selectedNode.talkers); i++)
 			{
 				ds_list_add(duplicateNode.talkers, variable_clone(ds_list_find_value(selectedNode.talkers, i)));
+			
+			for(var i = 0; i < array_length(selectedNode.languages); i++)
+			{
+				var key = selectedNode.languages[i].key;
+				
+				array_find_value_by_key(duplicateNode.languages, key).content = selectedNode.languages[i].content;
 			}
 			
 			ds_list_add(allDialogNodes, duplicateNode);
@@ -2172,8 +2178,8 @@ function scr_nodeActions(node, i, key)
 {
 	if (ImGui.Button("Action " + key + "##" + string(i))) 
 	{
-		node.focusedKey = "";
-		var languageContent = ds_map_find_value(node.content, key);
+		node.focusedLanuguage = "";
+		var languageContent = array_find_value_by_key(node.languages, key).content;
 		
 		var allTalkers = ds_list_create();
 		
@@ -2182,7 +2188,7 @@ function scr_nodeActions(node, i, key)
 		
 		while(nextNode != undefined)
 		{
-			dialogToTest += ds_map_find_value(nextNode.content, key);
+			dialogToTest += array_find_value_by_key(nextNode.languages, key).content;
 			ds_list_add(allTalkers, nextNode.talkers);
 			nextNode = nextNode.out;
 			
@@ -2200,9 +2206,9 @@ function scr_nodeActions(node, i, key)
 	ImGui.BeginDisabled(node.cursorPos == -1 or node.focusedKey != key);
 	if (ImGui.Button("Next line ##" + key + "," + string(i)))
 	{
-		var languageContent = ds_map_find_value(node.content, key);
+		var languageContent = array_find_value_by_key(node.languages, key).content;
 		languageContent = string_insert("` ", languageContent, node.cursorPos);
-		ds_map_replace(node.content, key, languageContent);
+		array_find_value_by_key(node.languages, key).content = languageContent;
 		node.cursorPos += 2;
 		node.focusedKey = "";
 	}
@@ -2229,7 +2235,7 @@ function scr_nodeContentEditor(node, i, windowWidth, textHeight)
 
 function scr_dialogTextEditor(node, i, windowWidth, textHeight, key)
 {
-    var languageContent = ds_map_find_value(node.content, key);
+    var languageContent = array_find_value_by_key(node.languages, key).content;
 
 	if (ImGui.BeginChild("##DialogTextFrame" + key + string(i), windowWidth / 2, textHeight, true))
     {		
@@ -2331,7 +2337,7 @@ function scr_dialogTextEditor(node, i, windowWidth, textHeight, key)
 			keyboard_lastkey = vk_nokey;
         }
 
-        ds_map_replace(node.content, key, languageContent);
+        array_find_value_by_key(node.languages, key).content = languageContent;
     }
 
     ImGui.EndChild();
