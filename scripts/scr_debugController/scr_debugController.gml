@@ -995,7 +995,7 @@ function scr_fileSearchList(fileType, fileName, files)
 		}
 	}
 	
-	if (ImGui.Button("Save ## + fileType"))
+	if (ImGui.Button("Save ##" + fileType))
 	{
 		switch(fileType)
 		{
@@ -1024,7 +1024,11 @@ function scr_fileSearchList(fileType, fileName, files)
 				scr_dialogBoxPresetSave();
 				break;
 			}
-				
+			case("dialog"):
+			{
+				scr_dialogSave();
+				break;
+			}
 		}
 		files = scr_getFiles(fileTypeAsPrefix);
 	}
@@ -1058,6 +1062,11 @@ function scr_fileSearchList(fileType, fileName, files)
 			case("dialogbox"):
 			{
 				scr_dialogBoxPresetLoad();
+				break;
+			}
+			case("dialog"):
+			{
+				scr_dialogLoad();
 				break;
 			}
 		}
@@ -1634,12 +1643,27 @@ function scr_dialogNodes()
 
 function scr_dialogBoxEditor()
 {
+	ImGui.Text("Dialog Box Preset");
+	
 	returnList = scr_fileSearchList("dialogbox", dialogPresetFileName, dialogPresetFiles)
 	
 	dialogPresetFileName = ds_list_find_value(returnList, 0);
 	dialogPresetFiles = ds_list_find_value(returnList, 1);
 		
 	ds_list_destroy(returnList);
+	
+	ImGui.Separator();
+	
+	ImGui.Text("Dialog Scene");
+	
+	returnList = scr_fileSearchList("dialog", dialogFileName, dialogFiles)
+	
+	dialogFileName = ds_list_find_value(returnList, 0);
+	dialogFiles = ds_list_find_value(returnList, 1);
+		
+	ds_list_destroy(returnList);
+	
+	ImGui.Separator();
 	
 	if (ImGui.Button("Spawn Node"))
 	{
@@ -2418,6 +2442,97 @@ function scr_dialogBoxPresetLoad(dialogPresetName = dialogPresetFileName)
     }
 	
 	log(string("Dialog Box Preset {0} Doesnt exist", dialogPresetName), c_red);
+}
+
+function scr_serializeDialog(file)
+{
+	function dialogSerialized(_startNodeIndex, _allDialogNodes) constructor
+	{	
+		startNodeIndex = _startNodeIndex;
+		
+		for(var i = 0; i < ds_list_size(other.allDialogNodes); i++)
+		{
+			var node = ds_list_find_value(other.allDialogNodes, i);
+			if (node.in != undefined)
+			{
+				node.inIndex = node.in.getMyIndex();
+			}
+			
+			if (node.out != undefined)
+			{
+				node.outIndex = node.out.getMyIndex();
+			}
+		}
+		
+		allDialogNodes = ds_list_convert_to_array(_allDialogNodes);
+	}
+	
+    var instanceSerialized = new dialogSerialized(startNodeIndex, allDialogNodes);
+
+	file_text_write_string(file, json_stringify(instanceSerialized));
+	file_text_writeln(file);
+		
+	delete instanceSerialized;
+}
+
+function scr_dialogSave(dialogName = dialogFileName)
+{
+    var fileName = string("dialog_{0}.json", dialogName);
+    if (file_exists(fileName))
+    {
+        file_delete(fileName);
+    }
+    
+    var file = file_text_open_write(fileName);
+
+	scr_serializeDialog(file);
+   
+    file_text_close(file);
+	
+	log(string("Dialog Scene {0} Saved", dialogName));
+}
+
+function scr_dialogLoad(dialogName = dialogFileName)
+{
+    var fileName = string("dialog_{0}.json", dialogName);
+    
+    if (file_exists(fileName))
+    {
+        var file = file_text_open_read(fileName);
+
+        while (!file_text_eof(file))
+        {
+            var jsonString = file_text_read_string(file);
+			file_text_readln(file);
+            var instanceData = json_parse(jsonString);
+					
+			startNodeIndex = instanceData.startNodeIndex;
+			
+			allDialogNodes = ds_array_convert_to_list(instanceData.allDialogNodes);
+			
+			for (var i = 0; i < ds_list_size(allDialogNodes); i++)
+			{
+				static_set(ds_list_find_value(allDialogNodes, i), static_get(new dialogNode()));
+				
+				if (ds_list_find_value(allDialogNodes, i).inIndex != -1)
+				{
+					ds_list_find_value(allDialogNodes, i).in = ds_list_find_value(allDialogNodes, ds_list_find_value(allDialogNodes, i).inIndex);
+				}
+				
+				if (ds_list_find_value(allDialogNodes, i).outIndex != -1)
+				{
+					ds_list_find_value(allDialogNodes, i).out = ds_list_find_value(allDialogNodes, ds_list_find_value(allDialogNodes, i).outIndex);
+				}
+			}
+        }
+
+        file_text_close(file);
+		
+		log(string("Dialog Scene {0} Loaded", dialogName));
+		return;
+    }
+	
+	log(string("Dialog Scene {0} Doesnt exist", dialogName), c_red);
 }
 
 function scr_nodeInput(node, windowWidth)

@@ -94,12 +94,14 @@ rulesPresetFileName = "";
 statsPresetFileName = "";
 modificatorsPresetFileName = "";
 dialogPresetFileName = "";
+dialogFileName = "";
 	
 editorFiles = scr_getFiles("level_");
 rulesPresetsFiles = scr_getFiles("rules_");
 statsPresetsFiles = scr_getFiles("stats_");
 modificatorsPresetsFiles = scr_getFiles("modificators_");
 dialogPresetFiles = scr_getFiles("dialogbox_");
+dialogFiles = scr_getFiles("dialog_");
 
 layer_background_visible(layer_background_get_id(layer_get_id("SolidBlue")), false);
 
