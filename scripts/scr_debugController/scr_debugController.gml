@@ -910,8 +910,6 @@ function scr_levelSave(levelName = editorFileName)
     {
         file_delete(fileName);
     }
-    
-    var objectList = ds_map_create();
 
     var file = file_text_open_write(fileName);
 
@@ -1185,8 +1183,6 @@ function scr_rulesPresetSave(rulesPresetName = rulesPresetFileName)
     {
         file_delete(fileName);
     }
-    
-    var objectList = ds_map_create();
 
     var file = file_text_open_write(fileName);
 
@@ -1286,8 +1282,6 @@ function scr_statsPresetSave(statsPresetName = statsPresetFileName)
         file_delete(fileName);
     }
     
-    var objectList = ds_map_create();
-
     var file = file_text_open_write(fileName);
 
 	scr_serializeStatsPreset(file);
@@ -1409,8 +1403,6 @@ function scr_modificatorsPresetSave(modificatorsPresetName = modificatorsPresetF
         file_delete(fileName);
     }
     
-    var objectList = ds_map_create();
-
     var file = file_text_open_write(fileName);
 
 	scr_serializeModificatorsPreset(file, choosedPlayer);
@@ -2376,8 +2368,6 @@ function scr_dialogBoxPresetSave(dialogPresetName = dialogPresetFileName)
         file_delete(fileName);
     }
     
-    var objectList = ds_map_create();
-
     var file = file_text_open_write(fileName);
 
 	scr_serializeDialogBoxPreset(file);
@@ -2577,11 +2567,6 @@ function scr_nodeOutput(node)
 		
 		ImGui.EndDragDropTarget();
 	}
-}
-
-function scr_nodesOptions()
-{
-	
 }
 
 function scr_centerNode()
