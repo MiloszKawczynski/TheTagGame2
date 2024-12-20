@@ -989,7 +989,7 @@ function scr_fileSearchList(fileType, fileName, files)
 		var name = string_replace(files[i], fileTypeAsPrefix, "");
 		name = string_replace(name, ".json", "");
 		
-	    if (ImGui.Selectable(name)) 
+	    if (ImGui.Selectable(string("{0}##{1}_{2}", name, fileType, i))) 
 		{
 			fileName = name;
 		}
