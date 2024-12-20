@@ -2422,10 +2422,16 @@ function scr_dialogBoxPresetLoad(dialogPresetName = dialogPresetFileName)
 			}
 					
 			dialog = instanceData.dialog;
-			static_set(dialog, static_get(dialogMain))
+			static_set(dialog, static_get(new dialogMain()));
+			static_set(dialog.box, static_get(new dialog.dialogBox()));
 			
 			dialog.accentList = ds_array_convert_to_list(instanceData.dialogAccent);
 			dialog.dictionary = ds_array_convert_to_list(instanceData.dialogDictionary);
+			
+			for (var i = 0; i < ds_list_size(dialog.accentList); i++)
+			{
+				static_set(ds_list_find_value(dialog.accentList, i), static_get(new dialog.dialogAccent()));
+			}
 			
 			dialogPosition = instanceData.dialogPosition;
 			dialogSize = instanceData.dialogSize;
