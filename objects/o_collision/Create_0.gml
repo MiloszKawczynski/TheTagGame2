@@ -2,6 +2,7 @@ alarm[0] = 1;
 
 z = 0;
 
+model = fauxton_model_create_ext(sprite_index, x, y, 0, 0, 0, 0, image_xscale, image_yscale, 1, image_blend, 1);
 
 instanceToMerge = ds_map_create();
 isReadyToMerge = false;
