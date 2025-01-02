@@ -964,8 +964,6 @@ function scr_levelLoad(levelName = editorFileName)
     {
         var file = file_text_open_read(fileName);
 		
-		SceneBuff = fauxton_buffer_create("SceneBuffer");
-
         while (!file_text_eof(file))
         {
             var jsonString = file_text_read_string(file);
@@ -975,11 +973,6 @@ function scr_levelLoad(levelName = editorFileName)
             var newInstance = instance_create_layer(instanceData.xPos, instanceData.yPos, "Level", instanceData.objectType);
 			newInstance.image_xscale = instanceData.imageXScale;
 			newInstance.image_yscale = instanceData.imageYScale;
-			
-			if (object_get_parent(newInstance.object_index) == o_collision)
-			{
-				fauxton_model_add_static(newInstance.model, "SceneBuffer");
-			}
         }
 
         file_text_close(file);
