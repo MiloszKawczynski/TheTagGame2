@@ -244,3 +244,24 @@ function get_project_path()
 	
 	return projectPath;
 }
+
+function ImGui_position_2(_x, _y)
+{
+	var value = [_x, _y];
+	
+	ImGui.DragFloat2("Position", value);
+	
+	x = value[0];
+	y = value[1];
+}
+
+function ImGui_position_3(_x, _y, _z)
+{
+	var value = [_x, _y, _z];
+	
+	ImGui.DragFloat3("Position", value);
+	
+	x = value[0];
+	y = value[1];
+	z = value[2];
+}
