@@ -46,8 +46,6 @@ logBuffor = ds_list_create();
 logColor = ds_list_create();
 monitoredValue = ds_list_create();
 
-isApplicationSurfaceEnabled = false;
-
 choosedPlayerIndex = 0;
 
 isRightKeyBindingOn = false;

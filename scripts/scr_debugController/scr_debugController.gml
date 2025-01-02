@@ -112,8 +112,6 @@ function scr_gameOptions()
 function scr_cameraControll()
 {
 	ImGui.Text("Camera");
-	
-	isApplicationSurfaceEnabled = ImGui.Checkbox("Application surface", isApplicationSurfaceEnabled);
 
 	ImGui.BeginGroup();
 	ImGui.Dummy(19, 0);
