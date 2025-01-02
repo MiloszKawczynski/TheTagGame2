@@ -24,6 +24,19 @@ if (!o_gameManager.isGameOn and !hide)
 		
 		gameLanguage = ImGui.InputText("Language", gameLanguage);
 		
+		if (ImGui.Button("Merge"))
+		{
+			with(o_collision)
+			{
+				if (!isMerged)
+				{
+					typeOfMerge = o_collision;
+					instanceToMerge = locate(instanceToMerge);
+					isReadyToMerge = true;
+				}
+			}
+		}
+		
 		ImGui.Separator();
 		
 		if (selectedObject != undefined)
@@ -131,6 +144,7 @@ else
 	{	
 		scr_logs();
 	}
+	ImGui.End();
 
 }
 
