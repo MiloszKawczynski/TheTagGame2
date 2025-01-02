@@ -1,9 +1,9 @@
 function scr_debugPreload()
 {
-	scr_levelLoad("santa");
+	//scr_levelLoad("santa");
 	scr_rulesPresetLoad("default");
 	scr_statsPresetLoad("default");
-	scr_dialogBoxPresetLoad("default");
+	scr_dialogBoxPresetLoad("gymTest");
 	
 	//scr_addPlayer(1);
 		
@@ -914,11 +914,10 @@ function scr_levelSave(levelName = editorFileName)
 
     var file = file_text_open_write(fileName);
 
-	scr_serializeObject(o_block, file);
-	scr_serializeObject(o_slope, file);
-	scr_serializeObject(o_ramp, file);
-	scr_serializeObject(o_obstacle, file);
-	scr_serializeObject(o_start, file);
+	for (var i = 0; i < array_length(editorObjects); i++)
+	{
+		scr_serializeObject(editorObjects[i], file);
+	}
    
     file_text_close(file);
 	
@@ -932,6 +931,8 @@ function scr_levelLoad(levelName = editorFileName)
     if (file_exists(fileName))
     {
         var file = file_text_open_read(fileName);
+		
+		SceneBuff = fauxton_buffer_create("SceneBuffer");
 
         while (!file_text_eof(file))
         {
@@ -942,6 +943,11 @@ function scr_levelLoad(levelName = editorFileName)
             var newInstance = instance_create_layer(instanceData.xPos, instanceData.yPos, "Level", instanceData.objectType);
 			newInstance.image_xscale = instanceData.imageXScale;
 			newInstance.image_yscale = instanceData.imageYScale;
+			
+			if (object_get_parent(newInstance.object_index) == o_collision)
+			{
+				fauxton_model_add_static(newInstance.model, "SceneBuffer");
+			}
         }
 
         file_text_close(file);
@@ -1122,11 +1128,11 @@ function scr_editorOptions()
 	
 	var buttonSize = 64;
 	var itemsPerRow = 5;
-	var totalItems = ds_list_size(editorObjects);
+	var totalItems = array_length(editorObjects);
 
 	for (var i = 0; i < totalItems; i++) 
 	{
-	    var object = ds_list_find_value(editorObjects, i);
+	    var object = editorObjects[i];
 	    var sprite = object_get_sprite(object);
 	    var spriteBboxWidth = sprite_get_bbox_right(sprite) - sprite_get_bbox_left(sprite);
 	    var spriteBboxHeight = sprite_get_bbox_bottom(sprite) - sprite_get_bbox_top(sprite);
@@ -2196,7 +2202,6 @@ function scr_nodeActions(node, i, key)
 	if (ImGui.Button("Action " + key + "##" + string(i))) 
 	{
 		node.focusedLanuguage = "";
-		var languageContent = array_find_value_by_key(node.languages, key).content;
 		
 		var allTalkers = ds_list_create();
 		

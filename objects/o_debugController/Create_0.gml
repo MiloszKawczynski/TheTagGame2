@@ -75,8 +75,20 @@ editorFlip = false;
 editorFullView = true;
 editorSlopeCreation = false;
 	
-editorObjects = ds_list_create();
-ds_list_add(editorObjects, o_block, o_ramp, o_slope, o_obstacle, o_start, o_slopeTop);
+editorObjects = array_create(0);
+array_push(editorObjects, 
+	o_block, 
+	o_ramp, 
+	o_slope, 
+	o_obstacle, 
+	o_start, 
+	o_slopeTop, 
+	o_godRay, 
+	o_bench, 
+	o_cup,
+	o_locker,
+	o_npc);
+	
 editorCurrentObjectIndex = 0;
 editorCurrentObject = o_block;
 enum EditorDirectionType
