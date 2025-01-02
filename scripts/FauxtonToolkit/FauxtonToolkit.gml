@@ -5,7 +5,7 @@
 		///@func fauxton_model_create(sprite, x, y, z, xrot, yrot, zrot, xscale, yscale, zscale)
 		var _m = {
 			spref		: sprite,
-			texture		: sprite_get_texture(ico_texref, 0),
+			texture		: sprite_get_texture(sprite, 0),
 			pos_id		: ds_list_size(RENDER_QUEUE),
 			model_id	: __FauxtonWriteSpriteStack(sprite, 0, 0, 0, c_white, 1, 0),
 			position	: new vector3(_x, _y, _z),
