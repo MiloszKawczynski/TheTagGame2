@@ -37,6 +37,30 @@ if (!o_gameManager.isGameOn and !hide)
 			}
 		}
 		
+		ImGui.SameLine();
+		
+		ImGui.BeginDisabled(SceneBuff != undefined);
+		if (ImGui.Button("Add to Static buffer"))
+		{
+			SceneBuff = fauxton_buffer_create("SceneBuffer");
+			
+			with(o_collision)
+			{
+				if (mergedModel == undefined)
+				{
+					if (model != undefined)
+					{
+						fauxton_model_add_static(model, "SceneBuffer");
+					}
+				}
+				else
+				{
+					fauxton_model_add_static(mergedModel, "SceneBuffer");
+				}
+			}
+		}
+		ImGui.EndDisabled();
+		
 		ImGui.Separator();
 		
 		if (selectedObject != undefined)

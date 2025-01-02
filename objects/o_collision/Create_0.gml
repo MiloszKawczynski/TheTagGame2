@@ -12,6 +12,7 @@ mergedX = 0;
 mergedY = 0;
 mergedSprite = undefined;
 typeOfMerge = o_collision;
+mergedModel = undefined;
 
 locate = function(map)
 {

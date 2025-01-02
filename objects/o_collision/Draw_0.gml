@@ -105,6 +105,7 @@ if (isReadyToMerge)
 	for (var j = 0; j < size; j++)
 	{
 		fauxton_model_destroy(key.model);
+		key.model = undefined;
 		key = ds_map_find_next(instanceToMerge, key);
 	}
 }
