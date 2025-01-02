@@ -287,3 +287,5 @@ dialog = new dialogMain(780, 3, vk_enter, c_black, 0.25, 2, s_dialogBubble, f_te
 editableObjects = [];
 objectName = "";
 selectedObject = undefined;
+
+SceneBuff = undefined;
