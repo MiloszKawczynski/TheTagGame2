@@ -1,39 +1,21 @@
-var sumX = 0;
-var sumY = 0;
-var highestDistanceBetweenPlayers = 0;
-
-if (instance_number(o_char) > 1)
+if (o_gameManager.isGameOn)
 {
-	with(o_char)
+	if (instance_number(o_char) > 1)
 	{
-		sumX += x;
-		sumY += y;
-	
-		var distanceToFurthestPlayer = distance_to_object(instance_furthest(x, y, o_char))
-	
-		if (distanceToFurthestPlayer > highestDistanceBetweenPlayers)
-		{
-			highestDistanceBetweenPlayers = distanceToFurthestPlayer;
-		}
+		scr_follow_many_characters();
 	}
-
-	x = sumX / instance_number(o_char);
-	y = sumY / instance_number(o_char);
-
-	if (global.debugAutoCamera and !global.debugEdit)
+	else
 	{
-		Camera.Zoom = (highestDistanceBetweenPlayers / 225) * cameraMarginFactor;
-		Camera.Zoom = clamp(Camera.Zoom, 1, 3);
+		scr_follow_one_character();
 	}
 }
 else
 {
-	x = o_char.x;
-	y = o_char.y;
+	scr_follow_one_character();
 	
-	if (global.debugAutoCamera and !global.debugEdit)
+	if (place_meeting(x, y, o_zoomArea))
 	{
-		Camera.Zoom = 2;
+		Camera.Zoom = instance_place(x, y, o_zoomArea).zoom;
 	}
 }
 
