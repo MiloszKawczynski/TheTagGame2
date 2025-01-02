@@ -12,7 +12,6 @@ global.debug = true;
 global.debugIsGravityOn = false;
 global.debugCameraAxis = false;
 global.debugAutoCamera = true;
-global.debugOutOfViewCulling = false;
 global.debugEdit = false;
 
 if (!global.debugEdit)

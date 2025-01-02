@@ -161,7 +161,6 @@ function scr_cameraControll()
 	
 	global.debugCameraAxis = ImGui.Checkbox("Camera Axis", global.debugCameraAxis);
 	global.debugAutoCamera = ImGui.Checkbox("Auto Camera", global.debugAutoCamera);
-	global.debugOutOfViewCulling = ImGui.Checkbox("Out of View Culling", global.debugOutOfViewCulling);
 	
 	ImGui.Text(string("Angle: {0}", Camera.Angle));
 	ImGui.Text(string("Pitch: {0}", Camera.Pitch));
