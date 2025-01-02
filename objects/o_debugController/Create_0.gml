@@ -120,6 +120,8 @@ previousTab = 0;
 
 hide = false;
 
+gameLanguage = "EN";
+
 dialog = undefined;
 dialogPosition = [0, 350];
 dialogSize = [800, 100];

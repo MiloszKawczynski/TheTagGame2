@@ -21,6 +21,9 @@ if (!o_gameManager.isGameOn and !hide)
 	
 		scr_gameOptions();
 		scr_cameraControll();
+		
+		gameLanguage = ImGui.InputText("Language", gameLanguage);
+		
 		ImGui.Separator();
 		
 		if (selectedObject != undefined)
