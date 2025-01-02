@@ -111,10 +111,13 @@
     {"$GMFolder":"","%Name":"Timelines","folderPath":"folders/Timelines.yy","name":"Timelines","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
   "IncludedFiles":[
+    {"$GMIncludedFile":"","%Name":"dialog_gymTest.json","CopyToMask":-1,"filePath":"datafiles/content","name":"dialog_gymTest.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"dialogbox_default.json","CopyToMask":-1,"filePath":"datafiles/content","name":"dialogbox_default.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"dialogbox_gymTest.json","CopyToMask":-1,"filePath":"datafiles/content","name":"dialogbox_gymTest.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"level_basic.json","CopyToMask":-1,"filePath":"datafiles/content","name":"level_basic.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"level_fire.json","CopyToMask":-1,"filePath":"datafiles/content","name":"level_fire.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"level_godraytest.json","CopyToMask":-1,"filePath":"datafiles/content","name":"level_godraytest.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"level_gym.json","CopyToMask":-1,"filePath":"datafiles/content","name":"level_gym.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"level_miko.json","CopyToMask":-1,"filePath":"datafiles/content","name":"level_miko.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"level_santa.json","CopyToMask":-1,"filePath":"datafiles/content","name":"level_santa.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"level_werka.json","CopyToMask":-1,"filePath":"datafiles/content","name":"level_werka.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
