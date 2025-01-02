@@ -3,7 +3,7 @@ function scr_debugPreload()
 	//scr_levelLoad("santa");
 	scr_rulesPresetLoad("default");
 	scr_statsPresetLoad("default");
-	scr_dialogBoxPresetLoad("gymTest");
+	scr_dialogBoxPresetLoad("default");
 	
 	//scr_addPlayer(1);
 		
