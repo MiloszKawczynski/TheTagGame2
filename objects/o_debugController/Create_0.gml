@@ -244,6 +244,41 @@ function dialogNode(_x, _y) constructor
 		image = 0;
 		isMirrored = false;
 	}
+	
+	static getAllTalkers = function()
+	{
+		var allTalkers = ds_list_create();
+	
+		var nextNode = self;
+		
+		while(nextNode != undefined)
+		{
+			ds_list_add(allTalkers, nextNode.talkers);
+			nextNode = nextNode.out;
+		}
+		
+		return allTalkers;
+	}
+	
+	static getAllText = function(key)
+	{
+		var dialogToSay = "";
+		
+		var nextNode = self;
+		
+		while(nextNode != undefined)
+		{
+			dialogToSay += array_find_value_by_key(nextNode.languages, key).content;
+			nextNode = nextNode.out;
+		
+			if (nextNode != undefined)
+			{
+				dialogToSay += " ¶";
+			}
+		}
+		
+		return dialogToSay;
+	}
 }
 
 dialog = new dialogMain(780, 3, vk_enter, c_black, 0.25, 2, s_dialogBubble, f_test);
