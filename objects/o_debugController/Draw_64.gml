@@ -16,7 +16,10 @@ if (!dialogOverImGui)
 		dialogPortraitSpacing,
 		dialogPortraitScale)
 	
-		dialog.drawDebug(dialogPosition[0], dialogPosition[1], dialogTextPosition[0], dialogTextPosition[1]);
+		if (showDialogDebugDrawings)
+		{
+			dialog.drawDebug(dialogPosition[0], dialogPosition[1], dialogTextPosition[0], dialogTextPosition[1]);
+		}
 	}	
 }
 
@@ -39,6 +42,9 @@ if (dialogOverImGui)
 		dialogPortraitSpacing,
 		dialogPortraitScale)
 	
-		dialog.drawDebug(dialogPosition[0], dialogPosition[1], dialogTextPosition[0], dialogTextPosition[1]);
+		if (showDialogDebugDrawings)
+		{
+			dialog.drawDebug(dialogPosition[0], dialogPosition[1], dialogTextPosition[0], dialogTextPosition[1]);
+		}
 	}	
 }

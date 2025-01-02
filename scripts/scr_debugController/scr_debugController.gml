@@ -1694,6 +1694,7 @@ function scr_dialogBoxEditor()
 	}
 		
 	dialogOverImGui = ImGui.Checkbox("Dialog Over ImGui", dialogOverImGui);
+	showDialogDebugDrawings = ImGui.Checkbox("Show Debug Drawings", showDialogDebugDrawings);
 	ImGui.InputInt2("Dialog Position", dialogPosition);
 	ImGui.InputInt2("Dialog Size", dialogSize);
 	ImGui.InputInt2("Text Position", dialogTextPosition);
