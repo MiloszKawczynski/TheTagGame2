@@ -1085,7 +1085,7 @@ function scr_fileSearchList(fileType, fileName, files)
 	
 	if (ImGui.Button("Delete ##" + fileType))
 	{
-		file_delete(string("{0}{1}.json", fileTypeAsPrefix, fileName));
+		file_delete(get_project_path() + "content/" + string("{0}{1}.json", fileTypeAsPrefix, fileName));
 		files = scr_getFiles(fileTypeAsPrefix);
 	}
 	
