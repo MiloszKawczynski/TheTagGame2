@@ -1,6 +1,9 @@
 function scr_debugPreload()
 {
-	//scr_levelLoad("santa");
+	if (room == r_levelEditor)
+	{
+		scr_levelLoad("basic");
+	}
 	scr_rulesPresetLoad("default");
 	scr_statsPresetLoad("default");
 	scr_dialogBoxPresetLoad("default");
