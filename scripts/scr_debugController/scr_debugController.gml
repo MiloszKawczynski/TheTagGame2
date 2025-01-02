@@ -923,6 +923,11 @@ function scr_levelSave(levelName = editorFileName)
 
 function scr_levelLoad(levelName = editorFileName)
 {
+	for (var i = 0; i < array_length(editorObjects); i++)
+	{
+		instance_destroy(editorObjects[i]);
+	}
+	
     var fileName = get_project_path() + "content/" + string("level_{0}.json", levelName);
     
     if (file_exists(fileName))
