@@ -129,6 +129,7 @@ dialogPortraitPosition = [100, 200];
 dialogPortraitScale = 0.15;
 dialogPortraitSpacing = 150;
 dialogOverImGui = false;
+showDialogDebugDrawings = false;
 
 dialogDictionaryEntry = function(_key, _value) constructor
 {

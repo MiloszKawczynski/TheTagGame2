@@ -3,7 +3,7 @@ function scr_debugPreload()
 	//scr_levelLoad("santa");
 	scr_rulesPresetLoad("default");
 	scr_statsPresetLoad("default");
-	scr_dialogBoxPresetLoad("gymTest");
+	scr_dialogBoxPresetLoad("default");
 	
 	//scr_addPlayer(1);
 		
@@ -1085,7 +1085,7 @@ function scr_fileSearchList(fileType, fileName, files)
 	
 	if (ImGui.Button("Delete ##" + fileType))
 	{
-		file_delete(string("{0}{1}.json", fileTypeAsPrefix, fileName));
+		file_delete(get_project_path() + "content/" + string("{0}{1}.json", fileTypeAsPrefix, fileName));
 		files = scr_getFiles(fileTypeAsPrefix);
 	}
 	
@@ -1694,6 +1694,7 @@ function scr_dialogBoxEditor()
 	}
 		
 	dialogOverImGui = ImGui.Checkbox("Dialog Over ImGui", dialogOverImGui);
+	showDialogDebugDrawings = ImGui.Checkbox("Show Debug Drawings", showDialogDebugDrawings);
 	ImGui.InputInt2("Dialog Position", dialogPosition);
 	ImGui.InputInt2("Dialog Size", dialogSize);
 	ImGui.InputInt2("Text Position", dialogTextPosition);
