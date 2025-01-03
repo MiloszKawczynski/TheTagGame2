@@ -111,6 +111,7 @@
     {"$GMFolder":"","%Name":"Timelines","folderPath":"folders/Timelines.yy","name":"Timelines","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
   "IncludedFiles":[
+    {"$GMIncludedFile":"","%Name":"dialog_accenttest.json","CopyToMask":-1,"filePath":"datafiles/content","name":"dialog_accenttest.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"dialogbox_default.json","CopyToMask":-1,"filePath":"datafiles/content","name":"dialogbox_default.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"level_basic.json","CopyToMask":-1,"filePath":"datafiles/content","name":"level_basic.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"level_fire.json","CopyToMask":-1,"filePath":"datafiles/content","name":"level_fire.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
