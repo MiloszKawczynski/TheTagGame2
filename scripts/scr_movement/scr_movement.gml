@@ -54,7 +54,7 @@ function scr_topDownMovement()
 	
 	if (speed > maximumDefaultSpeed)
 	{
-		speed -= deceleration;
+		speed -= deceleration * maximumSpeedDecelerationFactor;
 		maximumSpeed = speed;
 		
 		if (abs(maximumSpeed - maximumDefaultSpeed) <= deceleration)
