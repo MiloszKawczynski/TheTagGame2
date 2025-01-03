@@ -138,16 +138,36 @@ function __FauxtonWriteQuad(mBuff, texture, index, _x, _y, _z, color, alpha, ang
 	var ny3 = lengthdir_y(1, point_direction(_x, _y, vx2, vy2));
 	var ny4 = lengthdir_y(1, point_direction(_x, _y, vx3, vy3));
 	
-	var norm1 = mat3(
-		nx1, ny1, _z,
-		nx2, ny2, _z,
-		nx3, ny3, _z		
-	);
-	var norm2 = mat3(
-		nx1, ny1, _z,
-		nx3, ny3, _z,
-		nx4, ny4, _z
-	);
+	var norm1;
+	var norm2;
+	
+	if (sprite_get_number(texture) != 1 and index == (sprite_get_number(texture) * RENDER_FIDELITY - 1) / RENDER_FIDELITY)
+	{
+		norm1 = mat3(
+			0, 0, _z,
+			0, 0, _z,
+			0, 0, _z		
+		);
+		norm2 = mat3(
+			0, 0, _z,
+			0, 0, _z,
+			0, 0, _z
+		);	
+	}
+	else 
+	{
+		norm1 = mat3(
+			nx1, ny1, _z,
+			nx2, ny2, _z,
+			nx3, ny3, _z		
+		);
+		norm2 = mat3(
+			nx1, ny1, _z,
+			nx3, ny3, _z,
+			nx4, ny4, _z
+		);	
+	}
+	
 	__FauxtonWriteVert( mBuff, _mat1, vert1, vert2, vert3, color, alpha, norm1 );
 	__FauxtonWriteVert( mBuff, _mat2, vert4, vert5, vert6, color, alpha, norm2 );
 }
