@@ -97,6 +97,7 @@ if (!o_gameManager.isGameOn and !hide)
 
 	    scr_gameOptions();
 	    scr_playerData();
+		scr_skills();
 	    scr_gameRules();
 	    scr_logsOptions();
 	}

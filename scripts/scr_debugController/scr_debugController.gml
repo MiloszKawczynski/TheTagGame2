@@ -385,6 +385,32 @@ function scr_statitstic(name, value)
 	return ImGui.InputFloat("##" + string_replace_all(name, " ", ""), value);
 }
 
+function scr_skills()
+{
+	if (ImGui.CollapsingHeader("Skills"))
+	{
+	
+		for(var i = 0; i < array_length(o_gameManager.skills); i++)
+		{
+			var skill = o_gameManager.skills[i];
+			skill.name = ImGui.InputText("name ##" + string(i), skill.name);
+			
+			skill.usage = ImGui.InputFloat("Usage ##" + string(i), skill.usage);
+			skill.replenish = ImGui.InputFloat("Replenish ##" + string(i), skill.replenish);
+			skill.value = ImGui.InputFloat("Value ##" + string(i), skill.value);
+			
+			ImGui.Separator();
+		}
+		
+		with(o_char)
+		{
+			setupStats();
+		}
+	}
+	
+	ImGui.Separator();
+}
+
 function scr_gravitationChange()
 {
 	if (global.debugIsGravityOn)
