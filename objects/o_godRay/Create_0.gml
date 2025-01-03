@@ -15,4 +15,10 @@ editor = function()
 	ImGui_position_2(x, y);
 	
 	image_angle = ImGui.DragFloat("Rotation", image_angle);
+	
+	isReflector = ImGui.Checkbox("Reflector", isReflector);
+	
+	intensivity = ImGui.DragFloat("Intensivity", intensivity, 0.1, 0, 1);
 }
+
+intensivityUniform = shader_get_uniform(shd_godray, "intensivity");
