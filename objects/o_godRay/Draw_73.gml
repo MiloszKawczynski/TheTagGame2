@@ -37,52 +37,58 @@ draw_sprite_ext(
 
 matrix_reset();
 
-matrix_set(matrix_world, matrix_build(x, y + 1, z + 1, spriteRotX, rot, rot + spriteRotY, 1, 1, 1));
+if (!isReflector or true)
+{
+	matrix_set(matrix_world, matrix_build(x, y + 1, z + 1, spriteRotX, rot, rot + spriteRotY, 1, 1, 1));
 	
-draw_sprite_ext(
-	s_godRay, 
-	0, 
-	5, 
-	lengthdir_y(length * 16, randomRotation), 
-	length * 1,  
-	0.5 + randomWidth, 
-	randomRotation, 
-	c_white, 
-	0.25 + randomAlpha);
+	draw_sprite_ext(
+		s_godRay, 
+		0, 
+		5, 
+		lengthdir_y(length * 16, randomRotation), 
+		length * 1,  
+		0.5 + randomWidth, 
+		randomRotation, 
+		c_white, 
+		0.25 + randomAlpha);
 
-matrix_reset();
+	matrix_reset();
 
-matrix_set(matrix_world, matrix_build(x, y + 2, z + 2, spriteRotX, rot, rot + spriteRotY, 1, 1, 1));
+	matrix_set(matrix_world, matrix_build(x, y + 2, z + 2, spriteRotX, rot, rot + spriteRotY, 1, 1, 1));
 
-draw_sprite_ext(
-	s_godRay, 
-	0, 
-	-15, 
-	lengthdir_y(length * 16, -randomRotation), 
-	length * 1,  
-	0.5 - randomWidth, 
-	-randomRotation, 
-	c_white, 
-	0.25 - randomAlpha);
+	draw_sprite_ext(
+		s_godRay, 
+		0, 
+		-15, 
+		lengthdir_y(length * 16, -randomRotation), 
+		length * 1,  
+		0.5 - randomWidth, 
+		-randomRotation, 
+		c_white, 
+		0.25 - randomAlpha);
 	
-matrix_reset();
+	matrix_reset();
+}
 	
 shader_reset();
 
 gpu_set_blendmode(bm_normal);
 
-if (!surface_exists(godRaysSurface))
+if (!isReflector)
 {
-	godRaysSurface = surface_create(1920, 1080);
-}
+	if (!surface_exists(godRaysSurface))
+	{
+		godRaysSurface = surface_create(1920, 1080);
+	}
 	
-surface_set_target(godRaysSurface);
-	draw_clear_alpha(c_black, 0);
-	part_system_drawit(godRaysSystem);
-surface_reset_target();
+	surface_set_target(godRaysSurface);
+		draw_clear_alpha(c_black, 0);
+		part_system_drawit(godRaysSystem);
+	surface_reset_target();
 
-matrix_set(matrix_world, matrix_build(x, y, z, spriteRotX, rot, rot + spriteRotY, 1, 1, 1));
-	gpu_set_blendmode(bm_add);
-		draw_surface(godRaysSurface, -(length + 3) * 16, -100);
-	gpu_set_blendmode(bm_normal);
-matrix_reset();
+	matrix_set(matrix_world, matrix_build(x, y, z, spriteRotX, rot, rot + spriteRotY, 1, 1, 1));
+		gpu_set_blendmode(bm_add);
+			draw_surface(godRaysSurface, -(length + 3) * 16, -100);
+		gpu_set_blendmode(bm_normal);
+	matrix_reset();
+}
