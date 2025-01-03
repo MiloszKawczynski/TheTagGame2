@@ -166,6 +166,8 @@
     {"id":{"name":"o_collision","path":"objects/o_collision/o_collision.yy",},},
     {"id":{"name":"o_cup","path":"objects/o_cup/o_cup.yy",},},
     {"id":{"name":"o_debugController","path":"objects/o_debugController/o_debugController.yy",},},
+    {"id":{"name":"o_decoration","path":"objects/o_decoration/o_decoration.yy",},},
+    {"id":{"name":"o_decorationFlat","path":"objects/o_decorationFlat/o_decorationFlat.yy",},},
     {"id":{"name":"o_diagonal","path":"objects/o_diagonal/o_diagonal.yy",},},
     {"id":{"name":"o_gameManager","path":"objects/o_gameManager/o_gameManager.yy",},},
     {"id":{"name":"o_godRay","path":"objects/o_godRay/o_godRay.yy",},},
