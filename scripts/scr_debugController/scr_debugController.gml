@@ -314,6 +314,7 @@ function scr_playerModificators()
         choosedPlayer.downKey = scr_keyBinding(choosedPlayer.downKey, "Down Key", isDownKeyBindingOn, "isDownKeyBindingOn");
         choosedPlayer.jumpKey = scr_keyBinding(choosedPlayer.jumpKey, "Jump Key", isJumpKeyBindingOn, "isJumpKeyBindingOn");
         choosedPlayer.interactionKey = scr_keyBinding(choosedPlayer.interactionKey, "Interaction Key", isInteractionKeyBindingOn, "isInteractionKeyBindingOn");
+        choosedPlayer.skillKey = scr_keyBinding(choosedPlayer.skillKey, "Skill Key", isSkillKeyBindingOn, "isSkillKeyBindingOn");
     }
 
     ImGui.Separator();
@@ -433,6 +434,7 @@ function scr_keyPresets(choosedPlayer)
 		choosedPlayer.leftKey = ord("A");
 		choosedPlayer.upKey = ord("W");
 		choosedPlayer.downKey = ord("S");
+		choosedPlayer.jumpKey = ord("W");
 	}
 	
 	ImGui.SameLine();
@@ -443,6 +445,7 @@ function scr_keyPresets(choosedPlayer)
 		choosedPlayer.leftKey = vk_left;
 		choosedPlayer.upKey = vk_up;
 		choosedPlayer.downKey = vk_down;
+		choosedPlayer.jumpKey = vk_up;
 	}
 	
 	ImGui.SameLine();
@@ -453,6 +456,7 @@ function scr_keyPresets(choosedPlayer)
 		choosedPlayer.leftKey = ord("H");
 		choosedPlayer.upKey = ord("U");
 		choosedPlayer.downKey = ord("J");
+		choosedPlayer.jumpKey = ord("U"); 
 	}
 }
 

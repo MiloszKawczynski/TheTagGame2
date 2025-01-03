@@ -4,8 +4,10 @@ if (player == 0)
 	leftKey = ord("A");
 	upKey = ord("W");
 	downKey = ord("S");
-	jumpKey = vk_space;
+	jumpKey = ord("W");
 	interactionKey = vk_lshift;
+	skillKey = vk_lcontrol;
+	
 	color = c_red;
 	isChasing = true;
 }
@@ -16,8 +18,10 @@ if (player == 1)
 	leftKey = vk_left;
 	upKey = vk_up;
 	downKey = vk_down;
-	jumpKey = vk_rcontrol;
+	jumpKey = vk_up;
 	interactionKey = vk_rshift;
+	skillKey = vk_rcontrol;
+	
 	color = c_blue;
 	isChasing = false;
 }

@@ -53,6 +53,7 @@ isUpKeyBindingOn = false;
 isDownKeyBindingOn = false;
 isJumpKeyBindingOn = false;
 isInteractionKeyBindingOn = false;
+isSkillKeyBindingOn = false;
 
 pseudo2D = false;
 
