@@ -67,3 +67,8 @@ else
 {
 	part_system_drawit(runTrailSystem);
 }
+
+draw_set_color(c_black);
+draw_rectangle(x + 32 * image_xscale, y - 16, x + 40 * image_xscale, y + 16, false);
+draw_set_color(color);
+draw_rectangle(x + 32 * image_xscale, y + 16 - (32 * skillEnergy), x + 40 * image_xscale, y + 16, false);
