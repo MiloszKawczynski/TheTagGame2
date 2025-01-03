@@ -9,6 +9,25 @@ isGameOn = false;
 points = [0, 0];
 rounds = 0;
 
+enum skillTypes
+{
+	sprint
+}
+
+skill = function(_name, _usage, _replenish, _value) constructor
+{
+	name = _name;
+	usage = _usage;
+	replenish = _replenish;
+	value = _value;
+}
+
+sprint = new skill("sprint", 0.01, 0.01, 0.5);
+
+skills = [];
+
+array_push(skills, sprint);
+
 reset = function()
 {
 	with(o_debugController)

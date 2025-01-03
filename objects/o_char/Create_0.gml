@@ -45,6 +45,8 @@ obstacleRangeModificator = 0;
 maximumObstacleJumpForceModificator = 0;
 minimumObstacleJumpForceModificator = 0;
 maximumJumpBufforModificator = 0;
+skillEnergy = 1;
+skill = skillTypes.sprint;
 
 function setupStats()
 {
@@ -67,6 +69,10 @@ function setupStats()
 	maximumObstacleJumpForce = o_gameManager.maximumObstacleJumpForce + maximumObstacleJumpForceModificator;
 	minimumObstacleJumpForce = o_gameManager.minimumObstacleJumpForce + minimumObstacleJumpForceModificator;
 	maximumJumpBuffor = o_gameManager.maximumJumpBuffor + maximumJumpBufforModificator;
+	
+	skillUsage = o_gameManager.skills[skill].usage;
+	skillReplenish = o_gameManager.skills[skill].replenish;
+	skillValue = o_gameManager.skills[skill].value;
 }
 
 setupStats();
