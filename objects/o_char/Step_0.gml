@@ -9,6 +9,31 @@ else
 	scr_topDownCollision();
 }
 
+if (keyboard_check(skillKey))
+{
+	if (skillEnergy > 0)
+	{
+		skillEnergy -= skillUsage;
+		
+		maximumSpeed += 0.25;
+	}
+	else
+	{
+		skillEnergy = 0;
+	}
+}
+else
+{
+	if (skillEnergy < 1)
+	{
+		skillEnergy += skillReplenish;
+	}
+	else
+	{
+		skillEnergy = 1;
+	}
+}
+
 if (isChasing)
 {
 	nearestPlayer = instance_nearest_notme(x, y, o_char);
