@@ -11,6 +11,7 @@ varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 varying vec3 v_vNormal;
 varying vec3 v_vWorldPosition;
+varying vec3 v_vPosition;
 
 uniform vec3 ambient_color;
 uniform vec3 sun_color;
@@ -79,9 +80,11 @@ void main()
     // Alpha
     if ( col.a < 0.05 ) { discard; }
  
-    // Diffuse and ambient
-    float nDot = max(dot(v_vNormal, normalize(sun_pos)), 0.);
-    col.rgb *= ( ambient_color ) + ( sun_color * sun_intensity ) * nDot;
+	// Diffuse and ambient
+	vec3 norm = normalize(v_vNormal);
+	vec3 lightDir = normalize(-sun_pos);
+	float _diff = max(dot(norm, lightDir), 0.0);
+	col.rgb *= ambient_color + ( sun_color * sun_intensity ) * _diff;
  
     // Spot & Point lights
     vec3 col_add = vec3(0);
