@@ -20,6 +20,7 @@ if (global.debugIsGravityOn)
 gpu_set_blendmode(bm_add);
 
 shader_set(shd_godray);
+shader_set_uniform_f(intensivityUniform, intensivity);
 
 matrix_set(matrix_world, matrix_build(x, y, z, spriteRotX, rot, rot + spriteRotY, 1, 1, 1));
 

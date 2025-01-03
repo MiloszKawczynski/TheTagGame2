@@ -7,6 +7,7 @@ godRaysSurface = undefined;
 
 image_angle = 45;
 
+intensivity = 0.6;
 editor = function()
 {
 	ImGui_position_2(x, y);
