@@ -54,42 +54,30 @@ if (isReadyToMerge)
 		mergeSurface = surface_create(right - left, bottom - top);	
 	}
 		
-	for (var i = 0; i < height; i++)
-	{
-		surface_set_target(mergeSurface);
-		draw_clear_alpha(c_black, 0);
-		key = ds_map_find_first(instanceToMerge);
-			
-		for (var j = 0; j < size; j++)
-		{
-			var inst = key;
-				
-			if (inst.image_number < i)
-			{
-				key = ds_map_find_next(instanceToMerge, key);
-				continue;
-			}
-				
-			draw_sprite_ext(inst.sprite_index, i, inst.x - left, inst.y - top, inst.image_xscale, inst.image_yscale, inst.image_angle, inst.image_blend, inst.image_alpha);
-			
-			key = ds_map_find_next(instanceToMerge, key);
-		}
-			
-		if (i == 0)
-		{
-			mergedSprite = sprite_create_from_surface(mergeSurface, 0, 0, right - left, bottom - top, false, false, 0, 0);
-		}
-		else
-		{
-			sprite_add_from_surface(mergedSprite, mergeSurface, 0, 0, right - left, bottom - top, false, false);
-		}
+	surface_set_target(mergeSurface);
+	draw_clear_alpha(c_black, 0);
+	key = ds_map_find_first(instanceToMerge);
 		
-		surface_reset_target();
+	for (var j = 0; j < size; j++)
+	{
+		var inst = key;
+			
+		if (inst.image_number < height - 1)
+		{
+			key = ds_map_find_next(instanceToMerge, key);
+			continue;
+		}
+			
+		draw_sprite_ext(inst.sprite_index, height - 1, inst.x - left, inst.y - top, inst.image_xscale, inst.image_yscale, inst.image_angle, inst.image_blend, inst.image_alpha);
+		
+		key = ds_map_find_next(instanceToMerge, key);
 	}
+		
+	mergedSprite = sprite_create_from_surface(mergeSurface, 0, 0, right - left, bottom - top, false, false, 0, 0);
 	
-	mergedModel = fauxton_model_create(mergedSprite, mergedX, mergedY, 0, 0, 0, 0, 1, 1, 1);
-	image_xscale = 1;
-	image_yscale = 1;
+	surface_reset_target();
+	
+	mergedModel = fauxton_model_create(mergedSprite, mergedX, mergedY, height - 0.9, 0, 0, 0, 1, 1, 1);
 	
 	isReadyToMerge = false;
 	
@@ -98,14 +86,5 @@ if (isReadyToMerge)
 		ImGui_position_3(x, y, z);
 	
 		fauxton_model_set(mergedModel, x, y, z, 0, 0, 0, image_xscale, image_yscale, 1);
-	}
-	
-	key = ds_map_find_first(instanceToMerge);
-			
-	for (var j = 0; j < size; j++)
-	{
-		fauxton_model_destroy(key.model);
-		key.model = undefined;
-		key = ds_map_find_next(instanceToMerge, key);
 	}
 }
