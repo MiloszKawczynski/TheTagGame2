@@ -16,6 +16,7 @@ varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 varying vec3 v_vNormal;
 varying vec3 v_vWorldPosition;
+varying vec3 v_vPosition;
 
 void main()
 {
@@ -30,4 +31,5 @@ void main()
     v_vTexcoord = in_TextureCoord;
 	v_vNormal = wdNrm;
 	v_vWorldPosition = wdPos;
+	v_vPosition = in_Position;
 }
