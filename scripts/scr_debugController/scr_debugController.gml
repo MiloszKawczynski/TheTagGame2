@@ -2452,6 +2452,8 @@ function scr_dialogBoxPresetLoad(dialogPresetName = dialogPresetFileName)
 
         file_text_close(file);
 		
+		dialog.prepere();
+		
 		log(string("Dialog Box Preset {0} Loaded", dialogPresetName));
 		return;
     }
