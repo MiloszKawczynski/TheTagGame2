@@ -60,3 +60,4 @@ Temporary Items
 scripts/GMLive*
 extensions/GMLive/
 extensions/GMLive_fallback/
+objects/o_debugController/Other_2.gml
