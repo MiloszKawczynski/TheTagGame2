@@ -174,9 +174,12 @@ function scr_cameraControll()
 
 function scr_clearLog()
 {
-	ds_list_clear(logBuffor);
-	ds_list_clear(logColor);
-	ds_list_clear(monitoredValue);
+	with(o_debugController)
+	{
+		ds_list_clear(logBuffor);
+		ds_list_clear(logColor);
+		ds_list_clear(monitoredValue);
+	}
 }
 
 function scr_logsOptions()
