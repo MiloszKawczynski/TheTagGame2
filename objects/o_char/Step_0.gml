@@ -13,9 +13,12 @@ if (keyboard_check(skillKey))
 {
 	if (skillEnergy > 0)
 	{
-		skillEnergy -= skillUsage;
-		
-		maximumSpeed += 0.25;
+		if (speed != 0)
+		{
+			skillEnergy -= skillUsage;
+			
+			maximumSpeed += skillValue;
+		}
 	}
 	else
 	{
