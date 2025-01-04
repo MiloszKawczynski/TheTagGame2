@@ -1,4 +1,9 @@
 ui.step();
+
+ui.roundNumber.setContent(string("Round {0}/16", rounds));
+ui.leftPoints.setContent(string(points[0]));
+ui.rightPoints.setContent(string(points[1]));
+
 if (isGameOn)
 {
 	chaseTime--;

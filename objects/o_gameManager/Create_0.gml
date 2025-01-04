@@ -1,6 +1,45 @@
 event_inherited();
 
 ui = new UI();
+
+with(ui)
+{
+	mainLayer = new Layer();
+	mainLayer.setGrid(10, 10, false);
+	
+	chaseBar = new Output(, -10);
+	chaseBar.setSprite(s_chaseBar);
+	
+	roundNumber = new Text("Round 0/16", f_chaseBar);
+	roundNumber.setColor(c_black);
+	
+	leftPortrait = new Output(15, -20);
+	leftPortrait.state.setSpriteSheet(s_chaseBarPortraits, 0);
+	
+	leftPoints = new Text("0", f_chaseBar);
+	
+	rightPortrait = new Output(-15, -20);
+	rightPortrait.state.setSpriteSheet(s_chaseBarPortraits, 1);
+	
+	rightPoints = new Text("0", f_chaseBar);
+	
+	chaseBarGroup = new Group();
+	chaseBarGroup.setGrid(1, 1, false);
+	chaseBarGroup.addComponent(0, 0, chaseBar);
+	chaseBarGroup.addComponent(-1, 0, leftPortrait);
+	chaseBarGroup.addComponent(1, 0, rightPortrait);
+	chaseBarGroup.addComponent(0, -0.42, roundNumber);
+	chaseBarGroup.addComponent(-1.27, -0.17, leftPoints);
+	chaseBarGroup.addComponent(1.27, -0.17, rightPoints);
+	chaseBarGroup.setProperties(0.6, 0.6);
+	
+	rightPortrait.setScale(-0.6);
+	
+	mainLayer.addComponent(5, 1, chaseBarGroup);
+
+	pushLayer(mainLayer);
+}
+
 maximumChaseTime = 1020;
 
 chaseTime = maximumChaseTime;
