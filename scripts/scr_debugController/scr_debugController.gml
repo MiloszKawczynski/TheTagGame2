@@ -293,6 +293,23 @@ function scr_playerModificators()
 		choosedPlayer.maximumJumpBufforModificator = scr_statitstic("Maximum Jump Buffor Modificator",  choosedPlayer.maximumJumpBufforModificator);
 		choosedPlayer.color = ImGui.ColorEdit3("Color", choosedPlayer.color);
 		
+		if (ImGui.BeginCombo("##Skill" + string(choosedPlayerIndex), o_gameManager.skills[choosedPlayer.skill].name, ImGuiComboFlags.HeightLarge))
+		{
+			for (var i = 0; i < array_length(o_gameManager.skills); i++)
+			{				
+				var skill = o_gameManager.skills[i];
+				
+				var isSelected = (o_gameManager.skills[choosedPlayer.skill] == skill);
+
+				if (ImGui.Selectable(skill.name, isSelected))
+				{
+					choosedPlayer.skill = i;
+				}
+			}
+		
+			ImGui.EndCombo();
+		}
+		
 		with(choosedPlayer)
 		{
 			setupStats();
