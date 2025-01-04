@@ -10,6 +10,7 @@ if (player == 0)
 	
 	color = c_red;
 	isChasing = true;
+	skill = skillTypes.sprint;
 }
 
 if (player == 1)
@@ -24,6 +25,7 @@ if (player == 1)
 	
 	color = c_blue;
 	isChasing = false;
+	skill = skillTypes.dash;
 }
 
 maximumDefaultSpeedModificator = 0;
@@ -46,7 +48,7 @@ maximumObstacleJumpForceModificator = 0;
 minimumObstacleJumpForceModificator = 0;
 maximumJumpBufforModificator = 0;
 skillEnergy = 1;
-skill = skillTypes.sprint;
+skillRecharging = false;
 
 function setupStats()
 {

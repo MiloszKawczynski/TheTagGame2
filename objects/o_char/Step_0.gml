@@ -9,33 +9,68 @@ else
 	scr_topDownCollision();
 }
 
-if (keyboard_check(skillKey))
+var isUsed = false;
+
+if (keyboard_check(skillKey) and !skillRecharging)
 {
-	if (skillEnergy > 0)
+	if (skillEnergy >= skillUsage)
 	{
-		if (speed != 0)
+		switch(skill)
 		{
-			skillEnergy -= skillUsage;
-			
-			maximumSpeed += skillValue;
+			case(skillTypes.sprint):
+			{
+				if (speed != 0 and isGrounded) 
+				{
+					if (maximumSpeed < maximumDefaultSpeed * 1.59)
+					{
+						maximumSpeed += skillValue;
+					}
+					isUsed = true;
+				}
+				break;
+			}
+			case(skillTypes.dash):
+			{
+				if (speed != 0 and isGrounded)
+				{
+					if (o_gameManager.isGravitationOn)
+					{
+						horizontalSpeed = maximumSpeed * skillValue * sign(hspeed);
+						maximumSpeed = abs(horizontalSpeed);
+					}
+					else 
+					{
+						horizontalSpeed = lengthdir_x(maximumSpeed * skillValue, direction);
+						verticalSpeed = lengthdir_y(maximumSpeed * skillValue, direction);
+						maximumSpeed = point_distance(0, 0, horizontalSpeed, verticalSpeed);
+					}
+					isUsed = true;
+				}
+				break;
+			}
 		}
 	}
-	else
+	else 
 	{
-		skillEnergy = 0;
+		skillRecharging = true;
 	}
 }
-else
+
+if (!isUsed)
 {
-	if (skillEnergy < 1)
+	skillEnergy += skillReplenish;
+	
+	if (skillEnergy >= 1)
 	{
-		skillEnergy += skillReplenish;
-	}
-	else
-	{
-		skillEnergy = 1;
+		skillRecharging = false;
 	}
 }
+else 
+{ 
+	skillEnergy -= skillUsage;
+}
+
+skillEnergy = clamp(skillEnergy, 0, 1);
 
 if (isChasing)
 {
