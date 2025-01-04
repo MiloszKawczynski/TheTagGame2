@@ -717,7 +717,7 @@ function UI() constructor
 		
 		static updateTimer = function(_sprite = sprite)
 		{
-			time = timer(time, sprite_get_speed(_sprite) / game_get_speed(gamespeed_fps), sprite_get_number(_sprite));
+			time = armez_timer(time, sprite_get_speed(_sprite) / game_get_speed(gamespeed_fps), sprite_get_number(_sprite));
 			return time;
 		}
 		
@@ -771,7 +771,7 @@ function UI() constructor
 				ds_list_set(isTimerForSpriteUpdated, _number, true);
 				var spriteTmp = ds_list_find_value(_sprite, _number);
 				var timeTmp = ds_list_find_value(time, _number);
-				timeTmp = timer(timeTmp, sprite_get_speed(spriteTmp) / game_get_speed(gamespeed_fps), sprite_get_number(spriteTmp));
+				timeTmp = armez_timer(timeTmp, sprite_get_speed(spriteTmp) / game_get_speed(gamespeed_fps), sprite_get_number(spriteTmp));
 				ds_list_set(time, _number, timeTmp);
 				return timeTmp;
 			}

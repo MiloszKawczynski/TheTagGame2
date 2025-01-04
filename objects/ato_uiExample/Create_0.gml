@@ -18,7 +18,7 @@ if (dokumentacjaJestRobiona)
 			time = 0;
 			var normal = function()
 			{
-				time = timer(time, 0.03, 2 * pi);
+				time = armez_timer(time, 0.03, 2 * pi);
 				draw_sprite_ext(ats_checkboxOwnUncheck, 0, posX, posY, 1, 1, sin(time) * 45, c_white, 1);
 				
 			}
@@ -68,7 +68,7 @@ else
 		
 				var normal = function()
 				{
-					time = timer(time, 0.35, 2 * pi);
+					time = armez_timer(time, 0.35, 2 * pi);
 					draw_set_color(c_red);
 					scr_p5Button([7, 2, 35, 10, 2, 15, 30, 18, 23, 22, 29, 20, 23, 27, 46, 25]);
 					draw_set_color(c_black);
@@ -82,7 +82,7 @@ else
 		
 				var hover = function()
 				{
-					time = timer(time, 0.15, 2 * pi);
+					time = armez_timer(time, 0.15, 2 * pi);
 					draw_set_color(c_black);
 					scr_p5Button([7, 2, 35, 10, 2, 15, 30, 18, 23, 22, 29, 20, 23, 27, 46, 25]);
 					draw_set_color(c_red);
@@ -96,7 +96,7 @@ else
 		
 				var press = function()
 				{
-					time = timer(time, 0.15, 2 * pi);
+					time = armez_timer(time, 0.15, 2 * pi);
 					draw_set_color(c_black);
 					scr_p5Button([7, 2, 35, 10, 2, 15, 30, 18, 23, 22, 29, 20, 23, 27, 46, 25]);
 					draw_set_color(c_red);
@@ -110,7 +110,7 @@ else
 		
 				var focus = function()
 				{
-					time = timer(time, 0.35, 2 * pi);
+					time = armez_timer(time, 0.35, 2 * pi);
 					draw_set_color(c_aqua);
 					scr_p5Button([3, 21, 39, 3, 41, 25], pi * 3 / 4);
 					draw_set_color(c_red);
@@ -167,7 +167,7 @@ else
 				var normal = function(_value)
 				{
 					draw_set_alpha(1);
-					time = timer(time, 0.05, 2 * pi);
+					time = armez_timer(time, 0.05, 2 * pi);
 			
 					if (!_value)
 					{
@@ -185,7 +185,7 @@ else
 				var hover = function(_value)
 				{
 					draw_set_alpha(1);
-					time = timer(time, 0.05, 2 * pi);
+					time = armez_timer(time, 0.05, 2 * pi);
 			
 					if (!_value)
 					{
@@ -203,7 +203,7 @@ else
 				var press = function(_value)
 				{
 					draw_set_alpha(1);
-					time = timer(time, 0.05, 2 * pi);
+					time = armez_timer(time, 0.05, 2 * pi);
 			
 					draw_sprite_ext(ats_checkboxOwnPress, 0, posX, posY, 1, 1, sin(time), c_white, 1); 
 
@@ -213,7 +213,7 @@ else
 				var focus = function(_value)
 				{
 					draw_set_alpha(1);
-					time = timer(time, 0.05, 2 * pi);
+					time = armez_timer(time, 0.05, 2 * pi);
 			
 					draw_sprite_ext(ats_checkboxOwnBackground, 0, posX, posY, 1, 1, sin(time), c_white, 1); 
 			
@@ -331,7 +331,7 @@ else
 		
 				var focus = function(_value)
 				{
-					time = timer(time, 0.03);
+					time = armez_timer(time, 0.03);
 			
 					var _x = posX - ((width / 2) - left) + ((width - (left + right)) * time) - 3;
 					draw_sprite_ext(ats_swordGlow, 0, _x, posY, 1, 1, 0, c_white, max(sin(time * pi + pi / 3), 0.25));
@@ -387,7 +387,7 @@ else
 		
 				var normal = function(_value)
 				{
-					time = timer(time, 0.02, 2 * pi);
+					time = armez_timer(time, 0.02, 2 * pi);
 			
 					scr_sonic06Radio([1, 4, 3, 2, 1, 7, 4, 2, 4, 10, 5, 1, 7, 13, 11, 1, 10, 14, 25, 1, 25, 14, 47, 1, 47, 14]);
 			
@@ -408,7 +408,7 @@ else
 		
 				var hover = function(_value)
 				{
-					spriteTime = timer(spriteTime, sprite_get_speed(ats_glowArrowsAnimated) / game_get_speed(gamespeed_fps), sprite_get_number(ats_glowArrowsAnimated));
+					spriteTime = armez_timer(spriteTime, sprite_get_speed(ats_glowArrowsAnimated) / game_get_speed(gamespeed_fps), sprite_get_number(ats_glowArrowsAnimated));
 			
 					scr_sonic06Radio([1, 4, 3, 2, 1, 7, 4, 2, 4, 10, 5, 1, 7, 13, 11, 1, 10, 14, 25, 1, 25, 14, 47, 1, 47, 14]);
 					scr_sonic06Arrow([11, 2, 11, 5, 12, 4, 12, 6, 13, 6, 14, 7, 13, 7, 14, 8, 13, 9, 12, 9, 12, 11, 11, 10, 11, 13],,, c_aqua);
@@ -419,7 +419,7 @@ else
 		
 				var press = function(_value)
 				{
-					spriteTime = timer(spriteTime, sprite_get_speed(ats_glowArrowsAnimated) / game_get_speed(gamespeed_fps), sprite_get_number(ats_glowArrowsAnimated));
+					spriteTime = armez_timer(spriteTime, sprite_get_speed(ats_glowArrowsAnimated) / game_get_speed(gamespeed_fps), sprite_get_number(ats_glowArrowsAnimated));
 			
 					scr_sonic06Radio([1, 4, 3, 2, 1, 7, 4, 2, 4, 10, 5, 1, 7, 13, 11, 1, 10, 14, 25, 1, 25, 14, 47, 1, 47, 14]);
 					scr_sonic06Arrow([11, 2, 11, 5, 12, 4, 12, 6, 13, 6, 14, 7, 13, 7, 14, 8, 13, 9, 12, 9, 12, 11, 11, 10, 11, 13],,, c_aqua);
@@ -430,7 +430,7 @@ else
 		
 				var focus = function(_value)
 				{
-					time = timer(time, 0.02, 2 * pi);
+					time = armez_timer(time, 0.02, 2 * pi);
 			
 					scr_sonic06Radio([1, 4, 3, 2, 1, 7, 4, 2, 4, 10, 5, 1, 7, 13, 11, 1, 10, 14, 25, 1, 25, 14, 47, 1, 47, 14]);
 			
@@ -495,7 +495,7 @@ else
 		
 				var hover = function(_value)
 				{
-					time = timer(time, 0.1, pi * 2);
+					time = armez_timer(time, 0.1, pi * 2);
 					draw_sprite(ats_inputOwn, 0, posX, posY);
 					text.draw();
 					draw_sprite(ats_inputPencil, 0, device_mouse_x_to_gui(0) + sin(time), device_mouse_y_to_gui(0) - sin(time));
@@ -510,7 +510,7 @@ else
 		
 				var focus = function(_value)
 				{
-					time = timer(time, 0.1, pi * 2);
+					time = armez_timer(time, 0.1, pi * 2);
 					draw_sprite(ats_inputOwn, 0, posX, posY);
 					text.draw();
 			
@@ -591,7 +591,7 @@ else
 					}
 					else
 					{
-						time = timer(time, sprite_get_speed(ats_pandaGrab) / game_get_speed(gamespeed_fps), sprite_get_number(ats_pandaGrab));
+						time = armez_timer(time, sprite_get_speed(ats_pandaGrab) / game_get_speed(gamespeed_fps), sprite_get_number(ats_pandaGrab));
 				
 						if (draged > 0)
 						{				
@@ -655,7 +655,7 @@ else
 		
 				var draw = function()
 				{					
-					time = timer(time, 0.05, 2 * pi);
+					time = armez_timer(time, 0.05, 2 * pi);
 			
 					var _path = path_duplicate(atpth_circle);
 					path_shift(_path, posX - width / 2, posY - height / 2);
@@ -714,7 +714,7 @@ else
 					var _posX = posX;
 					var _posY = posY;
 			
-					time = timer(time, 0.03, 1);
+					time = armez_timer(time, 0.03, 1);
 			
 					for(var i = 0; i < maxValue; i++)
 					{	
