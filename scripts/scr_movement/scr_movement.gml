@@ -52,26 +52,16 @@ function scr_topDownMovement()
 		verticalSpeed = 0;
 	}
 	
-	if (speed > maximumDefaultSpeed)
+	if (speed > maximumSpeed)
 	{
-		speed -= deceleration * maximumSpeedDecelerationFactor;
-		maximumSpeed = speed;
-		
-		if (abs(maximumSpeed - maximumDefaultSpeed) <= deceleration)
-		{
-			maximumSpeed = maximumDefaultSpeed
-		}
+		speed -= deceleration;
+		speed = max(speed, maximumSpeed);
 	}
 	
-	if (speed < maximumDefaultSpeed and (desiredHorizontalDirection != 0 or desiredVerticalDirection != 0))
+	if (speed < maximumSpeed and (desiredHorizontalDirection != 0 or desiredVerticalDirection != 0))
 	{
 		speed += acceleration;
-		maximumSpeed = speed;
-		
-		if (abs(maximumSpeed - maximumDefaultSpeed) <= acceleration)
-		{
-			maximumSpeed = maximumDefaultSpeed
-		}
+		speed = min(speed, maximumSpeed);
 	}
 	
 	if (speed > deceleration * 2)
@@ -80,6 +70,18 @@ function scr_topDownMovement()
 	}
 	
 	scr_TopDownObstaclesInteraction();
+	
+	if (maximumSpeed > maximumDefaultSpeed)
+	{
+		maximumSpeed -= maximumSpeedDecelerationFactor;
+		maximumSpeed = max(maximumSpeed, maximumDefaultSpeed);
+	}
+	
+	if (maximumSpeed < maximumDefaultSpeed)
+	{
+		maximumSpeed += maximumSpeedDecelerationFactor;
+		maximumSpeed = min(maximumSpeed, maximumDefaultSpeed);
+	}
 }
 
 function scr_TopDownObstaclesInteraction()
@@ -167,7 +169,7 @@ function scr_platformerMovement()
 	
 	direction = point_direction(0, 0, horizontalSpeed, verticalSpeed);
 	
-	if (abs(hspeed) < deceleration)
+	if (abs(hspeed) < deceleration * (maximumSpeed / maximumDefaultSpeed))
 	{
 		hspeed = 0;
 	}
@@ -206,7 +208,7 @@ function scr_platformerMovement()
 	
 	scr_platformerObstaclesInteraction()
 	
-	if (sign(hspeed) != desiredHorizontalDirection and desiredHorizontalDirection != 0)
+	if (abs(hspeed) < deceleration)
 	{
 		maximumSpeed = maximumDefaultSpeed;
 	}
@@ -218,37 +220,18 @@ function scr_platformerMovement()
 	
 	if (desiredHorizontalDirection != 0)
 	{
-		if (place_meeting(x, y + 1, o_block) and isGrounded and maximumSpeed != maximumDefaultSpeed)
+		if (place_meeting(x, y + 1, o_block) and isGrounded)
 		{
-			if (hspeed == 0)
+			if (maximumSpeed > maximumDefaultSpeed)
 			{
-				maximumSpeed = maximumDefaultSpeed;
+				maximumSpeed -= maximumSpeedDecelerationFactor * maximumSpeedDecelerationFactor;
+				maximumSpeed = max(maximumSpeed, maximumDefaultSpeed);
 			}
-			else
+			
+			if (maximumSpeed < maximumDefaultSpeed)
 			{
-				if (abs(hspeed) > maximumDefaultSpeed)
-				{
-					hspeed -= deceleration * maximumSpeedDecelerationFactor * image_xscale;
-					maximumSpeed = abs(hspeed);
-					maximumSpeed = max(maximumSpeed, maximumDefaultSpeed);
-		
-					if (abs(maximumSpeed - maximumDefaultSpeed) <= deceleration)
-					{
-						maximumSpeed = maximumDefaultSpeed
-					}
-				}
-	
-				if (abs(hspeed) < maximumDefaultSpeed)
-				{
-					hspeed += acceleration * image_xscale;
-					maximumSpeed = abs(hspeed);
-					maximumSpeed = min(maximumSpeed, maximumDefaultSpeed);
-		
-					if (abs(maximumSpeed - maximumDefaultSpeed) <= acceleration)
-					{
-						maximumSpeed = maximumDefaultSpeed
-					}
-				}
+				maximumSpeed += maximumSpeedDecelerationFactor;
+				maximumSpeed = min(maximumSpeed, maximumDefaultSpeed);
 			}
 		}
 	}
@@ -259,36 +242,24 @@ function scr_platformerMovement()
 		{
 			if (place_meeting(x, y + 1, o_ramp))
 			{
-				hspeed += rampAcceleration * sign(hspeed);
-				if (abs(hspeed) > maximumSpeed)
-				{
-					maximumSpeed = abs(hspeed);
-				}
+				maximumSpeed += rampAcceleration;
 			}
 			
 			if (place_meeting(x, y + 1, o_slope))
 			{
-				hspeed += slopeAcceleration * sign(hspeed);
-				if (abs(hspeed) > maximumSpeed)
-				{
-					maximumSpeed = abs(hspeed);
-				}
+				maximumSpeed += slopeAcceleration;
 			}
 		}
 		else
 		{
 			if (place_meeting(x, y + 1, o_slope))
 			{
-				hspeed -= slopeDeceleration * image_xscale;
-				maximumSpeed = abs(hspeed);
-				maximumSpeed = max(maximumSpeed, maximumSlopeSpeed);
+				maximumSpeed -= slopeDeceleration;
 			}
 			
 			if (place_meeting(x, y + 1, o_ramp))
 			{
-				hspeed -= rampDeceleration * image_xscale;
-				maximumSpeed = abs(hspeed);
-				maximumSpeed = max(maximumSpeed, maximumRampSpeed);
+				maximumSpeed -= rampDeceleration;
 			}
 		}
 	}
