@@ -1,6 +1,6 @@
 function scr_topDownMovement()
 {	
-	isGrounded = false;
+	isGrounded = true;
 	
 	desiredHorizontalDirection = keyboard_check(rightKey) - keyboard_check(leftKey);
 	desiredVerticalDirection = keyboard_check(downKey) - keyboard_check(upKey);

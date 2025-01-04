@@ -421,6 +421,11 @@ function scr_gravitationChange()
 {
 	if (global.debugIsGravityOn)
 	{		
+		with(o_char)
+		{
+			isGrounded = false;
+		}
+		
 		Camera.Pitch = 130;
 		Camera.Angle = 90;
 	}
