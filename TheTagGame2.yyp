@@ -120,6 +120,7 @@
     {"$GMIncludedFile":"","%Name":"level_gym.json","CopyToMask":-1,"filePath":"datafiles/content","name":"level_gym.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"level_miko.json","CopyToMask":-1,"filePath":"datafiles/content","name":"level_miko.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"level_santa.json","CopyToMask":-1,"filePath":"datafiles/content","name":"level_santa.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"level_skillTest.json","CopyToMask":-1,"filePath":"datafiles/content","name":"level_skillTest.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"level_werka.json","CopyToMask":-1,"filePath":"datafiles/content","name":"level_werka.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"modificators_default.json","CopyToMask":-1,"filePath":"datafiles/content","name":"modificators_default.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"modificators_longArm.json","CopyToMask":-1,"filePath":"datafiles/content","name":"modificators_longArm.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
