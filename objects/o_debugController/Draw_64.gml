@@ -1,5 +1,3 @@
-ui.draw();
-
 if (!dialogOverImGui)
 {
 	if (dialog != undefined and dialog.isSpeaking)

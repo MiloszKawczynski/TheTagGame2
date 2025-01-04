@@ -18,10 +18,7 @@
     "name":"2_Objects",
     "path":"folders/2_Objects.yy",
   },
-  "parentObjectId":{
-    "name":"ato_ui",
-    "path":"objects/ato_ui/ato_ui.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

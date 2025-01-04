@@ -1,3 +1,6 @@
+event_inherited();
+
+ui = new UI();
 maximumChaseTime = 1020;
 
 chaseTime = maximumChaseTime;

@@ -1,5 +1,3 @@
-event_inherited();
-
 ImGui.__Initialize();
 
 fontDefault = ImGui.AddFontDefault();
@@ -28,16 +26,6 @@ debugMatrix = matrix_build(0, 0, 33, 0, 0, 0, 1, 1, 1);
 characterMatrix = matrix_build(0, 12, 16, 0, 0, 0, 1, 1, 1);
 
 window_set_fullscreen(true);
-
-ui = new UI();
-
-with(ui)
-{
-	mainLayer = new Layer();
-	mainLayer.setGrid(10, 10, false);
-
-	pushLayer(mainLayer);
-}
 
 isAutoScrollOn = true;
 

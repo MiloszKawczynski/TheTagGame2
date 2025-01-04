@@ -1,3 +1,4 @@
+ui.step();
 if (isGameOn)
 {
 	chaseTime--;
