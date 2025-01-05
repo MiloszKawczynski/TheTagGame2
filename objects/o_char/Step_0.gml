@@ -11,7 +11,12 @@ else
 
 var isUsed = false;
 
-if (keyboard_check(skillKey) and !skillRecharging)
+if (skillUsed and keyboard_check_pressed(skillKey))
+{
+	skillUsed = false;
+}
+
+if (keyboard_check(skillKey) and !skillRecharging and !skillUsed)
 {
 	if (skillEnergy >= skillUsage)
 	{
@@ -53,6 +58,7 @@ if (keyboard_check(skillKey) and !skillRecharging)
 	else 
 	{
 		skillRecharging = true;
+		skillUsed = true;
 	}
 }
 

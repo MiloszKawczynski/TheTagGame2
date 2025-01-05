@@ -49,6 +49,7 @@ minimumObstacleJumpForceModificator = 0;
 maximumJumpBufforModificator = 0;
 skillEnergy = 1;
 skillRecharging = false;
+skillUsed = false;
 
 function setupStats()
 {
