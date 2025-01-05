@@ -119,6 +119,7 @@
     {"$GMIncludedFile":"","%Name":"level_godraytest.json","CopyToMask":-1,"filePath":"datafiles/content","name":"level_godraytest.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"level_gym.json","CopyToMask":-1,"filePath":"datafiles/content","name":"level_gym.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"level_miko.json","CopyToMask":-1,"filePath":"datafiles/content","name":"level_miko.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"level_rampTest.json","CopyToMask":-1,"filePath":"datafiles/content","name":"level_rampTest.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"level_santa.json","CopyToMask":-1,"filePath":"datafiles/content","name":"level_santa.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"level_skillTest.json","CopyToMask":-1,"filePath":"datafiles/content","name":"level_skillTest.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"level_werka.json","CopyToMask":-1,"filePath":"datafiles/content","name":"level_werka.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
