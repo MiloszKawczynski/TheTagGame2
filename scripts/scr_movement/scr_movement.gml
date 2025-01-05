@@ -2,8 +2,23 @@ function scr_topDownMovement()
 {	
 	isGrounded = true;
 	
+	if (isSkillActive and skill == skillTypes.jumpBack)
+	{
+		if (desiredHorizontalDirection * -1 != keyboard_check(rightKey) - keyboard_check(leftKey) 
+		or desiredVerticalDirection * -1 != keyboard_check(downKey) - keyboard_check(upKey)) 
+		{
+			isSkillActive = false;
+		}
+	}
+	
 	desiredHorizontalDirection = keyboard_check(rightKey) - keyboard_check(leftKey);
 	desiredVerticalDirection = keyboard_check(downKey) - keyboard_check(upKey);
+	
+	if (isSkillActive and skill == skillTypes.jumpBack)
+	{
+		desiredHorizontalDirection *= -1;
+		desiredVerticalDirection *= -1;
+	}
 	
 	horizontalSpeed += desiredHorizontalDirection * acceleration;
 	verticalSpeed += desiredVerticalDirection * acceleration;
@@ -128,7 +143,20 @@ function scr_platformerMovement()
 	horizontalSpeed = hspeed;
 	verticalSpeed = vspeed;
 	
+	if (isSkillActive and skill == skillTypes.jumpBack)
+	{
+		if (desiredHorizontalDirection * -1 != keyboard_check(rightKey) - keyboard_check(leftKey)) 
+		{
+			isSkillActive = false;
+		}
+	}
+	
 	desiredHorizontalDirection = keyboard_check(rightKey) - keyboard_check(leftKey);
+	
+	if (isSkillActive and skill == skillTypes.jumpBack)
+	{
+		desiredHorizontalDirection *= -1;
+	}
 	
 	horizontalSpeed += desiredHorizontalDirection * acceleration;
 		

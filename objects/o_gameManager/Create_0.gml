@@ -54,7 +54,8 @@ rounds = 0;
 enum skillTypes
 {
 	sprint,
-	dash
+	dash,
+	jumpBack
 }
 
 skill = function(_name, _usage, _replenish, _value, _rechargePercentage) constructor
@@ -68,10 +69,11 @@ skill = function(_name, _usage, _replenish, _value, _rechargePercentage) constru
 
 sprint = new skill("sprint", 0.01, 0.01, 0.33, 0);
 dash = new skill("dash", 1, 0.005, 2, 1);
+jumpBack = new skill("jump back", 0.33, 0.01, 2, 0.33)
 
 skills = [];
 
-array_push(skills, sprint, dash);
+array_push(skills, sprint, dash, jumpBack);
 
 reset = function()
 {

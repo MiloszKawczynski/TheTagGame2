@@ -53,6 +53,30 @@ if (keyboard_check(skillKey) and !skillRecharging and !skillUsed)
 				}
 				break;
 			}
+			case(skillTypes.jumpBack):
+			{
+				if (speed != 0 and isGrounded) 
+				{
+					if (o_gameManager.isGravitationOn)
+					{
+						horizontalSpeed *= -1;
+						maximumSpeed += skillValue;
+					}
+					else 
+					{
+						desiredHorizontalDirection *= -1; 
+						desiredVerticalDirection *= -1;
+						direction += 180; 
+						horizontalSpeed = lengthdir_x(maximumSpeed + skillValue, direction);
+						verticalSpeed = lengthdir_y(maximumSpeed + skillValue, direction);
+						maximumSpeed = point_distance(0, 0, horizontalSpeed, verticalSpeed);
+					}
+					skillUsed = true;
+					isSkillActive = true;
+					isUsed = true;
+				}
+				break;
+			}
 		}
 	}
 	else 
