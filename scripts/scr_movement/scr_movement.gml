@@ -108,17 +108,39 @@ function scr_TopDownObstaclesInteraction()
 		{
 			var obstacleSpeedBoost = lerp(minimumObstacleJumpForce, maximumObstacleJumpForce, 1 - (dist / obstacleRange));
 			
+			if (abs(point_direction(0, 0, horizontalSpeed, verticalSpeed) - point_direction(0, 0, desiredHorizontalDirection, desiredVerticalDirection)) > 50)
+			{
+				log("EPIC TURN!", c_aqua);
+			}
+			
 			if (speed != 0)
 			{
 				var newSpeedRatio = (speed + obstacleSpeedBoost) / speed;
-				horizontalSpeed *= newSpeedRatio;
-				verticalSpeed *= newSpeedRatio;
+				
+				if (desiredHorizontalDirection == 0)
+				{
+					horizontalSpeed *= newSpeedRatio;
+				}
+				else 
+				{
+					horizontalSpeed = (abs(horizontalSpeed) * newSpeedRatio) * desiredHorizontalDirection;
+				}
+				
+				if (desiredVerticalDirection == 0)
+				{
+					verticalSpeed *= newSpeedRatio;
+				}
+				else 
+				{
+					verticalSpeed = (abs(verticalSpeed) * newSpeedRatio) * desiredVerticalDirection;
+				}
 			}
 			else
 			{
 				horizontalSpeed = lengthdir_x(obstacleSpeedBoost, lastDirection);
 				verticalSpeed = lengthdir_y(obstacleSpeedBoost, lastDirection);
 			}
+			
 			speed = point_distance(0, 0, horizontalSpeed, verticalSpeed);
 			
 			if (!global.debugEdit)
