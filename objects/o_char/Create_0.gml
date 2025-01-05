@@ -76,6 +76,7 @@ function setupStats()
 	skillUsage = o_gameManager.skills[skill].usage;
 	skillReplenish = o_gameManager.skills[skill].replenish;
 	skillValue = o_gameManager.skills[skill].value;
+	skillRechargePercentage = o_gameManager.skills[skill].rechargePercentage;
 }
 
 setupStats();

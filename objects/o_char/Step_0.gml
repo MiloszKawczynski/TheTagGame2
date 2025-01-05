@@ -66,7 +66,7 @@ if (!isUsed)
 {
 	skillEnergy += skillReplenish;
 	
-	if (skillEnergy >= 1)
+	if (skillEnergy >= skillRechargePercentage)
 	{
 		skillRecharging = false;
 	}

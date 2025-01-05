@@ -57,16 +57,17 @@ enum skillTypes
 	dash
 }
 
-skill = function(_name, _usage, _replenish, _value) constructor
+skill = function(_name, _usage, _replenish, _value, _rechargePercentage) constructor
 {
 	name = _name;
 	usage = _usage;
 	replenish = _replenish;
 	value = _value;
+	rechargePercentage = _rechargePercentage;
 }
 
-sprint = new skill("sprint", 0.01, 0.01, 0.33);
-dash = new skill("dash", 1, 0.005, 2);
+sprint = new skill("sprint", 0.01, 0.01, 0.33, 0);
+dash = new skill("dash", 1, 0.005, 2, 1);
 
 skills = [];
 

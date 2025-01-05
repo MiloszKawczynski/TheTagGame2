@@ -421,6 +421,7 @@ function scr_skills()
 			skill.usage = ImGui.InputFloat("Usage ##" + string(i), skill.usage);
 			skill.replenish = ImGui.InputFloat("Replenish ##" + string(i), skill.replenish);
 			skill.value = ImGui.InputFloat("Value ##" + string(i), skill.value);
+			skill.rechargePercentage = ImGui.InputFloat("Recharge Percentage ##" + string(i), skill.rechargePercentage);
 			
 			ImGui.Separator();
 		}
