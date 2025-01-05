@@ -48,7 +48,8 @@ isGravitationOn = false;
 
 isGameOn = false;
 
-points = [0, 0];
+points = [];
+
 rounds = 0;
 
 enum skillTypes
@@ -77,6 +78,12 @@ array_push(skills, sprint, dash, jumpBack);
 
 reset = function()
 {
+	array_delete(points, 0, array_length(points) - 1);
+	repeat(instance_number(o_char))
+	{
+		array_push(points, 0);
+	}
+	
 	with(o_debugController)
 	{
 		scr_clearLog();
