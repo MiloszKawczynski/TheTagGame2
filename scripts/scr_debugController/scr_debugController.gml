@@ -8,14 +8,24 @@ function scr_debugPreload()
 	scr_statsPresetLoad("default");
 	scr_dialogBoxPresetLoad("default");
 	
-	//scr_addPlayer(1);
+	scr_addPlayer(0);
+	scr_addPlayer(1);
 		
 	o_gameManager.reset();
 }
 
 function scr_addPlayer(idNumber)
 {
-	instance_create_layer(o_char.x, o_char.y, "players", o_char, 
+	var _x = room_width / 2;
+	var _y = room_height / 2;
+	
+	if (instance_exists(o_start))
+	{
+		_x = o_start.x;
+		_y = o_start.y;
+	}
+	
+	instance_create_layer(_x, _y, "players", o_char, 
 	{
 		player : idNumber
 	});
