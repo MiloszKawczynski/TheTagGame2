@@ -80,6 +80,8 @@ function setupStats()
 	skillReplenish = o_gameManager.skills[skill].replenish;
 	skillValue = o_gameManager.skills[skill].value;
 	skillRechargePercentage = o_gameManager.skills[skill].rechargePercentage;
+	
+	o_gameManager.uiUpdate();
 }
 
 setupStats();
