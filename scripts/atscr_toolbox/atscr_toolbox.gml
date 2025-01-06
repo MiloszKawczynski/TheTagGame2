@@ -90,16 +90,6 @@ function log(logMessage, color = c_white)
 	var timeStamp = date_time_string(date_current_datetime());
 	var fullLog = string(timeStamp + ": " + logMessage);
 	var monitoredValue = "";
-	monitoredValue += "x: " + string(o_char.x) + "\n";
-	monitoredValue += "y: " + string(o_char.y) + "\n";
-	monitoredValue += "Speed: " + string(o_char.speed) + "\n";
-	monitoredValue += "HorizontalSpeed: " + string(o_char.horizontalSpeed) + "\n";
-	monitoredValue += "VerticalSpeed: " + string(o_char.verticalSpeed) + "\n";
-	monitoredValue += "IsGrounded: " + string(o_char.isGrounded) + "\n";
-	monitoredValue += "MaximumSpeed: " + string(o_char.maximumSpeed) + "\n";
-	monitoredValue += "CoyoteTime: " + string(o_char.coyoteTime) + "\n";
-	monitoredValue += "JumpBuffor: " + string(o_char.jumpBuffor) + "\n";
-	monitoredValue = string(monitoredValue);
 	
 	show_debug_message(fullLog);
 	ds_list_add(o_debugController.logBuffor, fullLog);

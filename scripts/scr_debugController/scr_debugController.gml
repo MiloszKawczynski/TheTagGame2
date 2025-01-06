@@ -384,15 +384,6 @@ function scr_playerData()
 		}
 		
 		ImGui.Text(string("isChasing: {0}", choosedPlayer.isChasing));
-		//ImGui.Text(string("x: {0}", choosedPlayer.x));
-		//ImGui.Text(string("y: {0}", choosedPlayer.y));
-		//ImGui.Text(string("Speed: {0}", choosedPlayer.speed));
-		//ImGui.Text(string("hSpeed: {0}", choosedPlayer.horizontalSpeed));
-		//ImGui.Text(string("vSpeed: {0}", choosedPlayer.verticalSpeed));
-		//ImGui.Text(string("isGrounded: {0}", choosedPlayer.isGrounded));
-		//ImGui.Text(string("maxSpeed: {0}", choosedPlayer.maximumSpeed));
-		//ImGui.Text(string("coyoteTime: {0}", choosedPlayer.coyoteTime));
-		//ImGui.Text(string("jumpBuffor: {0}", choosedPlayer.jumpBuffor));
 		
 		if (i == choosedPlayerIndex)
 		{
