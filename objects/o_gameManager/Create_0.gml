@@ -7,6 +7,32 @@ with(ui)
 	mainLayer = new Layer();
 	mainLayer.setGrid(10, 10, false);
 	
+	leftColor = new Output();
+	
+	with(leftColor)
+	{
+		var drawCircle = function()
+		{
+			draw_set_color(color);
+			draw_circle(posX, posY, 26.5, false);
+		}
+		setDrawFunction(drawCircle);
+		setColor(c_red);
+	}
+	
+	rightColor = new Output();
+	
+	with(rightColor)
+	{
+		var drawCircle = function()
+		{
+			draw_set_color(color);
+			draw_circle(posX, posY, 26.5, false);
+		}
+		setDrawFunction(drawCircle);
+		setColor(c_blue);
+	}
+	
 	chaseBar = new Output(, -10);
 	chaseBar.setSprite(s_chaseBar);
 	
@@ -25,6 +51,8 @@ with(ui)
 	
 	chaseBarGroup = new Group();
 	chaseBarGroup.setGrid(1, 1, false);
+	chaseBarGroup.addComponent(-0.835, -0.19, leftColor);
+	chaseBarGroup.addComponent(0.835, -0.19, rightColor);
 	chaseBarGroup.addComponent(0, 0, chaseBar);
 	chaseBarGroup.addComponent(-1, 0, leftPortrait);
 	chaseBarGroup.addComponent(1, 0, rightPortrait);
