@@ -204,7 +204,20 @@ startStop = function()
 	isGameOn = !isGameOn;
 }
 
-reset();
+uiUpdate = function()
+{
+	with(ui)
+	{
+		leftColor.setColor(other.players[0].color);
+		leftPortrait.state.setSpriteSheet(s_chaseBarPortraits, other.players[0].portrait);
+			
+		if (array_length(other.players) == 2)
+		{
+			rightColor.setColor(other.players[1].color);
+			rightPortrait.state.setSpriteSheet(s_chaseBarPortraits, other.players[1].portrait);
+		}
+	}
+}
 
 //--- Players Default Movement Rules
 
