@@ -8,7 +8,15 @@ for(var i = 0; i < instance_number(o_char); i++)
 	{
 		if (!surface_exists(surface))
 		{
-			surface = surface_create(maximumObstacleRange * 2, maximumObstacleRange * 2);	
+			with(o_char)
+			{
+				if (obstacleRange > other.maximumObstacleRange)
+				{
+					other.maximumObstacleRange = obstacleRange;
+				}
+			}
+			
+			surface = surface_create(maximumObstacleRange * 2, maximumObstacleRange * 2);
 		}
 		
 		surface_set_target(surface);
