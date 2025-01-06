@@ -426,11 +426,6 @@ function scr_topDownCollision()
 
 function scr_platformerCollision()
 {	
-	while (place_meeting(x, y, o_collision))
-	{
-		y -= 0.5;
-	}
-	
 	if (vspeed < 0)
 	{
 		if (place_meeting(x, y + vspeed, o_collision))
@@ -550,21 +545,9 @@ function scr_platformerCollision()
 			y += sign(vspeed) * 0.5;
 		}
 		
-		if (object_is_ancestor(collisionObject.object_index, o_diagonal))
-		{
-			hspeed = 0;
-			vspeed = 0;
-		}
-		else
-		{
-			if (closerTo(0, hspeed, vspeed) == hspeed)
-			{
-				hspeed = 0;
-			}
-			else
-			{
-				vspeed = 0;
-			}
-		}
+		vspeed = 0;
+		
+		x -= hspeed;
+		x -= sign(hspeed);
 	}
 }
