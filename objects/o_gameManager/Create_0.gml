@@ -104,6 +104,8 @@ skills = [];
 
 array_push(skills, sprint, dash, jumpBack);
 
+players = [];
+
 reset = function()
 {
 	array_delete(points, 0, array_length(points) - 1);

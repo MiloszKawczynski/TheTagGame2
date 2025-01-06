@@ -28,6 +28,8 @@ if (player == 1)
 	skill = skillTypes.dash;
 }
 
+o_gameManager.players[player] = self;
+
 maximumDefaultSpeedModificator = 0;
 accelerationModificator = 0;
 decelerationModificator = 0;
