@@ -50,7 +50,7 @@ maximumJumpBufforModificator = 0;
 skillEnergy = 1;
 skillRecharging = false;
 skillUsed = false;
-isSkillActive = false;
+isSkillActive = 0;
 
 function setupStats()
 {

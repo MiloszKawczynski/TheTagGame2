@@ -9,6 +9,8 @@ function scr_topDownMovement()
 		{
 			isSkillActive = false;
 		}
+		
+		isSkillActive--;
 	}
 	
 	desiredHorizontalDirection = keyboard_check(rightKey) - keyboard_check(leftKey);
@@ -171,6 +173,8 @@ function scr_platformerMovement()
 		{
 			isSkillActive = false;
 		}
+		
+		isSkillActive--;
 	}
 	
 	desiredHorizontalDirection = keyboard_check(rightKey) - keyboard_check(leftKey);

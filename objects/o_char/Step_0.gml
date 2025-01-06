@@ -72,7 +72,7 @@ if (keyboard_check(skillKey) and !skillRecharging and !skillUsed)
 						maximumSpeed = point_distance(0, 0, horizontalSpeed, verticalSpeed);
 					}
 					skillUsed = true;
-					isSkillActive = true;
+					isSkillActive = 3;
 					isUsed = true;
 				}
 				break;
