@@ -320,6 +320,27 @@ function scr_playerModificators()
 			ImGui.EndCombo();
 		}
 		
+		for (var i = 0; i < sprite_get_number(s_chaseBarPortraits); i++)
+		{	
+			if (i != 0)
+			{
+				ImGui.SameLine();
+			}
+						
+			var isSelected = i == choosedPlayer.portrait;
+			var bgAlpha = 0;
+			
+			if (isSelected)
+			{
+				bgAlpha = 1;
+			}
+			
+			if (ImGui.ImageButton("##portrait " + string(i), s_chaseBarPortraits, i, c_white, 1, c_aqua, bgAlpha, 32, 32))
+			{
+				choosedPlayer.portrait = i;
+			}
+		}
+		
 		with(choosedPlayer)
 		{
 			setupStats();
