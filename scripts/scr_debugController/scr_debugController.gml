@@ -2506,7 +2506,12 @@ function scr_dialogBoxPresetLoad(dialogPresetName = dialogPresetFileName)
 					
 			dialog = instanceData.dialog;
 			static_set(dialog, static_get(new dialogMain()));
-			static_set(dialog.box, static_get(new dialog.dialogBox()));
+			
+			with(dialog)
+			{
+				delete box;
+				box = new dialogBox();
+			}
 			
 			dialog.accentList = ds_array_convert_to_list(instanceData.dialogAccent);
 			dialog.dictionary = ds_array_convert_to_list(instanceData.dialogDictionary);
