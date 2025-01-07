@@ -1,8 +1,11 @@
 ui.step();
 
 ui.roundNumber.setContent(string("Round {0}/16", rounds));
-ui.leftPoints.setContent(string(points[0]));
-ui.rightPoints.setContent(string(points[1]));
+ui.leftPoints.setContent(string(players[0].points));
+if (array_length(other.players) == 2)
+{
+	ui.rightPoints.setContent(string(players[1].points));
+}
 
 if (isGameOn)
 {
@@ -43,7 +46,7 @@ if (isGameOn)
 			{
 				log(string("Player {0} ESCAPED!", player), color);
 				
-				other.points[player]++;
+				other.players[player].points++;
 			}
 		}
 		

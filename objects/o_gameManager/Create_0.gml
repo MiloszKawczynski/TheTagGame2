@@ -17,7 +17,7 @@ with(ui)
 			draw_circle(posX, posY, 26.5, false);
 		}
 		setDrawFunction(drawCircle);
-		setColor(c_red);
+		setColor(c_white);
 	}
 	
 	rightColor = new Output();
@@ -30,7 +30,7 @@ with(ui)
 			draw_circle(posX, posY, 26.5, false);
 		}
 		setDrawFunction(drawCircle);
-		setColor(c_blue);
+		setColor(c_white);
 	}
 	
 	chaseBar = new Output(, -10);
@@ -45,7 +45,7 @@ with(ui)
 	leftPoints = new Text("0", f_chaseBar);
 	
 	rightPortrait = new Output(-15, -20);
-	rightPortrait.state.setSpriteSheet(s_chaseBarPortraits, 1);
+	rightPortrait.state.setSpriteSheet(s_chaseBarPortraits, 0);
 	
 	rightPoints = new Text("0", f_chaseBar);
 	
@@ -76,8 +76,6 @@ isGravitationOn = false;
 
 isGameOn = false;
 
-points = [];
-
 rounds = 0;
 
 enum skillTypes
@@ -96,11 +94,11 @@ skill = function(_name, _usage, _replenish, _value, _rechargePercentage) constru
 	rechargePercentage = _rechargePercentage;
 }
 
+skills = [];
+
 sprint = new skill("sprint", 0.01, 0.01, 0.33, 0);
 dash = new skill("dash", 1, 0.005, 2, 1);
 jumpBack = new skill("jump back", 0.33, 0.01, 2, 0.33)
-
-skills = [];
 
 array_push(skills, sprint, dash, jumpBack);
 
@@ -108,12 +106,6 @@ players = [];
 
 reset = function()
 {
-	array_delete(points, 0, array_length(points) - 1);
-	repeat(instance_number(o_char))
-	{
-		array_push(points, 0);
-	}
-	
 	with(o_debugController)
 	{
 		scr_clearLog();
@@ -150,7 +142,7 @@ reset = function()
 		nearestPlayer = id;
 		canCaught = false;
 		
-		log(string("P{0}: {1}", player + 1, other.points[player]), color);
+		log(string("P{0}: {1}", player + 1, other.players[player].points), color);
 	}
 	
 	o_debugController.previousTab = -1;
@@ -166,15 +158,15 @@ reset = function()
 		if (rounds > 15)
 		{
 			var indexOfWinner = 0;
-			for(var i = 0; i < array_length(points); i++)
+			for(var i = 0; i < array_length(players); i++)
 			{
-				if (points[i] > points[indexOfWinner])
+				if (players[i].points > players[indexOfWinner].points)
 				{
 					indexOfWinner = i;
 				}
 			}
 			
-			if (points[0] == points[1])
+			if (players[0].points == players[1].points)
 			{
 				log(string("Round {0}/15", rounds));
 			
@@ -208,13 +200,13 @@ uiUpdate = function()
 {
 	with(ui)
 	{
-		leftColor.setColor(other.players[0].color);
-		leftPortrait.state.setSpriteSheet(s_chaseBarPortraits, other.players[0].portrait);
+		leftColor.setColor(other.players[0].instance.color);
+		leftPortrait.state.setSpriteSheet(s_chaseBarPortraits, other.players[0].instance.portrait);
 			
 		if (array_length(other.players) == 2)
 		{
-			rightColor.setColor(other.players[1].color);
-			rightPortrait.state.setSpriteSheet(s_chaseBarPortraits, other.players[1].portrait);
+			rightColor.setColor(other.players[1].instance.color);
+			rightPortrait.state.setSpriteSheet(s_chaseBarPortraits, other.players[1].instance.portrait);
 		}
 	}
 }

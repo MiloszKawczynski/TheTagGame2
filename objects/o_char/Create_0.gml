@@ -5,12 +5,14 @@ if (player == 0)
 	upKey = ord("W");
 	downKey = ord("S");
 	jumpKey = ord("W");
-	interactionKey = vk_lshift;
-	skillKey = vk_lcontrol;
+	interactionKey = vk_space;
+	skillKey = vk_lshift;
 	
-	color = c_red;
+	color = c_purple;
 	isChasing = true;
 	skill = skillTypes.sprint;
+	
+	portrait = 1;
 }
 
 if (player == 1)
@@ -23,12 +25,18 @@ if (player == 1)
 	interactionKey = vk_rshift;
 	skillKey = vk_rcontrol;
 	
-	color = c_blue;
+	color = c_red;
 	isChasing = false;
-	skill = skillTypes.dash;
+	skill = skillTypes.sprint;
+	
+	portrait = 2;
 }
 
-o_gameManager.players[player] = self;
+o_gameManager.players[player] = 
+{
+	instance: id,
+	points: 0
+};
 
 maximumDefaultSpeedModificator = 0;
 accelerationModificator = 0;
