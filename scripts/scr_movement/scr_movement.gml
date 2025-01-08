@@ -4,17 +4,17 @@ function scr_topDownMovement()
 	
 	if (isSkillActive and skill == skillTypes.jumpBack)
 	{
-		if (desiredHorizontalDirection * -1 != keyboard_check(rightKey) - keyboard_check(leftKey) 
-		or desiredVerticalDirection * -1 != keyboard_check(downKey) - keyboard_check(upKey)) 
+		if (desiredHorizontalDirection * -1 != input_check("rightKey", player) - input_check("leftKey", player)
+		or desiredVerticalDirection * -1 != input_check("downKey", player) - input_check("upKey", player)) 
 		{
 			isSkillActive = false;
 		}
 		
 		isSkillActive--;
 	}
-	
-	desiredHorizontalDirection = keyboard_check(rightKey) - keyboard_check(leftKey);
-	desiredVerticalDirection = keyboard_check(downKey) - keyboard_check(upKey);
+
+	desiredHorizontalDirection = input_check("rightKey", player) - input_check("leftKey", player);
+	desiredVerticalDirection = input_check("downKey", player) - input_check("upKey", player);
 	
 	if (isSkillActive and skill == skillTypes.jumpBack)
 	{
@@ -106,7 +106,7 @@ function scr_TopDownObstaclesInteraction()
 	var dist = distance_to_object(o_obstacle);
 	if (dist < instance_nearest(x, y, o_char).obstacleRange)
 	{
-		if (keyboard_check_pressed(interactionKey))
+		if (input_check_pressed("interactionKey", player))
 		{
 			var obstacleSpeedBoost = lerp(minimumObstacleJumpForce, maximumObstacleJumpForce, 1 - (dist / obstacleRange));
 			
@@ -169,7 +169,7 @@ function scr_platformerMovement()
 	
 	if (isSkillActive and skill == skillTypes.jumpBack)
 	{
-		if (desiredHorizontalDirection * -1 != keyboard_check(rightKey) - keyboard_check(leftKey)) 
+		if (desiredHorizontalDirection * -1 != input_check("rightKey", player) - input_check("leftKey", player)) 
 		{
 			isSkillActive = false;
 		}
@@ -177,7 +177,7 @@ function scr_platformerMovement()
 		isSkillActive--;
 	}
 	
-	desiredHorizontalDirection = keyboard_check(rightKey) - keyboard_check(leftKey);
+	desiredHorizontalDirection = input_check("rightKey", player) - input_check("leftKey", player);
 	
 	if (isSkillActive and skill == skillTypes.jumpBack)
 	{
@@ -188,7 +188,7 @@ function scr_platformerMovement()
 		
 	jumpBuffor = armez_timer(jumpBuffor, -1);
 		
-	if (keyboard_check_pressed(jumpKey) or jumpBuffor > 0)
+	if (input_check_pressed("jumpKey", player) or jumpBuffor > 0)
 	{
 		if (isGrounded or coyoteTime > 0)
 		{	
@@ -326,7 +326,7 @@ function scr_platformerObstaclesInteraction()
 	var dist = distance_to_object(o_obstacle);
 	if (dist < instance_nearest(x, y, o_char).obstacleRange)
 	{
-		if (keyboard_check_pressed(interactionKey))
+		if (input_check_pressed("interactionKey", player))
 		{
 			vspeed -= lerp(minimumObstacleJumpForce, maximumObstacleJumpForce, 1 - (dist / obstacleRange));
 			if (desiredHorizontalDirection != sign(hspeed))

@@ -11,12 +11,12 @@ else
 
 var isUsed = false;
 
-if (skillUsed and keyboard_check_pressed(skillKey))
+if (skillUsed and input_check_pressed("skillKey", player))
 {
 	skillUsed = false;
 }
 
-if (keyboard_check(skillKey) and !skillRecharging and !skillUsed)
+if (input_check("skillKey", player) and !skillRecharging and !skillUsed)
 {
 	if (skillEnergy >= skillUsage)
 	{
@@ -117,7 +117,7 @@ if (isChasing)
 	
 	if (canCaught)
 	{
-		if (keyboard_check_pressed(interactionKey))
+		if (input_check_pressed("interactionKey", player))
 		{
 			log(string("Player {0} CAUGHT!", player), color);
 			with(o_char)

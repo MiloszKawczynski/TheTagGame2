@@ -1,13 +1,5 @@
 if (player == 0)
 {
-	rightKey = ord("D");
-	leftKey = ord("A");
-	upKey = ord("W");
-	downKey = ord("S");
-	jumpKey = ord("W");
-	interactionKey = vk_space;
-	skillKey = vk_lshift;
-	
 	color = c_purple;
 	isChasing = true;
 	skill = skillTypes.sprint;
@@ -17,15 +9,7 @@ if (player == 0)
 
 if (player == 1)
 {
-	rightKey = vk_right;
-	leftKey = vk_left;
-	upKey = vk_up;
-	downKey = vk_down;
-	jumpKey = vk_up;
-	interactionKey = vk_rshift;
-	skillKey = vk_rcontrol;
-	
-	color = c_red;
+	color = c_lime;
 	isChasing = false;
 	skill = skillTypes.sprint;
 	

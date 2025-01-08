@@ -7,6 +7,11 @@ if (array_length(other.players) == 2)
 	ui.rightPoints.setContent(string(players[1].points));
 }
 
+if (input_check_pressed("debugPlayKey"))
+{
+	startStop();
+}
+
 if (isGameOn)
 {
 	chaseTime--;

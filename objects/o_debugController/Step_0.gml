@@ -112,6 +112,27 @@ if (!o_gameManager.isGameOn and !hide)
 			}
 		}
 			
+		
+		if (input_join_is_finished())
+		{
+			if (input_check_long("interactionKey", 0) || input_check_long("interactionKey", 1))
+			{
+				input_source_mode_set(INPUT_SOURCE_MODE.FIXED);
+			}
+		}
+		
+		if (input_source_mode_get() == INPUT_SOURCE_MODE.FIXED or false)
+		{
+		 	ImGui.TextColored(string("player 0 - {0}", input_player_connected(0)), c_lime);
+			ImGui.TextColored(string("player 1 - {0}", input_player_connected(1)), c_lime);
+		}
+		else
+		{
+			
+			ImGui.Text(string("player 0 - {0}", input_player_connected(0)));
+			ImGui.Text(string("player 1 - {0}", input_player_connected(1)));
+		}
+			
 		scr_logsOptions();
 	}
 	ImGui.End();
