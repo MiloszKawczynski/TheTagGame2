@@ -157,8 +157,8 @@ function camera_initialize()
 			//mousePos = new vector2(window_mouse_get_x(), window_mouse_get_y());
 		
 			// Joystick looking
-			Pitch -= ( gamepad_axis_value( Device, gp_axisrv) ) *Sens.Joystick.x *Sensitivity *LookAxisV;
-			Angle += ( gamepad_axis_value( Device, gp_axisrh) ) *Sens.Joystick.y *Sensitivity *LookAxisH;
+			//Pitch -= ( gamepad_axis_value( Device, gp_axisrv) ) *Sens.Joystick.x *Sensitivity *LookAxisV;
+			//Angle += ( gamepad_axis_value( Device, gp_axisrh) ) *Sens.Joystick.y *Sensitivity *LookAxisH;
 			
 			// Clamp values
 			var p = clamp(PitchRange, 1, 180);
