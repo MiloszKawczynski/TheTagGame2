@@ -306,11 +306,10 @@ function __FauxtonWriteSpriteStack(sprite, _x, _y, _z, _col, _alp, _ang, _xs, _y
 	// Has this model already been created?
 	var mName = sprite_get_name(sprite);
 	
-	if (horizontalAlign == 0 and verticalAlign == 0)
-	{
-		if ( ds_map_exists(SYSTEM_MODEL_MAP, mName) ){
-			return SYSTEM_MODEL_MAP[? mName];	
-		}
+	var NameWithAlign = string("{0}_{1}_{2}", mName, horizontalAlign, verticalAlign);
+	
+	if ( ds_map_exists(SYSTEM_MODEL_MAP, NameWithAlign) ){
+		return SYSTEM_MODEL_MAP[? NameWithAlign];	
 	}
 	
 	// Number of images
@@ -330,8 +329,8 @@ function __FauxtonWriteSpriteStack(sprite, _x, _y, _z, _col, _alp, _ang, _xs, _y
 	if ( _buff < 0 ) { buffer_delete(_buff); return -1; }
 	var vBuff = vertex_create_buffer_from_buffer(_buff, SYSTEM_VERTEX_FORMAT);
 	vertex_freeze(vBuff);
-	SYSTEM_MODEL_MAP[? mName] = vBuff;
-	return SYSTEM_MODEL_MAP[? mName];
+	SYSTEM_MODEL_MAP[? NameWithAlign] = vBuff;
+	return SYSTEM_MODEL_MAP[? NameWithAlign];
 }
 function __FauxtonWrite3DTexCube( _h, _col, _alpha, _ang)
 {
