@@ -474,6 +474,8 @@ function scr_gravitationChange()
 		Camera.Pitch = 50;
 		Camera.Angle = 80;
 	}
+	
+	o_gameManager.isGravitationOn = global.debugIsGravityOn;
 }
 
 function scr_keyBinding(key, keyName, isKeyBindingOn, varName)
