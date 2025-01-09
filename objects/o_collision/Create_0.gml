@@ -4,46 +4,63 @@ z = 0;
 
 model = fauxton_model_create_ext(sprite_index, x, y, 0, 0, 0, 0, image_xscale, image_yscale, 1, image_blend, 1);
 
-instanceToMerge = ds_map_create();
-isReadyToMerge = false;
-isMerged = false;
-mergeSurface = undefined;
-mergedX = 0;
-mergedY = 0;
-mergedSprite = undefined;
 typeOfMerge = o_collision;
-mergedModel = undefined;
 
-locate = function(map)
+horizontalAlign = 0;
+verticalAlign = 0;
+
+locate = function()
 {
-	isMerged = true;
-	
-	if (ds_map_find_value(map, id))
+	if (place_meeting(x - 1, y, typeOfMerge))
 	{
-		return map;
+		horizontalAlign--;
 	}
 	
-	ds_map_add(map, id, true);
-	
-	if (place_meeting(x - 16, y, typeOfMerge))
+	if (place_meeting(x + 1, y, typeOfMerge))
 	{
-		map = instance_place(x - 16, y, typeOfMerge).locate(map);
+		horizontalAlign++;
 	}
 	
-	if (place_meeting(x + 16, y, typeOfMerge))
+	if (place_meeting(x, y - 1, typeOfMerge))
 	{
-		map = instance_place(x + 16, y, typeOfMerge).locate(map);
+		verticalAlign--;
 	}
 	
-	if (place_meeting(x, y - 16, typeOfMerge))
+	if (place_meeting(x, y + 1, typeOfMerge))
 	{
-		map = instance_place(x, y - 16, typeOfMerge).locate(map);
+		verticalAlign++;
 	}
 	
-	if (place_meeting(x, y + 16, typeOfMerge))
+	var newHor = horizontalAlign;
+	var newVer = verticalAlign;
+	
+	if (horizontalAlign == 0)
 	{
-		map = instance_place(x, y + 16, typeOfMerge).locate(map);
+		if (place_meeting(x, y - 1, typeOfMerge) and (place_meeting(x, y + 1, typeOfMerge)))
+		{
+			newVer = 2;
+		}
 	}
 	
-	return map;
+	if (verticalAlign == 0)
+	{
+		if (place_meeting(x - 1, y, typeOfMerge) and (place_meeting(x + 1, y, typeOfMerge)))
+		{
+			newHor = 2;
+		}
+	}
+	
+	horizontalAlign = newHor;
+	verticalAlign = newVer;
+	
+	if (horizontalAlign == 2 and verticalAlign == 2)
+	{
+		horizontalAlign = 0;
+		verticalAlign = 0;
+	}
+	
+	fauxton_model_destroy(model);
+	delete model;
+	
+	model = fauxton_model_create_ext(sprite_index, x, y, 0, 0, 0, 0, image_xscale, image_yscale, 1, image_blend, 1, horizontalAlign, verticalAlign);
 }

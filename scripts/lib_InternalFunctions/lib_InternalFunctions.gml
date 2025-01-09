@@ -61,13 +61,13 @@ function __FauxtonWriteVert(mBuff, _3mat, _uv1, _uv2, _uv3, _col, _alp, _nMat)
 	pNorm3 = [ n[6], n[7], n[8] ];
 	
 	// Add points
-	__FauxtonWritePoint( mBuff, point1, _uv1,_col, _alp, pNorm1);
+	__FauxtonWritePoint( mBuff, point1, _uv1, _col, _alp, pNorm1 );
 	__FauxtonWritePoint( mBuff, point2, _uv2, _col, _alp, pNorm2 );
 	__FauxtonWritePoint( mBuff, point3, _uv3, _col, _alp, pNorm3 );
 }
-function __FauxtonWriteQuad(mBuff, texture, index, _x, _y, _z, color, alpha, angle, xscale, yscale, zscale )
+function __FauxtonWriteQuad(mBuff, texture, index, _x, _y, _z, color, alpha, angle, xscale, yscale, zscale, horizontalAlign, verticalAlign )
 {
-	///@func __FauxtonWriteQuad(buffer, sprite, index, x, y, z, color, alpha, angle, xscale, yscale, zscale)
+	///@func __FauxtonWriteQuad(buffer, sprite, index, x, y, z, color, alpha, angle, xscale, yscale, zscale, horizontalAlign, verticalAlign )
 	var l,t,r,b,tl,tt,tr,tb,
 		vx0,vy0,vx1,vy1,vx2,vy2,vx3,vy3,
 		cs, sn, _uvs, _tuvs;
@@ -82,10 +82,10 @@ function __FauxtonWriteQuad(mBuff, texture, index, _x, _y, _z, color, alpha, ang
 	b = _tuvs[3];
 	
 	// Get Vertex offsets	
-	tl = xscale * _uvs[4] - sprite_get_xoffset(texture) * xscale;
-	tt = yscale * _uvs[5] - sprite_get_yoffset(texture) * yscale;
-	tr = tl + xscale * ( sprite_get_width(texture) * _uvs[6]);
-	tb = tt + yscale * ( sprite_get_height(texture) * _uvs[7]);
+	tl = _uvs[4] - sprite_get_xoffset(texture);
+	tt = _uvs[5] - sprite_get_yoffset(texture);
+	tr = tl + ( sprite_get_width(texture) * _uvs[6]);
+	tb = tt + ( sprite_get_height(texture) * _uvs[7]);
 	
 	cs = dcos(angle);
 	sn = dsin(angle);
@@ -127,7 +127,6 @@ function __FauxtonWriteQuad(mBuff, texture, index, _x, _y, _z, color, alpha, ang
 	vert6 = [l,b];
 		
 	// Normals
-	_z = 1;
 	var nx1 = lengthdir_x(1, point_direction(_x, _y, vx0, vy0)) * xscale;
 	var nx2 = lengthdir_x(1, point_direction(_x, _y, vx1, vy1)) * xscale;
 	var nx3 = lengthdir_x(1, point_direction(_x, _y, vx2, vy2)) * xscale;
@@ -144,41 +143,174 @@ function __FauxtonWriteQuad(mBuff, texture, index, _x, _y, _z, color, alpha, ang
 	if (sprite_get_number(texture) != 1 and index == (sprite_get_number(texture) * RENDER_FIDELITY - 1) / RENDER_FIDELITY)
 	{
 		norm1 = mat3(
-			0, 0, _z,
-			0, 0, _z,
-			0, 0, _z		
+			0, 0, 1,
+			0, 0, 1,
+			0, 0, 1		
 		);
 		norm2 = mat3(
-			0, 0, _z,
-			0, 0, _z,
-			0, 0, _z
+			0, 0, 1,
+			0, 0, 1,
+			0, 0, 1
 		);	
 	}
 	else 
 	{
-		norm1 = mat3(
-			nx1, ny1, _z,
-			nx2, ny2, _z,
-			nx3, ny3, _z		
-		);
-		norm2 = mat3(
-			nx1, ny1, _z,
-			nx3, ny3, _z,
-			nx4, ny4, _z
-		);	
+		if (horizontalAlign mod 10 == 0 and verticalAlign mod 10 == 0)
+		{ 
+			//Basic
+			norm1 = mat3(
+				-nx1, -ny1, 0,
+				-nx2, -ny2, 0,
+				-nx3, -ny3, 0		
+			);
+			norm2 = mat3(
+				-nx1, -ny1, 0,
+				-nx3, -ny3, 0,
+				-nx4, -ny4, 0
+			);	
+			
+			if (horizontalAlign == 0 and verticalAlign == 0) 
+			{
+				if (index < ((sprite_get_number(texture) * RENDER_FIDELITY - 1) / RENDER_FIDELITY) - 2)
+				{
+					return;
+				}
+			}
+		}
+		
+		if (horizontalAlign == 0 and verticalAlign == -1)
+		{
+			//Only up
+			norm1 = mat3(
+				0, ny1, 0,
+				0, ny1, 0,
+				0, ny1, 0		
+			);
+		}
+		
+		if (horizontalAlign == 0 and verticalAlign == 1)
+		{
+			//Only Down
+			norm1 = mat3(
+				0, ny3, 0,
+				0, ny3, 0,
+				0, ny3, 0		
+			);
+		}
+		
+		if (horizontalAlign == -1 and verticalAlign == 0)
+		{ 
+			//Only Left
+			norm1 = mat3(
+				nx1, 0, 0,
+				nx1, 0, 0,
+				nx1, 0, 0		
+			);
+		}
+		
+		if (horizontalAlign == 1 and verticalAlign == 0)
+		{ 	
+			//Only Right
+			norm1 = mat3(
+				nx3, 0, 0,
+				nx3, 0, 0,
+				nx3, 0, 0		
+			);
+		}
+		
+		if (horizontalAlign == -1 and verticalAlign == -1)
+		{ 	
+			//Left Up
+			norm1 = mat3(
+				nx1, ny1, 0,
+				nx1, ny1, 0,
+				nx1, ny1, 0		
+			);
+		}
+		
+		if (horizontalAlign == 1 and verticalAlign == -1)
+		{ 	
+			//Right Up
+			norm1 = mat3(
+				nx2, ny2, 0,
+				nx2, ny2, 0,
+				nx2, ny2, 0		
+			);
+		}
+			
+		if (horizontalAlign == 1 and verticalAlign == 1)
+		{ 
+			//Down Right
+			norm1 = mat3(
+				nx3, ny3, 0,
+				nx3, ny3, 0,
+				nx3, ny3, 0		
+			);
+		}
+		
+		if (horizontalAlign == -1 and verticalAlign == 1)
+		{ 
+			//Down Left
+			norm1 = mat3(
+				nx4, ny4, 0,
+				nx4, ny4, 0,
+				nx4, ny4, 0		
+			);
+		}
+		
+		if (abs(horizontalAlign) == 1 or abs(verticalAlign) == 1)
+		{ 
+			norm2 = norm1;
+		}
+		 
+		if (horizontalAlign == 2)
+		{ 
+			//Top Bottom
+			norm1 = mat3(
+				0, -nx1, 0,
+				0, -nx1, 0,
+				0, -nx1, 0		
+			);
+			
+			norm2 = mat3(
+				0, -nx3, 0,
+				0, -nx3, 0,
+				0, -nx3, 0		
+			);
+		}
+		
+		if (verticalAlign == 2)
+		{ 
+			//Left Right
+			norm1 = mat3(
+				nx1, 0, 0,
+				nx1, 0, 0,
+				nx1, 0, 0		
+			);
+			
+			norm2 = mat3(
+				nx3, 0, 0,
+				nx3, 0, 0,
+				nx3, 0, 0		
+			);
+		}
 	}
 	
 	__FauxtonWriteVert( mBuff, _mat1, vert1, vert2, vert3, color, alpha, norm1 );
 	__FauxtonWriteVert( mBuff, _mat2, vert4, vert5, vert6, color, alpha, norm2 );
 }
-function __FauxtonWriteSpriteStack(sprite, _x, _y, _z, _col, _alp, _ang)
+function __FauxtonWriteSpriteStack(sprite, _x, _y, _z, _col, _alp, _ang, _xs, _ys, horizontalAlign, verticalAlign )
 {
-	///@func __FauxtonWriteSpriteStack(sprite, x, y, z, color, alpha, angle)
+	///@func __FauxtonWriteSpriteStack(sprite, x, y, z, color, alpha, angle, xScale, yScale, horizontalAlign, verticalAlign )
 	
 	// Has this model already been created?
 	var mName = sprite_get_name(sprite);
-	if ( ds_map_exists(SYSTEM_MODEL_MAP, mName) ){
-		return SYSTEM_MODEL_MAP[? mName];	
+	
+	if (horizontalAlign == 0 and verticalAlign == 0)
+	{
+		if ( ds_map_exists(SYSTEM_MODEL_MAP, mName) ){
+			return SYSTEM_MODEL_MAP[? mName];	
+		}
 	}
 	
 	// Number of images
@@ -192,7 +324,7 @@ function __FauxtonWriteSpriteStack(sprite, _x, _y, _z, _col, _alp, _ang)
 	for ( var i=0; i<_num * RENDER_FIDELITY; i++ )
 	{
 		var _ind = i/RENDER_FIDELITY;
-		__FauxtonWriteQuad(_buff, sprite, _ind, _x, _y, _z + (i/RENDER_FIDELITY) + _zoffset, _col, _alp, _ang, 1, 1, 1)
+		__FauxtonWriteQuad(_buff, sprite, _ind, _x, _y, _z + (i/RENDER_FIDELITY) + _zoffset, _col, _alp, _ang, _xs, _ys, 1, horizontalAlign, verticalAlign )
 	}
 	
 	if ( _buff < 0 ) { buffer_delete(_buff); return -1; }
@@ -244,7 +376,7 @@ function __FauxtonWrite3DTexCube( _h, _col, _alpha, _ang)
 	vertex_freeze(vBuff);
 	return vBuff;
 }
-function __FauxtonWriteStaticSpriteStack(_buffer, sprite, _x, _y, _z, _col, _alp, _ang, _xs, _ys, _zs )
+function __FauxtonWriteStaticSpriteStack(_buffer, sprite, _x, _y, _z, _col, _alp, _ang, _xs, _ys, _zs)
 {
 	///@func __FauxtonWriteStaticSpriteStack(buffer, sprite, x, y, z, color, alpha, angle, xscale, yscale, zscale)
 
@@ -260,7 +392,7 @@ function __FauxtonWriteStaticSpriteStack(_buffer, sprite, _x, _y, _z, _col, _alp
 		var _ind = ceil(i / _zs);
 		//if ( _ind > _num-1.6 ){ _ind = ceil(_ind); }
 		_ind = clamp(_ind, 0, _num-1);
-		__FauxtonWriteQuad(_buffer, sprite, _ind, _x, _y, _z + i + _zoffset, _col, _alp, _ang, _xs, _ys,_zs)
+		__FauxtonWriteQuad(_buffer, sprite, _ind, _x, _y, _z + i + _zoffset, _col, _alp, _ang, _xs, _ys, _zs, 0, 0)
 	}
 }
 	
