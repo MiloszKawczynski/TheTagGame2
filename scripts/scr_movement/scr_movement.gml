@@ -474,7 +474,7 @@ function scr_platformerCollision()
 			{
 				if (place_meeting(x, y + 1, o_diagonal))
 				{
-					if (instance_place(x, y + 1, o_diagonal).image_xscale != sign(horizontalSpeed) and hspeed != 0)
+					if (instance_place(x, y + 1, o_diagonal).image_xscale != sign(horizontalSpeed) and hspeed != 0 and instance_place(x, y + 1, o_diagonal).image_yscale == 1)
 					{
 						hspeed += vspeed * slopeSpeedTransitionFactor * image_xscale;
 						if (abs(hspeed) > maximumSpeed)
