@@ -2,8 +2,6 @@ alarm[0] = 1;
 
 z = 0;
 
-model = fauxton_model_create_ext(sprite_index, x, y, 0, 0, 0, 0, image_xscale, image_yscale, 1, image_blend, 1);
-
 typeOfMerge = o_collision;
 
 horizontalAlign = 0;
@@ -58,9 +56,6 @@ locate = function()
 		horizontalAlign = 0;
 		verticalAlign = 0;
 	}
-	
-	fauxton_model_destroy(model);
-	delete model;
 	
 	model = fauxton_model_create_ext(sprite_index, x, y, 0, 0, 0, 0, image_xscale, image_yscale, 1, image_blend, 1, horizontalAlign, verticalAlign);
 }
