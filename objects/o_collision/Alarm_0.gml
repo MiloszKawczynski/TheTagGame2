@@ -1,1 +1,1 @@
-fauxton_model_set(model, x, y, 0, 0, 0, 0, image_xscale, image_yscale, 1);
+locate();
