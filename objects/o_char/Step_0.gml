@@ -59,8 +59,12 @@ if (input_check("skillKey", player) and !skillRecharging and !skillUsed)
 				{
 					if (o_gameManager.isGravitationOn)
 					{
-						horizontalSpeed *= -1;
+						desiredHorizontalDirection *= -1; 
+						hspeed *= -1;
+						horizontalSpeed = hspeed;
 						maximumSpeed += skillValue;
+						y -= abs(horizontalSpeed);
+						scr_platformerCollision();
 					}
 					else 
 					{
