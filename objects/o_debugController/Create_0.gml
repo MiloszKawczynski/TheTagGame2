@@ -276,8 +276,6 @@ editableObjects = [];
 objectName = "";
 selectedObject = undefined;
 
-SceneBuff = undefined;
-
 input_join_params_set(2, 2, "leave", undefined);
 
 input_source_mode_set(INPUT_SOURCE_MODE.JOIN);
