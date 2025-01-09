@@ -28,12 +28,8 @@ if (!o_gameManager.isGameOn and !hide)
 		{
 			with(o_collision)
 			{
-				if (!isMerged)
-				{
-					typeOfMerge = o_collision;
-					instanceToMerge = locate(instanceToMerge);
-					isReadyToMerge = true;
-				}
+				typeOfMerge = o_collision;
+				instanceToMerge = locate();
 			}
 		}
 		

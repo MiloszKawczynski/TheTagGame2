@@ -7,7 +7,7 @@
 			spref		: sprite,
 			texture		: sprite_get_texture(sprite, 0),
 			pos_id		: ds_list_size(RENDER_QUEUE),
-			model_id	: __FauxtonWriteSpriteStack(sprite, 0, 0, 0, c_white, 1, 0),
+			model_id	: __FauxtonWriteSpriteStack(sprite, 0, 0, 0, c_white, 1, 0, _xs, _ys, 10, 10),
 			position	: new vector3(_x, _y, _z),
 			rotation	: new vector3(_xr, _yr, _zr),
 			scale		: new vector3(_xs, _ys, _zs),
@@ -23,14 +23,14 @@
 		
 		return _m.pos_id;
 	}
-	function fauxton_model_create_ext(sprite, _x, _y, _z, _xr, _yr, _zr, _xs, _ys, _zs, _c, _a)
+	function fauxton_model_create_ext(sprite, _x, _y, _z, _xr, _yr, _zr, _xs, _ys, _zs, _c, _a, horizontalAlign = 10, verticalAlign = 10)
 	{
-		///@func fauxton_model_create_ext(sprite, x, y, z, xrot, yrot, zrot, xscale, yscale, zscale, blend, alpha)
+		///@func fauxton_model_create_ext(sprite, x, y, z, xrot, yrot, zrot, xscale, yscale, zscale, blend, alpha, horizontalAlign, verticalAlign)
 		var _m = {
 			spref		: sprite,
 			texture		: sprite_get_texture(ico_texref, 0),
 			pos_id		: ds_list_size(RENDER_QUEUE),
-			model_id	: __FauxtonWriteSpriteStack(sprite, 0, 0, 0, _c, _a, 0),
+			model_id	: __FauxtonWriteSpriteStack(sprite, 0, 0, 0, _c, _a, 0, _xs, _ys, horizontalAlign, verticalAlign),
 			position	: new vector3(_x, _y, _z),
 			rotation	: new vector3(_xr, _yr, _zr),
 			scale		: new vector3(_xs, _ys, _zs),
