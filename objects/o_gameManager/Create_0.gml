@@ -138,6 +138,7 @@ reset = function()
 		desiredVerticalDirection = 0;
 		horizontalSpeed = 0;
 		verticalSpeed = 0;
+		skillEnergy = 1;
 		
 		nearestPlayer = id;
 		canCaught = false;
