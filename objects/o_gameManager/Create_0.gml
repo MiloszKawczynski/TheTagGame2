@@ -150,8 +150,6 @@ reset = function()
 	
 	if (isGameOn)
 	{
-		isGameOn = false;
-
 		wait(1.5);
 	
 		rounds++;
@@ -170,31 +168,35 @@ reset = function()
 			if (players[0].points == players[1].points)
 			{
 				log(string("Round {0}/15", rounds));
-			
-				startStop();
 			}
 			else
 			{			
 				log("END");
 				log(string("WINNER: Player {0}", indexOfWinner), c_orange);
+				
+				startStop();
 			}
 		}
 		else
 		{		
 			log(string("Round {0}/16", rounds));
-			
-			startStop();
 		}
-	}
-	else
-	{
-		isGameOn = false;
 	}
 }
 
 startStop = function()
 {
 	isGameOn = !isGameOn;
+	
+	if (isGameOn)
+	{
+		for (var i = 0; i < array_length(players); i++)
+		{
+			players[i].points = 0;
+		}
+		
+		rounds = 0;
+	}
 }
 
 uiUpdate = function()
