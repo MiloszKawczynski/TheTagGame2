@@ -195,6 +195,9 @@ startStop = function()
 			players[i].points = 0;
 		}
 		
+		players[0].instance.isChasing = true;
+		players[1].instance.isChasing = false;
+		
 		rounds = 0;
 	}
 }
