@@ -1,1 +1,4 @@
-ui.draw();
+if (isGameOn)
+{
+	ui.draw();
+}
