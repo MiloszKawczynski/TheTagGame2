@@ -17,6 +17,7 @@ if (global.debugIsGravityOn)
 	z = 32;
 }
 
+gpu_set_zwriteenable(false);
 gpu_set_blendmode(bm_add);
 
 shader_set(shd_godray);
@@ -78,17 +79,17 @@ if (!isReflector)
 {
 	if (!surface_exists(godRaysSurface))
 	{
-		godRaysSurface = surface_create(1920, 1080);
+		godRaysSurface = surface_create(1300, 200);
 	}
 	
 	surface_set_target(godRaysSurface);
-		draw_clear_alpha(c_black, 0);
+		draw_clear_alpha(c_white, 0);
 		part_system_drawit(godRaysSystem);
 	surface_reset_target();
 
 	matrix_set(matrix_world, matrix_build(x, y, z, spriteRotX, rot, rot + spriteRotY, 1, 1, 1));
-		gpu_set_blendmode(bm_add);
-			draw_surface(godRaysSurface, -(length + 3) * 16, -100);
-		gpu_set_blendmode(bm_normal);
+		draw_surface(godRaysSurface, -(length + 3) * 16, -100);
 	matrix_reset();
 }
+
+gpu_set_zwriteenable(true);
