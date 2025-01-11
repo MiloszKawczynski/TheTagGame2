@@ -32,7 +32,16 @@ for (var i = 0; i < ds_list_size(afterimageList); i++)
 	}
 	var arguments = [order, color];
 
-	draw_sprite_3d_in_game(frame.spriteIndex, frame.imageIndex, frame.xx, frame.yy, 16 + z, 0, 0, 0, frame.xScale, 1, 1, shd_afterimage, uniform, arguments,, frame.rotation, frame._stretch, frame._squash);
+	if (global.debugIsGravityOn)
+	{
+		gpu_set_zwriteenable(false);
+		draw_sprite_3d_in_game(frame.spriteIndex, frame.imageIndex, frame.xx, frame.yy, 16 + z, 0, 0, 0, frame.xScale, 1, 1, shd_afterimage, uniform, arguments,, frame.rotation, frame._stretch, frame._squash);
+		gpu_set_zwriteenable(true);
+	}
+	else
+	{
+		draw_sprite_3d_in_game(frame.spriteIndex, frame.imageIndex, frame.xx, frame.yy, 16 + z, 0, 0, 0, frame.xScale, 1, 1, shd_afterimage, uniform, arguments,, frame.rotation, frame._stretch, frame._squash);
+	}
 }
 
 if (!global.debugEdit)
