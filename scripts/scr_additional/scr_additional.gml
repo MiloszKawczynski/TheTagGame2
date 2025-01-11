@@ -274,7 +274,8 @@ function changeState(condition, machine, newState)
 		machine();
 		image_speed = 1;
 		image_index = 0;
-		image_yscale = 1;
+		squash = 1;
+		stretch = 1;
 	}
 	
 	return machine;

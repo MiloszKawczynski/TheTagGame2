@@ -6,24 +6,27 @@ function scr_setupTopDownAnimationStates()
 	{
 		sprite_index = s_cleaIdle;
 		
-		topDownAnimationState = changeState(speed != 0, topDownAnimationState, topDownWalkState);
+		topDownAnimationState = changeState(speed != 0, topDownAnimationState, topDownMoveState);
 	}
 	
-	topDownWalkState = function()
+	topDownMoveState = function()
 	{
-		sprite_index = s_cleaWalk;
+		if (speed < maximumDefaultSpeed)
+		{
+			sprite_index = s_cleaWalk;
+		}
+		else if (speed == maximumDefaultSpeed)
+		{
+			sprite_index = s_cleaRun;
+		}
+		else if (speed > maximumDefaultSpeed)
+		{
+			sprite_index = s_cleaSprint;
+		}
+		
 		setXScaleWithHSpeed();
 		
-		topDownAnimationState = changeState(speed > maximumDefaultSpeed, topDownAnimationState, topDownRunState);
 		topDownAnimationState = changeState(speed == 0, topDownAnimationState, topDownIdleState);
-	}
-	
-	topDownRunState = function()
-	{
-		sprite_index = s_cleaRun;
-		setXScaleWithHSpeed();
-		
-		topDownAnimationState = changeState(speed <= maximumDefaultSpeed, topDownAnimationState, topDownWalkState);
 	}
 	
 	topDownAnimationState = topDownIdleState;
@@ -38,28 +41,28 @@ function scr_setupPlatformAnimationStates()
 		sprite_index = s_cleaIdle;
 		setAngleDependsOnGround();
 		
-		platformAnimationState = changeState(hspeed != 0, platformAnimationState, platformWalkState);
+		platformAnimationState = changeState(hspeed != 0, platformAnimationState, platformMoveState);
 		platformAnimationState = changeState(isGrounded == false, platformAnimationState, platformJumpState);
 	}
 	
-	platformWalkState = function()
+	platformMoveState = function()
 	{
-		sprite_index = s_cleaWalk;
+		if (abs(hspeed) < maximumDefaultSpeed)
+		{
+			sprite_index = s_cleaWalk;
+		}
+		else if (abs(hspeed) == maximumDefaultSpeed)
+		{
+			sprite_index = s_cleaRun;
+		}
+		else if (abs(hspeed) > maximumDefaultSpeed)
+		{
+			sprite_index = s_cleaSprint;
+		}
 		setXScaleWithHSpeed(); 
 		setAngleDependsOnGround();
 		
-		platformAnimationState = changeState(hspeed > maximumDefaultSpeed, platformAnimationState, platformRunState);
 		platformAnimationState = changeState(hspeed == 0, platformAnimationState, platformIdleState);
-		platformAnimationState = changeState(isGrounded == false, platformAnimationState, platformJumpState);
-	}
-	
-	platformRunState = function()
-	{
-		sprite_index = s_cleaRun;
-		setXScaleWithHSpeed(); 
-		setAngleDependsOnGround();
-		
-		platformAnimationState = changeState(hspeed <= maximumDefaultSpeed, platformAnimationState, platformWalkState);
 		platformAnimationState = changeState(isGrounded == false, platformAnimationState, platformJumpState);
 	}
 	
@@ -74,19 +77,30 @@ function scr_setupPlatformAnimationStates()
 		
 		platformAnimationState = changeState(vspeed >= 0 , platformAnimationState, platformFallState);
 		platformAnimationState = changeState(isGrounded == true, platformAnimationState, platformIdleState);
+		platformAnimationState = changeState(abs(hspeed) > maximumDefaultSpeed, platformAnimationState, platformLeapState);
 	}
 	
 	platformFallState = function()
 	{
 		sprite_index = s_cleaFall;
-		setXScaleWithHSpeed();
 		playOnce();
+		setXScaleWithHSpeed();
 		angle = lerp(angle, (-abs(hspeed) / maximumDefaultSpeed) * 15, 0.1);
-		stretch = clamp(1 + ((abs(vspeed) / jumpForce) * 0.3), 1, 1.3);
-		squash = (1 - (stretch - 1));
 		
 		platformAnimationState = changeState(isGrounded == true, platformAnimationState, platformIdleState);
 		platformAnimationState = changeState(vspeed < 0, platformAnimationState, platformJumpState);
+		platformAnimationState = changeState(abs(hspeed) > maximumDefaultSpeed, platformAnimationState, platformLeapState);
+	}
+	
+	platformLeapState = function() 
+	{
+		sprite_index = s_cleaLeap;
+		image_speed = 0.5;
+		angle = lerp(angle, (-abs(hspeed) / maximumDefaultSpeed) * 7, 0.1);
+		setXScaleWithHSpeed();
+		
+		platformAnimationState = changeState(isGrounded == true, platformAnimationState, platformIdleState);
+		platformAnimationState = changeState(abs(hspeed) <= maximumDefaultSpeed, platformAnimationState, platformFallState);
 	}
 	
 	platformAnimationState = platformIdleState;
@@ -100,20 +114,17 @@ function setAngleDependsOnGround(lerpValue = 0.1)
 		{
 			if (groundImOn.object_index == o_slope)
 			{
-				//angle = 45 * image_xscale * -groundImOn.image_xscale;
 				angle = lerp(angle, 45 * image_xscale * -groundImOn.image_xscale, lerpValue);
 			}
 			
 			if (groundImOn.object_index == o_ramp)
 			{
-				//angle = 22.5 * image_xscale * -groundImOn.image_xscale;
 				angle = lerp(angle, 22.5 * image_xscale * -groundImOn.image_xscale, lerpValue);
 			}
 		}
 		
 		if (groundImOn.object_index == o_block)
 		{
-			//angle = 0;
 			angle = lerp(angle, 0, lerpValue);
 		}
 	}

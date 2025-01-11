@@ -478,9 +478,10 @@ function scr_gravitationChange()
 	with(o_char)
 	{
 		angle = 0;
+		squash = 1;
+		stretch = 1;
 		image_speed = 1;
 		image_index = 0;
-		image_yscale = 1;
 	}
 	
 	o_gameManager.isGravitationOn = global.debugIsGravityOn;
