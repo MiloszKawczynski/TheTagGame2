@@ -32,12 +32,12 @@ for (var i = 0; i < ds_list_size(afterimageList); i++)
 	}
 	var arguments = [order, color];
 
-	draw_sprite_3d_in_game(frame.spriteIndex, frame.imageIndex, frame.xx, frame.yy, 16 + z, 0, 0, 0, frame.xScale, frame.yScale, 1, shd_afterimage, uniform, arguments,, angle);
+	draw_sprite_3d_in_game(frame.spriteIndex, frame.imageIndex, frame.xx, frame.yy, 16 + z, 0, 0, 0, frame.xScale, 1, 1, shd_afterimage, uniform, arguments,, frame.rotation, frame.yScale);
 }
 
 if (!global.debugEdit)
 {
-	draw_sprite_3d_in_game(sprite_index, image_index, x, y, 16 + z, 0, 0, 0, image_xscale, image_yscale, 1,,,,, angle);
+	draw_sprite_3d_in_game(sprite_index, image_index, x, y, 16 + z, 0, 0, 0, image_xscale, 1, 1,,,,, angle, image_yscale);
 }
 
 if (global.debugEdit)
