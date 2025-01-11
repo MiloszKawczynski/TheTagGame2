@@ -29,6 +29,14 @@ function scr_setupTopDownAnimationStates()
 		topDownAnimationState = changeState(speed == 0, topDownAnimationState, topDownIdleState);
 	}
 	
+	topDownParkourState = function()
+	{
+		sprite_index = s_cleaVault;
+		image_speed = 0.5;
+		
+		topDownAnimationState = changeState(playOnce(), topDownAnimationState, topDownMoveState);
+	}
+	
 	topDownAnimationState = topDownIdleState;
 }
 
@@ -95,12 +103,21 @@ function scr_setupPlatformAnimationStates()
 	platformLeapState = function() 
 	{
 		sprite_index = s_cleaLeap;
-		image_speed = 0.5;
+		image_speed = 0.225;
 		angle = lerp(angle, (-abs(hspeed) / maximumDefaultSpeed) * 7, 0.1);
 		setXScaleWithHSpeed();
 		
 		platformAnimationState = changeState(isGrounded == true, platformAnimationState, platformIdleState);
 		platformAnimationState = changeState(abs(hspeed) <= maximumDefaultSpeed, platformAnimationState, platformFallState);
+	}
+	
+	platformParkourState = function()
+	{
+		sprite_index = s_cleaParkour;
+		image_speed = 0.5;
+		playOnce();
+		
+		platformAnimationState = changeState(vspeed >= 0, platformAnimationState, platformJumpState);
 	}
 	
 	platformAnimationState = platformIdleState;

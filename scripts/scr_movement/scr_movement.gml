@@ -158,6 +158,8 @@ function scr_TopDownObstaclesInteraction()
 			{
 				maximumSpeed = speed;
 			}
+			
+			topDownAnimationState = changeState(true, topDownAnimationState, topDownParkourState);
 		}
 	}
 }
@@ -334,6 +336,8 @@ function scr_platformerObstaclesInteraction()
 				hspeed = abs(hspeed) * desiredHorizontalDirection;
 				log("EPIC TURN!", c_aqua);
 			}
+			
+			platformAnimationState = changeState(true, platformAnimationState, platformParkourState);
 		}
 	}
 }
