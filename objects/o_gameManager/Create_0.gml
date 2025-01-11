@@ -199,6 +199,7 @@ startStop = function()
 		players[1].instance.isChasing = false;
 		
 		rounds = 0;
+		chaseTime = maximumChaseTime;
 	}
 }
 
