@@ -133,22 +133,13 @@ if (isChasing)
 	}
 }
 
-if (hspeed == 0)
+if (global.debugIsGravityOn)
 {
-	sprite_index = s_cleaIdle;
+	platformAnimationState();
 }
-else
+else 
 {
-	image_xscale = sign(hspeed);
-	
-	if (abs(hspeed) > maximumDefaultSpeed)
-	{
-		sprite_index = s_cleaRun;
-	}
-	else
-	{
-		sprite_index = s_cleaWalk;
-	}
+	topDownAnimationState();
 }
 
 mask_index = s_idleCycle;

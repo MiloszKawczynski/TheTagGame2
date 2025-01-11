@@ -265,3 +265,34 @@ function ImGui_position_3(_x, _y, _z)
 	y = value[1];
 	z = value[2];
 }
+
+function changeState(condition, machine, newState)
+{
+	if (condition)
+	{
+		machine = newState;
+		machine();
+		image_speed = 1;
+		image_index = 0;
+		image_yscale = 1;
+	}
+	
+	return machine;
+}
+
+function setXScaleWithHSpeed()
+{
+	var xScaleBefore = image_xscale
+	if (sign(hspeed) != 0)
+	{
+		image_xscale = sign(hspeed);
+	}
+}
+
+function playOnce()
+{
+	if (image_index >= image_number - 1)
+	{
+		image_speed = 0;
+	}
+}

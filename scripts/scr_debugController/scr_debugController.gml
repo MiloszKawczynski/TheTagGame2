@@ -475,6 +475,14 @@ function scr_gravitationChange()
 		Camera.Angle = 80;
 	}
 	
+	with(o_char)
+	{
+		angle = 0;
+		image_speed = 1;
+		image_index = 0;
+		image_yscale = 1;
+	}
+	
 	o_gameManager.isGravitationOn = global.debugIsGravityOn;
 }
 

@@ -123,3 +123,8 @@ part_emitter_type(runTrailSystem, 0, runTrailType);
 part_system_automatic_draw(runTrailSystem, false);
 
 runTrailSurface = undefined;
+
+scr_setupTopDownAnimationStates();
+scr_setupPlatformAnimationStates();
+
+angle = 0;
