@@ -163,7 +163,9 @@ if (maximumSpeed > maximumDefaultSpeed)
 		spriteIndex: sprite_index,
 	    imageIndex: image_index,
 	    xScale: image_xscale,
-	    yScale: image_yscale
+	    _stretch: stretch,
+		_squash: squash,
+		rotation: angle
 	};
 
 	ds_list_add(afterimageList, afterimage);

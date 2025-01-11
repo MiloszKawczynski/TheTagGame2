@@ -128,3 +128,5 @@ scr_setupTopDownAnimationStates();
 scr_setupPlatformAnimationStates();
 
 angle = 0;
+stretch = 1;
+squash = 1;

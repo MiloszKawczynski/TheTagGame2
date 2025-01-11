@@ -146,20 +146,20 @@
 		}
 		
 	}
-	function fauxton_sprite_draw(sprite, index, col, alp, rot, str, shader = shd_gmdefault, uniforms = undefined, arguments = [])
+	function fauxton_sprite_draw(sprite, index, col, alp, rot, str, squ, shader = shd_gmdefault, uniforms = undefined, arguments = [])
 	{
-		///@func fauxton_sprite_draw(sprite, index,color, alpha, rotation, stretch, shader, uniforms, arguments)
+		///@func fauxton_sprite_draw(sprite, index,color, alpha, rotation, stretch, squash, shader, uniforms, arguments)
 		shader_set(shader);
 		if (uniforms != undefined)
 		{
 	        method_call(uniforms, arguments)
 	    }
-		draw_sprite_ext( sprite, index,	0, 0, 1, -1 * str, rot, col, alp );
+		draw_sprite_ext( sprite, index,	0, 0, 1 * squ, -1 * str, rot, col, alp );
 		shader_reset();
 	}
-	function draw_sprite_3d( sprite, subimg, _x, _y, _z, _xr, _yr, _zr, _xs, _ys, _zs, _fc, shader = shd_gmdefault, uniforms = undefined, arguments = [], enable_lighting = false, _rot = 0, _str = 1)
+	function draw_sprite_3d( sprite, subimg, _x, _y, _z, _xr, _yr, _zr, _xs, _ys, _zs, _fc, shader = shd_gmdefault, uniforms = undefined, arguments = [], enable_lighting = false, _rot = 0, _str = 1, _squ = 1)
 	{
-		///@func draw_sprite_3d(sprite, subimg, x, y, z, xrotation, yrotation, zrotation, xscale, yscale, zscale, facing_camera, shader, uniforms, arguments, enable_lighting, rotation = 0, stretch = 0)
+		///@func draw_sprite_3d(sprite, subimg, x, y, z, xrotation, yrotation, zrotation, xscale, yscale, zscale, facing_camera, shader, uniforms, arguments, enable_lighting, rotation = 0, stretch = 1, squash = 1)
 		fauxton_sprite_set(_x, _y, _z, _xr, _yr, _zr, _xs, _ys, _zs, _fc);
 		
 		var _col = c_white;
@@ -168,7 +168,7 @@
 			_col = 	fauxton_calculate_sprite_lighting(_x, _y, _z, c_white);
 		}
 		
-		fauxton_sprite_draw(sprite, subimg, _col, 1, _rot, _str, shader, uniforms, arguments);
+		fauxton_sprite_draw(sprite, subimg, _col, 1, _rot, _str, _squ, shader, uniforms, arguments);
 		matrix_reset();
 	}
 	function draw_sprite_3d_ext( sprite, subimg, _x, _y, _z, _xr, _yr, _zr, _xs, _ys, _zs, _c, _a, _fc, shader = shd_gmdefault, uniforms = undefined, arguments = [], enable_lighting = false)

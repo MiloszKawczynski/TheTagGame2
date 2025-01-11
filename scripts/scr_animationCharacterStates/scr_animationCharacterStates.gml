@@ -69,7 +69,8 @@ function scr_setupPlatformAnimationStates()
 		setXScaleWithHSpeed();
 		playOnce();
 		angle = lerp(angle, (abs(hspeed) / maximumDefaultSpeed) * 15, 0.1);
-		image_yscale = clamp(1 + ((abs(vspeed) / jumpForce) * 0.5), 1, 1.5);
+		stretch = clamp(1 + ((abs(vspeed) / jumpForce) * 0.3), 1, 1.3);
+		squash = (1 - (stretch - 1));
 		
 		platformAnimationState = changeState(vspeed >= 0 , platformAnimationState, platformFallState);
 		platformAnimationState = changeState(isGrounded == true, platformAnimationState, platformIdleState);
@@ -81,6 +82,8 @@ function scr_setupPlatformAnimationStates()
 		setXScaleWithHSpeed();
 		playOnce();
 		angle = lerp(angle, (-abs(hspeed) / maximumDefaultSpeed) * 15, 0.1);
+		stretch = clamp(1 + ((abs(vspeed) / jumpForce) * 0.3), 1, 1.3);
+		squash = (1 - (stretch - 1));
 		
 		platformAnimationState = changeState(isGrounded == true, platformAnimationState, platformIdleState);
 		platformAnimationState = changeState(vspeed < 0, platformAnimationState, platformJumpState);
