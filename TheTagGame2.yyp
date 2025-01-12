@@ -218,6 +218,7 @@
     {"id":{"name":"o_diagonal","path":"objects/o_diagonal/o_diagonal.yy",},},
     {"id":{"name":"o_gameManager","path":"objects/o_gameManager/o_gameManager.yy",},},
     {"id":{"name":"o_godRay","path":"objects/o_godRay/o_godRay.yy",},},
+    {"id":{"name":"o_gravityChangeArea","path":"objects/o_gravityChangeArea/o_gravityChangeArea.yy",},},
     {"id":{"name":"o_locker","path":"objects/o_locker/o_locker.yy",},},
     {"id":{"name":"o_npc","path":"objects/o_npc/o_npc.yy",},},
     {"id":{"name":"o_obstacle","path":"objects/o_obstacle/o_obstacle.yy",},},
