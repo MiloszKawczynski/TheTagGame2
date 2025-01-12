@@ -1,6 +1,6 @@
 function scr_debugPreload()
 {
-	if (room == r_levelEditor)
+	if (room == r_levelEditor or room == r_levelEditorBig)
 	{
 		scr_levelLoad("basic");
 	}
