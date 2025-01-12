@@ -211,6 +211,7 @@
     {"id":{"name":"o_cameraTarget","path":"objects/o_cameraTarget/o_cameraTarget.yy",},},
     {"id":{"name":"o_char","path":"objects/o_char/o_char.yy",},},
     {"id":{"name":"o_collision","path":"objects/o_collision/o_collision.yy",},},
+    {"id":{"name":"o_cover","path":"objects/o_cover/o_cover.yy",},},
     {"id":{"name":"o_cup","path":"objects/o_cup/o_cup.yy",},},
     {"id":{"name":"o_debugController","path":"objects/o_debugController/o_debugController.yy",},},
     {"id":{"name":"o_decoration","path":"objects/o_decoration/o_decoration.yy",},},
