@@ -155,6 +155,7 @@
     {"$GMIncludedFile":"","%Name":"level_fire.json","CopyToMask":-1,"filePath":"datafiles/content","name":"level_fire.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"level_godraytest.json","CopyToMask":-1,"filePath":"datafiles/content","name":"level_godraytest.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"level_gym.json","CopyToMask":-1,"filePath":"datafiles/content","name":"level_gym.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"level_metroChase.json","CopyToMask":-1,"filePath":"datafiles/content","name":"level_metroChase.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"level_miko.json","CopyToMask":-1,"filePath":"datafiles/content","name":"level_miko.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"level_rampTest.json","CopyToMask":-1,"filePath":"datafiles/content","name":"level_rampTest.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"level_santa.json","CopyToMask":-1,"filePath":"datafiles/content","name":"level_santa.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
@@ -262,6 +263,7 @@
     {"id":{"name":"r_gym2","path":"rooms/r_gym2/r_gym2.yy",},},
     {"id":{"name":"r_levelEditor","path":"rooms/r_levelEditor/r_levelEditor.yy",},},
     {"id":{"name":"r_levelEditorBig","path":"rooms/r_levelEditorBig/r_levelEditorBig.yy",},},
+    {"id":{"name":"r_metroChase","path":"rooms/r_metroChase/r_metroChase.yy",},},
     {"id":{"name":"rm_demo1","path":"rooms/rm_demo1/rm_demo1.yy",},},
     {"id":{"name":"rm_demo2","path":"rooms/rm_demo2/rm_demo2.yy",},},
     {"id":{"name":"rm_demo3","path":"rooms/rm_demo3/rm_demo3.yy",},},
@@ -791,6 +793,7 @@
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
     {"roomId":{"name":"r_levelEditorBig","path":"rooms/r_levelEditorBig/r_levelEditorBig.yy",},},
+    {"roomId":{"name":"r_metroChase","path":"rooms/r_metroChase/r_metroChase.yy",},},
     {"roomId":{"name":"r_levelEditor","path":"rooms/r_levelEditor/r_levelEditor.yy",},},
     {"roomId":{"name":"r_gym","path":"rooms/r_gym/r_gym.yy",},},
     {"roomId":{"name":"r_gym2","path":"rooms/r_gym2/r_gym2.yy",},},
