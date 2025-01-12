@@ -1213,46 +1213,27 @@ function scr_editorOptions()
 		
 	ds_list_destroy(returnList);
 	
-	var buttonSize = 64;
-	var itemsPerRow = 5;
+	var itemsPerRow = 3;
 	var totalItems = array_length(editorObjects);
 
 	for (var i = 0; i < totalItems; i++) 
 	{
 	    var object = editorObjects[i];
-	    var sprite = object_get_sprite(object);
-	    var spriteBboxWidth = sprite_get_bbox_right(sprite) - sprite_get_bbox_left(sprite);
-	    var spriteBboxHeight = sprite_get_bbox_bottom(sprite) - sprite_get_bbox_top(sprite);
-		
-		var spriteWidth = sprite_get_width(sprite);
-		var spriteHeight = sprite_get_height(sprite);
-		
-		var scale = 2;
-		var selectionAlpha = 0.5;
-		
-		if (i == editorCurrentObjectIndex)
-		{
-			selectionAlpha = 1;
-		}
     
-	    ImGui.PushStyleVar(ImGuiStyleVar.FramePadding, (buttonSize - spriteBboxWidth * scale) / 2, (buttonSize - spriteBboxHeight * scale) / 2);
-
-	    if (ImGui.ImageButton(string("sprite {0}", i), sprite, 0, c_white, selectionAlpha, c_white, 0, spriteWidth * scale, spriteHeight * scale))
+	    if (ImGui.Selectable(object_get_name(object), i == editorCurrentObjectIndex,, ImGui.GetWindowWidth() / itemsPerRow))
 		{
 			editorCurrentObjectIndex = i;
-	        editorCurrentObject = object;
-
-	        if (editorCurrentObject == o_ramp or editorCurrentObject == o_slope)
-	        {
-	            editorSlopeCreation = true;
-	        }
-	        else
-	        {
-	            editorSlopeCreation = false;
-	        }
+			editorCurrentObject = object;
+			
+			if (editorCurrentObject == o_ramp or editorCurrentObject == o_slope)
+			{
+				editorSlopeCreation = true;
+			}
+			else
+			{
+				editorSlopeCreation = false;
+			}
 		}
-
-		ImGui.PopStyleVar();
 
 	    if (i + 1 != totalItems and (i + 1) % itemsPerRow != 0)
 	    {
