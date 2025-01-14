@@ -1,20 +1,18 @@
 {
   "$GMObject":"",
-  "%Name":"o_gravityChangeArea",
+  "%Name":"o_area",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"o_gravityChangeArea",
+  "name":"o_area",
   "overriddenProperties":[],
   "parent":{
     "name":"2_Objects",
     "path":"folders/2_Objects.yy",
   },
-  "parentObjectId":{
-    "name":"o_area",
-    "path":"objects/o_area/o_area.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

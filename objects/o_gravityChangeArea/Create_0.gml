@@ -1,3 +1,9 @@
-/// @description Insert description here
-// You can write your code in this editor
-characterIsIn = false;
+event_inherited();
+
+objectType = o_char;
+
+onLeave = function()
+{
+	global.debugIsGravityOn = !global.debugIsGravityOn;
+	scr_gravitationChange();
+}

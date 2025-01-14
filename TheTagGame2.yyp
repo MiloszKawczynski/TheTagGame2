@@ -205,6 +205,7 @@
     {"id":{"name":"ato_uiExample","path":"objects/ato_uiExample/ato_uiExample.yy",},},
     {"id":{"name":"Camera","path":"objects/Camera/Camera.yy",},},
     {"id":{"name":"input_controller_object","path":"objects/input_controller_object/input_controller_object.yy",},},
+    {"id":{"name":"o_area","path":"objects/o_area/o_area.yy",},},
     {"id":{"name":"o_areaSpawn","path":"objects/o_areaSpawn/o_areaSpawn.yy",},},
     {"id":{"name":"o_bench","path":"objects/o_bench/o_bench.yy",},},
     {"id":{"name":"o_block","path":"objects/o_block/o_block.yy",},},
