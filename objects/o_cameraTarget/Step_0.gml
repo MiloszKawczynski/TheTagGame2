@@ -14,11 +14,6 @@ if (array_length(o_gameManager.players) != 0)
 	else
 	{
 		scr_follow_one_character();
-		
-		if (place_meeting(x, y, o_zoomArea))
-		{
-			Camera.Zoom = instance_place(x, y, o_zoomArea).zoom;
-		}
 	}
 }
 
