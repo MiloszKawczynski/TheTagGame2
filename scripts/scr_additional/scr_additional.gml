@@ -263,6 +263,21 @@ function ImGui_position_3()
 	x = value[0];
 	y = value[1];
 	z = value[2];
+function ImGui_scale_2()
+{
+	var value = [image_xscale, image_yscale];
+	var step = 1;
+			
+	ImGui.DragFloat2("Scale", value);
+	
+	image_xscale = value[0];
+	image_yscale = value[1];
+	
+	if (keyboard_check(vk_lshift))
+	{
+		image_xscale = round(image_xscale);
+		image_yscale = round(image_yscale);
+	}
 }
 
 function changeState(condition, machine, newState)
