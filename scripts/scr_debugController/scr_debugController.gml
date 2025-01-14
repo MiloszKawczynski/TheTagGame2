@@ -1025,6 +1025,8 @@ function scr_levelSave(levelName = editorFileName)
 
 function scr_levelLoad(levelName = editorFileName)
 {
+	gameLevelName = levelName;
+	
 	for (var i = 0; i < array_length(editorObjects); i++)
 	{
 		instance_destroy(editorObjects[i]);

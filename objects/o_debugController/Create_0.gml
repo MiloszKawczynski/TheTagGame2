@@ -86,6 +86,8 @@ enum EditorDirectionType
 }
 	
 editorDirection = EditorDirectionType.bottomRight;
+
+gameLevelName = "";
 	
 editorFileName = "";
 rulesPresetFileName = "";
