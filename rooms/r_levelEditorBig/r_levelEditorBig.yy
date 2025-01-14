@@ -42,7 +42,7 @@
     {"$GMRInstanceLayer":"","%Name":"players","depth":400,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[],"layers":[],"name":"players","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"areas","depth":500,"effectEnabled":true,"effectType":null,"gridX":8,"gridY":8,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[],"layers":[],"name":"areas","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"level","depth":600,"effectEnabled":true,"effectType":null,"gridX":8,"gridY":8,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
-        {"$GMRInstance":"v1","%Name":"inst_5968821C_2_1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_5968821C_2_1","objectId":{"name":"o_roomBoundries","path":"objects/o_roomBoundries/o_roomBoundries.yy",},"properties":[
+        {"$GMRInstance":"v1","%Name":"inst_5968821C_2_1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":true,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_5968821C_2_1","objectId":{"name":"o_roomBoundries","path":"objects/o_roomBoundries/o_roomBoundries.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"o_roomBoundries","path":"objects/o_roomBoundries/o_roomBoundries.yy",},"propertyId":{"name":"spawnObject","path":"objects/o_roomBoundries/o_roomBoundries.yy",},"resource":{"name":"o_block","path":"objects/o_block/o_block.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"o_block",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":-64.0,"y":80.0,},
       ],"layers":[],"name":"level","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
@@ -68,7 +68,7 @@
     "Height":1792,
     "inheritRoomSettings":false,
     "persistent":false,
-    "Width":8000,
+    "Width":15008,
   },
   "sequenceId":null,
   "views":[
