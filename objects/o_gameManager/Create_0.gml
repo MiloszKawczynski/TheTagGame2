@@ -254,3 +254,5 @@ y1 = 0;
 y2 = 0;
 
 alarm[0] = 3;
+
+buffersMap = ds_map_create();

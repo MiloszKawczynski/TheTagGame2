@@ -134,34 +134,66 @@ function pipeline_initiate()
 	render_build_fidelity();
 	function load_buffer_maps() 
 	{		
-		// Load all buffer maps
-		for ( var i=ds_map_find_first(BUFFER_MAPS); !is_undefined(i); i = ds_map_find_next(BUFFER_MAPS, i) )
+		
+		if (!global.loadStaticBuffers)
 		{
-			var b = BUFFER_MAPS[? i];
-			if ( !b.loaded ){
-				// Load and write to buffers 
-				var l = b.load_pos + b.load_chunk;
-				l = clamp(l, 0, ds_list_size(b.load_queue));
-				for ( var j = b.load_pos; j<l; j++ ) 
-				{
-					b.load_pos++;
-					var m = b.load_queue[| j];
-					__FauxtonWriteStaticSpriteStack( b.buffer, m[0], m[1], m[2], m[3], m[4], m[5], m[6], m[7], m[8], m[9]);
+			// Load all buffer maps
+			for ( var i=ds_map_find_first(BUFFER_MAPS); !is_undefined(i); i = ds_map_find_next(BUFFER_MAPS, i) )
+			{
+				var b = BUFFER_MAPS[? i];
+				if ( !b.loaded ){
+					// Load and write to buffers 
+					var l = b.load_pos + b.load_chunk;
+					l = clamp(l, 0, ds_list_size(b.load_queue));
+					var align = string_split(i, "_");
+					var ha = real(align[1]);
+					var va = real(align[2]);
+					
+					for ( var j = b.load_pos; j<l; j++ ) 
+					{
+						b.load_pos++;
+						var m = b.load_queue[| j];
+						
+						__FauxtonWriteStaticSpriteStack( b.buffer, m[0], m[1], m[2], m[3], m[4], m[5], m[6], m[7], m[8], m[9], ha, va);
+					}
+					
+					// Complete loading
+					if ( b.load_pos == ds_list_size(b.load_queue) )
+					{
+						show_debug_message("Buffer '"+string(i)+"': Succesfully Loaded! ");
+						b.loaded = true;	
+						ds_list_destroy(b.load_queue);
+						if ( b.buffer < 0 ) { buffer_delete(b.buffer); b.buffer = -1; exit; }
+						b.vertex_buffer = vertex_create_buffer_from_buffer(b.buffer, SYSTEM_VERTEX_FORMAT);
+						
+						if (global.saveStaticBuffers)
+						{
+							buffer_save(b.buffer, get_project_path() + "content/buffers/" + string("{0}_{1}.sav", o_debugController.gameLevelName, i));
+						}
+						
+						buffer_delete(b.buffer);
+						vertex_freeze(b.vertex_buffer);
+					}
 				}
-				
-				// Complete loading
-				if ( b.load_pos == ds_list_size(b.load_queue) )
+			}
+		}
+		else 
+		{
+			for ( var i=ds_map_find_first(BUFFER_MAPS); !is_undefined(i); i = ds_map_find_next(BUFFER_MAPS, i) )
+			{
+				var b = BUFFER_MAPS[? i];
+				if ( !b.loaded )
 				{
-					show_debug_message("Buffer '"+string(i)+"': Succesfully Loaded! ");
+					b.buffer = buffer_load(get_project_path() + "content/buffers/" + string("{0}_{1}.sav", o_debugController.gameLevelName, i));
+					
 					b.loaded = true;	
 					ds_list_destroy(b.load_queue);
 					if ( b.buffer < 0 ) { buffer_delete(b.buffer); b.buffer = -1; exit; }
 					b.vertex_buffer = vertex_create_buffer_from_buffer(b.buffer, SYSTEM_VERTEX_FORMAT);
-					buffer_delete(b.buffer);
+					buffer_delete(b.buffer); 
 					vertex_freeze(b.vertex_buffer);
 				}
 			}
-			
 		}
 	}
 	function render_buffer_maps()
@@ -192,13 +224,17 @@ function pipeline_initiate()
 }
 function pipeline_load()
 {
-	render_build_fidelity();
-	if ( !instance_exists(WorldEnvironment) )
+	if (o_gameManager.alarm[0] == -1)
 	{
-		fauxton_world_set_default_environment();	
+		render_build_fidelity();
+		if ( !instance_exists(WorldEnvironment) )
+		{
+			fauxton_world_set_default_environment();	
+		}
+		if ( timer > 0 ){ timer--; exit; }
+		
+		load_buffer_maps();
 	}
-	if ( timer > 0 ){ timer--; exit; }
-	load_buffer_maps();
 }
 function pipeline_cleanup()
 {

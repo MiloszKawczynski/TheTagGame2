@@ -57,5 +57,25 @@ locate = function()
 		verticalAlign = 0;
 	}
 	
-	model = fauxton_model_create_ext(sprite_index, x, y, 0, 0, 0, 0, image_xscale, image_yscale, 1, image_blend, 1, horizontalAlign, verticalAlign);
+	var bufferId = string("{0}_{1}_{2}_{3}_{4}", sprite_index, horizontalAlign, verticalAlign, image_xscale, image_yscale);
+	
+	model = ds_map_find_value(o_gameManager.buffersMap, bufferId);
+	
+	if (model == undefined or (!global.createStaticBuffers and !global.loadStaticBuffers))
+	{
+		model = fauxton_model_create_ext(sprite_index, x, y, z, 0, 0, 0, 1, 1, 1, c_white, 1, horizontalAlign, verticalAlign);
+		ds_map_add(o_gameManager.buffersMap, bufferId, model);
+		
+		if (global.createStaticBuffers or global.loadStaticBuffers)
+		{
+			fauxton_buffer_create(bufferId)
+		}
+	}
+	
+	fauxton_model_set(model, x, y, 0, 0, 0, 0, image_xscale, image_yscale, 1);
+	
+	if (global.createStaticBuffers or global.loadStaticBuffers)
+	{
+		fauxton_model_add_static(model, bufferId);
+	}
 }

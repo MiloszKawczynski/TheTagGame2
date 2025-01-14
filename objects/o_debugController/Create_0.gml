@@ -12,6 +12,10 @@ global.debugCameraAxis = false;
 global.debugAutoCamera = true;
 global.debugEdit = false;
 
+global.loadStaticBuffers = false;
+global.createStaticBuffers = false;
+global.saveStaticBuffers = false;
+
 if (!global.debugEdit)
 {
 	Camera.Zoom = 2;
