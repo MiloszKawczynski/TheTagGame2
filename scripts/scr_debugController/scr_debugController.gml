@@ -1005,6 +1005,8 @@ function scr_serializeObject(objectType, file)
 
 function scr_levelSave(levelName = editorFileName)
 {
+	instance_activate_all();
+	
     var fileName = get_project_path() + "content/" + string("level_{0}.json", levelName);
     if (file_exists(fileName))
     {
