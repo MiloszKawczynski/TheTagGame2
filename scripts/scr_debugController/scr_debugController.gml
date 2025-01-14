@@ -727,7 +727,7 @@ function scr_deleteRegion(x1, y1, x2, y2)
 
 function scr_editorLogic()
 {
-	if (ImGui.IsAnyItemHovered() == false)
+	if (display_mouse_get_x() > 1920 * 0.22)
 	{
 		if (mouse_check_button_pressed(mb_any))
 		{
