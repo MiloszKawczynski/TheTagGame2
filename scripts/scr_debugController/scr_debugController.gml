@@ -232,6 +232,8 @@ function scr_logs()
 	ImGui.EndChild();
 	
 	ImGui.Text(string("Logs: {0}", ds_list_size(logBuffor)));
+	ImGui.Text(string("FPS: {0}", fps));
+	ImGui.Text(string("FPS Real: {0}", fps_real));
 }
 
 function scr_playersStats()
