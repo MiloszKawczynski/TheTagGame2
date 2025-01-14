@@ -119,9 +119,12 @@ reset = function()
 		scr_gravitationChange();
 	}
 	
+	instance_activate_object(o_start);
+	
 	with(o_char)
 	{
 		var playerNumber = player;
+		
 		with(o_start)
 		{
 			if (playerNumber == image_index)
