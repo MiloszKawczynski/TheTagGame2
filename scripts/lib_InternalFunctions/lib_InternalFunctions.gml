@@ -82,10 +82,10 @@ function __FauxtonWriteQuad(mBuff, texture, index, _x, _y, _z, color, alpha, ang
 	b = _tuvs[3];
 	
 	// Get Vertex offsets	
-	tl = _uvs[4] - sprite_get_xoffset(texture);
-	tt = _uvs[5] - sprite_get_yoffset(texture);
-	tr = tl + ( sprite_get_width(texture) * _uvs[6]);
-	tb = tt + ( sprite_get_height(texture) * _uvs[7]);
+	tl = xscale * _uvs[4] - sprite_get_xoffset(texture) * xscale;
+	tt = yscale * _uvs[5] - sprite_get_yoffset(texture) * yscale;
+	tr = tl + xscale * ( sprite_get_width(texture) * _uvs[6]);
+	tb = tt + yscale * ( sprite_get_height(texture) * _uvs[7]);
 	
 	cs = dcos(angle);
 	sn = dsin(angle);
