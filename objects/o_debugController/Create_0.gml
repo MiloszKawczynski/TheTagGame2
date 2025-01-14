@@ -73,7 +73,10 @@ array_push(editorObjects,
 	o_bench, 
 	o_cup,
 	o_locker,
-	o_npc);
+	o_npc,
+	o_gravityChangeArea,
+	o_cover
+);
 	
 editorCurrentObjectIndex = 0;
 editorCurrentObject = o_block;
