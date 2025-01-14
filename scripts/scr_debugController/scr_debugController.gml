@@ -713,26 +713,15 @@ function scr_deleteRegion(x1, y1, x2, y2)
 {
 	var collisionList = ds_list_create();
 			
-	collision_rectangle_list(x1, y1, x2, y2, o_collision, true, true, collisionList, false);
-	for(var i = 0; i < ds_list_size(collisionList); i++)
+	for (var j = 0; j < array_length(editorObjects); j++)
 	{
-		instance_destroy(ds_list_find_value(collisionList, i));
-	}
-			
-	ds_list_clear(collisionList);
-			
-	collision_rectangle_list(x1, y1, x2, y2, o_obstacle, true, true, collisionList, false);
-	for(var i = 0; i < ds_list_size(collisionList); i++)
-	{
-		instance_destroy(ds_list_find_value(collisionList, i));
-	}
-	
-	ds_list_clear(collisionList);
-	
-	collision_rectangle_list(x1, y1, x2, y2, o_start, true, true, collisionList, false);
-	for(var i = 0; i < ds_list_size(collisionList); i++)
-	{
-		instance_destroy(ds_list_find_value(collisionList, i));
+		collision_rectangle_list(x1, y1, x2, y2, editorObjects[j], true, true, collisionList, false);
+		for(var i = 0; i < ds_list_size(collisionList); i++)
+		{
+			instance_destroy(ds_list_find_value(collisionList, i));
+		}
+				
+		ds_list_clear(collisionList);
 	}
 }
 
