@@ -976,18 +976,25 @@ function scr_editorLogic()
 
 function scr_serializeObject(objectType, file)
 {
-	function objectSerialized(_x, _y, _imageXScale, _imageYScale, _object) constructor
+	function objectSerialized(_x, _y, _z, _imageXScale, _imageYScale, _object, _layer) constructor
 	{	
 		xPos = _x;
 		yPos = _y;
+		zPos = _z;
 		imageXScale = _imageXScale;
 		imageYScale = _imageYScale;
 		objectType = _object;
+		layerName = _layer;
 	}
 	
 	with (objectType) 
     {
-        var instanceSerialized = new objectSerialized(x, y, image_xscale, image_yscale, objectType);
+		if (!variable_instance_exists(self, "z"))
+		{
+			z = 0;
+		}
+		
+        var instanceSerialized = new objectSerialized(x, y, z, image_xscale, image_yscale, objectType, layer);
 
 		file_text_write_string(file, json_stringify(instanceSerialized));
 		file_text_writeln(file);
@@ -1035,9 +1042,20 @@ function scr_levelLoad(levelName = editorFileName)
 			file_text_readln(file);
             var instanceData = json_parse(jsonString);
 
-            var newInstance = instance_create_layer(instanceData.xPos, instanceData.yPos, "Level", instanceData.objectType);
+			if (!variable_struct_exists(instanceData, "layerName"))
+			{
+				instanceData.layerName = "Level";
+			}
+				
+            var newInstance = instance_create_layer(instanceData.xPos, instanceData.yPos, instanceData.layerName, instanceData.objectType);
+			
 			newInstance.image_xscale = instanceData.imageXScale;
 			newInstance.image_yscale = instanceData.imageYScale;
+			
+			if (variable_struct_exists(instanceData, "zPos"))
+			{
+				newInstance.z = instanceData.zPos;
+			}
         }
 
         file_text_close(file);
