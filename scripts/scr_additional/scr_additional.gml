@@ -253,16 +253,68 @@ function ImGui_position_2()
 	
 	x = value[0];
 	y = value[1];
+	
+	if (keyboard_check(vk_lshift))
+	{
+		if (value[0] != x)
+		{
+			x = value[0];
+			var _x = x div 16;
+			x = (_x * 16) + 8;
+		}
+		
+		if (value[1] != y)
+		{
+			y = value[1];
+			var _y = y div 16;
+			y = (_y * 16) + 8;
+		}
+		
+	}
+	else 
+	{
+		x = value[0];
+		y = value[1];
+	}
 }
 
 function ImGui_position_3()
 {
 	var value = [x, y, z];
+
 	ImGui.DragFloat3("Position", value);
 	
-	x = value[0];
-	y = value[1];
-	z = value[2];
+	if (keyboard_check(vk_lshift))
+	{
+		if (value[0] != x)
+		{
+			x = value[0];
+			var _x = x div 16;
+			x = (_x * 16) + 8;
+		}
+		
+		if (value[1] != y)
+		{
+			y = value[1];
+			var _y = y div 16;
+			y = (_y * 16) + 8;
+		}
+		
+		if (value[2] != z) 
+		{
+			z = value[2];
+			var _z = z div 16;
+			z = (_z * 16) + 8;
+		}
+	}
+	else 
+	{
+		x = value[0];
+		y = value[1];
+		z = value[2];	
+	}
+}
+
 function ImGui_scale_2()
 {
 	var value = [image_xscale, image_yscale];
