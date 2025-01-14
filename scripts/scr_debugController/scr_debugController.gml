@@ -9,7 +9,30 @@ function scr_debugPreload()
 	scr_dialogBoxPresetLoad("default");
 	
 	scr_addPlayer(0);
-	scr_addPlayer(1);
+	//scr_addPlayer(1);
+	
+	//Create and Save
+	switch(staticBuffersOptionType.load)
+	{
+		case(staticBuffersOptionType.create):
+		{
+			global.createStaticBuffers = true;
+			break;
+		}
+		
+		case(staticBuffersOptionType.createAndSave):
+		{
+			global.createStaticBuffers = true;
+			global.saveStaticBuffers = true;
+			break;
+		}
+		
+		case(staticBuffersOptionType.load):
+		{
+			global.loadStaticBuffers = true;
+			break;
+		}
+	}
 		
 	o_gameManager.reset();
 }

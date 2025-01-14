@@ -12,6 +12,13 @@ global.debugCameraAxis = false;
 global.debugAutoCamera = true;
 global.debugEdit = false;
 
+enum staticBuffersOptionType
+{
+	create,
+	createAndSave,
+	load
+}
+
 global.loadStaticBuffers = false;
 global.createStaticBuffers = false;
 global.saveStaticBuffers = false;
