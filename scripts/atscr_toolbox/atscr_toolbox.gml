@@ -88,7 +88,7 @@ function path_create(points)
 function log(logMessage, color = c_white)
 {
 	var timeStamp = date_time_string(date_current_datetime());
-	var fullLog = string(timeStamp + ": " + logMessage);
+	var fullLog = string(timeStamp + ": " + string(logMessage));
 	var monitoredValue = "";
 	
 	show_debug_message(fullLog);
