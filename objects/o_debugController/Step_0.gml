@@ -24,66 +24,7 @@ if (!o_gameManager.isGameOn and !hide)
 		
 		gameLanguage = ImGui.InputText("Language", gameLanguage);
 		
-		if (ImGui.Button("Merge"))
-		{
-			with(o_collision)
-			{
-				typeOfMerge = o_collision;
-				instanceToMerge = locate();
-			}
-		}
-		
-		ImGui.Separator();
-		
-		if (selectedObject != undefined)
-		{
-			if (variable_instance_exists(selectedObject, "editor"))
-			{
-				selectedObject.editor();
-			}
-			else
-			{
-				ImGui.TextColored("This object doesn't have editor!", c_red);
-			}
-		}
-		
-		ImGui.Separator();
-		
-		objectName = ImGui.InputText("Object name: ", objectName);
-	
-		if (ImGui.Button("Search objects"))
-		{
-			array_delete(editableObjects, 0, array_length(editableObjects));
-			
-			for (var i = 0; i < instance_number(all); i++) 
-			{
-				var inst = instance_find(all, i);
-				
-				if (!string_count(objectName, object_get_name(inst.object_index)))
-				{
-					continue;
-				}
-				
-				array_push(editableObjects, inst);
-			}
-		}
-		
-		for (var i = 0; i < array_length(editableObjects); i++) 
-		{
-			var inst = editableObjects[i];
-			var name = string("{0}_{1}", object_get_name(inst.object_index), inst.id);
-			
-			if (!variable_instance_exists(inst, "editor"))
-			{
-				continue;
-			}
-		
-			if (ImGui.Selectable(name, selectedObject == inst)) 
-			{
-				selectedObject = inst;
-			}
-		}
-			
+		scr_objectsInspector();
 		
 		if (input_join_is_finished())
 		{
@@ -117,6 +58,7 @@ if (!o_gameManager.isGameOn and !hide)
 		
 		scr_gameOptions();
 		scr_editorOptions();
+		scr_objectsInspector();
 		scr_logsOptions();
 	}
 	ImGui.End();

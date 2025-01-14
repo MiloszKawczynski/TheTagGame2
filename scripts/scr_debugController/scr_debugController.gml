@@ -2806,3 +2806,54 @@ function scr_placeHolder()
 	ImGui.Begin("Placeholder", 0, ImGuiWindowFlags.NoInputs | ImGuiWindowFlags.NoDecoration | ImGuiWindowFlags.NoMove)
 	ImGui.End();
 }
+
+function scr_objectsInspector()
+{
+	if (ImGui.Button("Search objects"))
+	{
+		array_delete(editableObjects, 0, array_length(editableObjects));
+		
+		for (var i = 0; i < instance_number(all); i++) 
+		{
+			var inst = instance_find(all, i);
+			
+			if (!string_count(objectName, object_get_name(inst.object_index)))
+			{
+				continue;
+			}
+			
+			if (!variable_instance_exists(inst, "editor"))
+			{
+				continue;
+			}
+			
+			array_push(editableObjects, inst);
+		}
+	}
+	
+	for (var i = 0; i < array_length(editableObjects); i++) 
+	{
+		var inst = editableObjects[i];
+		var name = string("{0}_{1}", object_get_name(inst.object_index), inst.id);
+		
+		if (ImGui.Selectable(name, selectedObject == inst)) 
+		{
+			selectedObject = inst;
+		}
+	}
+	
+	
+	ImGui.Separator();
+	
+	if (selectedObject != undefined)
+	{
+		if (variable_instance_exists(selectedObject, "editor"))
+		{
+			selectedObject.editor();
+		}
+		else
+		{
+			ImGui.TextColored("This object doesn't have editor!", c_red);
+		}
+	}
+}
