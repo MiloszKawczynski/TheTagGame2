@@ -375,9 +375,9 @@ function __FauxtonWrite3DTexCube( _h, _col, _alpha, _ang)
 	vertex_freeze(vBuff);
 	return vBuff;
 }
-function __FauxtonWriteStaticSpriteStack(_buffer, sprite, _x, _y, _z, _col, _alp, _ang, _xs, _ys, _zs)
+function __FauxtonWriteStaticSpriteStack(_buffer, sprite, _x, _y, _z, _col, _alp, _ang, _xs, _ys, _zs, _ha, _va)
 {
-	///@func __FauxtonWriteStaticSpriteStack(buffer, sprite, x, y, z, color, alpha, angle, xscale, yscale, zscale)
+	///@func __FauxtonWriteStaticSpriteStack(buffer, sprite, x, y, z, color, alpha, angle, xscale, yscale, zscale, horizontalAlign, verticalAlign)
 
 	// Number of images
 	var _num = sprite_get_number(sprite);
@@ -386,12 +386,10 @@ function __FauxtonWriteStaticSpriteStack(_buffer, sprite, _x, _y, _z, _col, _alp
 	var _zoffset = random_range(0.01, 0.1);
 		
 	// Create and write to buffer (much faster than writing a direct vertex buffer)
-	for ( var i=0; i<_num * _zs; i+=1/_zs )
+	for ( var i=0; i<_num * RENDER_FIDELITY; i++ )
 	{
-		var _ind = ceil(i / _zs);
-		//if ( _ind > _num-1.6 ){ _ind = ceil(_ind); }
-		_ind = clamp(_ind, 0, _num-1);
-		__FauxtonWriteQuad(_buffer, sprite, _ind, _x, _y, _z + i + _zoffset, _col, _alp, _ang, _xs, _ys, _zs, 0, 0)
+		var _ind = i/RENDER_FIDELITY;
+		__FauxtonWriteQuad(_buffer, sprite, _ind, _x, _y, _z + (i/RENDER_FIDELITY) + _zoffset, _col, _alp, _ang, _xs, _ys, _zs, _ha, _va )
 	}
 }
 	
