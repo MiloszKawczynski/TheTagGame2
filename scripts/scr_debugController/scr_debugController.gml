@@ -798,23 +798,35 @@ function scr_editorLogic()
 					}
 					else
 					{
-						instance = instance_create_layer(_xSpawn, _ySpawn, "level", editorCurrentObject);
+						var layerName = "level";
+						
+						if (object_get_parent(editorCurrentObject) = o_decorationFlat)
+						{
+							layerName = "covers";
+						}
+						
+						if (object_get_parent(editorCurrentObject) = o_area)
+						{
+							layerName = "areas";
+						}
+						
+						instance = instance_create_layer(_xSpawn, _ySpawn, layerName, editorCurrentObject);
 					
 						if (editorMirror)
 						{
-							instance = instance_create_layer(room_width - (_xSpawn), _ySpawn, "level", editorCurrentObject);
+							instance = instance_create_layer(room_width - (_xSpawn), _ySpawn, layerName, editorCurrentObject);
 							instance.image_xscale = -1;
 						}
 					
 						if (editorFlip)
 						{
-							instance = instance_create_layer(_xSpawn, room_height - (_ySpawn), "level", editorCurrentObject);
+							instance = instance_create_layer(_xSpawn, room_height - (_ySpawn), layerName, editorCurrentObject);
 							instance.image_yscale = -1;
 						}
 					
 						if (editorMirror and editorFlip)
 						{
-							instance = instance_create_layer(room_width - (_xSpawn), room_height - (_ySpawn), "level", editorCurrentObject);
+							instance = instance_create_layer(room_width - (_xSpawn), room_height - (_ySpawn), layerName, editorCurrentObject);
 							instance.image_xscale = -1;
 							instance.image_yscale = -1;
 						}
