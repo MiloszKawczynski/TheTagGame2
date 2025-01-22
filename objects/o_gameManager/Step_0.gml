@@ -21,6 +21,11 @@ if (isGameOn)
 		if ((chaseTime - (i * 40)) mod (maximumChaseTime div changesPerChase) == 0)
 		{
 			vignettePulse = true;
+			
+			if (i == 3)
+			{
+				audio_play_sound(sn_gravityChangeWarning, 0, false);
+			}
 		}
 	}
 	
