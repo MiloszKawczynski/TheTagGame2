@@ -103,7 +103,7 @@ function scr_topDownMovement()
 
 function scr_TopDownObstaclesInteraction()
 {
-	var dist = distance_to_object(o_obstacle);
+	var dist = distance_to_object(o_obstacleParent);
 	if (dist < instance_nearest(x, y, o_char).obstacleRange)
 	{
 		if (input_check_pressed("interactionKey", player))
@@ -325,7 +325,7 @@ function scr_platformerMovement()
 
 function scr_platformerObstaclesInteraction()
 {
-	var dist = distance_to_object(o_obstacle);
+	var dist = distance_to_object(o_obstacleParent);
 	if (dist < instance_nearest(x, y, o_char).obstacleRange)
 	{
 		if (input_check_pressed("interactionKey", player))

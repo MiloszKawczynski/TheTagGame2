@@ -269,6 +269,7 @@
     {"id":{"name":"o_locker","path":"objects/o_locker/o_locker.yy",},},
     {"id":{"name":"o_npc","path":"objects/o_npc/o_npc.yy",},},
     {"id":{"name":"o_obstacle","path":"objects/o_obstacle/o_obstacle.yy",},},
+    {"id":{"name":"o_obstacleParent","path":"objects/o_obstacleParent/o_obstacleParent.yy",},},
     {"id":{"name":"o_rail","path":"objects/o_rail/o_rail.yy",},},
     {"id":{"name":"o_railFlat","path":"objects/o_railFlat/o_railFlat.yy",},},
     {"id":{"name":"o_ramp","path":"objects/o_ramp/o_ramp.yy",},},

@@ -1,6 +1,6 @@
 {
   "$GMObject":"",
-  "%Name":"o_obstacle",
+  "%Name":"o_obstacleParent",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
@@ -8,16 +8,13 @@
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":1,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"o_obstacle",
+  "name":"o_obstacleParent",
   "overriddenProperties":[],
   "parent":{
     "name":"2_Objects",
     "path":"folders/2_Objects.yy",
   },
-  "parentObjectId":{
-    "name":"o_obstacleParent",
-    "path":"objects/o_obstacleParent/o_obstacleParent.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -36,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"s_obstacle",
-    "path":"sprites/s_obstacle/s_obstacle.yy",
+    "name":"s_parent",
+    "path":"sprites/s_parent/s_parent.yy",
   },
   "spriteMaskId":null,
   "visible":true,
