@@ -32,6 +32,11 @@ function scr_debugPreload()
 			global.loadStaticBuffers = true;
 			break;
 		}
+		
+		case(staticBuffersOptionType.disable):
+		{
+			break;
+		}
 	}
 		
 	o_gameManager.reset();

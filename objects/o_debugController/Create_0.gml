@@ -16,7 +16,8 @@ enum staticBuffersOptionType
 {
 	create,
 	createAndSave,
-	load
+	load,
+	disable
 }
 
 global.loadStaticBuffers = false;
