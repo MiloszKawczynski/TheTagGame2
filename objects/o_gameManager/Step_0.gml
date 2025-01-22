@@ -1,10 +1,79 @@
 ui.step();
 
-ui.roundNumber.setContent(string("Round {0}/16", rounds));
-ui.leftPoints.setContent(string(players[0].points));
-if (array_length(other.players) == 2)
+with(ui)
 {
-	ui.rightPoints.setContent(string(players[1].points));
+	roundNumber.setContent(string("Round {0}/16", other.rounds));
+	leftPoints.setContent(string(other.players[0].points));
+	//ui.timeBar.setValue(chaseTime / maximumChaseTime);
+	
+	var leftPlayer = other.players[0].instance;
+	
+	var pos = [];
+	
+	if (other.isGravitationOn)
+	{
+		pos = world_to_gui(
+			leftPlayer.x + leftPlayer.image_xscale * 28 + leftPlayer.hspeed,
+			leftPlayer.y - 20 + leftPlayer.vspeed,
+			leftPlayer.z);
+	}
+	else 
+	{
+		if (sign(leftPlayer.image_xscale) == 1) 
+		{
+			pos = world_to_gui(
+				leftPlayer.x + leftPlayer.image_xscale * 16 + leftPlayer.hspeed,
+				leftPlayer.y - 48 + leftPlayer.vspeed,
+				leftPlayer.z);
+		}
+		else 
+		{
+			pos = world_to_gui(
+				leftPlayer.x + leftPlayer.image_xscale * 36 + leftPlayer.hspeed,
+				leftPlayer.y - 40 + leftPlayer.vspeed,
+				leftPlayer.z);
+		}
+	}
+	
+	leftStamina.setValue(leftPlayer.skillEnergy);
+	leftStamina.setShift(pos[0], pos[1]);
+	leftStamina.setScale((0.8 * leftPlayer.image_xscale) / Camera.Zoom, 0.8 / Camera.Zoom);
+
+	if (array_length(other.players) == 2)
+	{
+		rightPoints.setContent(string(other.players[1].points));
+		
+		var rightPlayer = other.players[1].instance;
+		
+		if (other.isGravitationOn)
+		{
+			pos = world_to_gui(
+				rightPlayer.x + rightPlayer.image_xscale * 28 + rightPlayer.hspeed,
+				rightPlayer.y - 20 + rightPlayer.vspeed,
+				rightPlayer.z);
+		}
+		else 
+		{
+			if (sign(rightPlayer.image_xscale) == 1) 
+			{
+				pos = world_to_gui(
+					rightPlayer.x + rightPlayer.image_xscale * 16 + rightPlayer.hspeed,
+					rightPlayer.y - 48 + rightPlayer.vspeed,
+					rightPlayer.z);
+			}
+			else 
+			{
+				pos = world_to_gui(
+					rightPlayer.x + rightPlayer.image_xscale * 36 + rightPlayer.hspeed,
+					rightPlayer.y - 40 + rightPlayer.vspeed,
+					rightPlayer.z);
+			}
+		}
+		
+		rightStamina.setValue(rightPlayer.skillEnergy);
+		rightStamina.setShift(pos[0], pos[1]);
+		rightStamina.setScale((0.8 * rightPlayer.image_xscale) / Camera.Zoom, 0.8 / Camera.Zoom);
+	}
 }
 
 if (input_check_pressed("debugPlayKey"))

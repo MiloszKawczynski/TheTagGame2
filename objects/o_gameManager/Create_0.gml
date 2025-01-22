@@ -49,6 +49,19 @@ with(ui)
 	
 	rightPoints = new Text("0", f_chaseBar);
 	
+	leftStamina = new GradientBar(1);
+	rightStamina = new GradientBar(1);
+	
+	with(leftStamina)
+	{
+		scr_makeStaminaBar();
+	}
+	
+	with(rightStamina)
+	{
+		scr_makeStaminaBar();
+	}
+	
 	chaseBarGroup = new Group();
 	chaseBarGroup.setGrid(1, 1, false);
 	chaseBarGroup.addComponent(-0.835, -0.19, leftColor);
@@ -64,6 +77,8 @@ with(ui)
 	rightPortrait.setScale(-0.6);
 	
 	mainLayer.addComponent(5, 1, chaseBarGroup);
+	mainLayer.addComponent(0, 0, leftStamina);
+	mainLayer.addComponent(0, 0, rightStamina);
 
 	pushLayer(mainLayer);
 }
@@ -212,11 +227,13 @@ uiUpdate = function()
 	{
 		leftColor.setColor(other.players[0].instance.color);
 		leftPortrait.state.setSpriteSheet(s_chaseBarPortraits, other.players[0].instance.portrait);
+		leftStamina.setColor(other.players[0].instance.color);
 			
 		if (array_length(other.players) == 2)
 		{
 			rightColor.setColor(other.players[1].instance.color);
 			rightPortrait.state.setSpriteSheet(s_chaseBarPortraits, other.players[1].instance.portrait);
+			rightStamina.setColor(other.players[1].instance.color);
 		}
 	}
 }

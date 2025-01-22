@@ -53,19 +53,3 @@ if (global.debugEdit)
 {
 	draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, image_yscale, 0, c_white, 1);
 }
-
-matrix_set(matrix_world, o_debugController.debugMatrix);
-draw_set_color(c_black);
-draw_rectangle(x + 32 * image_xscale, y - 16, x + 36 * image_xscale, y + 16, false);
-matrix_reset();
-matrix_set(matrix_world, matrix_build(0, 0, 34, 0, 0, 0, 1, 1, 1));
-if (skillRecharging)
-{
-	draw_set_color(c_gray);
-}
-else 
-{
-	draw_set_color(color);	
-}
-draw_rectangle(x + 32 * image_xscale, y + 16 - (32 * skillEnergy), x + 36 * image_xscale, y + 16, false);
-matrix_reset();
