@@ -674,6 +674,7 @@
     {"id":{"name":"shd_tree_sway","path":"shaders/shd_tree_sway/shd_tree_sway.yy",},},
     {"id":{"name":"shd_vfog","path":"shaders/shd_vfog/shd_vfog.yy",},},
     {"id":{"name":"shdImGui","path":"shaders/shdImGui/shdImGui.yy",},},
+    {"id":{"name":"sn_gravityChangeWarning","path":"sounds/sn_gravityChangeWarning/sn_gravityChangeWarning.yy",},},
     {"id":{"name":"ats_button","path":"sprites/ats_button/ats_button.yy",},},
     {"id":{"name":"ats_buttonFocus","path":"sprites/ats_buttonFocus/ats_buttonFocus.yy",},},
     {"id":{"name":"ats_buttonHover","path":"sprites/ats_buttonHover/ats_buttonHover.yy",},},
