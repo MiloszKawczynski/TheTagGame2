@@ -1,10 +1,12 @@
 {
   "$GMObject":"",
-  "%Name":"o_cover",
+  "%Name":"o_metroChaseTitleCard",
   "eventList":[],
   "managed":true,
-  "name":"o_cover",
-  "overriddenProperties":[],
+  "name":"o_metroChaseTitleCard",
+  "overriddenProperties":[
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"o_decorationFlat","path":"objects/o_decorationFlat/o_decorationFlat.yy",},"propertyId":{"name":"z","path":"objects/o_decorationFlat/o_decorationFlat.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"34",},
+  ],
   "parent":{
     "name":"2_Objects",
     "path":"folders/2_Objects.yy",
@@ -31,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"s_16x16",
-    "path":"sprites/s_16x16/s_16x16.yy",
+    "name":"s_metroChaseTitleCard",
+    "path":"sprites/s_metroChaseTitleCard/s_metroChaseTitleCard.yy",
   },
   "spriteMaskId":null,
   "visible":true,
