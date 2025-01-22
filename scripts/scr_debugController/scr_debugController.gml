@@ -434,8 +434,6 @@ function scr_playerData()
 			ImGui.PushStyleColor(ImGuiCol.Text, c_red, 1);
 		}
 		
-		ImGui.Text(string("isChasing: {0}", choosedPlayer.isChasing));
-		
 		if (i == choosedPlayerIndex)
 		{
 			ImGui.PopStyleColor();
