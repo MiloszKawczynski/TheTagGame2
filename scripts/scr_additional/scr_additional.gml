@@ -366,3 +366,41 @@ function playOnce()
 	
 	return false;
 }
+
+function world_to_gui(xx, yy, zz) 
+{
+	var view_mat = camera_get_view_mat(Camera.ThisCamera);
+	var proj_mat = camera_get_proj_mat(Camera.ThisCamera);
+
+	var vx = view_mat[0] * xx + view_mat[4] * yy + view_mat[8]  * zz + view_mat[12];
+	var vy = view_mat[1] * xx + view_mat[5] * yy + view_mat[9]  * zz + view_mat[13];
+	var vz = view_mat[2] * xx + view_mat[6] * yy + view_mat[10] * zz + view_mat[14];
+	var vw = view_mat[3] * xx + view_mat[7] * yy + view_mat[11] * zz + view_mat[15];
+
+	var clip_x = proj_mat[0] * vx + proj_mat[4] * vy + proj_mat[8]  * vz + proj_mat[12] * vw;
+	var clip_y = proj_mat[1] * vx + proj_mat[5] * vy + proj_mat[9]  * vz + proj_mat[13] * vw;
+	var clip_w = proj_mat[3] * vx + proj_mat[7] * vy + proj_mat[11] * vz + proj_mat[15] * vw;
+
+	if (clip_w == 0) return [-1, -1];
+
+	var ndc_x = clip_x / clip_w;
+	var ndc_y = clip_y / clip_w;
+
+	var pitch = Camera.pTo;
+
+	if (pitch > 90 and pitch < 270) 
+	{
+		ndc_x = -ndc_x;
+		ndc_y = -ndc_y;
+	}
+
+	var zoomed_x = ndc_x;
+	var zoomed_y = ndc_y;
+
+	var screen_x = (zoomed_x * 0.5 + 0.5) * display_get_gui_width();
+	var screen_y = (1.0 - (zoomed_y * 0.5 + 0.5)) * display_get_gui_height();
+
+	return [screen_x, screen_y];
+}
+
+
