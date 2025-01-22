@@ -168,6 +168,7 @@ function pipeline_initiate()
 						
 						if (global.saveStaticBuffers)
 						{
+							b.buffer = buffer_compress(b.buffer, 0, buffer_tell(b.buffer));
 							buffer_save(b.buffer, get_project_path() + "content/buffers/" + string("{0}_{1}.sav", o_debugController.gameLevelName, i));
 						}
 						
@@ -185,6 +186,7 @@ function pipeline_initiate()
 				if ( !b.loaded )
 				{
 					b.buffer = buffer_load(get_project_path() + "content/buffers/" + string("{0}_{1}.sav", o_debugController.gameLevelName, i));
+					b.buffer = buffer_decompress(b.buffer);
 					
 					b.loaded = true;	
 					ds_list_destroy(b.load_queue);
