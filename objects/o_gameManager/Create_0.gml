@@ -8,29 +8,16 @@ with(ui)
 	mainLayer.setGrid(10, 10, false);
 	
 	leftColor = new Output();
+	rightColor = new Output();
 	
 	with(leftColor)
 	{
-		var drawCircle = function()
-		{
-			draw_set_color(color);
-			draw_circle(posX, posY, 26.5, false);
-		}
-		setDrawFunction(drawCircle);
-		setColor(c_white);
+		scr_makeDraCircle();
 	}
-	
-	rightColor = new Output();
 	
 	with(rightColor)
 	{
-		var drawCircle = function()
-		{
-			draw_set_color(color);
-			draw_circle(posX, posY, 26.5, false);
-		}
-		setDrawFunction(drawCircle);
-		setColor(c_white);
+		scr_makeDraCircle();
 	}
 	
 	chaseBar = new Output(, -10);
