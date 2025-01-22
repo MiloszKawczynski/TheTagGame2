@@ -6,3 +6,5 @@ editor = function()
 	
 	ImGui.DragFloat3("Sun Position", SunPosition, 0.01, -1, 1);
 }
+
+RENDER_QUALITY = 8;
