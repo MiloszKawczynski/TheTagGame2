@@ -87,7 +87,9 @@ array_push(editorObjects,
 	o_locker,
 	o_npc,
 	o_gravityChangeArea,
-	o_cover
+	o_cover,
+	o_metroChaseTitleCard,
+	o_lamp
 );
 	
 editorCurrentObjectIndex = 0;
