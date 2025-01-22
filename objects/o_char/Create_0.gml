@@ -1,7 +1,6 @@
 if (player == 0)
 {
 	color = c_purple;
-	isChasing = true;
 	skill = skillTypes.sprint;
 	
 	portrait = 1;
@@ -10,7 +9,6 @@ if (player == 0)
 if (player == 1)
 {
 	color = c_lime;
-	isChasing = false;
 	skill = skillTypes.sprint;
 	
 	portrait = 2;

@@ -124,10 +124,10 @@ if (isGameOn)
 			if (!isChasing)
 			{
 				log(string("Player {0} ESCAPED!", player), color);
-				
-				other.players[player].points++;
 			}
 		}
+		
+		players[!whoIsChasing].points++;
 		
 		reset();
 	}

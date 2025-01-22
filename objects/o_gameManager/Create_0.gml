@@ -187,6 +187,8 @@ reset = function()
 			log(string("Round {0}/16", rounds));
 		}
 	}
+	
+	isChasingTagAlpha = 1;
 }
 
 startStop = function()
@@ -205,7 +207,26 @@ startStop = function()
 		
 		rounds = 0;
 		chaseTime = maximumChaseTime;
+		
+		playerWasCaught = false;
 	}
+	
+	isChasingTagAlpha = 1;
+	whoIsChasingTagPosition[0] = players[0].instance.x;
+	whoIsChasingTagPosition[1] = players[0].instance.y;
+}
+
+caught = function()
+{
+	log(string("Player {0} CAUGHT!", whoIsChasing), players[whoIsChasing].instance.color);
+	
+	whoIsChasingTagPosition[0] = players[whoIsChasing].instance.x;
+	whoIsChasingTagPosition[1] = players[whoIsChasing].instance.y;
+	
+	whoIsChasing = !whoIsChasing;
+	playerWasCaught = true;
+
+	reset();
 }
 
 uiUpdate = function()
@@ -263,3 +284,8 @@ y2 = 0;
 alarm[0] = 3;
 
 buffersMap = ds_map_create();
+
+isChasingTagAlpha = 1;
+whoIsChasing = 0;
+playerWasCaught = false;
+whoIsChasingTagPosition = [0, 0];

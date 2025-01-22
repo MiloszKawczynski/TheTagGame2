@@ -106,7 +106,7 @@ else
 
 skillEnergy = clamp(skillEnergy, 0, 1);
 
-if (isChasing)
+if (o_gameManager.whoIsChasing == player)
 {
 	nearestPlayer = instance_nearest_notme(x, y, o_char);
 
@@ -123,12 +123,7 @@ if (isChasing)
 	{
 		if (input_check_pressed("interactionKey", player))
 		{
-			log(string("Player {0} CAUGHT!", player), color);
-			with(o_char)
-			{
-				isChasing = !isChasing;
-			}
-			o_gameManager.reset();
+			o_gameManager.caught();
 		}
 	}
 }
