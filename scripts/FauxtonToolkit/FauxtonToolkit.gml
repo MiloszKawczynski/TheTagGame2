@@ -181,7 +181,7 @@
 		{
 			_col = 	fauxton_calculate_sprite_lighting(_x, _y, _z, _c);
 		}
-		fauxton_sprite_draw(sprite, subimg, _col, _a, shader, uniforms, arguments);
+		fauxton_sprite_draw(sprite, subimg, _col, _a, 0, 1, 1, shader, uniforms, arguments);
 		matrix_reset();
 	}
 	
