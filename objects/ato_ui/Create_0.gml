@@ -2117,9 +2117,16 @@ function UI() constructor
 				draw = function()
 				{
 					var strech = component.scaleX * (component.widthBackground / component.widthValue) * component.value;
-				
+					
+					if (!surface_exists(component.surface))
+					{
+						component.surface = surface_create(component.widthBackground, component.heightBackground);
+					}
+					
 					surface_set_target(component.surface);
 				
+					draw_clear_alpha(c_white, 0);
+					
 					draw_sprite_ext(component.spriteBackground, time, component.widthBackground / 2, component.heightBackground / 2, component.scaleX, component.scaleY, component.rotation, component.color, component.alpha);
 					gpu_set_colorwriteenable(1, 1, 1, 0);
 					draw_sprite_ext(component.spriteValue, time, component.widthBackground / 2 - (component.widthBackground / 2) + (strech * component.widthValue / 2), component.heightBackground / 2, strech, component.scaleY, component.rotation, component.color, component.alpha);
