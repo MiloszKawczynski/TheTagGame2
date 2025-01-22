@@ -45,6 +45,8 @@ if (!o_gameManager.isGameOn and !hide)
 			ImGui.Text(string("player 0 - {0}", input_player_connected(0)));
 			ImGui.Text(string("player 1 - {0}", input_player_connected(1)));
 		}
+		
+		RENDER_QUALITY = ImGui.InputFloat("Quality", RENDER_QUALITY);
 			
 		scr_logsOptions();
 	}
