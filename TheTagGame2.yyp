@@ -233,6 +233,7 @@
     {"id":{"name":"ac_dialogWaveX","path":"animcurves/ac_dialogWaveX/ac_dialogWaveX.yy",},},
     {"id":{"name":"ac_dialogWaveY","path":"animcurves/ac_dialogWaveY/ac_dialogWaveY.yy",},},
     {"id":{"name":"ac_vignettePulse","path":"animcurves/ac_vignettePulse/ac_vignettePulse.yy",},},
+    {"id":{"name":"ac_whoIsChasingChange","path":"animcurves/ac_whoIsChasingChange/ac_whoIsChasingChange.yy",},},
     {"id":{"name":"atac_hearth","path":"animcurves/atac_hearth/atac_hearth.yy",},},
     {"id":{"name":"atac_scroll","path":"animcurves/atac_scroll/atac_scroll.yy",},},
     {"id":{"name":"ImGui_GM","path":"extensions/ImGui_GM/ImGui_GM.yy",},},
