@@ -675,6 +675,7 @@
     {"id":{"name":"shd_godray","path":"shaders/shd_godray/shd_godray.yy",},},
     {"id":{"name":"shd_grass_sway","path":"shaders/shd_grass_sway/shd_grass_sway.yy",},},
     {"id":{"name":"shd_obstacleRing","path":"shaders/shd_obstacleRing/shd_obstacleRing.yy",},},
+    {"id":{"name":"shd_outline","path":"shaders/shd_outline/shd_outline.yy",},},
     {"id":{"name":"shd_tree_sway","path":"shaders/shd_tree_sway/shd_tree_sway.yy",},},
     {"id":{"name":"shd_vfog","path":"shaders/shd_vfog/shd_vfog.yy",},},
     {"id":{"name":"shdImGui","path":"shaders/shdImGui/shdImGui.yy",},},
