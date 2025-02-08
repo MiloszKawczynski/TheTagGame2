@@ -787,6 +787,7 @@
     {"id":{"name":"s_godRay","path":"sprites/s_godRay/s_godRay.yy",},},
     {"id":{"name":"s_ground","path":"sprites/s_ground/s_ground.yy",},},
     {"id":{"name":"s_idleCycle","path":"sprites/s_idleCycle/s_idleCycle.yy",},},
+    {"id":{"name":"s_isChasingTag","path":"sprites/s_isChasingTag/s_isChasingTag.yy",},},
     {"id":{"name":"s_lamp","path":"sprites/s_lamp/s_lamp.yy",},},
     {"id":{"name":"s_live","path":"sprites/s_live/s_live.yy",},},
     {"id":{"name":"s_locker","path":"sprites/s_locker/s_locker.yy",},},
