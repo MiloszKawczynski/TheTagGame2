@@ -668,6 +668,7 @@
     {"id":{"name":"scr_debugController","path":"scripts/scr_debugController/scr_debugController.yy",},},
     {"id":{"name":"scr_dialog","path":"scripts/scr_dialog/scr_dialog.yy",},},
     {"id":{"name":"scr_fauxtonAddition","path":"scripts/scr_fauxtonAddition/scr_fauxtonAddition.yy",},},
+    {"id":{"name":"scr_gameManager","path":"scripts/scr_gameManager/scr_gameManager.yy",},},
     {"id":{"name":"scr_gameplayUI","path":"scripts/scr_gameplayUI/scr_gameplayUI.yy",},},
     {"id":{"name":"scr_movement","path":"scripts/scr_movement/scr_movement.yy",},},
     {"id":{"name":"scr_visualEffects","path":"scripts/scr_visualEffects/scr_visualEffects.yy",},},
