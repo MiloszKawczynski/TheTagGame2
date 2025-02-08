@@ -307,6 +307,7 @@
     {"id":{"name":"SpotLight","path":"objects/SpotLight/SpotLight.yy",},},
     {"id":{"name":"WorldEnvironment","path":"objects/WorldEnvironment/WorldEnvironment.yy",},},
     {"id":{"name":"ps_godRays","path":"particles/ps_godRays/ps_godRays.yy",},},
+    {"id":{"name":"ps_imChasing","path":"particles/ps_imChasing/ps_imChasing.yy",},},
     {"id":{"name":"ps_runTrail","path":"particles/ps_runTrail/ps_runTrail.yy",},},
     {"id":{"name":"atpth_circle","path":"paths/atpth_circle/atpth_circle.yy",},},
     {"id":{"name":"atpth_line","path":"paths/atpth_line/atpth_line.yy",},},
