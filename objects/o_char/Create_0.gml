@@ -111,6 +111,18 @@ setAfterImageUniform = function(alphaDecay, color)
 	shader_set_uniform_f(shader_get_uniform(shd_afterimage, "color"), color_get_red(color) / 255, color_get_green(color) / 255, color_get_blue(color) / 255);	
 }
 
+setChasingOutlineUniform = function(w, h, color)
+{
+	shader_set_uniform_f(shader_get_uniform(shd_outline, "pixelW"), w);
+	shader_set_uniform_f(shader_get_uniform(shd_outline, "pixelH"), h);
+	shader_set_uniform_f_array(shader_get_uniform(shd_outline, "color"), 
+	[
+		color_get_red(color) / 255,
+		color_get_green(color) / 255,
+		color_get_blue(color) / 255,
+	]);
+}
+
 z = 0;
 
 runTrailSystem = part_system_copy(ps_runTrail, 0);
