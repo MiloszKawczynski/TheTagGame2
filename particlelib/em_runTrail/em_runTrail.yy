@@ -26,7 +26,7 @@
   "lifetimeMin":30.0,
   "linkedEmitter":null,
   "locked":false,
-  "midColour":1795162367,
+  "midColour":1811939327,
   "mode":0,
   "name":"em_runTrail",
   "orientationIncrease":0.0,
@@ -68,6 +68,6 @@
   },
   "spriteRandom":false,
   "spriteStretch":true,
-  "startColour":4278190335,
+  "startColour":4294967295,
   "texture":-1,
 }
