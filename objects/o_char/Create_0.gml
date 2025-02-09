@@ -1,6 +1,6 @@
 if (player == 0)
 {
-	color = c_purple;
+	color = c_red;
 	skill = skillTypes.sprint;
 	
 	portrait = 1;
@@ -71,7 +71,7 @@ function setupStats()
 	skillValue = o_gameManager.skills[skill].value;
 	skillRechargePercentage = o_gameManager.skills[skill].rechargePercentage;
 	
-	o_gameManager.uiUpdate();
+	o_gameManager.characterColorUiUpdate();
 }
 
 setupStats();

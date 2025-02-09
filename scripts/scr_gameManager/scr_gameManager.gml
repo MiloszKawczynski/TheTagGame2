@@ -5,7 +5,7 @@ function createUI()
 	with(ui)
 	{
 		mainLayer = new Layer();
-		mainLayer.setGrid(10, 10, false);
+		mainLayer.setGrid(10, 10);
 		
 		leftColor = new Output();
 		rightColor = new Output();
@@ -49,6 +49,9 @@ function createUI()
 			scr_makeStaminaBar();
 		}
 		
+		toStartTimer = new Text("3", f_test);
+		toStartTimer.setScale(0, 0);
+		
 		chaseBarGroup = new Group();
 		chaseBarGroup.setGrid(1, 1, false);
 		chaseBarGroup.addComponent(-0.835, -0.19, leftColor);
@@ -66,11 +69,13 @@ function createUI()
 		mainLayer.addComponent(5, 1, chaseBarGroup);
 		mainLayer.addComponent(0, 0, leftStamina);
 		mainLayer.addComponent(0, 0, rightStamina);
+		
+		mainLayer.addComponent(5, 5, toStartTimer);
 	
 		pushLayer(mainLayer);
 	}
 	
-	uiUpdate = function()
+	characterColorUiUpdate = function()
 	{
 		with(ui)
 		{
@@ -86,6 +91,10 @@ function createUI()
 			}
 		}
 	}
+	
+	imChasingSystem = part_system_copy(ps_imChasing, 0);
+	imChasingType = part_type_copy(ps_imChasing, 0);
+	part_emitter_type(imChasingSystem, 0, imChasingType);
 }
 
 function updateUI()
@@ -166,7 +175,102 @@ function updateUI()
 			rightStamina.setShift(pos[0], pos[1]);
 			rightStamina.setScale((0.8 * rightPlayer.image_xscale) / Camera.Zoom, 0.8 / Camera.Zoom);
 		}
+		
+		//--- Count down timer
+		
+		if (other.isGameOn)
+		{
+			var scale = lerp(toStartTimer.scaleX, 0, 0.075);
+			toStartTimer.setScale(scale, scale);
+				
+			if (scale <= 0.1)
+			{
+				scale = 5;
+				toStartTimer.setScale(scale, scale);
+				var countdown = real(toStartTimer.content);
+				if (countdown <= 1)
+				{
+					scale = 0; 
+					//toStartTimer.setContent("GOOO!!!");
+					toStartTimer.setScale(scale, scale);
+					other.isCountdownActive = false;
+				}
+				else 
+				{
+					countdown--;
+					toStartTimer.setContent(string(countdown));
+				}
+			}
+		}
 	}
+		
+	//--- Who is chasing Tag
+	
+	if (isGameOn)
+	{
+		var instTo = players[whoIsChasing].instance;
+		var instFrom = instTo;
+		
+		if (playerWasCaught)
+		{
+			whoIsChasingTagPosition[0] = players[!whoIsChasing].instance.x;
+			whoIsChasingTagPosition[1] = players[!whoIsChasing].instance.y;
+			whoIsChasingTagPosition[2] = 0;
+			whoIsChasingTagScale = 1;
+			whoIsChasingStage = 0;
+			whoIsChasingTagTimer = 0;
+			playerWasCaught = false;
+		}
+		
+		switch(whoIsChasingStage)
+		{
+			case(0):
+			{
+				if (point_distance(whoIsChasingTagPosition[0], whoIsChasingTagPosition[1], instTo.x, instTo.y) < 10)
+				{
+					whoIsChasingStage = 1;
+				}
+				
+				whoIsChasingTagPosition[0] = lerp(whoIsChasingTagPosition[0], instTo.x, 0.1);
+				whoIsChasingTagPosition[1] = lerp(whoIsChasingTagPosition[1], instTo.y, 0.1)
+				break;
+			}
+		
+			case(1):
+			{
+				whoIsChasingTagPosition[0] = lerp(whoIsChasingTagPosition[0], instTo.x, 0.1);
+				whoIsChasingTagPosition[2] = animcurve_get_point(ac_whoIsChasingChange, 0, whoIsChasingTagTimer) * -15;
+				whoIsChasingTagScale = animcurve_get_point(ac_whoIsChasingChange, 1, whoIsChasingTagTimer);
+				whoIsChasingTagTimer = armez_timer(whoIsChasingTagTimer, 0.01);
+				
+				if (whoIsChasingTagScale <= 0.1)
+				{
+					whoIsChasingStage = 2;
+					
+					whoIsChasingTagScale = 0;
+					part_type_color1(imChasingType, instTo.color);
+					part_emitter_region(imChasingSystem, 0, instTo.x - 16, instTo.x + 16, instTo.y - 16, instTo.y + 16, ps_shape_rectangle, ps_distr_linear);
+					part_emitter_burst(imChasingSystem, 0, imChasingType, 32);
+				}
+				
+				break;
+			}
+		}
+	}
+}
+
+function drawUI()
+{
+	ui.draw();
+	
+	var pos = [];
+
+	pos = world_to_gui(
+		whoIsChasingTagPosition[0],
+		whoIsChasingTagPosition[1],
+		whoIsChasingTagPosition[2]);
+
+	draw_sprite_ext(s_isChasingTag, 3, pos[0], pos[1] - 60 / Camera.Zoom, (0.4 * whoIsChasingTagScale) / Camera.Zoom, (0.4 * whoIsChasingTagScale) / Camera.Zoom, 0, c_white, 1);
 }
 
 function setGameRulesValues()
@@ -179,6 +283,19 @@ function setGameRulesValues()
 	isGameOn = false;
 	rounds = 0;
 	players = [];
+	
+	whoIsChasing = 0;
+	playerWasCaught = false;
+	whoIsChasingTagTimer = 0;
+	whoIsChasingTagPosition = [0, 0, 0];
+	whoIsChasingTagScale = 1;
+	whoIsChasingStage = 1;
+	
+	isCountdownActive = false;
+		
+	vignetteTime = 0;
+	vignettePulse = false;
+	pulseCounter = 0;
 }
 
 function setActiveSkills()
@@ -290,9 +407,16 @@ function setGameRulesFunctions()
 			{		
 				log(string("Round {0}/16", rounds));
 			}
+			
+			with(ui)
+			{
+				toStartTimer.setContent("3");
+				toStartTimer.setScale(5, 5);
+			}
+			isCountdownActive = true;
 		}
 		
-		isChasingTagAlpha = 1;
+		scr_vignetteReset();
 	}
 	
 	startStop = function()
@@ -313,11 +437,67 @@ function setGameRulesFunctions()
 			chaseTime = maximumChaseTime;
 			
 			playerWasCaught = false;
+			
+			reset();
 		}
 		
-		isChasingTagAlpha = 1;
 		whoIsChasingTagPosition[0] = players[0].instance.x;
 		whoIsChasingTagPosition[1] = players[0].instance.y;
+	}
+	
+	gameLogic = function()
+	{
+		if (isGameOn and !isCountdownActive)
+		{
+			chaseTime--;
+			
+			for (var i = 0; i < 4; i++)
+			{
+				if ((chaseTime - (i * 40)) mod (maximumChaseTime div changesPerChase) == 0)
+				{
+					vignettePulse = true;
+					
+					if (i == 3)
+					{
+						audio_play_sound(sn_gravityChangeWarning, 0, false);
+					}
+				}
+			}
+			
+			if (vignettePulse)
+			{
+				scr_vignettePulse();
+			}
+			else
+			{
+				if (pulseCounter == 0)
+				{
+					scr_vignettePullBack();
+				}
+			}
+		
+			if (chaseTime mod (maximumChaseTime div changesPerChase) == 0)
+			{
+				global.debugIsGravityOn = !global.debugIsGravityOn;
+				scr_gravitationChange();
+				log("CHANGE!", c_yellow);
+			}
+			
+			if (chaseTime <= 0)
+			{
+				with(o_char)
+				{
+					if (!isChasing)
+					{
+						log(string("Player {0} ESCAPED!", player), color);
+					}
+				}
+				
+				players[!whoIsChasing].points++;
+				
+				reset();
+			}
+		}
 	}
 	
 	caught = function()

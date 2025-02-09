@@ -1,12 +1,15 @@
-if (global.debugIsGravityOn)
+if (!o_gameManager.isCountdownActive)
 {
-	scr_platformerMovement();
-	scr_platformerCollision();
-}
-else
-{
-	scr_topDownMovement();
-	scr_topDownCollision();
+	if (global.debugIsGravityOn)
+	{
+		scr_platformerMovement();
+		scr_platformerCollision();
+	}
+	else
+	{
+		scr_topDownMovement();
+		scr_topDownCollision();
+	}
 }
 
 var isUsed = false;

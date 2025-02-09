@@ -46,3 +46,28 @@ function scr_vignettePullBack()
 		fx_set_parameters(_fx_struct, _params);
 	}
 }
+
+function scr_vignetteReset()
+{
+	var _fx_struct = layer_get_fx("vignette");
+
+	if (_fx_struct != -1)
+	{
+		var _params = fx_get_parameters(_fx_struct);
+		
+		var edges = _params.g_VignetteEdges;
+		
+		edges[0] = 1;
+		edges[1] = 1.1;
+		
+		_params.g_VignetteEdges = edges;
+
+		fx_set_parameters(_fx_struct, _params);
+	}
+	
+	audio_stop_sound(sn_gravityChangeWarning);
+	
+	vignetteTime = 0;
+	vignettePulse = false;
+	pulseCounter = 0;
+}
