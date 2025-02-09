@@ -1,1 +1,0 @@
-fauxton_model_destroy(model);

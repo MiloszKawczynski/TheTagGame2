@@ -2,10 +2,14 @@ for(var i = 0; i < instance_number(o_char); i++)
 {
 	var char = instance_find(o_char, i);
 	var dist = point_distance(x, y, char.x, char.y);
-	var characterColor = char.color;
 
-	if (dist < char.obstacleRange)
+	if (dist < char.obstacleRange or success > 0)
 	{
+		if (dist < char.obstacleRange)
+		{
+			characterColor = char.color;
+		}
+		
 		if (!surface_exists(surface))
 		{
 			with(o_char)
@@ -26,7 +30,9 @@ for(var i = 0; i < instance_number(o_char); i++)
 		surface_reset_target();
 	
 		shader_set(shd_obstacleRing)
-		shader_set_uniform_f(circleRadius, dist / maximumObstacleRange);
+		shader_set_uniform_f(circleRadiusUniform, dist / maximumObstacleRange);
+		shader_set_uniform_f(directionUniform, point_direction(x, y, char.x, char.y));
+		shader_set_uniform_f(successUniform, success);
 			matrix_set(matrix_world, o_debugController.flat0Matrix);
 				gpu_set_blendmode(bm_add);
 					draw_surface(surface, x - maximumObstacleRange, y - maximumObstacleRange);
