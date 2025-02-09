@@ -16,16 +16,35 @@ function __input_config_verbs()
 
         keyboard_and_mouse:
         {
-            upKey:    		[input_binding_key(vk_up),    input_binding_key("W")],
-            downKey:  		[input_binding_key(vk_down),  input_binding_key("S")],
-            leftKey:  		[input_binding_key(vk_left),  input_binding_key("A")],
-            rightKey: 		[input_binding_key(vk_right), input_binding_key("D")],
-			jumpKey:  		[input_binding_key(vk_up),    input_binding_key("W")],
-			interactionKey: [input_binding_key(vk_space),    input_binding_key(vk_rshift)],
-			skillKey: 		[input_binding_key(vk_lshift),    input_binding_key(vk_rcontrol)],
+            joinP1:			[input_binding_key(vk_space)],
+            joinP2:			[input_binding_key(vk_rshift)],
+        },
+		
+		P1:
+		{
+			upKey:    		[input_binding_key("W")],
+			downKey:  		[input_binding_key("S")],
+			leftKey:  		[input_binding_key("A")],
+			rightKey: 		[input_binding_key("D")],
+			jumpKey:  		[input_binding_key("W")],
+			interactionKey: [input_binding_key(vk_space)],
+			skillKey: 		[input_binding_key(vk_lshift)],
 			
 			leave: 			[input_binding_key(vk_backspace)],
-        },
+		},
+		
+		P2:
+		{
+			upKey:    		[input_binding_key(vk_up)],
+			downKey:  		[input_binding_key(vk_down)],
+			leftKey:  		[input_binding_key(vk_left)],
+			rightKey: 		[input_binding_key(vk_right)],
+			jumpKey:  		[input_binding_key(vk_up)],
+			interactionKey: [input_binding_key(vk_rshift)],
+			skillKey: 		[input_binding_key(vk_rcontrol)],
+			
+			leave: 			[input_binding_key(vk_end)],
+		},
         
         gamepad:
         {

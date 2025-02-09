@@ -295,6 +295,11 @@ editableObjects = [];
 objectName = "";
 selectedObject = undefined;
 
-input_join_params_set(2, 2, "leave", undefined);
+input_source_mode_set(INPUT_SOURCE_MODE.FIXED);
 
-input_source_mode_set(INPUT_SOURCE_MODE.JOIN);
+input_source_set(INPUT_KEYBOARD, 10);
+input_profile_set("keyboard_and_mouse", 10);
+
+keyboardShare = [10];
+firstFreePlayer = 0;
+isBindingFinilize = false;

@@ -26,24 +26,75 @@ if (!o_gameManager.isGameOn and !hide)
 		
 		scr_objectsInspector();
 		
-		if (input_join_is_finished())
+		if (!isBindingFinilize)
 		{
-			if (input_check_long("interactionKey", 0) || input_check_long("interactionKey", 1))
+			if (firstFreePlayer < 2)
 			{
-				input_source_mode_set(INPUT_SOURCE_MODE.FIXED);
+				var doesAnyoneJoin = false;
+				
+				if (input_check_pressed("joinP1", 10))
+				{ 
+					input_source_set(INPUT_KEYBOARD, firstFreePlayer,, false);
+					input_profile_set("P1", firstFreePlayer);	
+					firstFreePlayer++;
+				}
+				
+				if (input_check_pressed("joinP2", 10))
+				{ 
+					input_source_set(INPUT_KEYBOARD, firstFreePlayer,, false);
+					input_profile_set("P2", firstFreePlayer);
+					firstFreePlayer++;
+				}
+				
+				for (var i = 0; i < 4; i++)
+				{
+					if (input_source_detect_input(INPUT_GAMEPAD[i]))
+					{
+						input_source_set(INPUT_GAMEPAD[i], firstFreePlayer,, false);
+						firstFreePlayer++;
+					}
+				}
+			}
+			
+			for(var i = firstFreePlayer - 1; i >= 0; i--)
+			{
+				if (input_check_pressed("leave", i))
+				{
+					input_source_clear(i);
+					firstFreePlayer = i;
+					break;
+				}
+				
+				if (input_check_long_pressed("interactionKey", i) and firstFreePlayer >= 2)
+				{
+					isBindingFinilize = true;
+					break;
+				}
+			}
+			
+			while(input_source_using(INPUT_KEYBOARD, firstFreePlayer) or input_source_using(INPUT_GAMEPAD, firstFreePlayer))
+			{
+				firstFreePlayer++;
 			}
 		}
 		
-		if (input_source_mode_get() == INPUT_SOURCE_MODE.FIXED or false)
+		for(var i = 0; i < 2; i++)
 		{
-		 	ImGui.TextColored(string("player 0 - {0}", input_player_connected(0)), c_lime);
-			ImGui.TextColored(string("player 1 - {0}", input_player_connected(1)), c_lime);
-		}
-		else
-		{
+			var color = c_white;
 			
-			ImGui.Text(string("player 0 - {0}", input_player_connected(0)));
-			ImGui.Text(string("player 1 - {0}", input_player_connected(1)));
+			if (isBindingFinilize)
+			{
+				color = c_lime;
+			}
+			
+			if (i == firstFreePlayer)
+			{
+				ImGui.TextColored(string(">>> player {0} - {1}", i, input_player_connected(i)), color);
+			}
+			else 
+			{
+				ImGui.TextColored(string("player {0} - {1}", i, input_player_connected(i)), color);
+			}
 		}
 		
 		RENDER_QUALITY = ImGui.InputFloat("Quality", RENDER_QUALITY);
