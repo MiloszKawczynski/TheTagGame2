@@ -103,12 +103,19 @@ function scr_topDownMovement()
 
 function scr_TopDownObstaclesInteraction()
 {
-	var dist = distance_to_object(o_obstacleParent);
-	if (dist < instance_nearest(x, y, o_char).obstacleRange)
+	var obst = instance_nearest(x, y, o_obstacleParent);
+	var dist = point_distance(x, y, obst.x, obst.y);
+	if (dist < obstacleRange)
 	{
 		if (input_check_pressed("interactionKey", player))
 		{
 			var obstacleSpeedBoost = lerp(minimumObstacleJumpForce, maximumObstacleJumpForce, 1 - (dist / obstacleRange));
+			
+			if (1 - (dist / obstacleRange) > 0.65)
+			{
+				log("PERFECT VAULT!", c_aqua);
+				obst.success = 1;
+			}
 			
 			if (abs(point_direction(0, 0, horizontalSpeed, verticalSpeed) - point_direction(0, 0, desiredHorizontalDirection, desiredVerticalDirection)) > 50)
 			{
@@ -325,11 +332,18 @@ function scr_platformerMovement()
 
 function scr_platformerObstaclesInteraction()
 {
-	var dist = distance_to_object(o_obstacleParent);
-	if (dist < instance_nearest(x, y, o_char).obstacleRange)
+	var obst = instance_nearest(x, y, o_obstacleParent);
+	var dist = point_distance(x, y, obst.x, obst.y);
+	if (dist < obstacleRange)
 	{
 		if (input_check_pressed("interactionKey", player))
 		{
+			if (1 - (dist / obstacleRange) > 0.65)
+			{
+				log("PERFECT VAULT!", c_aqua);
+				obst.success = 1;
+			}
+			
 			vspeed -= lerp(minimumObstacleJumpForce, maximumObstacleJumpForce, 1 - (dist / obstacleRange));
 			if (desiredHorizontalDirection != sign(hspeed))
 			{
