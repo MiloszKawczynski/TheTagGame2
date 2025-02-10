@@ -1,0 +1,47 @@
+# Create
+
+```
+catchArrowColorUniform = shader_get_uniform(shd_catchingArrow, "color");
+catchArrowColorToUniform = shader_get_uniform(shd_catchingArrow, "colorTo");
+catchArrowLengthUniform = shader_get_uniform(shd_catchingArrow, "pathLength");
+catchArrowOffsetUniform = shader_get_uniform(shd_catchingArrow, "offset");
+catchArrowTimer = 0;
+```
+
+# Draw
+
+```
+matrix_set(matrix_world, o_debugController.flat0Matrix);
+	
+	var width = animcurve_get_point(ac_catchArrowPopup, 0, catchArrowTimer) * 15;
+	catchArrowTimer = armez_timer(catchArrowTimer, 0.075, 1);
+
+	var ribbonPath = path_create(
+	[
+		x, y, 
+		x + horizontalSpeed * 10, y + verticalSpeed * 10, 
+		nearestPlayer.x + nearestPlayer.horizontalSpeed * 10, nearestPlayer.y + nearestPlayer.verticalSpeed * 10, 
+		nearestPlayer.x, nearestPlayer.y
+	],, true);
+
+	shader_set(shd_catchingArrow);
+	shader_set_uniform_f_array(catchArrowColorUniform, 
+	[
+		color_get_red(color) / 255,
+		color_get_green(color) / 255,
+		color_get_blue(color) / 255,
+	]);
+	shader_set_uniform_f_array(catchArrowColorToUniform, 
+	[
+		color_get_red(nearestPlayer.color) / 255,
+		color_get_green(nearestPlayer.color) / 255,
+		color_get_blue(nearestPlayer.color) / 255,
+	]);
+	shader_set_uniform_f(catchArrowLengthUniform, path_get_length(ribbonPath) / width);
+	shader_set_uniform_f(catchArrowOffsetUniform, ((current_time / 10) / 60 * 2) mod 1 - 1);
+
+		draw_ribbon_texture(ribbonPath, width, s_arrowTexture, 2);
+
+	shader_reset()
+matrix_reset();
+```
