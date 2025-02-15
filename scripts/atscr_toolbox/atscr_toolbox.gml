@@ -10,7 +10,7 @@ function armez_timer(value, step = 0.1, maxValue = 1)
 		value += step;
 		if (value > maxValue)
 		{
-			value = 0;
+			value = maxValue;
 		}
 	}
 	else if (step < 0)
@@ -73,9 +73,47 @@ function draw_ribbon_color(path, width, col1, col2, precision = 0.01, cutStart =
 	draw_primitive_end();
 }
 
-function path_create(points)
+function draw_ribbon_texture(path, width, texture, movingSpeed = 1, precision = 0.01, cutStart = 0, cutEnd = 1)
+{
+	var textureFlip = 0;
+	gpu_set_texrepeat(true);
+	
+	var _tex = sprite_get_texture(texture, 0);
+	var _texHeight = sprite_get_height(texture);
+	draw_primitive_begin_texture(pr_trianglestrip, _tex);
+	
+	for(var i = cutStart; i < cutEnd; i += precision)
+	{	
+		var px = path_get_x(path, i);
+		var py = path_get_y(path, i);
+		
+		var nx = path_get_x(path, i + precision);
+		var ny = path_get_y(path, i + precision);
+		
+		var dir = point_direction(px, py, nx, ny) + 90;
+		
+		var vx = lengthdir_x(width, dir);
+		var vy = lengthdir_y(width, dir);
+		
+		var offset = ((current_time / 10) / 60 * movingSpeed) mod 1 - 1;
+		
+		var textureHeight = (i * path_get_length(path) / width);
+		
+		draw_vertex_texture(px + vx, py + vy, -0.5, (textureHeight - offset));
+		draw_vertex_texture(px - vx, py - vy, 1.5, (textureHeight - offset));
+		
+		textureFlip = !textureFlip;
+	}
+	
+	draw_primitive_end();
+	gpu_set_texrepeat(false);
+}
+
+function path_create(points, closed = false, smoothe = false)
 {
 	var path = path_add();
+	path_set_closed(path, closed);
+	path_set_kind(path, smoothe);
 	
 	for(var i = 0; i < array_length(points); i += 2)
 	{
