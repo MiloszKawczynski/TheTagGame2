@@ -1,3 +1,9 @@
+z = 0;
+if (place_meeting(x, y, o_start))
+{
+	z = 8;
+}
+
 if (!o_gameManager.isCountdownActive)
 {
 	if (global.debugIsGravityOn)
