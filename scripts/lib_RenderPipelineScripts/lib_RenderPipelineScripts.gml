@@ -52,9 +52,36 @@ function pipeline_initiate()
 		light_cutoff	: shader_get_uniform(shd_default, "lightCutoffAngle")
 	}
 	
+	uniReplace = {
+		amb_col : shader_get_uniform(shd_defaultReplaceWhite, "ambient_color"),
+		sun_col : shader_get_uniform(shd_defaultReplaceWhite, "sun_color"),
+		sun_int : shader_get_uniform(shd_defaultReplaceWhite, "sun_intensity"),
+		sun_pos : shader_get_uniform(shd_defaultReplaceWhite, "sun_pos"),
+			
+		light_num		: shader_get_uniform(shd_defaultReplaceWhite, "lightTotal"),
+		light_position	: shader_get_uniform(shd_defaultReplaceWhite, "lightPos"),
+		light_color		: shader_get_uniform(shd_defaultReplaceWhite, "lightColor"),
+		light_range		: shader_get_uniform(shd_defaultReplaceWhite, "lightRange"),
+			
+		light_is_cone	: shader_get_uniform(shd_defaultReplaceWhite, "lightIsCone"),
+		light_direction : shader_get_uniform(shd_defaultReplaceWhite, "lightDirection"),
+		light_cutoff	: shader_get_uniform(shd_defaultReplaceWhite, "lightCutoffAngle")
+	}
+	
 	function default_world_shader_set(){
-		if ( shader_current() != shd_default ) { exit; }
+		if ( shader_current() != shd_default 
+		and shader_current() != shd_defaultReplaceWhite) 
+		{ 
+			exit; 
+		}
 		// World environment lighting
+		
+		var uniforms = uni;
+		
+		if (shader_current() == shd_defaultReplaceWhite) 
+		{
+			uniforms = uniReplace;
+		}
 	
 		var uAmbCol = fauxton_world_environment.ambient_color;
 		var uSunCol = fauxton_world_environment.sun_color;
@@ -72,18 +99,18 @@ function pipeline_initiate()
 		scol = array_create(3);
 		
 		acol = color_return(uAmbCol);
-		shader_set_uniform_f_array(uni.amb_col, acol);
+		shader_set_uniform_f_array(uniforms.amb_col, acol);
 			
 		scol = color_return(uSunCol);
-		shader_set_uniform_f_array(uni.sun_col, scol);
+		shader_set_uniform_f_array(uniforms.sun_col, scol);
 			
-		shader_set_uniform_f(uni.sun_int, fauxton_world_environment.sun_intensity);
+		shader_set_uniform_f(uniforms.sun_int, fauxton_world_environment.sun_intensity);
 		var s = fauxton_world_environment.sun_pos;
-		shader_set_uniform_f_array(uni.sun_pos, s);
+		shader_set_uniform_f_array(uniforms.sun_pos, s);
 		
 		// Lights		
 		var _LightNum = instance_number(__fauxtonLight);
-		shader_set_uniform_f(uni.light_num, _LightNum);
+		shader_set_uniform_f(uniforms.light_num, _LightNum);
 		
 		if ( !instance_exists(WorldEnvironment) ){ exit; }
 		var lPos = [];
@@ -122,13 +149,13 @@ function pipeline_initiate()
 					break;
 				}
 			}
-			shader_set_uniform_f_array(uni.light_is_cone, lType);
-			shader_set_uniform_f_array(uni.light_direction, lDir);
-			shader_set_uniform_f_array(uni.light_cutoff,  lCutoff);
+			shader_set_uniform_f_array(uniforms.light_is_cone, lType);
+			shader_set_uniform_f_array(uniforms.light_direction, lDir);
+			shader_set_uniform_f_array(uniforms.light_cutoff,  lCutoff);
 			
-			shader_set_uniform_f_array(uni.light_position, lPos);
-			shader_set_uniform_f_array(uni.light_color, lCol);
-			shader_set_uniform_f_array(uni.light_range, lRad);
+			shader_set_uniform_f_array(uniforms.light_position, lPos);
+			shader_set_uniform_f_array(uniforms.light_color, lCol);
+			shader_set_uniform_f_array(uniforms.light_range, lRad);
 		}
 	}
 	render_build_fidelity();
