@@ -375,6 +375,24 @@ function setGameRulesFunctions()
 			log(string("P{0}: {1}", player + 1, other.players[player].points), color);
 		}
 		
+		with(o_cameraTarget)
+		{
+			var _x = 0;
+			var _y = 0;
+			
+			with(o_char)
+			{
+				_x += x;
+				_y += y;
+			}
+			
+			x = _x / instance_number(o_char);
+			y = _y / instance_number(o_char);
+			
+			Camera.x = x;
+			Camera.y = y;
+		}
+		
 		o_debugController.previousTab = -1;
 		
 		if (isGameOn)
