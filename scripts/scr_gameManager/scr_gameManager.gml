@@ -369,6 +369,9 @@ function setGameRulesFunctions()
 			nearestPlayer = id;
 			canCaught = false;
 			
+			thick = 7;
+			glow = 0;
+			
 			log(string("P{0}: {1}", player + 1, other.players[player].points), color);
 		}
 		

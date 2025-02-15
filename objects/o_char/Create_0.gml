@@ -99,8 +99,6 @@ with(o_char)
 
 surface = surface_create(maximumCaughtRange * 2, maximumCaughtRange * 2);
 
-circleRadius = shader_get_uniform(shd_obstacleRing, "circleRadius");
-
 nearestPlayer = id;
 canCaught = false;afterimageList = ds_list_create();
 afterimageList = ds_list_create();
@@ -111,10 +109,13 @@ setAfterImageUniform = function(alphaDecay, color)
 	shader_set_uniform_f(shader_get_uniform(shd_afterimage, "color"), color_get_red(color) / 255, color_get_green(color) / 255, color_get_blue(color) / 255);	
 }
 
-setChasingOutlineUniform = function(w, h, color)
+setChasingOutlineUniform = function(uvs, color)
 {
-	shader_set_uniform_f(shader_get_uniform(shd_outline, "pixelW"), w);
-	shader_set_uniform_f(shader_get_uniform(shd_outline, "pixelH"), h);
+	shader_set_uniform_f(shader_get_uniform(shd_outline, "size"), texture_get_texel_width(sprite_get_texture(sprite_index, image_index)), texture_get_texel_height(sprite_get_texture(sprite_index, image_index)));
+	shader_set_uniform_f(shader_get_uniform(shd_outline, "thick"), thick);
+	shader_set_uniform_f(shader_get_uniform(shd_outline, "glow"), glow);
+	shader_set_uniform_f(shader_get_uniform(shd_outline, "time"), current_time);
+	shader_set_uniform_f(shader_get_uniform(shd_outline, "uvs"), uvs[0], uvs[1], uvs[2], uvs[3]);
 	shader_set_uniform_f_array(shader_get_uniform(shd_outline, "color"), 
 	[
 		color_get_red(color) / 255,
@@ -140,3 +141,6 @@ scr_setupPlatformAnimationStates();
 angle = 0;
 stretch = 1;
 squash = 1;
+
+thick = 7;
+glow = 0;

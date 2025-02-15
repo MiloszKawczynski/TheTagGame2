@@ -115,10 +115,22 @@ if (o_gameManager.whoIsChasing == player)
 
 	if (distance_to_object(nearestPlayer) < obstacleRange and !collision_line(x, y, nearestPlayer.x, nearestPlayer.y, o_collision, true, true))
 	{
+		if (!canCaught)
+		{
+			thick = 40;
+			glow = 5;
+		}
+		
 		canCaught = true;
 	}
 	else
 	{
+		if (canCaught)
+		{
+			thick = 7;
+			glow = 0;
+		}
+		
 		canCaught = false;
 	}
 	
