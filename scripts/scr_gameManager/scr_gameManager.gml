@@ -350,7 +350,7 @@ function setGameRulesFunctions()
 			
 			with(o_start)
 			{
-				if (playerNumber == image_index)
+				if (playerNumber == linkToPlayer)
 				{
 					other.x = x;
 					other.y = y;
