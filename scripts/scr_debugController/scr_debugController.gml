@@ -196,7 +196,7 @@ function scr_cameraControll()
 	ImGui.SameLine();
 	ImGui.BeginGroup();
 	
-	Camera.Zoom = ImGui.VSliderFloat("Zoom", 19, 60, Camera.Zoom, 0.5, 20);
+	Camera.Zoom = ImGui.DragFloat("Zoom", Camera.Zoom, 0.1, 0.5, 20);
 	if (ImGui.IsItemEdited())
 	{
 		global.debugAutoCamera = false;
