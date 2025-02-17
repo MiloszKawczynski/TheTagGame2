@@ -140,7 +140,7 @@ function __FauxtonWriteQuad(mBuff, texture, index, _x, _y, _z, color, alpha, ang
 	var norm1;
 	var norm2;
 	
-	if (sprite_get_number(texture) != 1 and index == (sprite_get_number(texture) * RENDER_FIDELITY - 1) / RENDER_FIDELITY)
+	if (sprite_get_number(texture) != 1 and index >= ((sprite_get_number(texture) * RENDER_FIDELITY - 1) / RENDER_FIDELITY) - 1)
 	{
 		norm1 = mat3(
 			0, 0, 1,
