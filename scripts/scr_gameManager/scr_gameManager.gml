@@ -261,6 +261,11 @@ function updateUI()
 
 function drawUI()
 {
+	if (global.debugEdit)
+	{
+		return;
+	}
+	
 	ui.draw();
 	
 	var pos = [];
