@@ -18,6 +18,9 @@ function scr_debugPreload()
 	input_source_set(INPUT_KEYBOARD, 1,, false);
 	input_profile_set("P2", 1);	
 	
+	isBindingFinilize = true;
+	firstFreePlayer = 2;
+	
 	//Create and Save
 	switch(staticBuffersOptionType.disable)
 	{
