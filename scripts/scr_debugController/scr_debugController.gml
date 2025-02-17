@@ -2,17 +2,24 @@ function scr_debugPreload()
 {
 	if (room == r_levelEditor or room == r_levelEditorBig)
 	{
-		scr_levelLoad("basic");
+		//scr_levelLoad("metroChasev1.1");
+		scr_levelLoad("fire");
 	}
 	scr_rulesPresetLoad("default");
 	scr_statsPresetLoad("default");
 	scr_dialogBoxPresetLoad("default");
 	
 	scr_addPlayer(0);
-	//scr_addPlayer(1);
+	scr_addPlayer(1);
+	
+	input_source_set(INPUT_KEYBOARD, 0,, false); 
+	input_profile_set("P1", 0);	
+	
+	input_source_set(INPUT_KEYBOARD, 1,, false);
+	input_profile_set("P2", 1);	
 	
 	//Create and Save
-	switch(staticBuffersOptionType.load)
+	switch(staticBuffersOptionType.disable)
 	{
 		case(staticBuffersOptionType.create):
 		{

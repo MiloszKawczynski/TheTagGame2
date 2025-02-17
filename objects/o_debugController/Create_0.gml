@@ -11,7 +11,7 @@ global.debugIsGravityOn = false;
 global.debugCameraAxis = false;
 global.debugAutoCamera = true;
 global.debugEdit = false;
-global.debugModels = false;
+global.debugModels = true;
 
 enum staticBuffersOptionType
 {
