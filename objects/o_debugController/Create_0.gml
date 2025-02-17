@@ -90,7 +90,9 @@ array_push(editorObjects,
 	o_gravityChangeArea,
 	o_cover,
 	o_metroChaseTitleCard,
-	o_lamp
+	o_lamp,
+	o_pointLight,
+	o_spotLight
 );
 	
 editorCurrentObjectIndex = 0;
