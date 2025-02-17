@@ -17,8 +17,6 @@ uniform float lightIsCone[64];
 uniform vec3 lightDirection[64];
 uniform float lightCutoffAngle[64];
 
-//uniform float u_time; // Czas dla animacji noise
-
 float random (vec2 value) 
 {
 	return fract(sin(dot(value.xy, vec2(12.9898, 78.233))) * 43758.5453123);
@@ -76,8 +74,6 @@ void main()
 	vec4 col = texture2D(gm_BaseTexture, v_vTexcoord) * v_vColour;
 
 	if (col.a < 0.05) { discard; }
-
-	float u_time = 0.0;
 	
 	float noiseValue = noise(v_vWorldPosition.xy * 0.02);
 	
