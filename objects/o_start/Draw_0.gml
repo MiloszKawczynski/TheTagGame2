@@ -1,10 +1,13 @@
 shader_set(shd_defaultReplaceWhite);
 
-var color = c_red;
+var color = c_white;
 
 if (instance_exists(o_gameManager))
 {
-	color = o_gameManager.players[linkToPlayer].instance.color;
+	if (array_length(o_gameManager.players) > linkToPlayer)
+	{
+		color = o_gameManager.players[linkToPlayer].instance.color;	
+	}
 }
 
 RenderPipeline.default_world_shader_set();

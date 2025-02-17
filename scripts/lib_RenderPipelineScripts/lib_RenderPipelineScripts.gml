@@ -70,7 +70,8 @@ function pipeline_initiate()
 	
 	function default_world_shader_set(){
 		if ( shader_current() != shd_default 
-		and shader_current() != shd_defaultReplaceWhite) 
+		and shader_current() != shd_defaultReplaceWhite
+		and shader_current() != shd_defaultMetalic) 
 		{ 
 			exit; 
 		}

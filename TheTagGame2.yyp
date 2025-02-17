@@ -679,6 +679,7 @@
     {"id":{"name":"shd_afterimage","path":"shaders/shd_afterimage/shd_afterimage.yy",},},
     {"id":{"name":"shd_catchingArrow","path":"shaders/shd_catchingArrow/shd_catchingArrow.yy",},},
     {"id":{"name":"shd_default","path":"shaders/shd_default/shd_default.yy",},},
+    {"id":{"name":"shd_defaultMetalic","path":"shaders/shd_defaultMetalic/shd_defaultMetalic.yy",},},
     {"id":{"name":"shd_defaultReplaceWhite","path":"shaders/shd_defaultReplaceWhite/shd_defaultReplaceWhite.yy",},},
     {"id":{"name":"shd_gmdefault","path":"shaders/shd_gmdefault/shd_gmdefault.yy",},},
     {"id":{"name":"shd_godray","path":"shaders/shd_godray/shd_godray.yy",},},

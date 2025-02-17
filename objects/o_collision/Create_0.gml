@@ -7,6 +7,10 @@ typeOfMerge = o_collision;
 horizontalAlign = 0;
 verticalAlign = 0;
 
+mask_index = sprite_index;
+
+model = undefined;
+
 locate = function()
 {
 	if (place_meeting(x - 1, y, typeOfMerge))
@@ -51,6 +55,67 @@ locate = function()
 	horizontalAlign = newHor;
 	verticalAlign = newVer;
 	
+	if (global.debugModels)
+	{
+		switch (sprite_index)
+		{
+			case(s_cube):
+			{
+				sprite_index = s_cubeCage;
+				
+				if (verticalAlign == 1)
+				{
+					sprite_index = s_cubeCageTop;
+				}
+				
+				if (verticalAlign == -1)
+				{
+					sprite_index = s_cubeCageBottom;
+				}
+				
+				if (horizontalAlign != 2 and horizontalAlign != 0)
+				{
+					image_xscale = horizontalAlign;
+					sprite_index = s_cubeCageSide;
+				}
+				
+				if ((abs(verticalAlign) == 1 and abs(horizontalAlign) == 1) 
+				or (horizontalAlign == 2 and verticalAlign != 2)
+				or (horizontalAlign != 2 and verticalAlign == 2))
+				{
+					sprite_index = s_cubeCageZero;
+				}
+				
+				break;
+			}
+			
+			case(s_slope):
+			{
+				sprite_index = s_slopeCage;
+				
+				if (verticalAlign == 0)
+				{
+					sprite_index = s_slopeCageSupport;
+				}
+					
+				
+				break;
+			}
+			
+			case(s_ramp):
+			{
+				sprite_index = s_rampCage;
+				
+				if (verticalAlign == 0)
+				{
+					sprite_index = s_rampCageSupport;
+				}
+					
+				break;
+			}
+		}
+	}
+	
 	if (horizontalAlign == 2 and verticalAlign == 2)
 	{
 		horizontalAlign = 0;
@@ -68,7 +133,7 @@ locate = function()
 		
 		if (global.createStaticBuffers or global.loadStaticBuffers)
 		{
-			fauxton_buffer_create(bufferId)
+			fauxton_buffer_create(bufferId, shd_defaultMetalic);
 		}
 	}
 	
@@ -78,4 +143,6 @@ locate = function()
 	{
 		fauxton_model_add_static(model, bufferId);
 	}
+	
+	fauxton_model_draw_enable(model, false);
 }
