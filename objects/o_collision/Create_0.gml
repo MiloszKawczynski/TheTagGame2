@@ -66,17 +66,20 @@ locate = function()
 				if (verticalAlign == 1)
 				{
 					sprite_index = s_cubeCageTop;
+					image_xscale = 1;
 				}
 				
 				if (verticalAlign == -1)
 				{
 					sprite_index = s_cubeCageBottom;
+					image_xscale = 1;
 				}
 				
 				if (horizontalAlign != 2 and horizontalAlign != 0)
 				{
 					image_xscale = horizontalAlign;
 					sprite_index = s_cubeCageSide;
+					image_yscale = 1;
 				}
 				
 				if ((abs(verticalAlign) == 1 and abs(horizontalAlign) == 1) 
@@ -84,6 +87,13 @@ locate = function()
 				or (horizontalAlign != 2 and verticalAlign == 2))
 				{
 					sprite_index = s_cubeCageZero;
+					image_xscale = 1;
+				}
+				
+				if (sprite_index == s_cubeCage)
+				{
+					alarm[1] = 5;
+					return;
 				}
 				
 				break;
