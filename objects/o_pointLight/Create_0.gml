@@ -1,6 +1,7 @@
 event_inherited();
 
 follow = true;
+draw = true;
 
 editor = function()
 {
@@ -8,4 +9,5 @@ editor = function()
 	color = ImGui.ColorEdit3("Color", color);
 	range = ImGui.DragFloat("Range", range);
 	follow = ImGui.Checkbox("follow", follow);
+	draw = ImGui.Checkbox("draw", draw);
 }
