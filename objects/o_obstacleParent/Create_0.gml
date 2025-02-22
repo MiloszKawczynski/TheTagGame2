@@ -1,6 +1,6 @@
-z = 0;
+z = 1.1;
 
-model = fauxton_model_create(sprite_index, x, y, z, 0, 0, 0, 1, 1, 1);
+model = fauxton_model_create(sprite_index, x, y, z + 0.1, 0, 0, 0, 1, 1, 1);
 
 maximumObstacleRange = 0;
 
@@ -11,8 +11,3 @@ successUniform = shader_get_uniform(shd_obstacleRing, "success");
 success = 0;
 
 surface = undefined;
-
-editor = function()
-{
-	ImGui.Text("OBSTACLE");
-}
