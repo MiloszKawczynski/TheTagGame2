@@ -82,10 +82,10 @@ function __FauxtonWriteQuad(mBuff, texture, index, _x, _y, _z, color, alpha, ang
 	b = _tuvs[3];
 	
 	// Get Vertex offsets	
-	tl = xscale * _uvs[4] - sprite_get_xoffset(texture) * xscale;
-	tt = yscale * _uvs[5] - sprite_get_yoffset(texture) * yscale;
-	tr = tl + xscale * ( sprite_get_width(texture) * _uvs[6]);
-	tb = tt + yscale * ( sprite_get_height(texture) * _uvs[7]);
+	tl = sign(xscale) * _uvs[4] - sprite_get_xoffset(texture) * sign(xscale);
+	tt = sign(yscale) * _uvs[5] - sprite_get_yoffset(texture) * sign(yscale);
+	tr = tl + sign(xscale) * ( sprite_get_width(texture) * _uvs[6]);
+	tb = tt + sign(yscale) * ( sprite_get_height(texture) * _uvs[7]);
 	
 	cs = dcos(angle);
 	sn = dsin(angle);
@@ -127,15 +127,15 @@ function __FauxtonWriteQuad(mBuff, texture, index, _x, _y, _z, color, alpha, ang
 	vert6 = [l,b];
 		
 	// Normals
-	var nx1 = lengthdir_x(1, point_direction(_x, _y, vx0, vy0)) * xscale;
-	var nx2 = lengthdir_x(1, point_direction(_x, _y, vx1, vy1)) * xscale;
-	var nx3 = lengthdir_x(1, point_direction(_x, _y, vx2, vy2)) * xscale;
-	var nx4 = lengthdir_x(1, point_direction(_x, _y, vx3, vy3)) * xscale;
+	var nx1 = lengthdir_x(1, point_direction(_x, _y, vx0, vy0)) * sign(xscale);
+	var nx2 = lengthdir_x(1, point_direction(_x, _y, vx1, vy1)) * sign(xscale);
+	var nx3 = lengthdir_x(1, point_direction(_x, _y, vx2, vy2)) * sign(xscale);
+	var nx4 = lengthdir_x(1, point_direction(_x, _y, vx3, vy3)) * sign(xscale);
 	
-	var ny1 = lengthdir_y(1, point_direction(_x, _y, vx0, vy0)) * yscale;
-	var ny2 = lengthdir_y(1, point_direction(_x, _y, vx1, vy1)) * yscale;
-	var ny3 = lengthdir_y(1, point_direction(_x, _y, vx2, vy2)) * yscale;
-	var ny4 = lengthdir_y(1, point_direction(_x, _y, vx3, vy3)) * yscale;
+	var ny1 = lengthdir_y(1, point_direction(_x, _y, vx0, vy0)) * sign(yscale);
+	var ny2 = lengthdir_y(1, point_direction(_x, _y, vx1, vy1)) * sign(yscale);
+	var ny3 = lengthdir_y(1, point_direction(_x, _y, vx2, vy2)) * sign(yscale);
+	var ny4 = lengthdir_y(1, point_direction(_x, _y, vx3, vy3)) * sign(yscale);
 	
 	var norm1;
 	var norm2;

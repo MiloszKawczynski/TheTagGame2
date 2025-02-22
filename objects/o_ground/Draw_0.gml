@@ -1,6 +1,6 @@
 if (!global.debugEdit)
 {
-	shader_set(shd_defaultReplaceWhite);
+	shader_set(shd_defaultGround);
 	
 	RenderPipeline.default_world_shader_set();
 	

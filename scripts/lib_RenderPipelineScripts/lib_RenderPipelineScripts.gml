@@ -84,12 +84,29 @@ function pipeline_initiate()
 		light_cutoff	: shader_get_uniform(shd_defaultLed, "lightCutoffAngle")
 	}
 	
+	uniGround = {
+		amb_col : shader_get_uniform(shd_defaultLed, "ambient_color"),
+		sun_col : shader_get_uniform(shd_defaultLed, "sun_color"),
+		sun_int : shader_get_uniform(shd_defaultLed, "sun_intensity"),
+		sun_pos : shader_get_uniform(shd_defaultLed, "sun_pos"),
+			
+		light_num		: shader_get_uniform(shd_defaultLed, "lightTotal"),
+		light_position	: shader_get_uniform(shd_defaultLed, "lightPos"),
+		light_color		: shader_get_uniform(shd_defaultLed, "lightColor"),
+		light_range		: shader_get_uniform(shd_defaultLed, "lightRange"),
+			
+		light_is_cone	: shader_get_uniform(shd_defaultLed, "lightIsCone"),
+		light_direction : shader_get_uniform(shd_defaultLed, "lightDirection"),
+		light_cutoff	: shader_get_uniform(shd_defaultLed, "lightCutoffAngle")
+	}
+	
 	
 	function default_world_shader_set(){
 		if ( shader_current() != shd_default 
 		and shader_current() != shd_defaultReplaceWhite
 		and shader_current() != shd_defaultMetalic 
-		and shader_current() != shd_defaultLed) 
+		and shader_current() != shd_defaultLed
+		and shader_current() != shd_defaultGround) 
 		{ 
 			exit; 
 		}
@@ -105,6 +122,11 @@ function pipeline_initiate()
 		if (shader_current() == shd_defaultLed) 
 		{
 			uniforms = uniLed;
+		}
+			
+		if (shader_current() == shd_defaultGround) 
+		{
+			uniforms = uniGround;
 		}
 	
 		var uAmbCol = fauxton_world_environment.ambient_color;

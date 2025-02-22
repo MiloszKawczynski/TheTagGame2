@@ -1,4 +1,4 @@
-groundModel = fauxton_model_create_ext(s_16x16, room_width / 2, room_height / 2, 0, 0, 0, 0, room_width / 16 / 10, room_height / 16 / 7.5, 0.1, c_white, 1);
+groundModel = fauxton_model_create_ext(s_tartanTexture, 0, 0, 0, 0, 0, 0, 1, 1, 0.1, c_white, 1);
 color = c_gray;
 
 editor = function()
