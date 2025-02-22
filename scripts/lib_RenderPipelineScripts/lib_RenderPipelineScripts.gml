@@ -85,19 +85,19 @@ function pipeline_initiate()
 	}
 	
 	uniGround = {
-		amb_col : shader_get_uniform(shd_defaultLed, "ambient_color"),
-		sun_col : shader_get_uniform(shd_defaultLed, "sun_color"),
-		sun_int : shader_get_uniform(shd_defaultLed, "sun_intensity"),
-		sun_pos : shader_get_uniform(shd_defaultLed, "sun_pos"),
+		amb_col : shader_get_uniform(shd_defaultGround, "ambient_color"),
+		sun_col : shader_get_uniform(shd_defaultGround, "sun_color"),
+		sun_int : shader_get_uniform(shd_defaultGround, "sun_intensity"),
+		sun_pos : shader_get_uniform(shd_defaultGround, "sun_pos"),
 			
-		light_num		: shader_get_uniform(shd_defaultLed, "lightTotal"),
-		light_position	: shader_get_uniform(shd_defaultLed, "lightPos"),
-		light_color		: shader_get_uniform(shd_defaultLed, "lightColor"),
-		light_range		: shader_get_uniform(shd_defaultLed, "lightRange"),
+		light_num		: shader_get_uniform(shd_defaultGround, "lightTotal"),
+		light_position	: shader_get_uniform(shd_defaultGround, "lightPos"),
+		light_color		: shader_get_uniform(shd_defaultGround, "lightColor"),
+		light_range		: shader_get_uniform(shd_defaultGround, "lightRange"),
 			
-		light_is_cone	: shader_get_uniform(shd_defaultLed, "lightIsCone"),
-		light_direction : shader_get_uniform(shd_defaultLed, "lightDirection"),
-		light_cutoff	: shader_get_uniform(shd_defaultLed, "lightCutoffAngle")
+		light_is_cone	: shader_get_uniform(shd_defaultGround, "lightIsCone"),
+		light_direction : shader_get_uniform(shd_defaultGround, "lightDirection"),
+		light_cutoff	: shader_get_uniform(shd_defaultGround, "lightCutoffAngle")
 	}
 	
 	

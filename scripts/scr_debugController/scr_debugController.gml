@@ -857,14 +857,22 @@ function scr_editorLogic()
 						if (editorFlip)
 						{
 							instance = instance_create_layer(_xSpawn, room_height - (_ySpawn), layerName, editorCurrentObject);
-							instance.image_yscale = -1;
+							
+							if (editorCurrentObject != o_block)
+							{
+								instance.image_yscale = -1;
+							}
 						}
 					
 						if (editorMirror and editorFlip)
 						{
 							instance = instance_create_layer(room_width - (_xSpawn), room_height - (_ySpawn), layerName, editorCurrentObject);
 							instance.image_xscale = -1;
-							instance.image_yscale = -1;
+							
+							if (editorCurrentObject != o_block)
+							{
+								instance.image_yscale = -1;
+							}
 						}
 					}
 				}

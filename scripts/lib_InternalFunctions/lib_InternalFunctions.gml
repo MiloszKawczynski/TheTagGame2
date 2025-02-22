@@ -202,9 +202,9 @@ function __FauxtonWriteQuad(mBuff, texture, index, _x, _y, _z, color, alpha, ang
 		{ 
 			//Only Left
 			norm1 = mat3(
-				-nx1, 0, 0,
-				-nx1, 0, 0,
-				-nx1, 0, 0		
+				nx1, 0, 0,
+				nx1, 0, 0,
+				nx1, 0, 0		
 			);
 		}
 		
@@ -222,9 +222,9 @@ function __FauxtonWriteQuad(mBuff, texture, index, _x, _y, _z, color, alpha, ang
 		{ 	
 			//Left Up
 			norm1 = mat3(
-				-nx1, -ny1, 0,
-				-nx1, -ny1, 0,
-				-nx1, -ny1, 0		
+				nx1, -ny1, 0,
+				nx1, -ny1, 0,
+				nx1, -ny1, 0		
 			);
 		}
 		
@@ -252,9 +252,9 @@ function __FauxtonWriteQuad(mBuff, texture, index, _x, _y, _z, color, alpha, ang
 		{ 
 			//Down Left
 			norm1 = mat3(
-				-nx4, -ny4, 0,
-				-nx4, -ny4, 0,
-				-nx4, -ny4, 0		
+				nx4, -ny4, 0,
+				nx4, -ny4, 0,
+				nx4, -ny4, 0		
 			);
 		}
 		
