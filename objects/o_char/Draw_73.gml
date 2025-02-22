@@ -6,5 +6,7 @@ if (global.debugIsGravityOn)
 }
 else 
 {
+	matrix_set(matrix_world, matrix_build(0, 0, 0.13, 0, 0, 0, 1, 1, 1));
 	part_system_drawit(runTrailSystem);
+	matrix_reset();
 }
