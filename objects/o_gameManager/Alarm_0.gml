@@ -1,8 +1,13 @@
+scr_bake();
+
 if (global.createStaticBuffers)
 {
 	with(o_collision)
 	{	
-		fauxton_model_destroy(model);
+		if (model != undefined)
+		{
+			fauxton_model_destroy(model);
+		}
 	}
 	
 	if (global.saveStaticBuffers) 
