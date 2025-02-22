@@ -92,7 +92,8 @@ array_push(editorObjects,
 	o_metroChaseTitleCard,
 	o_lamp,
 	o_pointLight,
-	o_spotLight
+	o_spotLight,
+	o_ledPanel
 );
 	
 editorCurrentObjectIndex = 0;
