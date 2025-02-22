@@ -2882,6 +2882,12 @@ function scr_objectsInspector()
 	for (var i = 0; i < array_length(editableObjects); i++) 
 	{
 		var inst = editableObjects[i];
+		
+		if (!instance_exists(inst))
+		{
+			continue;
+		}
+		
 		var name = string("{0}_{1}", object_get_name(inst.object_index), inst.id);
 		
 		if (ImGui.Selectable(name, selectedObject == inst)) 

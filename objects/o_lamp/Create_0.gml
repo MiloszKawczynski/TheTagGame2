@@ -2,5 +2,8 @@ event_inherited();
 
 editor = function()
 {
-	ImGui.Text("LAMP");
+	if (ImGui.Button("Destroy"))
+	{
+		instance_destroy();
+	}
 }
