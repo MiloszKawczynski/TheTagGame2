@@ -223,3 +223,8 @@ function getKeyName(keyCode)
 	
 	return chr(keyCode);
 }
+
+function array_clear(array)
+{
+	array_delete(array, 0, array_length(array));
+}
