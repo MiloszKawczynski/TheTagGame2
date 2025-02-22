@@ -104,6 +104,10 @@ function scr_topDownMovement()
 function scr_TopDownObstaclesInteraction()
 {
 	var obst = instance_nearest(x, y, o_obstacleParent);
+	if (obst == noone)
+	{
+		return;
+	}
 	var dist = point_distance(x, y, obst.x, obst.y);
 	if (dist < obstacleRange)
 	{
@@ -334,6 +338,10 @@ function scr_platformerMovement()
 function scr_platformerObstaclesInteraction()
 {
 	var obst = instance_nearest(x, y, o_obstacleParent);
+	if (obst == noone)
+	{
+		return;
+	}
 	var dist = point_distance(x, y, obst.x, obst.y);
 	if (dist < obstacleRange)
 	{
