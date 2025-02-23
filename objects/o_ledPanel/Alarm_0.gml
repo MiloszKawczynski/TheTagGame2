@@ -1,8 +1,3 @@
-alarm[0] = 10;
+alarm[0] = 10 / ledSpeed;
 
 frame++;
-
-if (frame + offset >= array_length(leds))
-{
-	frame = 0 - offset;
-}
