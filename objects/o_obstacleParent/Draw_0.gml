@@ -33,7 +33,7 @@ for(var i = 0; i < instance_number(o_char); i++)
 		shader_set_uniform_f(circleRadiusUniform, dist / maximumObstacleRange);
 		shader_set_uniform_f(directionUniform, point_direction(x, y, char.x, char.y));
 		shader_set_uniform_f(successUniform, success);
-			matrix_set(matrix_world, matrix_build(0, 0, z + 0.1, 0, 0, 0, 1, 1, 1));
+			matrix_set(matrix_world, matrix_build(0, 0, z + 0.2, 0, 0, 0, 1, 1, 1));
 			gpu_set_blendmode(bm_add);
 				draw_surface(surface, x - maximumObstacleRange, y - maximumObstacleRange);
 			gpu_set_blendmode(bm_normal);

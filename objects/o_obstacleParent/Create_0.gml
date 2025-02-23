@@ -1,6 +1,6 @@
-z = 1.1;
+z = 1;
 
-model = fauxton_model_create(sprite_index, x, y, z + 0.1, 0, 0, 0, 1, 1, 1);
+model = fauxton_model_create(sprite_index, x, y, z, 0, 0, 0, 1, 1, 1);
 
 maximumObstacleRange = 0;
 
