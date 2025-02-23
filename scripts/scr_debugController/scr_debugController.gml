@@ -272,6 +272,29 @@ function scr_logs()
 	ImGui.Text(string("Logs: {0}", ds_list_size(logBuffor)));
 	ImGui.Text(string("FPS: {0}", fps));
 	ImGui.Text(string("FPS Real: {0}", fps_real));
+	
+	fpsLogger = ImGui.Checkbox("FPS Logger", fpsLogger);
+	
+	if (fpsLogger)
+	{
+		if (fps_real <= 100)
+		{
+			scr_clearLog();
+			log("<= 100", c_yellow);
+		}
+		
+		if (fps_real <= 60)
+		{
+			scr_clearLog();
+			log("<= 60", c_orange);
+		}
+		
+		if (fps_real <= 30)
+		{
+			scr_clearLog();
+			log("<= 30", c_red);
+		}
+	}
 }
 
 function scr_playersStats()

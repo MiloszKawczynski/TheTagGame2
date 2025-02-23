@@ -307,3 +307,5 @@ input_profile_set("keyboard_and_mouse", 10);
 keyboardShare = [10];
 firstFreePlayer = 0;
 isBindingFinilize = false;
+
+fpsLogger = false;
