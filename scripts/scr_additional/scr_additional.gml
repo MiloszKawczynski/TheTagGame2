@@ -278,7 +278,7 @@ function ImGui_position_2()
 	}
 }
 
-function ImGui_position_3()
+function ImGui_position_3(grid = 16)
 {
 	var value = [x, y, z];
 
@@ -289,22 +289,22 @@ function ImGui_position_3()
 		if (value[0] != x)
 		{
 			x = value[0];
-			var _x = x div 16;
-			x = (_x * 16) + 8;
+			var _x = x div grid;
+			x = (_x * grid) + (grid / 2);
 		}
 		
 		if (value[1] != y)
 		{
 			y = value[1];
-			var _y = y div 16;
-			y = (_y * 16) + 8;
+			var _y = y div grid;
+			y = (_y * grid) + (grid / 2);
 		}
 		
 		if (value[2] != z) 
 		{
 			z = value[2];
-			var _z = z div 16;
-			z = (_z * 16) + 8;
+			var _z = z div grid;
+			z = (_z * grid) + (grid / 2);
 		}
 	}
 	else 
