@@ -8,6 +8,7 @@ horizontalAlign = 0;
 verticalAlign = 0;
 
 mask_index = sprite_index;
+originalSprite = sprite_index;
 
 model = undefined;
 
@@ -108,7 +109,6 @@ locate = function()
 				{
 					verticalAlign *= -1;
 				}
-					
 				
 				break;
 			}
@@ -144,16 +144,16 @@ locate = function()
 	
 	if (model == undefined or (!global.createStaticBuffers and !global.loadStaticBuffers))
 	{
-		model = fauxton_model_create_ext(sprite_index, x, y, z, 0, 0, 0, 1, 1, 1, c_white, 1, horizontalAlign, verticalAlign);
+		model = fauxton_model_create_ext(sprite_index, 0, 0, 0, 0, 0, 0, 1, 1, 1, c_white, 1, horizontalAlign, verticalAlign);
 		ds_map_add(o_gameManager.buffersMap, bufferId, model);
 		
 		if (global.createStaticBuffers or global.loadStaticBuffers)
 		{
-			fauxton_buffer_create(bufferId, shd_defaultMetalic);
+			fauxton_buffer_create(bufferId);
 		}
 	}
 	
-	fauxton_model_set(model, x, y, 0, 0, 0, 0, image_xscale, image_yscale, 1);
+	fauxton_model_set(model, x, y, z, 0, 0, 0, image_xscale, image_yscale, 1);
 	
 	if (global.createStaticBuffers or global.loadStaticBuffers)
 	{

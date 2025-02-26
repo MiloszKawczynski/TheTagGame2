@@ -127,15 +127,15 @@ function __FauxtonWriteQuad(mBuff, texture, index, _x, _y, _z, color, alpha, ang
 	vert6 = [l,b];
 		
 	// Normals
-	var nx1 = lengthdir_x(1, point_direction(_x, _y, vx0, vy0)) * sign(xscale);
-	var nx2 = lengthdir_x(1, point_direction(_x, _y, vx1, vy1)) * sign(xscale);
-	var nx3 = lengthdir_x(1, point_direction(_x, _y, vx2, vy2)) * sign(xscale);
-	var nx4 = lengthdir_x(1, point_direction(_x, _y, vx3, vy3)) * sign(xscale);
+	var nx1 = lengthdir_x(1, point_direction(_x, _y, vx0, vy0))
+	var nx2 = lengthdir_x(1, point_direction(_x, _y, vx1, vy1))
+	var nx3 = lengthdir_x(1, point_direction(_x, _y, vx2, vy2))
+	var nx4 = lengthdir_x(1, point_direction(_x, _y, vx3, vy3))
 	
-	var ny1 = lengthdir_y(1, point_direction(_x, _y, vx0, vy0)) * sign(yscale);
-	var ny2 = lengthdir_y(1, point_direction(_x, _y, vx1, vy1)) * sign(yscale);
-	var ny3 = lengthdir_y(1, point_direction(_x, _y, vx2, vy2)) * sign(yscale);
-	var ny4 = lengthdir_y(1, point_direction(_x, _y, vx3, vy3)) * sign(yscale);
+	var ny1 = lengthdir_y(1, point_direction(_x, _y, vx0, vy0))
+	var ny2 = lengthdir_y(1, point_direction(_x, _y, vx1, vy1))
+	var ny3 = lengthdir_y(1, point_direction(_x, _y, vx2, vy2))
+	var ny4 = lengthdir_y(1, point_direction(_x, _y, vx3, vy3))
 	
 	var norm1;
 	var norm2;

@@ -23,8 +23,6 @@ function pipeline_initiate()
 	default_shader = ( RenderShader == noone ? shd_default : RenderShader );
 	fidelity_matrix = [];
 	
-	timer = 3;
-	
 	// Create fidelity matrices
 	function render_build_fidelity() {
 		///@func render_build_fidelity()
@@ -208,7 +206,7 @@ function pipeline_initiate()
 	function load_buffer_maps() 
 	{		
 		
-		if (!global.loadStaticBuffers)
+		if (!global.loadStaticBuffers and o_gameManager.alarm[0] == -1)
 		{
 			// Load all buffer maps
 			for ( var i=ds_map_find_first(BUFFER_MAPS); !is_undefined(i); i = ds_map_find_next(BUFFER_MAPS, i) )
@@ -306,8 +304,7 @@ function pipeline_load()
 		{
 			fauxton_world_set_default_environment();	
 		}
-		if ( timer > 0 ){ timer--; exit; }
-		
+
 		load_buffer_maps();
 	}
 }
