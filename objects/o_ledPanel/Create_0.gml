@@ -5,12 +5,24 @@ color = c_yellow;
 
 ledsPatterns = array_create(0);
 ledIndex = 0;
-ledSpeed = 1;
+ledSpeed = 1.75;
+
+array_push(ledsPatterns, 
+{
+	name: "TOPDOWN",
+	led: scr_ledPattern_TOPDOWN()
+});
 
 array_push(ledsPatterns, 
 {
 	name: "PLATFORM",
 	led: scr_ledPattern_PLATFORM()
+});
+
+array_push(ledsPatterns, 
+{
+	name: "COUNTDOWN",
+	led: scr_ledPattern_COUNTDOWN()
 });
 
 array_push(ledsPatterns, 
@@ -24,6 +36,19 @@ array_push(ledsPatterns,
 	name: "COLOR",
 	led: scr_ledPattern_COLOR()
 });
+
+changePatternTo = function(index)
+{
+	array_clear(leds);
+	with(o_ledPanel)
+	{
+		frame = 0;
+	}
+	
+	offset = 0;
+	ledIndex = index;
+	array_copy(leds, 0, ledsPatterns[index].led, 0, array_length(ledsPatterns[index].led));
+}
 
 editor = function()
 {
@@ -49,22 +74,14 @@ editor = function()
 		{				
 			if (ImGui.Selectable(ledsPatterns[i].name, i == ledIndex))
 			{
-				array_clear(leds);
-				with(o_ledPanel)
-				{
-					frame = 0;
-				}
-				
-				offset = 0;
-				ledIndex = i;
-				array_copy(leds, 0, ledsPatterns[ledIndex].led, 0, array_length(ledsPatterns[ledIndex].led));
+				changePatternTo(i);
 			}
 		}
 	
 		ImGui.EndCombo();
 	}
 	
-	ledSpeed = ImGui.InputInt("Led Speed", ledSpeed);
+	ledSpeed = ImGui.InputFloat("Led Speed", ledSpeed);
 }
 
 model = fauxton_model_create(sprite_index, x, y, z, 0, 0, 0, 1, 1, 1);

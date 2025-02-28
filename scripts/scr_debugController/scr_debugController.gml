@@ -527,11 +527,21 @@ function scr_gravitationChange()
 			isGrounded = false;
 		}
 		
+		with(o_ledPanel)
+		{
+			changePatternTo(1);
+		}
+		
 		Camera.Pitch = 130;
 		Camera.Angle = 90;
 	}
 	else
 	{
+		with(o_ledPanel)
+		{
+			changePatternTo(0);
+		}
+		
 		Camera.Pitch = 50;
 		Camera.Angle = 80;
 	}
