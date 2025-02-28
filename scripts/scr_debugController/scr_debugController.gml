@@ -1115,7 +1115,7 @@ function scr_levelLoad(levelName = editorFileName)
 
 			if (!variable_struct_exists(instanceData, "layerName"))
 			{
-				instanceData.layerName = "Level";
+				instanceData.layerName = "level";
 			}
 				
             var newInstance = instance_create_layer(instanceData.xPos, instanceData.yPos, instanceData.layerName, instanceData.objectType);
@@ -1298,7 +1298,9 @@ function scr_editorOptions()
 	}
 	ImGui.EndDisabled();
 	
+	ImGui.BeginDisabled(global.createStaticBuffers or global.loadStaticBuffers);
 	returnList = scr_fileSearchList("level", editorFileName, editorFiles);
+	ImGui.EndDisabled();
 		
 	editorFileName = ds_list_find_value(returnList, 0);
 	editorFiles = ds_list_find_value(returnList, 1);
@@ -2916,6 +2918,14 @@ function scr_objectsInspector()
 		if (ImGui.Selectable(name, selectedObject == inst)) 
 		{
 			selectedObject = inst;
+		}
+		
+		if (ImGui.IsMouseClicked(ImGuiMouseButton.Left) and keyboard_check(vk_lcontrol))
+		{
+			with(selectedObject)
+			{
+				instance_destroy();
+			}
 		}
 	}
 	

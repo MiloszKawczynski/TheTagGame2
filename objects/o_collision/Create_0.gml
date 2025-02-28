@@ -159,6 +159,4 @@ locate = function()
 	{
 		fauxton_model_add_static(model, bufferId);
 	}
-	
-	fauxton_model_draw_enable(model, false);
 }
