@@ -1,5 +1,5 @@
 groundModel = fauxton_model_create_ext(s_tartanTexture, 0, 0, 0, 0, 0, 0, 1, 1, 0.1, c_white, 1);
-color = c_gray;
+color = make_color_hsv(random(255), 218, 160);
 
 editor = function()
 {
