@@ -1,7 +1,7 @@
 event_inherited();
 
-follow = true;
-draw = true;
+follow = false;
+draw = false;
 
 editor = function()
 {

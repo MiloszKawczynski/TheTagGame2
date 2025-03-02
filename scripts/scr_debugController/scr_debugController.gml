@@ -1053,7 +1053,7 @@ function scr_editorLogic()
 
 function scr_serializeObject(objectType, file)
 {
-	function objectSerialized(_x, _y, _z, _imageXScale, _imageYScale, _object, _layer) constructor
+	function objectSerialized(_x, _y, _z, _imageXScale, _imageYScale, _object, _layer, _range = 0, _cutoff_angle = 0, _angle = 0, _z_angle = 0) constructor
 	{	
 		xPos = _x;
 		yPos = _y;
@@ -1062,6 +1062,13 @@ function scr_serializeObject(objectType, file)
 		imageYScale = _imageYScale;
 		objectType = _object;
 		layerName = _layer;
+		
+		//---
+		
+		range = _range;
+		cutoff_angle = _cutoff_angle;
+		angle = _angle;
+		z_angle = _z_angle;
 	}
 	
 	with (objectType) 
@@ -1071,7 +1078,20 @@ function scr_serializeObject(objectType, file)
 			z = 0;
 		}
 		
-        var instanceSerialized = new objectSerialized(x, y, z, image_xscale, image_yscale, objectType, layer);
+        var instanceSerialized;
+		
+		if (objectType == o_pointLight)
+		{
+			instanceSerialized = new objectSerialized(x, y, z, image_xscale, image_yscale, objectType, layer, range);
+		}
+		else if (objectType == o_spotLight)
+		{
+			instanceSerialized = new objectSerialized(x, y, z, image_xscale, image_yscale, objectType, layer, range, cutoff_angle, angle, z_angle);
+		}
+		else 
+		{
+			instanceSerialized = new objectSerialized(x, y, z, image_xscale, image_yscale, objectType, layer);
+		}
 
 		file_text_write_string(file, json_stringify(instanceSerialized));
 		file_text_writeln(file);
@@ -1136,6 +1156,26 @@ function scr_levelLoad(levelName = editorFileName)
 			if (variable_struct_exists(instanceData, "zPos"))
 			{
 				newInstance.z = instanceData.zPos;
+			}
+			
+			if (variable_struct_exists(instanceData, "range"))
+			{
+				newInstance.range = instanceData.range;
+			}
+			
+			if (variable_struct_exists(instanceData, "cutoff_angle"))
+			{
+				newInstance.cutoff_angle = instanceData.cutoff_angle;
+			}
+			
+			if (variable_struct_exists(instanceData, "angle"))
+			{
+				newInstance.angle = instanceData.angle;
+			}
+			
+			if (variable_struct_exists(instanceData, "z_angle"))
+			{
+				newInstance.z_angle = instanceData.z_angle;
 			}
         }
 

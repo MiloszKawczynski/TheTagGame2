@@ -1,6 +1,7 @@
 event_inherited();
 
-follow = true;
+follow = false;
+draw = false;
 
 editor = function()
 {
@@ -11,4 +12,5 @@ editor = function()
 	angle = ImGui.DragFloat("Angle", angle);
 	z_angle = ImGui.DragFloat("Z Angle", z_angle);
 	follow = ImGui.Checkbox("follow", follow);
+	draw = ImGui.Checkbox("draw", draw);
 }
