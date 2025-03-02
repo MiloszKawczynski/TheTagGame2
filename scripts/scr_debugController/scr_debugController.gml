@@ -418,23 +418,6 @@ function scr_playerModificators()
     }
 
     ImGui.Separator();
-
-    if (ImGui.CollapsingHeader("Keybinding"))
-    {
-        ImGui.Text(string("Player {0} Keybinding", choosedPlayerIndex));
-        
-        scr_keyPresets(choosedPlayer);
-        
-        choosedPlayer.rightKey = scr_keyBinding(choosedPlayer.rightKey, "Right Key", isRightKeyBindingOn, "isRightKeyBindingOn");
-        choosedPlayer.leftKey = scr_keyBinding(choosedPlayer.leftKey, "Left Key", isLeftKeyBindingOn, "isLeftKeyBindingOn");
-        choosedPlayer.upKey = scr_keyBinding(choosedPlayer.upKey, "Up Key", isUpKeyBindingOn, "isUpKeyBindingOn");
-        choosedPlayer.downKey = scr_keyBinding(choosedPlayer.downKey, "Down Key", isDownKeyBindingOn, "isDownKeyBindingOn");
-        choosedPlayer.jumpKey = scr_keyBinding(choosedPlayer.jumpKey, "Jump Key", isJumpKeyBindingOn, "isJumpKeyBindingOn");
-        choosedPlayer.interactionKey = scr_keyBinding(choosedPlayer.interactionKey, "Interaction Key", isInteractionKeyBindingOn, "isInteractionKeyBindingOn");
-        choosedPlayer.skillKey = scr_keyBinding(choosedPlayer.skillKey, "Skill Key", isSkillKeyBindingOn, "isSkillKeyBindingOn");
-    }
-
-    ImGui.Separator();
 }
 
 function scr_playerData()
