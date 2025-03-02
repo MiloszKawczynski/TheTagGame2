@@ -1148,13 +1148,6 @@ function scr_levelLoad(levelName = editorFileName)
 	log(string("Level {0} Doesnt exist", levelName), c_red);
 }
 
-function scr_fileDelete(fileName)
-{	
-	file_delete("content/" + fileName);
-    
-	log(string("File {0} Deleted", fileName));
-}
-
 function scr_getFiles(prefix = "", suffix = ".json") 
 {
     var fileList = [];
@@ -1274,6 +1267,8 @@ function scr_fileSearchList(fileType, fileName, files)
 	{
 		file_delete(get_project_path() + "content/" + string("{0}{1}.json", fileTypeAsPrefix, fileName));
 		files = scr_getFiles(fileTypeAsPrefix);
+		
+		log(string("File {0} Deleted", fileName));
 	}
 	
 	ImGui.Separator();
