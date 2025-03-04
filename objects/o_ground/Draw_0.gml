@@ -1,4 +1,4 @@
-if (!global.debugEdit)
+if (!global.debugEdit and alarm[0] == -1)
 {
 	shader_set(shd_defaultGround);
 	

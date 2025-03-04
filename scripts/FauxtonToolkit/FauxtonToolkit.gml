@@ -46,6 +46,29 @@
 		
 		return _m.pos_id;
 	}
+	function fauxton_model_create_plate(sprite, image, _x, _y, _z, _xr, _yr, _zr, _xs, _ys, _zs, _c, _a, horizontalAlign = 10, verticalAlign = 10)
+	{
+		///@func fauxton_model_create_ext(sprite, x, y, z, xrot, yrot, zrot, xscale, yscale, zscale, blend, alpha, horizontalAlign, verticalAlign)
+		var _m = {
+			spref		: sprite,
+			texture		: sprite_get_texture(ico_texref, image),
+			pos_id		: ds_list_size(RENDER_QUEUE),
+			model_id	: __FauxtonWriteSpriteStack(sprite, 0, 0, 0, _c, _a, 0, _xs, _ys, horizontalAlign, verticalAlign, image),
+			position	: new vector3(_x, _y, _z),
+			rotation	: new vector3(_xr, _yr, _zr),
+			scale		: new vector3(_xs, _ys, _zs),
+			matrix_id	: -1,
+			draw_enable : true,
+			isBBoard	: false,
+			color		: _c,
+			alpha		: _a
+		}
+		_m.matrix_id = matrix_vec_build(_m.position, _m.rotation, _m.scale);
+		RENDER_QUEUE[| _m.pos_id] = _m;
+		fauxton_model_set(_m.pos_id, _x, _y, _z, _xr, _yr, _zr, _xs, _ys, _zs);
+		
+		return _m.pos_id;
+	}
 	function fauxton_model_texcube(height, tex)
 	{
 		var _m = {

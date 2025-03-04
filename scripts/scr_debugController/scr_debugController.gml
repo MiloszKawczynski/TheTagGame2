@@ -1301,6 +1301,13 @@ function scr_fileSearchList(fileType, fileName, files)
 	return returnList;
 }
 
+function scr_fileDelete(fileName)
+{	
+	file_delete(get_project_path() + "content/" + fileName);
+	
+	log(string("File {0} Deleted", fileName));
+}
+
 function scr_editorOptions()
 {
 	editorMirror = ImGui.Checkbox("Mirror", editorMirror);

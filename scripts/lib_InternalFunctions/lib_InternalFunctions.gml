@@ -65,7 +65,7 @@ function __FauxtonWriteVert(mBuff, _3mat, _uv1, _uv2, _uv3, _col, _alp, _nMat)
 	__FauxtonWritePoint( mBuff, point2, _uv2, _col, _alp, pNorm2 );
 	__FauxtonWritePoint( mBuff, point3, _uv3, _col, _alp, pNorm3 );
 }
-function __FauxtonWriteQuad(mBuff, texture, index, _x, _y, _z, color, alpha, angle, xscale, yscale, zscale, horizontalAlign, verticalAlign )
+function __FauxtonWriteQuad(mBuff, texture, index, _x, _y, _z, color, alpha, angle, xscale, yscale, zscale, horizontalAlign, verticalAlign, image = -1 )
 {
 	///@func __FauxtonWriteQuad(buffer, sprite, index, x, y, z, color, alpha, angle, xscale, yscale, zscale, horizontalAlign, verticalAlign )
 	var l,t,r,b,tl,tt,tr,tb,
@@ -140,7 +140,7 @@ function __FauxtonWriteQuad(mBuff, texture, index, _x, _y, _z, color, alpha, ang
 	var norm1;
 	var norm2;
 	
-	if (index >= ((sprite_get_number(texture) * RENDER_FIDELITY - 1) / RENDER_FIDELITY) - 1)
+	if (index >= ((sprite_get_number(texture) * RENDER_FIDELITY - 1) / RENDER_FIDELITY) - 1 or image != -1)
 	{
 		norm1 = mat3(
 			0, 0, 1,
@@ -299,9 +299,9 @@ function __FauxtonWriteQuad(mBuff, texture, index, _x, _y, _z, color, alpha, ang
 	__FauxtonWriteVert( mBuff, _mat1, vert1, vert2, vert3, color, alpha, norm1 );
 	__FauxtonWriteVert( mBuff, _mat2, vert4, vert5, vert6, color, alpha, norm2 );
 }
-function __FauxtonWriteSpriteStack(sprite, _x, _y, _z, _col, _alp, _ang, _xs, _ys, horizontalAlign, verticalAlign )
+function __FauxtonWriteSpriteStack(sprite, _x, _y, _z, _col, _alp, _ang, _xs, _ys, horizontalAlign, verticalAlign, image = -1 )
 {
-	///@func __FauxtonWriteSpriteStack(sprite, x, y, z, color, alpha, angle, xScale, yScale, horizontalAlign, verticalAlign )
+	///@func __FauxtonWriteSpriteStack(sprite, image = -1, x, y, z, color, alpha, angle, xScale, yScale, horizontalAlign, verticalAlign )
 	
 	// Has this model already been created?
 	var mName = sprite_get_name(sprite);
@@ -320,10 +320,22 @@ function __FauxtonWriteSpriteStack(sprite, _x, _y, _z, _col, _alp, _ang, _xs, _y
 		
 	// Create and write to buffer (much faster than writing a direction vertex buffer
 	var _buff = buffer_create( 1, buffer_grow, 1);
-	for ( var i=0; i<_num * RENDER_FIDELITY; i++ )
+	
+	if (image == -1)
 	{
-		var _ind = i/RENDER_FIDELITY;
-		__FauxtonWriteQuad(_buff, sprite, _ind, _x, _y, _z + (i/RENDER_FIDELITY) + _zoffset, _col, _alp, _ang, _xs, _ys, 1, horizontalAlign, verticalAlign )
+		for ( var i=0; i<_num * RENDER_FIDELITY; i++ )
+		{
+			var _ind = i/RENDER_FIDELITY;
+			__FauxtonWriteQuad(_buff, sprite, _ind, _x, _y, _z + (i/RENDER_FIDELITY) + _zoffset, _col, _alp, _ang, _xs, _ys, 1, horizontalAlign, verticalAlign )
+		}
+	}
+	else 
+	{
+		for ( var i=image; i<image + 1; i++ )
+		{
+			var _ind = i/RENDER_FIDELITY;
+			__FauxtonWriteQuad(_buff, sprite, _ind, _x, _y, _z + _zoffset, _col, _alp, _ang, _xs, _ys, 1, horizontalAlign, verticalAlign, image )
+		}
 	}
 	
 	if ( _buff < 0 ) { buffer_delete(_buff); return -1; }

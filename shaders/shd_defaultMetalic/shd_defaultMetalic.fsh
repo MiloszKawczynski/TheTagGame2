@@ -81,7 +81,7 @@ void main()
 	vec3 lightDir = normalize(-sun_pos);
 	float _diff = max(dot(perturbedNormal, lightDir), 0.0);
 	
-	if (v_vWorldPosition.z >= 30.0 && length(col.rgb - (vec3(219., 33., 34.) / 255.0)) <= 0.7)
+	if (length(col.rgb - (vec3(219., 33., 34.) / 255.0)) <= 0.7)
 	{
 		float metallicFactor = 0.1;
 		float reflection = clamp(_diff * metallicFactor + noiseValue * 0.3, 0.0, 1.0);
