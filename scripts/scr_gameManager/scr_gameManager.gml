@@ -95,6 +95,7 @@ function createUI()
 	imChasingSystem = part_system_copy(ps_imChasing, 0);
 	imChasingType = part_type_copy(ps_imChasing, 0);
 	part_emitter_type(imChasingSystem, 0, imChasingType);
+	part_system_automatic_draw(imChasingSystem, false);
 }
 
 function updateUI()
