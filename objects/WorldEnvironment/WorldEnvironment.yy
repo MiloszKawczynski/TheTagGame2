@@ -27,10 +27,10 @@
   "physicsShapePoints":[],
   "physicsStartAwake":true,
   "properties":[
-    {"$GMObjectProperty":"v1","%Name":"AmbientColor","filters":[],"listItems":[],"multiselect":false,"name":"AmbientColor","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"$FFFFB2B2","varType":7,},
-    {"$GMObjectProperty":"v1","%Name":"SunColor","filters":[],"listItems":[],"multiselect":false,"name":"SunColor","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"$FFB2FFFF","varType":7,},
+    {"$GMObjectProperty":"v1","%Name":"AmbientColor","filters":[],"listItems":[],"multiselect":false,"name":"AmbientColor","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"$FF7F7F7F","varType":7,},
+    {"$GMObjectProperty":"v1","%Name":"SunColor","filters":[],"listItems":[],"multiselect":false,"name":"SunColor","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"$FF7F7F7F","varType":7,},
     {"$GMObjectProperty":"v1","%Name":"SunIntensity","filters":[],"listItems":[],"multiselect":false,"name":"SunIntensity","rangeEnabled":true,"rangeMax":1.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"1","varType":0,},
-    {"$GMObjectProperty":"v1","%Name":"SunPosition","filters":[],"listItems":[],"multiselect":false,"name":"SunPosition","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"[0, 0, -1]","varType":0,},
+    {"$GMObjectProperty":"v1","%Name":"SunPosition","filters":[],"listItems":[],"multiselect":false,"name":"SunPosition","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"[-0.25, 1, -1]","varType":0,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
