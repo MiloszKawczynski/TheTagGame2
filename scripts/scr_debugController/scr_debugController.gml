@@ -1371,6 +1371,43 @@ function scr_editorOptions()
 	}
 	
 	ImGui.Separator();
+	
+	if (ImGui.Button("Add Corner Lights"))
+	{
+		var light;
+		var range = 800;
+		var cutoff = 45;
+		var z = 60;
+		var z_angle = -45;
+		
+		light = instance_create_layer(0, 0, "level", o_spotLight);
+		light.range = range;
+		light.cutoff_angle = cutoff;
+		light.z = z;
+		light.angle = 45;
+		light.z_angle = z_angle;
+		
+		light = instance_create_layer(1600, 0, "level", o_spotLight);
+		light.range = range;
+		light.cutoff_angle = cutoff;
+		light.z = z;
+		light.angle = 135;
+		light.z_angle = z_angle;
+		
+		light = instance_create_layer(0, 896, "level", o_spotLight);
+		light.range = range;
+		light.cutoff_angle = cutoff;
+		light.z = z;
+		light.angle = -45;
+		light.z_angle = z_angle;
+		
+		light = instance_create_layer(1600, 896, "level", o_spotLight);
+		light.range = range;
+		light.cutoff_angle = cutoff;
+		light.z = z;
+		light.angle = -135;
+		light.z_angle = z_angle;
+	}
 }
 
 function scr_serializeRulesPreset(file)
@@ -1902,6 +1939,43 @@ function scr_dialogBoxEditor()
 	dialog.fastSpeed = ImGui.InputFloat("Fast Speed", dialog.fastSpeed, 0.25);
 	
 	ImGui.Separator();
+	
+	if (ImGui.Button("Add Corner Lights"))
+	{
+		var light;
+		var range = 800;
+		var cutoff = 45;
+		var z = 60;
+		var z_angle = -45;
+		
+		light = instance_create_layer(0, 0, "level", o_spotLight);
+		light.range = range;
+		light.cutoff_angle = cutoff;
+		light.z = z;
+		light.angle = 45;
+		light.z_angle = z_angle;
+		
+		light = instance_create_layer(1600, 0, "level", o_spotLight);
+		light.range = range;
+		light.cutoff_angle = cutoff;
+		light.z = z;
+		light.angle = 135;
+		light.z_angle = z_angle;
+		
+		light = instance_create_layer(0, 896, "level", o_spotLight);
+		light.range = range;
+		light.cutoff_angle = cutoff;
+		light.z = z;
+		light.angle = -45;
+		light.z_angle = z_angle;
+		
+		light = instance_create_layer(1600, 896, "level", o_spotLight);
+		light.range = range;
+		light.cutoff_angle = cutoff;
+		light.z = z;
+		light.angle = -135;
+		light.z_angle = z_angle;
+	}
 }
 
 function scr_dialogNavigation()
