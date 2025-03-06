@@ -16,7 +16,7 @@ else
 		}
 	}
 	
-	RenderPipeline.default_world_shader_set();
+	RenderPipeline.default_world_shader_set(RenderPipeline.uniReplace);
 	
 	shader_set_uniform_f_array(colorUniform, 
 		[color_get_red(color) / 255,

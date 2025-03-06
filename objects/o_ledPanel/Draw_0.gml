@@ -1,7 +1,7 @@
 if (!global.debugEdit)
 {
 	shader_set(shd_defaultLed);
-	RenderPipeline.default_world_shader_set();
+	RenderPipeline.default_world_shader_set(RenderPipeline.uniLed);
 	shader_set_uniform_f_array(modelPositionUniform, [x, y]);
 	shader_set_uniform_f(timeUniform, current_time);
 	shader_set_uniform_f_array(ledUniform, leds[frame + offset]);

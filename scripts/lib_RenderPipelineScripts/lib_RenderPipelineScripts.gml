@@ -99,33 +99,9 @@ function pipeline_initiate()
 	}
 	
 	
-	function default_world_shader_set(){
-		if ( shader_current() != shd_default 
-		and shader_current() != shd_defaultReplaceWhite
-		and shader_current() != shd_defaultMetalic 
-		and shader_current() != shd_defaultLed
-		and shader_current() != shd_defaultGround) 
-		{ 
-			exit; 
-		}
-		// World environment lighting
+	function default_world_shader_set(_uni = uni){
 		
-		var uniforms = uni;
-		
-		if (shader_current() == shd_defaultReplaceWhite) 
-		{
-			uniforms = uniReplace;
-		}
-		
-		if (shader_current() == shd_defaultLed) 
-		{
-			uniforms = uniLed;
-		}
-			
-		if (shader_current() == shd_defaultGround) 
-		{
-			uniforms = uniGround;
-		}
+		var uniforms = _uni;
 	
 		var uAmbCol = fauxton_world_environment.ambient_color;
 		var uSunCol = fauxton_world_environment.sun_color;
@@ -156,7 +132,6 @@ function pipeline_initiate()
 		var _LightNum = instance_number(__fauxtonLight);
 		shader_set_uniform_f(uniforms.light_num, _LightNum);
 		
-		if ( !instance_exists(WorldEnvironment) ){ exit; }
 		var lPos = [];
 		var lCol = [];
 		var lRad = [];

@@ -2,7 +2,7 @@ if (!global.debugEdit and alarm[0] == -1)
 {
 	shader_set(shd_defaultGround);
 	
-	RenderPipeline.default_world_shader_set();
+	RenderPipeline.default_world_shader_set(RenderPipeline.uniGround);
 	
 	shader_set_uniform_f_array(colorUniform, 
 		[color_get_red(color) / 255,
