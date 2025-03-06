@@ -3,7 +3,7 @@ editor = function()
 	ImGui_position_3();
 }
 
-var levelPlate = 0;
+var levelPlate = -1;
 
 switch(o_debugController.gameLevelName)
 {
@@ -26,7 +26,8 @@ switch(o_debugController.gameLevelName)
 	}
 }
 
-topModel = fauxton_model_create_plate(sprite_index, levelPlate, x, y, z, 0, 0, 0, 1, 1, 1, c_white, 1);
-
-
-fauxton_model_draw_enable(topModel, false);
+if (levelPlate != -1)
+{
+	topModel = fauxton_model_create_plate(sprite_index, levelPlate, x, y, z, 0, 0, 0, 1, 1, 1, c_white, 1);
+	fauxton_model_draw_enable(topModel, false);
+}
