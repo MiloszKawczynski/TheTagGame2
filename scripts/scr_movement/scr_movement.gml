@@ -370,14 +370,14 @@ function scr_topDownCollision()
 {	
 	if (place_meeting(x + hspeed, y, o_collision))
 	{
-		if (!place_meeting(x + hspeed, y - abs(hspeed) - 1, o_collision) and desiredVerticalDirection == 0)
+		if (!place_meeting(x + hspeed, y - abs(hspeed) - 1, o_collision))
 		{
 			while (place_meeting(x + hspeed, y, o_collision))
 			{
 				y -= 0.5;
 			}
 		}
-		else if (!place_meeting(x + hspeed, y + abs(hspeed) + 1, o_collision) and desiredVerticalDirection == 0)
+		else if (!place_meeting(x + hspeed, y + abs(hspeed) + 1, o_collision))
 		{
 			while (place_meeting(x + hspeed, y, o_collision))
 			{
@@ -399,28 +399,56 @@ function scr_topDownCollision()
 	
 	if (place_meeting(x, y + vspeed, o_collision))
 	{
-		if (!place_meeting(x - abs(vspeed * 2) - 1, y + vspeed, o_collision) and desiredHorizontalDirection == 0)
+		if (!place_meeting(x - abs(vspeed * 2) - 1, y + vspeed, o_collision))
 		{
-			if (instance_place(x, y + vspeed, o_collision).object_index == o_ramp)
+			var isRamp = false;
+			var yy = y;
+			while(!place_meeting(x, yy, o_collision))
 			{
-				vspeed *= 0.5;
+				yy += sign(vspeed) * 0.5;
 			}
 			
+			if (instance_place(x, yy, o_collision).object_index == o_ramp)
+			{
+				isRamp = true;
+			}
+			
+			var xx = x
 			while (place_meeting(x, y + vspeed, o_collision))
 			{
 				x -= 0.5;
 			}
-		}
-		else if (!place_meeting(x + abs(vspeed * 2) + 1, y + vspeed, o_collision) and desiredHorizontalDirection == 0)
-		{
-			if (instance_place(x, y + vspeed, o_collision).object_index == o_ramp)
+			
+			if (isRamp)
 			{
-				vspeed *= 0.5;
+				x = (x + xx) / 2
+				y -= vspeed / 2;
+			}
+		}
+		else if (!place_meeting(x + abs(vspeed * 2) + 1, y + vspeed, o_collision))
+		{
+			var isRamp = false;
+			var yy = y;
+			while(!place_meeting(x, yy, o_collision))
+			{
+				yy += sign(vspeed) * 0.5;
 			}
 			
+			if (instance_place(x, yy, o_collision).object_index == o_ramp)
+			{
+				isRamp = true;
+			}
+			
+			var xx = x
 			while (place_meeting(x, y + vspeed, o_collision))
 			{
 				x += 0.5;
+			}
+			
+			if (isRamp)
+			{
+				x = (x + xx) / 2
+				y -= vspeed / 2;
 			}
 		}
 		else
@@ -436,7 +464,7 @@ function scr_topDownCollision()
 		}
 	}
 	
-	if (place_meeting(x + hspeed, y + vspeed, o_collision))
+	if (place_meeting(x + hspeed, y + vspeed, o_collision) and desiredHorizontalDirection != 0 and desiredVerticalDirection != 0)
 	{
 		while (!place_meeting(x + sign(hspeed), y + sign(vspeed), o_collision))
 		{
