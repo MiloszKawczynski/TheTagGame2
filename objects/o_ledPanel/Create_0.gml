@@ -1,5 +1,3 @@
-event_inherited();
-
 z = 32;
 color = c_yellow;
 
