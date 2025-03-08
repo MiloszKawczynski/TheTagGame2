@@ -5,7 +5,7 @@ editor = function()
 
 var levelPlate = -1;
 
-switch(o_debugController.gameLevelName)
+switch(global.gameLevelName)
 {
 	case("basic"):
 	{

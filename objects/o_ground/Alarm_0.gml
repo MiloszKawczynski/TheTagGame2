@@ -1,8 +1,8 @@
 sprite_index = s_shadowMask;
 
-if (o_debugController.gameLevelName != "")
+if (global.gameLevelName != "")
 {
-	var shadowMaskPath = get_project_path() + string("shadowMask_{0}.png", o_debugController.gameLevelName);
+	var shadowMaskPath = get_project_path() + string("shadowMask_{0}.png", global.gameLevelName);
 
 	shadowMapSprite = sprite_add(shadowMaskPath, 0, false, false, 1600 / 2, 896 / 2);
 	

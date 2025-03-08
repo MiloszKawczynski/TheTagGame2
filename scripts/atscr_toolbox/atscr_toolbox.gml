@@ -130,9 +130,12 @@ function log(logMessage, color = c_white)
 	var monitoredValue = "";
 	
 	show_debug_message(fullLog);
-	ds_list_add(o_debugController.logBuffor, fullLog);
-	ds_list_add(o_debugController.logColor, color);
-	ds_list_add(o_debugController.monitoredValue, monitoredValue);
+	if (instance_exists(o_debugController))
+	{
+		ds_list_add(o_debugController.logBuffor, fullLog);
+		ds_list_add(o_debugController.logColor, color);
+		ds_list_add(o_debugController.monitoredValue, monitoredValue);
+	}
 }
 
 function closerTo(targetValue, value1, value2)

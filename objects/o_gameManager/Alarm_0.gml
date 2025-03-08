@@ -12,7 +12,7 @@ if (global.createStaticBuffers)
 	
 	if (global.saveStaticBuffers) 
 	{
-		var arr = scr_getFiles("buffers/" + o_debugController.gameLevelName, ".sav");
+		var arr = scr_getFiles("buffers/" + global.gameLevelName, ".sav");
 		
 		for(var i = 0; i < array_length(arr); i++)
 		{

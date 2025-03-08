@@ -98,6 +98,13 @@ if (!o_gameManager.isGameOn and !hide)
 		}
 		
 		RENDER_QUALITY = ImGui.InputFloat("Quality", RENDER_QUALITY);
+		
+		if (ImGui.Button(":D"))
+		{
+			ImGui.__Shutdown();
+			instance_destroy();
+			return;
+		}
 			
 		scr_logsOptions();
 	}

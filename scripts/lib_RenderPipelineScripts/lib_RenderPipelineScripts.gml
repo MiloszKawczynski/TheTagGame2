@@ -215,7 +215,7 @@ function pipeline_initiate()
 						if (global.saveStaticBuffers)
 						{
 							b.buffer = buffer_compress(b.buffer, 0, buffer_tell(b.buffer));
-							buffer_save(b.buffer, get_project_path() + "content/buffers/" + string("{0}_{1}.sav", o_debugController.gameLevelName, i));
+							buffer_save(b.buffer, get_project_path() + "content/buffers/" + string("{0}_{1}.sav", global.gameLevelName, i));
 						}
 						
 						buffer_delete(b.buffer);
@@ -231,7 +231,7 @@ function pipeline_initiate()
 				var b = BUFFER_MAPS[? i];
 				if ( !b.loaded )
 				{
-					b.buffer = buffer_load(get_project_path() + "content/buffers/" + string("{0}_{1}.sav", o_debugController.gameLevelName, i));
+					b.buffer = buffer_load(get_project_path() + "content/buffers/" + string("{0}_{1}.sav", global.gameLevelName, i));
 					b.buffer = buffer_decompress(b.buffer);
 					
 					b.loaded = true;	

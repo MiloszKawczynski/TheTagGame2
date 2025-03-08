@@ -108,7 +108,7 @@ enum EditorDirectionType
 	
 editorDirection = EditorDirectionType.bottomRight;
 
-gameLevelName = "";
+global.gameLevelName = "";
 	
 editorFileName = "";
 rulesPresetFileName = "";

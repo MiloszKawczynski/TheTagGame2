@@ -21,7 +21,7 @@ function scr_bakeTopWall()
 		}
 	}
 	surface_reset_target();
-	surface_save(topWallMask, PROJECT_DIR + "/topWallMask_" + o_debugController.gameLevelName + ".png");
+	surface_save(topWallMask, PROJECT_DIR + "/topWallMask_" + global.gameLevelName + ".png");
 }
 
 function scr_bakeShadow()
@@ -45,5 +45,5 @@ function scr_bakeShadow()
 		}
 	}
 	surface_reset_target();
-	surface_save(topWallMask, PROJECT_DIR + "/shadowMask_" + o_debugController.gameLevelName + ".png");
+	surface_save(topWallMask, PROJECT_DIR + "/shadowMask_" + global.gameLevelName + ".png");
 }
