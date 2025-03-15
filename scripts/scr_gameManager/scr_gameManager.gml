@@ -36,6 +36,15 @@ function createUI()
 		
 		rightPoints = new Text("0", f_chaseBar);
 		
+		
+		roundTimer = new GradientBar(1);
+		roundTimer.setColor(c_red);
+		roundTimer.setScale(0.2, 0.2);
+		with(roundTimer)
+		{
+			scr_makeTimerBar();
+		}
+		
 		leftStamina = new GradientBar(1);
 		rightStamina = new GradientBar(1);
 		
@@ -53,18 +62,19 @@ function createUI()
 		toStartTimer.setScale(0, 0);
 		
 		chaseBarGroup = new Group();
-		chaseBarGroup.setGrid(1, 1, false);
-		chaseBarGroup.addComponent(-0.835, -0.19, leftColor);
-		chaseBarGroup.addComponent(0.835, -0.19, rightColor);
-		chaseBarGroup.addComponent(0, 0, chaseBar);
-		chaseBarGroup.addComponent(-1, 0, leftPortrait);
-		chaseBarGroup.addComponent(1, 0, rightPortrait);
-		chaseBarGroup.addComponent(0, -0.42, roundNumber);
-		chaseBarGroup.addComponent(-1.27, -0.17, leftPoints);
-		chaseBarGroup.addComponent(1.27, -0.17, rightPoints);
-		chaseBarGroup.setProperties(0.6, 0.6);
+		chaseBarGroup.setGrid(1, 1);
+		//chaseBarGroup.addComponent(-0.835, -0.19, leftColor);
+		//chaseBarGroup.addComponent(0.835, -0.19, rightColor);
+		//chaseBarGroup.addComponent(0, 0, chaseBar);
+		//chaseBarGroup.addComponent(-1, 0, leftPortrait);
+		//chaseBarGroup.addComponent(1, 0, rightPortrait);
+		//chaseBarGroup.addComponent(0, -0.42, roundNumber);
+		//chaseBarGroup.addComponent(-1.27, -0.17, leftPoints);
+		//chaseBarGroup.addComponent(1.27, -0.17, rightPoints);
+		chaseBarGroup.addComponent(-1, -1, roundTimer);
+		//chaseBarGroup.setProperties(0.6, 0.6);
 		
-		rightPortrait.setScale(-0.6);
+		//rightPortrait.setScale(-0.6);
 		
 		mainLayer.addComponent(5, 1, chaseBarGroup);
 		mainLayer.addComponent(0, 0, leftStamina);
@@ -106,7 +116,7 @@ function updateUI()
 	{
 		roundNumber.setContent(string("Round {0}/16", other.rounds));
 		leftPoints.setContent(string(other.players[0].points));
-		//ui.timeBar.setValue(chaseTime / maximumChaseTime);
+		roundTimer.setValue(other.chaseTime / other.maximumChaseTime);
 		
 		var leftPlayer = other.players[0].instance;
 		

@@ -231,3 +231,8 @@ function array_clear(array)
 {
 	array_delete(array, 0, array_length(array));
 }
+
+function color_hue_change(color, change)
+{
+	return make_color_hsv(color_get_hue(color) + change, color_get_saturation(color), color_get_value(color));
+}

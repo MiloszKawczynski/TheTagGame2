@@ -44,3 +44,59 @@ function scr_makeStaminaBar()
 	
 	setDrawFunction(drawStaminaBar, 100, 100);
 }
+
+function scr_makeTimerBar()
+{
+	var drawTimerBar = function()
+	{					
+		var widthBackground = 797;
+		var heightBackground = 151;
+		
+		if (!surface_exists(surface))
+		{
+			surface = surface_create(widthBackground, heightBackground);
+		}
+		
+		surface_set_target(surface);
+	
+		draw_clear_alpha(c_white, 0);
+		
+		var x1 = 29;
+		var y1 = 0;
+		var x2 = x1 + (widthBackground - x1) * value;
+		var y2 = y1 + heightBackground;
+		
+		draw_sprite(s_chaseBarTimer, 0, widthBackground / 2, heightBackground / 2);
+		gpu_set_colorwriteenable(1, 1, 1, 0);
+		var change = 50;
+		var colorHueLeft = color_hue_change(o_ground.color, -change);
+		var colorHueRight = color_hue_change(o_ground.color, change);
+		draw_rectangle_color(x1, y1, x2, y2, colorHueLeft, colorHueRight, colorHueRight, colorHueLeft, false);
+		
+		gpu_set_texrepeat(true);
+		draw_set_color(c_white);
+		draw_set_alpha(0.25);
+		var _tex = sprite_get_texture(s_chaseBarTimerTexture, 0);
+		draw_primitive_begin_texture(pr_trianglestrip, _tex);
+		
+		var shift = -current_time / 2500;
+		
+		draw_vertex_texture(x1, y1, shift, 0);
+		draw_vertex_texture(x2, y1, value + shift, 0);
+		draw_vertex_texture(x1, y2, shift, 1);
+		draw_vertex_texture(x2, y2, value + shift, 1);
+		
+		draw_primitive_end();
+		gpu_set_texrepeat(false);
+		
+		draw_set_alpha(1);
+		gpu_set_colorwriteenable(1, 1, 1, 1);
+		draw_sprite(s_chaseBarTimer, 1, widthBackground / 2, heightBackground / 2);
+	
+		surface_reset_target();
+	
+		draw_surface_ext(surface, posX, posY, scaleX, scaleY, 0, c_white, 1);
+	}
+	
+	setDrawFunction(drawTimerBar, 797, 151);
+}
