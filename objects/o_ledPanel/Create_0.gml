@@ -1,9 +1,14 @@
 z = 32;
 color = c_yellow;
+colorForShader = [color_get_red(color) / 255,
+				  color_get_green(color) / 255,
+				  color_get_blue(color) / 255]
 
 ledsPatterns = array_create(0);
 ledIndex = 0;
 ledSpeed = 1.75;
+
+isDirty = true;
 
 array_push(ledsPatterns, 
 {
@@ -35,6 +40,17 @@ array_push(ledsPatterns,
 	led: scr_ledPattern_COLOR()
 });
 
+setColorTo = function(newColor)
+{
+	if (color != newColor)
+	{
+		colorForShader = [color_get_red(color) / 255,
+						  color_get_green(color) / 255,
+						  color_get_blue(color) / 255]
+        color = newColor;
+	}
+}
+
 changePatternTo = function(index)
 {
 	array_clear(leds);
@@ -43,6 +59,7 @@ changePatternTo = function(index)
 		frame = 0;
 	}
 	
+	isDirty = true;
 	offset = 0;
 	ledIndex = index;
 	array_copy(leds, 0, ledsPatterns[index].led, 0, array_length(ledsPatterns[index].led));
@@ -62,6 +79,8 @@ editor = function()
 		{
 			frame = 0;
 		}
+		
+		isDirty = true;
 	}
 	
 	offset = clamp(offset, 0, array_length(leds));
