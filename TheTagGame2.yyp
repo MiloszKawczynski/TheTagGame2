@@ -275,6 +275,7 @@
     {"id":{"name":"o_ground","path":"objects/o_ground/o_ground.yy",},},
     {"id":{"name":"o_lamp","path":"objects/o_lamp/o_lamp.yy",},},
     {"id":{"name":"o_ledPanel","path":"objects/o_ledPanel/o_ledPanel.yy",},},
+    {"id":{"name":"o_ledPanelManager","path":"objects/o_ledPanelManager/o_ledPanelManager.yy",},},
     {"id":{"name":"o_locker","path":"objects/o_locker/o_locker.yy",},},
     {"id":{"name":"o_metroChaseTitleCard","path":"objects/o_metroChaseTitleCard/o_metroChaseTitleCard.yy",},},
     {"id":{"name":"o_npc","path":"objects/o_npc/o_npc.yy",},},
