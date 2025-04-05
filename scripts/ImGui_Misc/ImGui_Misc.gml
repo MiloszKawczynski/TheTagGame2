@@ -62,6 +62,8 @@ function ImGuiState() constructor {
         Width: 0,
         Height: 0,
         Scale: 1,
+        PreviousWidth: 0,
+        PreviousHeight: 0,
     };
     Input = {
         Mouse: {
@@ -76,6 +78,8 @@ function ImGuiState() constructor {
         Window: undefined,
         Time: 0,
         Framerate: game_get_speed(gamespeed_fps),
+        PreviousWidth: 0,
+        PreviousHeight: 0,
     };
     Renderer = {
         CmdBuffer: -1,

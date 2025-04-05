@@ -4621,12 +4621,17 @@ function ImGui() constructor {
 		_wheight = __State.Engine.Window.GetHeight();
 		_focus = __State.Engine.Window.HasFocus();
 
-    	// Check surface
+        var _actualWidth = max(1, _wwidth);
+        var _actualHeight = max(1, _wheight);
+
+        // Check surface
         if (ImGui.__ExtFlags & ImGuiExtFlags.RENDERER_GM) {
-        	if (!surface_exists(__State.Renderer.Surface)) {
-        		__State.Renderer.Surface = surface_create(max(1, _wwidth), max(1, _wheight));	
-    	    } else {
-                surface_resize(__State.Renderer.Surface, max(1, _wwidth), max(1, _wheight));
+            if (!surface_exists(__State.Renderer.Surface)) {
+                __State.Renderer.Surface = surface_create(_actualWidth, _actualHeight);	
+            } else if (__State.Engine.PreviousWidth != _actualWidth || __State.Engine.PreviousHeight != _actualHeight) {
+                surface_resize(__State.Renderer.Surface, _actualWidth, _actualHeight);
+                __State.Engine.PreviousWidth = _actualWidth;
+                __State.Engine.PreviousHeight = _actualHeight;
             }
         }
 
@@ -4707,12 +4712,17 @@ function ImGui() constructor {
     static __Draw = function(state=undefined, _resize_app_surface=true) {
         if !__Initialized return;
 		state ??= __State; if state != __State state.Use();
+
+        var _actualWidth = max(1, __State.Display.Width);
+        var _actualHeight = max(1, __State.Display.Height);
         
         if (ImGui.__ExtFlags & ImGuiExtFlags.RENDERER_GM) {
             if (!surface_exists(__State.Renderer.Surface)) {
-                __State.Renderer.Surface = surface_create(max(1, __State.Display.Width), max(1, __State.Display.Height));	
-            } else {
-                surface_resize(__State.Renderer.Surface, max(1, __State.Display.Width), max(1, __State.Display.Height));
+                __State.Renderer.Surface = surface_create(_actualWidth, _actualWidth);	
+            } else if (__State.Display.PreviousWidth != __State.Display.Width || __State.Display.PreviousHeight != __State.Display.Height) {
+                surface_resize(__State.Renderer.Surface, _actualWidth, _actualWidth);
+                __State.Display.PreviousWidth = _actualWidth;
+                __State.Display.PreviousHeight = _actualHeight;
             }
         }
 
