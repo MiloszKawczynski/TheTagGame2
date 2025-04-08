@@ -228,7 +228,7 @@ function UI() constructor
 				
 				if (is_instanceof(component, other.ui.Group))
 				{	
-					component.updateProperties(_scaleX, _scaleY, _rotation, _color, _alpha);
+					component.setProperties(_scaleX, _scaleY, _rotation, _color, _alpha);
 				}
 				else
 				{
