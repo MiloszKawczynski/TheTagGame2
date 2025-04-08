@@ -23,18 +23,18 @@ function createUI()
 		chaseBar = new Output(, -10);
 		chaseBar.setSprite(s_chaseBar);
 		
-		roundNumber = new Text("Round\n0/16", f_chaseBar);
+		roundNumber = new Text("Round 0/16", f_chaseBar, fa_center, fa_middle,, -6);
 		roundNumber.setColor(c_white);
 		
 		leftPortrait = new Output(15, -20);
 		leftPortrait.state.setSpriteSheet(s_chaseBarPortraits, 0);
 		
-		leftPoints = new Text("0", f_chaseBar);
+		leftPoints = new Text("0", f_chaseBarPoints, fa_center, fa_middle, 0, -4);
 		
 		rightPortrait = new Output(-15, -20);
 		rightPortrait.state.setSpriteSheet(s_chaseBarPortraits, 0);
 		
-		rightPoints = new Text("0", f_chaseBar);
+		rightPoints = new Text("0", f_chaseBarPoints, fa_center, fa_middle, 0, -4);
 		
 		roundTimer = new GradientBar(1);
 		roundTimer.setColor(c_red);
@@ -72,22 +72,22 @@ function createUI()
 		chaseBarGroup = new Group();
 		chaseBarGroup.setGrid(1, 1);
 		chaseBarGroup.addComponent(0, 0, chaseBar);
-		chaseBarGroup.addComponent(-1.25, -0.25, leftPlayerGroup);
-		chaseBarGroup.addComponent(1.25, -0.25, rightPlayerGroup);
 		chaseBarGroup.addComponent(-1, -1, roundTimer);
+		chaseBarGroup.addComponent(-1.15, -0.45, leftPlayerGroup);
+		chaseBarGroup.addComponent(1.15, -0.45, rightPlayerGroup);
 		chaseBarGroup.addComponent(0, 0, roundNumber);
-		chaseBarGroup.addComponent(-0.5, 0.4, leftPoints);
-		chaseBarGroup.addComponent(0.5, 0.4, rightPoints);
+		chaseBarGroup.addComponent(-0.75, 0, leftPoints);
+		chaseBarGroup.addComponent(0.75, 0, rightPoints);
 		chaseBarGroup.setProperties(0.2, 0.2);
 		
-		leftPlayerGroup.setProperties(0.175, 0.175);
-		rightPlayerGroup.setProperties(0.175, 0.175);
+		leftPlayerGroup.setProperties(0.125, 0.125);
+		rightPlayerGroup.setProperties(0.125, 0.125);
 		
-		leftPortrait.setScale(0.6, 0.6);
-		rightPortrait.setScale(-0.6, 0.6);
+		leftPortrait.setScale(0.4, 0.4);
+		rightPortrait.setScale(-0.4, 0.4);
 		
-		leftPortrait.setShift(0, -12);
-		rightPortrait.setShift(0, -12);
+		leftPortrait.setShift(0, -7.5);
+		rightPortrait.setShift(0, -7.5);
 		
 		mainLayer.addComponent(5, 1, chaseBarGroup);
 		mainLayer.addComponent(0, 0, leftStamina);
@@ -129,7 +129,7 @@ function updateUI()
 	
 	with(ui)
 	{
-		roundNumber.setContent(string("Round\n{0}/16", other.rounds));
+		roundNumber.setContent(string("Round {0}/16", other.rounds));
 		leftPoints.setContent(string(other.players[0].points));
 		roundTimer.setValue(other.chaseTime / other.maximumChaseTime);
 		

@@ -13,7 +13,7 @@ function scr_makeDrawCircle()
 		
 		draw_set_color(color);
 		draw_sprite_ext(s_chaseBarCharacterCircle, 0, posX, posY, scaleX, scaleY, 0, color, 1);
-		draw_sprite_ext(s_chaseBarCharacterCircle, 1, posX, posY, scaleX, scaleY, dir * current_time, color, 1); 
+		draw_sprite_ext(s_chaseBarCharacterCircle, 1, posX, posY, scaleX, scaleY, dir * current_time, c_white, 1); 
 	}
 	setDrawFunction(drawCircle);
 	setColor(c_white);

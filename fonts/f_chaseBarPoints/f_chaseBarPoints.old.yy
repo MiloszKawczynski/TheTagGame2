@@ -1,6 +1,6 @@
 {
   "$GMFont":"",
-  "%Name":"f_chaseBar",
+  "%Name":"f_chaseBarPoints",
   "AntiAlias":1,
   "applyKerning":0,
   "ascender":60,
@@ -136,7 +136,7 @@
   "last":0,
   "lineHeight":78,
   "maintainGms1Font":false,
-  "name":"f_chaseBar",
+  "name":"f_chaseBarPoints",
   "parent":{
     "name":"1_Fonts",
     "path":"folders/1_Fonts.yy",
