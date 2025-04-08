@@ -1,9 +1,19 @@
-function scr_makeDraCircle()
+function scr_makeDrawCircle()
 {
 	var drawCircle = function()
 	{
+		var dir = 1 / 5;
+		var points = o_gameManager.players[0].points;
+		
+		if (color == o_gameManager.players[1].instance.color)
+		{
+			dir = -1 / 5;
+			points = o_gameManager.players[1].points;
+		}
+		
 		draw_set_color(color);
-		draw_circle(posX, posY, 26.5, false);
+		draw_sprite_ext(s_chaseBarCharacterCircle, 0, posX, posY, scaleX, scaleY, 0, color, 1);
+		draw_sprite_ext(s_chaseBarCharacterCircle, 1, posX, posY, scaleX, scaleY, dir * current_time, color, 1); 
 	}
 	setDrawFunction(drawCircle);
 	setColor(c_white);

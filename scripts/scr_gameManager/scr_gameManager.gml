@@ -12,19 +12,19 @@ function createUI()
 		
 		with(leftColor)
 		{
-			scr_makeDraCircle();
+			scr_makeDrawCircle();
 		}
 		
 		with(rightColor)
 		{
-			scr_makeDraCircle();
+			scr_makeDrawCircle();
 		}
 		
 		chaseBar = new Output(, -10);
 		chaseBar.setSprite(s_chaseBar);
 		
-		roundNumber = new Text("Round 0/16", f_chaseBar);
-		roundNumber.setColor(c_black);
+		roundNumber = new Text("Round\n0/16", f_chaseBar);
+		roundNumber.setColor(c_white);
 		
 		leftPortrait = new Output(15, -20);
 		leftPortrait.state.setSpriteSheet(s_chaseBarPortraits, 0);
@@ -36,10 +36,8 @@ function createUI()
 		
 		rightPoints = new Text("0", f_chaseBar);
 		
-		
 		roundTimer = new GradientBar(1);
 		roundTimer.setColor(c_red);
-		roundTimer.setScale(0.2, 0.2);
 		with(roundTimer)
 		{
 			scr_makeTimerBar();
@@ -61,20 +59,35 @@ function createUI()
 		toStartTimer = new Text("3", f_test);
 		toStartTimer.setScale(0, 0);
 		
+		leftPlayerGroup = new Group();
+		leftPlayerGroup.setGrid(1, 1);
+		leftPlayerGroup.addComponent(0, 0, leftColor);
+		leftPlayerGroup.addComponent(0, 0, leftPortrait);
+		
+		rightPlayerGroup = new Group();
+		rightPlayerGroup.setGrid(1, 1);
+		rightPlayerGroup.addComponent(0, 0, rightColor); 
+		rightPlayerGroup.addComponent(0, 0, rightPortrait);
+		
 		chaseBarGroup = new Group();
 		chaseBarGroup.setGrid(1, 1);
-		//chaseBarGroup.addComponent(-0.835, -0.19, leftColor);
-		//chaseBarGroup.addComponent(0.835, -0.19, rightColor);
-		//chaseBarGroup.addComponent(0, 0, chaseBar);
-		//chaseBarGroup.addComponent(-1, 0, leftPortrait);
-		//chaseBarGroup.addComponent(1, 0, rightPortrait);
-		//chaseBarGroup.addComponent(0, -0.42, roundNumber);
-		//chaseBarGroup.addComponent(-1.27, -0.17, leftPoints);
-		//chaseBarGroup.addComponent(1.27, -0.17, rightPoints);
+		chaseBarGroup.addComponent(0, 0, chaseBar);
+		chaseBarGroup.addComponent(-1.25, -0.25, leftPlayerGroup);
+		chaseBarGroup.addComponent(1.25, -0.25, rightPlayerGroup);
 		chaseBarGroup.addComponent(-1, -1, roundTimer);
-		//chaseBarGroup.setProperties(0.6, 0.6);
+		chaseBarGroup.addComponent(0, 0, roundNumber);
+		chaseBarGroup.addComponent(-0.5, 0.4, leftPoints);
+		chaseBarGroup.addComponent(0.5, 0.4, rightPoints);
+		chaseBarGroup.setProperties(0.2, 0.2);
 		
-		//rightPortrait.setScale(-0.6);
+		leftPlayerGroup.setProperties(0.175, 0.175);
+		rightPlayerGroup.setProperties(0.175, 0.175);
+		
+		leftPortrait.setScale(0.6, 0.6);
+		rightPortrait.setScale(-0.6, 0.6);
+		
+		leftPortrait.setShift(0, -12);
+		rightPortrait.setShift(0, -12);
 		
 		mainLayer.addComponent(5, 1, chaseBarGroup);
 		mainLayer.addComponent(0, 0, leftStamina);
@@ -92,12 +105,14 @@ function createUI()
 			leftColor.setColor(other.players[0].instance.color);
 			leftPortrait.state.setSpriteSheet(s_chaseBarPortraits, other.players[0].instance.portrait);
 			leftStamina.setColor(other.players[0].instance.color);
+			leftPoints.setColor(other.players[0].instance.color);
 				
 			if (array_length(other.players) == 2)
 			{
 				rightColor.setColor(other.players[1].instance.color);
 				rightPortrait.state.setSpriteSheet(s_chaseBarPortraits, other.players[1].instance.portrait);
 				rightStamina.setColor(other.players[1].instance.color);
+				rightPoints.setColor(other.players[1].instance.color);
 			}
 		}
 	}
@@ -114,7 +129,7 @@ function updateUI()
 	
 	with(ui)
 	{
-		roundNumber.setContent(string("Round {0}/16", other.rounds));
+		roundNumber.setContent(string("Round\n{0}/16", other.rounds));
 		leftPoints.setContent(string(other.players[0].points));
 		roundTimer.setValue(other.chaseTime / other.maximumChaseTime);
 		
@@ -320,7 +335,8 @@ function setActiveSkills()
 	{
 		sprint,
 		dash,
-		jumpBack
+		jumpBack,
+		gravityManipulation
 	}
 	
 	skill = function(_name, _usage, _replenish, _value, _rechargePercentage) constructor
@@ -337,8 +353,9 @@ function setActiveSkills()
 	sprint = new skill("sprint", 0.01, 0.01, 0.33, 0);
 	dash = new skill("dash", 1, 0.005, 2, 1);
 	jumpBack = new skill("jump back", 0.33, 0.01, 2, 0.33)
+	gravityManipulation = new skill("gravity manipulation", 0.01, 0.01, 1, 1)
 	
-	array_push(skills, sprint, dash, jumpBack);
+	array_push(skills, sprint, dash, jumpBack, gravityManipulation);
 }
 
 function setGameRulesFunctions()
@@ -413,8 +430,6 @@ function setGameRulesFunctions()
 		
 		if (isGameOn)
 		{
-			//wait(1.5);
-		
 			rounds++;
 			
 			if (rounds > 15)
