@@ -4,6 +4,6 @@ objectType = o_char;
 
 onLeave = function()
 {
-	global.debugIsGravityOn = !global.debugIsGravityOn;
+	o_gameManager.isGravitationOn = !o_gameManager.isGravitationOn;
 	scr_gravitationChange();
 }

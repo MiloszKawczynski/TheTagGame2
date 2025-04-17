@@ -25,7 +25,7 @@ function fauxton_slope_create(slopeSprite, cubeSprite, _x, _y, _z)
 function draw_sprite_3d_in_game(sprite, image, xx, yy, zz, xrotation, yrotation, zrotation, xscale, yscale, zscale, 
 shader = shd_gmdefault, uniforms = undefined, arguments = [], enable_lighting = false, rotation = 0, stretch = 1, squash = 1)
 {
-	if (global.debugIsGravityOn)
+	if (o_gameManager.isGravitationOn)
 	{
 		draw_sprite_3d(sprite, image, xx, yy, zz, xrotation, yrotation, zrotation, xscale, yscale, zscale, true, shader, uniforms, arguments, enable_lighting, rotation, stretch, squash);
 	}

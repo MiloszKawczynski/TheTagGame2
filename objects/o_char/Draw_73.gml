@@ -1,4 +1,4 @@
-if (global.debugIsGravityOn)
+if (o_gameManager.isGravitationOn)
 {
 	matrix_set(matrix_world, o_debugController.characterMatrix);
 	part_system_drawit(runTrailSystem);

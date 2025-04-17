@@ -6,7 +6,7 @@ if (place_meeting(x, y, o_start))
 
 if (!o_gameManager.isCountdownActive)
 {
-	if (global.debugIsGravityOn)
+	if (o_gameManager.isGravitationOn)
 	{
 		scr_platformerMovement();
 		scr_platformerCollision();
@@ -149,7 +149,7 @@ if (o_gameManager.whoIsChasing == player)
 	}
 }
 
-if (global.debugIsGravityOn)
+if (o_gameManager.isGravitationOn)
 {
 	platformAnimationState();
 }
@@ -191,7 +191,7 @@ else
 	ds_list_delete(afterimageList, 0);
 }
 
-if ((!global.debugIsGravityOn or (isGrounded or coyoteTime != 0 or vspeed < jumpForce * -0.75)) and speed >= maximumDefaultSpeed)
+if ((!o_gameManager.isGravitationOn or (isGrounded or coyoteTime != 0 or vspeed < jumpForce * -0.75)) and speed >= maximumDefaultSpeed)
 {
 	part_type_direction(runTrailType, direction + 180 - 5, direction + 180 + 5, 0, 2);
 	part_emitter_region(runTrailSystem, 0, x - 8, x + 8, y - 4, y + 4, ps_shape_rectangle, ps_distr_linear);

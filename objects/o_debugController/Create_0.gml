@@ -7,7 +7,6 @@ init = true;
 ImGui.ConfigFlagToggle(ImGuiConfigFlags.DockingEnable);	
 
 global.debug = true;
-global.debugIsGravityOn = false;
 global.debugCameraAxis = false;
 global.debugAutoCamera = true;
 global.debugEdit = false;

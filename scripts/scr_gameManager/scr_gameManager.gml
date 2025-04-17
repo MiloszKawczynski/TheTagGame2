@@ -369,9 +369,9 @@ function setGameRulesFunctions()
 		
 		chaseTime = maximumChaseTime;
 	
-		if (global.debugIsGravityOn)
+		if (isGravitationOn)
 		{
-			global.debugIsGravityOn = !global.debugIsGravityOn;
+			isGravitationOn = !isGravitationOn;
 			scr_gravitationChange();
 		}
 		
@@ -530,7 +530,7 @@ function setGameRulesFunctions()
 		
 			if (chaseTime mod (maximumChaseTime div changesPerChase) == 0)
 			{
-				global.debugIsGravityOn = !global.debugIsGravityOn;
+				isGravitationOn = !isGravitationOn;
 				scr_gravitationChange();
 				log("CHANGE!", c_yellow);
 			}

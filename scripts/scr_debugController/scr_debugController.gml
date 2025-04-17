@@ -135,7 +135,7 @@ function scr_gameOptions()
 	
 	if(ImGui.Button("Top-Down / Platformer"))
 	{
-		global.debugIsGravityOn = !global.debugIsGravityOn;
+		o_gameManager.isGravitationOn = !o_gameManager.isGravitationOn;
 		
 		scr_gravitationChange();
 	}
@@ -503,7 +503,7 @@ function scr_skills()
 
 function scr_gravitationChange()
 {
-	if (global.debugIsGravityOn)
+	if (o_gameManager.isGravitationOn)
 	{		
 		with(o_char)
 		{
@@ -537,8 +537,6 @@ function scr_gravitationChange()
 		image_speed = 1;
 		image_index = 0;
 	}
-	
-	o_gameManager.isGravitationOn = global.debugIsGravityOn;
 }
 
 function scr_keyBinding(key, keyName, isKeyBindingOn, varName)

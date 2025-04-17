@@ -9,7 +9,7 @@ var spriteRotX = image_angle;
 var spriteRotY = 0;
 var z = 0;
 
-if (global.debugIsGravityOn)
+if (o_gameManager.isGravitationOn)
 {
 	spriteRotX = 0;
 	spriteRotY = image_angle;
