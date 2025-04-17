@@ -3,7 +3,7 @@ function scr_follow_one_character()
 	x = o_char.x;
 	y = o_char.y;
 	
-	if (global.debugAutoCamera and !global.debugEdit)
+	if (!instance_exists(o_debugController) or (global.debugAutoCamera and !global.debugEdit))
 	{
 		Camera.Zoom = 2;
 	}
@@ -31,7 +31,7 @@ function scr_follow_many_characters()
 	x = sumX / instance_number(o_char);
 	y = sumY / instance_number(o_char);
 
-	if (global.debugAutoCamera and !global.debugEdit)
+	if (!instance_exists(o_debugController) or (global.debugAutoCamera and !global.debugEdit))
 	{
 		Camera.Zoom = (highestDistanceBetweenPlayers / 225) * cameraMarginFactor;
 		Camera.Zoom = clamp(Camera.Zoom, 1, 3);

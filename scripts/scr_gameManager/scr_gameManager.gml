@@ -426,7 +426,10 @@ function setGameRulesFunctions()
 			Camera.y = y;
 		}
 		
-		o_debugController.previousTab = -1;
+		if (instance_exists(o_debugController))
+		{
+			o_debugController.previousTab = -1;
+		}
 		
 		if (isGameOn)
 		{
