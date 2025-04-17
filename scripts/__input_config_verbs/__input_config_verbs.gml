@@ -31,6 +31,7 @@ function __input_config_verbs()
 			skillKey: 		[input_binding_key(vk_lshift)],
 			
 			leave: 			[input_binding_key(vk_backspace)],
+			debugPlayKey:	[input_binding_key(vk_f2)],
 		},
 		
 		P2:
@@ -44,6 +45,7 @@ function __input_config_verbs()
 			skillKey: 		[input_binding_key(vk_rcontrol)],
 			
 			leave: 			[input_binding_key(vk_end)],
+			debugPlayKey:	[input_binding_key(vk_f2)],
 		},
         
         gamepad:
