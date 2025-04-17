@@ -7,7 +7,7 @@ function scr_debugPreload()
 	}
 	scr_rulesPresetLoad("default");
 	scr_statsPresetLoad("default");
-	scr_dialogBoxPresetLoad("default");
+	//scr_dialogBoxPresetLoad("default");
 	
 	scr_addPlayer(0);
 	scr_addPlayer(1);
@@ -22,7 +22,7 @@ function scr_debugPreload()
 	firstFreePlayer = 2;
 	
 	//Create and Save
-	switch(staticBuffersOptionType.disable)
+	switch(staticBuffersOptionType.create)
 	{
 		case(staticBuffersOptionType.create):
 		{
