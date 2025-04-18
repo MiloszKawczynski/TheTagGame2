@@ -800,6 +800,7 @@
     {"id":{"name":"scr_animationCharacterStates","path":"scripts/scr_animationCharacterStates/scr_animationCharacterStates.yy",},},
     {"id":{"name":"scr_bake","path":"scripts/scr_bake/scr_bake.yy",},},
     {"id":{"name":"scr_camera","path":"scripts/scr_camera/scr_camera.yy",},},
+    {"id":{"name":"scr_configuration","path":"scripts/scr_configuration/scr_configuration.yy",},},
     {"id":{"name":"scr_debugController","path":"scripts/scr_debugController/scr_debugController.yy",},},
     {"id":{"name":"scr_dialog","path":"scripts/scr_dialog/scr_dialog.yy",},},
     {"id":{"name":"scr_fauxtonAddition","path":"scripts/scr_fauxtonAddition/scr_fauxtonAddition.yy",},},
