@@ -1,6 +1,6 @@
 if (o_gameManager.isGravitationOn)
 {
-	matrix_set(matrix_world, o_debugController.characterMatrix);
+	matrix_set(matrix_world, o_configurator.characterMatrix);
 	part_system_drawit(runTrailSystem);
 	matrix_reset();
 }
