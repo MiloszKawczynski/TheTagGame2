@@ -11,8 +11,6 @@ global.debugCameraAxis = false;
 global.debugAutoCamera = true;
 global.debugEdit = false;
 
-window_set_fullscreen(true);
-
 isAutoScrollOn = true;
 
 logBuffor = ds_list_create();
@@ -42,6 +40,7 @@ cursorY = 0;
 cursorXPressed = 0;
 cursorYPressed = 0;
 	
+editorObjects = o_configurator.editorObjects;
 editorMirror = false;
 editorFlip = false;
 editorFullView = true;
