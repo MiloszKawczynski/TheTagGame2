@@ -399,6 +399,7 @@
     {"id":{"name":"o_lamp","path":"objects/o_lamp/o_lamp.yy",},},
     {"id":{"name":"o_ledPanel","path":"objects/o_ledPanel/o_ledPanel.yy",},},
     {"id":{"name":"o_ledPanelManager","path":"objects/o_ledPanelManager/o_ledPanelManager.yy",},},
+    {"id":{"name":"o_lobby","path":"objects/o_lobby/o_lobby.yy",},},
     {"id":{"name":"o_locker","path":"objects/o_locker/o_locker.yy",},},
     {"id":{"name":"o_metroChaseTitleCard","path":"objects/o_metroChaseTitleCard/o_metroChaseTitleCard.yy",},},
     {"id":{"name":"o_npc","path":"objects/o_npc/o_npc.yy",},},
@@ -449,6 +450,7 @@
     {"id":{"name":"r_gym","path":"rooms/r_gym/r_gym.yy",},},
     {"id":{"name":"r_levelEditor","path":"rooms/r_levelEditor/r_levelEditor.yy",},},
     {"id":{"name":"r_levelEditorBig","path":"rooms/r_levelEditorBig/r_levelEditorBig.yy",},},
+    {"id":{"name":"r_lobby","path":"rooms/r_lobby/r_lobby.yy",},},
     {"id":{"name":"rm_demo1","path":"rooms/rm_demo1/rm_demo1.yy",},},
     {"id":{"name":"rm_demo2","path":"rooms/rm_demo2/rm_demo2.yy",},},
     {"id":{"name":"rm_demo3","path":"rooms/rm_demo3/rm_demo3.yy",},},
@@ -1013,6 +1015,7 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
+    {"roomId":{"name":"r_lobby","path":"rooms/r_lobby/r_lobby.yy",},},
     {"roomId":{"name":"r_levelEditor","path":"rooms/r_levelEditor/r_levelEditor.yy",},},
     {"roomId":{"name":"r_levelEditorBig","path":"rooms/r_levelEditorBig/r_levelEditorBig.yy",},},
     {"roomId":{"name":"r_gym","path":"rooms/r_gym/r_gym.yy",},},

@@ -14,6 +14,11 @@ function __input_config_verbs()
 {
     return {
 
+		_undefined:
+		{
+		
+		},
+		
         keyboard_and_mouse:
         {
             joinP1:			[input_binding_key(vk_space)],
