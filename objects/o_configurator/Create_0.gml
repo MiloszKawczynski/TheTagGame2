@@ -45,11 +45,6 @@ array_push(editorObjects,
 	o_ledPanel
 );
 
-input_source_mode_set(INPUT_SOURCE_MODE.FIXED);
-
-input_source_set(INPUT_KEYBOARD, 10);
-input_profile_set("keyboard_and_mouse", 10);
-
 window_set_fullscreen(true);
 
 alarm[0] = 1;
