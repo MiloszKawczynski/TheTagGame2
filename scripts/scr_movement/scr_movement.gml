@@ -577,8 +577,26 @@ function scr_platformerCollision()
 					x += sign(hspeed) * 0.5;
 				}
 			
+				if (pasive == pasiveTypes.wallRun and abs(hspeed) > acceleration)
+				{
+					if (abs(hspeed) > abs(vspeed))
+					{
+						vspeed = -min(abs(hspeed), maximumDefaultSpeed);
+						platformAnimationState = changeState(true, platformAnimationState, platformWallRunState);
+					}
+					
+					if (place_meeting(x, y + vspeed, o_collision))
+					{
+						vspeed = 0;
+						hspeed = 0;
+					}
+				}
+				else 
+				{
+					maximumSpeed = maximumDefaultSpeed;
+				}
+				
 				hspeed = 0;
-				maximumSpeed = maximumDefaultSpeed;
 			}
 		}
 	}

@@ -120,6 +120,15 @@ function scr_setupPlatformAnimationStates()
 		platformAnimationState = changeState(vspeed >= 0, platformAnimationState, platformJumpState);
 	}
 	
+	platformWallRunState = function()
+	{
+		sprite_index = s_cleaSprint;
+		angle = lerp(angle, -90, 0.1);
+		
+		platformAnimationState = changeState(place_meeting(x, y + 1, o_collision) and vspeed >= 0, platformAnimationState, platformIdleState);
+		platformAnimationState = changeState(!place_meeting(x - 1, y, o_collision) and !place_meeting(x + 1, y, o_collision), platformAnimationState, platformFallState);
+	}
+	
 	platformAnimationState = platformIdleState;
 }
 

@@ -339,6 +339,11 @@ function setActiveSkills()
 		gravityManipulation
 	}
 	
+	enum pasiveTypes
+	{
+		wallRun,
+	}
+	
 	skill = function(_name, _usage, _replenish, _value, _rechargePercentage) constructor
 	{
 		name = _name;

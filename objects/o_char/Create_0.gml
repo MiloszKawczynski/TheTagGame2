@@ -2,6 +2,7 @@ if (player == 0)
 {
 	color = c_red;
 	skill = skillTypes.sprint;
+	pasive = pasiveTypes.wallRun;
 	
 	portrait = 1;
 }
@@ -10,6 +11,7 @@ if (player == 1)
 {
 	color = c_lime;
 	skill = skillTypes.sprint;
+	pasive = pasiveTypes.wallRun;
 	
 	portrait = 2;
 }
