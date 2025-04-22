@@ -342,6 +342,7 @@ function setActiveSkills()
 	enum pasiveTypes
 	{
 		wallRun,
+		wallJump,
 	}
 	
 	skill = function(_name, _usage, _replenish, _value, _rechargePercentage) constructor

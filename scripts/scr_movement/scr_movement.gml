@@ -201,6 +201,18 @@ function scr_platformerMovement()
 	horizontalSpeed += desiredHorizontalDirection * acceleration;
 		
 	jumpBuffor = armez_timer(jumpBuffor, -1);
+	
+	if (input_check_pressed("jumpKey", player) and pasive == pasiveTypes.wallJump and !isGrounded)
+	{
+		var wallDirection = place_meeting(x + 1, y - 1, o_collision) - place_meeting(x - 1, y - 1, o_collision);
+		
+		if (wallDirection != 0)
+		{
+			isGrounded = false;
+			verticalSpeed = -(jumpForce + momentumJumpForce) * 0.5;
+			horizontalSpeed = (jumpForce + momentumJumpForce) * 0.5 * -wallDirection;
+		}
+	}
 		
 	if (input_check_pressed("jumpKey", player) or jumpBuffor > 0)
 	{
