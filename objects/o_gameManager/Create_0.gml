@@ -3,6 +3,7 @@ event_inherited();
 createUI();
 
 setActiveSkills();
+setPasiveSkills();
 
 setGameRulesValues();
 setGameRulesFunctions();

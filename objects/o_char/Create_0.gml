@@ -2,7 +2,8 @@ if (player == 0)
 {
 	color = c_red;
 	skill = skillTypes.sprint;
-	pasive = pasiveTypes.wallRun;
+	pasive = new o_gameManager.pasiveSkills();
+    pasive.wallJump = true;
 	
 	portrait = 1;
 }
@@ -11,7 +12,7 @@ if (player == 1)
 {
 	color = c_lime;
 	skill = skillTypes.sprint;
-	pasive = pasiveTypes.wallRun;
+	pasive = new o_gameManager.pasiveSkills();
 	
 	portrait = 2;
 }
@@ -86,8 +87,10 @@ verticalSpeed = 0;
 lastDirection = 0;
 jumpBuffor = 0;
 coyoteTime = 0;
+wallJumpCoyoteTime = 0;
 isGrounded = false;
 groundImOn = noone;
+lastWallDirection = 0;
 
 maximumCaughtRange = 0;
 

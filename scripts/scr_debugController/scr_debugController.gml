@@ -333,6 +333,9 @@ function scr_playerModificators()
 		
 			ImGui.EndCombo();
 		}
+        
+        choosedPlayer.pasive.wallRun = ImGui.Checkbox("Wall Run##" + string(choosedPlayerIndex), choosedPlayer.pasive.wallRun);
+        choosedPlayer.pasive.wallJump = ImGui.Checkbox("Wall Jump##" + string(choosedPlayerIndex), choosedPlayer.pasive.wallJump);
 		
 		for (var i = 0; i < sprite_get_number(s_chaseBarPortraits); i++)
 		{	

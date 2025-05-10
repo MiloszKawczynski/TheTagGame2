@@ -202,28 +202,31 @@ function scr_platformerMovement()
 		
 	jumpBuffor = armez_timer(jumpBuffor, -1);
 	
-	if (input_check_pressed("jumpKey", player) and pasive == pasiveTypes.wallJump and !isGrounded)
-	{
-		var wallDirection = place_meeting(x + 1, y - 1, o_collision) - place_meeting(x - 1, y - 1, o_collision);
-		
-		if (wallDirection != 0)
-		{
-			isGrounded = false;
-			verticalSpeed = -(jumpForce + momentumJumpForce) * 0.5;
-			horizontalSpeed = (jumpForce + momentumJumpForce) * 0.5 * -wallDirection;
-		}
-	}
-		
+    var wallDirection = place_meeting(x + 1, y - 1, o_collision) - place_meeting(x - 1, y - 1, o_collision);
+    if (wallDirection != 0)
+    {
+        lastWallDirection = wallDirection;
+    }
+    
 	if (input_check_pressed("jumpKey", player) or jumpBuffor > 0)
 	{
 		if (isGrounded or coyoteTime > 0)
 		{	
-			jumpBuffor = 0;		
+			jumpBuffor = 0;
 			coyoteTime = 0;
 			isGrounded = false;
 			verticalSpeed = -(jumpForce + momentumJumpForce * min((abs(horizontalSpeed) / maximumDefaultSpeed), 1));
 		}
-		else
+		else if (pasive.wallJump and !isGrounded and wallDirection != 0 or wallJumpCoyoteTime > 0)
+	    {
+            jumpBuffor = 0;
+            coyoteTime = 0;
+   			isGrounded = false;
+            horizontalSpeed = (jumpForce + momentumJumpForce) * 0.5 * -lastWallDirection;
+		    verticalSpeed = -(jumpForce + momentumJumpForce) * 0.5;
+            maximumSpeed = abs(horizontalSpeed);
+	    }
+        else
 		{
 			if (jumpBuffor == 0)
 			{
@@ -231,11 +234,21 @@ function scr_platformerMovement()
 			}
 		}
 	}
+    
+    if (wallDirection != 0 and pasive.wallJump)
+    {
+        wallJumpCoyoteTime = maximumCoyoteTime;
+    }
 	
 	if (!isGrounded)
 	{		
 		verticalSpeed += gravitation;
 		coyoteTime = armez_timer(coyoteTime, -1);
+        
+        if (wallDirection == 0)
+        { 
+            wallJumpCoyoteTime = armez_timer(wallJumpCoyoteTime, -1);   
+        }
 	}
 	
 	if (desiredHorizontalDirection == 0)
@@ -589,7 +602,7 @@ function scr_platformerCollision()
 					x += sign(hspeed) * 0.5;
 				}
 			
-				if (pasive == pasiveTypes.wallRun and abs(hspeed) > acceleration)
+				if (pasive.wallRun and abs(hspeed) > acceleration)
 				{
 					if (abs(hspeed) > abs(vspeed))
 					{

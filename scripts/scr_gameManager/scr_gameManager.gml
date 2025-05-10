@@ -339,12 +339,6 @@ function setActiveSkills()
 		gravityManipulation
 	}
 	
-	enum pasiveTypes
-	{
-		wallRun,
-		wallJump,
-	}
-	
 	skill = function(_name, _usage, _replenish, _value, _rechargePercentage) constructor
 	{
 		name = _name;
@@ -362,6 +356,15 @@ function setActiveSkills()
 	gravityManipulation = new skill("gravity manipulation", 0.01, 0.01, 1, 1)
 	
 	array_push(skills, sprint, dash, jumpBack, gravityManipulation);
+}
+
+function setPasiveSkills()
+{
+	pasiveSkills = function() constructor
+	{
+		wallRun = false;
+		wallJump = false;
+	}
 }
 
 function setGameRulesFunctions()
