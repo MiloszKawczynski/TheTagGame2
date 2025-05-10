@@ -52,6 +52,18 @@ isSkillActive = 0;
 function setupStats()
 {
 	maximumDefaultSpeed = o_gameManager.maximumDefaultSpeed + maximumDefaultSpeedModificator;
+    
+    if (pasive.noUpHillPenalty)
+    {
+        slopeMinSpeed = maximumDefaultSpeed - o_gameManager.slopeMinSpeed;
+        rampMinSpeed = maximumDefaultSpeed - o_gameManager.rampMinSpeed;
+    }
+    else 
+    {
+    	slopeMinSpeed = o_gameManager.slopeMinSpeed + slopeMinSpeedModificator;
+        rampMinSpeed = o_gameManager.rampMinSpeed + rampMinSpeedModificator;
+    }
+    
 	acceleration = o_gameManager.acceleration + accelerationModificator;
 	deceleration = o_gameManager.deceleration + decelerationModificator;
 	maximumSpeedDecelerationFactor = o_gameManager.maximumSpeedDecelerationFactor + maximumSpeedDecelerationFactorModificator;
@@ -60,10 +72,8 @@ function setupStats()
 	gravitation = o_gameManager.gravitation + gravitationModificator;
 	slopeAcceleration = o_gameManager.slopeAcceleration + slopeAccelerationModificator;
 	slopeDeceleration = o_gameManager.slopeDeceleration + slopeDecelerationModificator;
-    slopeMinSpeed = o_gameManager.slopeMinSpeed + slopeMinSpeedModificator;
 	rampAcceleration = o_gameManager.rampAcceleration + rampAccelerationModificator;
 	rampDeceleration = o_gameManager.rampDeceleration + rampDecelerationModificator;
-	rampMinSpeed = o_gameManager.rampMinSpeed + rampMinSpeedModificator;
 	maximumSlopeSpeed = o_gameManager.maximumSlopeSpeed + maximumSlopeSpeedModificator;
 	maximumRampSpeed = o_gameManager.maximumRampSpeed + maximumRampSpeedModificator;
 	slopeSpeedTransitionFactor = o_gameManager.slopeSpeedTransitionFactor + slopeSpeedTransitionFactorModificator;
