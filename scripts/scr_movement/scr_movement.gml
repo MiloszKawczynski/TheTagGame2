@@ -113,6 +113,11 @@ function scr_TopDownObstaclesInteraction()
 	{
 		if (input_check_pressed("interactionKey", player))
 		{
+            if (pasive.alwaysPerfectVault)
+            {
+                dist = 0;
+            }
+            
 			var obstacleSpeedBoost = lerp(minimumObstacleJumpForce, maximumObstacleJumpForce, 1 - (dist / obstacleRange));
 			
 			obst.success = 0.5;
@@ -373,6 +378,12 @@ function scr_platformerObstaclesInteraction()
 		if (input_check_pressed("interactionKey", player))
 		{
 			obst.success = 0.5;
+            
+            if (pasive.alwaysPerfectVault)
+            {
+                dist = 0;
+            }
+            
 			if (1 - (dist / obstacleRange) > 0.65)
 			{
 				log("PERFECT VAULT!", c_aqua);
