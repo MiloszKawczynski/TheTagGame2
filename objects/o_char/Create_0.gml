@@ -28,6 +28,7 @@ accelerationModificator = 0;
 decelerationModificator = 0;
 maximumSpeedDecelerationFactorModificator = 0;
 jumpForceModificator = 0;
+maxJumpNumberModificator = 0;
 momentumJumpForceModificator = 0;
 gravitationModificator = 0;
 slopeAccelerationModificator = 0;
@@ -68,6 +69,7 @@ function setupStats()
 	deceleration = o_gameManager.deceleration + decelerationModificator;
 	maximumSpeedDecelerationFactor = o_gameManager.maximumSpeedDecelerationFactor + maximumSpeedDecelerationFactorModificator;
 	jumpForce = o_gameManager.jumpForce + jumpForceModificator;
+	maxJumpNumber = o_gameManager.maxJumpNumber + maxJumpNumberModificator;
 	momentumJumpForce = o_gameManager.momentumJumpForce + momentumJumpForceModificator;
 	gravitation = o_gameManager.gravitation + gravitationModificator;
 	slopeAcceleration = o_gameManager.slopeAcceleration + slopeAccelerationModificator;
@@ -100,11 +102,13 @@ horizontalSpeed = 0;
 verticalSpeed = 0;
 lastDirection = 0;
 jumpBuffor = 0;
+jumpNumber = 0;
 coyoteTime = 0;
 wallJumpCoyoteTime = 0;
 isGrounded = false;
 groundImOn = noone;
 lastWallDirection = 0;
+
 
 maximumCaughtRange = 0;
 

@@ -597,6 +597,7 @@ function setPlayersDefaultMovementRules()
 	deceleration = 0.25;
 	maximumSpeedDecelerationFactor = 0.25;
 	jumpForce = 7;
+	maxJumpNumber = 1;
 	momentumJumpForce = 2;
 	gravitation = 0.25;
 	slopeAcceleration = 0.1;

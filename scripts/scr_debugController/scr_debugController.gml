@@ -263,6 +263,7 @@ function scr_playersStats()
         o_gameManager.deceleration = scr_statitstic("Deceleration",  o_gameManager.deceleration);
         o_gameManager.maximumSpeedDecelerationFactor = scr_statitstic("Maximum Speed Deceleration Factor",  o_gameManager.maximumSpeedDecelerationFactor);
         o_gameManager.jumpForce = scr_statitstic("Jump Height",  o_gameManager.jumpForce);
+        o_gameManager.maxJumpNumber = scr_statitstic("Max Jump Number",  o_gameManager.maxJumpNumber);
         o_gameManager.momentumJumpForce = scr_statitstic("Speed Additional Jump Height",  o_gameManager.momentumJumpForce);
         o_gameManager.gravitation = scr_statitstic("Gravity",  o_gameManager.gravitation);
         o_gameManager.slopeAcceleration = scr_statitstic("Slope Acceleration",  o_gameManager.slopeAcceleration);
@@ -309,6 +310,7 @@ function scr_playerModificators()
 		choosedPlayer.decelerationModificator = scr_statitstic("Deceleration Modificator",  choosedPlayer.decelerationModificator);
 		choosedPlayer.maximumSpeedDecelerationFactorModificator = scr_statitstic("Maximum Speed Deceleration Factor Modificator",  choosedPlayer.maximumSpeedDecelerationFactorModificator);
 		choosedPlayer.jumpForceModificator = scr_statitstic("Jump Height Modificator",  choosedPlayer.jumpForceModificator);
+		choosedPlayer.maxJumpNumberModificator = scr_statitstic("Max Jump Number Modificator",  choosedPlayer.maxJumpNumberModificator);
 		choosedPlayer.momentumJumpForceModificator = scr_statitstic("Speed Additional Jump Height Modificator",  choosedPlayer.momentumJumpForceModificator);
 		choosedPlayer.gravitationModificator = scr_statitstic("Gravity Modificator",  choosedPlayer.gravitationModificator);
 		choosedPlayer.slopeAccelerationModificator = scr_statitstic("Slope Acceleration Modificator",  choosedPlayer.slopeAccelerationModificator);
@@ -1438,13 +1440,14 @@ function scr_rulesPresetLoad(rulesPresetName = rulesPresetFileName)
 
 function scr_serializeStatsPreset(file)
 {
-    function statsPresetSerialized(_maximumDefaultSpeed, _acceleration, _deceleration, _maximumSpeedDecelerationFactor, _jumpForce, _momentumJumpForce, _gravitation, _slopeAcceleration, _slopeDeceleration, _slopeMinSpeed, _rampAcceleration, _rampDeceleration, _rampMinSpeed, _maximumSlopeSpeed, _maximumRampSpeed, _slopeSpeedTransitionFactor, _maximumCoyoteTime, _obstacleRange, _maximumObstacleJumpForce, _minimumObstacleJumpForce, _maximumJumpBuffor) constructor
+    function statsPresetSerialized(_maximumDefaultSpeed, _acceleration, _deceleration, _maximumSpeedDecelerationFactor, _jumpForce, _maxJumpNumber, _momentumJumpForce, _gravitation, _slopeAcceleration, _slopeDeceleration, _slopeMinSpeed, _rampAcceleration, _rampDeceleration, _rampMinSpeed, _maximumSlopeSpeed, _maximumRampSpeed, _slopeSpeedTransitionFactor, _maximumCoyoteTime, _obstacleRange, _maximumObstacleJumpForce, _minimumObstacleJumpForce, _maximumJumpBuffor) constructor
     {   
         maximumDefaultSpeed = _maximumDefaultSpeed;
         acceleration = _acceleration;
         deceleration = _deceleration;
         maximumSpeedDecelerationFactor = _maximumSpeedDecelerationFactor;
         jumpForce = _jumpForce;
+        maxJumpNumber = _maxJumpNumber;
         momentumJumpForce = _momentumJumpForce;
         gravitation = _gravitation;
         slopeAcceleration = _slopeAcceleration;
@@ -1469,6 +1472,7 @@ function scr_serializeStatsPreset(file)
         o_gameManager.deceleration,
         o_gameManager.maximumSpeedDecelerationFactor,
         o_gameManager.jumpForce,
+        o_gameManager.maxJumpNumber,
         o_gameManager.momentumJumpForce,
         o_gameManager.gravitation,
         o_gameManager.slopeAcceleration,
@@ -1529,6 +1533,7 @@ function scr_statsPresetLoad(statsPresetName = statsPresetFileName)
             o_gameManager.deceleration = instanceData.deceleration;
             o_gameManager.maximumSpeedDecelerationFactor = instanceData.maximumSpeedDecelerationFactor;
             o_gameManager.jumpForce = instanceData.jumpForce;
+            o_gameManager.maxJumpNumber = instanceData.maxJumpNumber;
             o_gameManager.momentumJumpForce = instanceData.momentumJumpForce;
             o_gameManager.gravitation = instanceData.gravitation;
             o_gameManager.slopeAcceleration = instanceData.slopeAcceleration;
@@ -1563,13 +1568,14 @@ function scr_statsPresetLoad(statsPresetName = statsPresetFileName)
 
 function scr_serializeModificatorsPreset(file, choosedPlayer)
 {
-    function modificatorsPresetSerialized(_maximumDefaultSpeed, _acceleration, _deceleration, _maximumSpeedDecelerationFactor, _jumpForce, _momentumJumpForce, _gravitation, _slopeAcceleration, _slopeDeceleration, _rampAcceleration, _rampDeceleration, _maximumSlopeSpeed, _maximumRampSpeed, _slopeSpeedTransitionFactor, _maximumCoyoteTime, _obstacleRange, _maximumObstacleJumpForce, _minimumObstacleJumpForce, _maximumJumpBuffor, _color) constructor
+    function modificatorsPresetSerialized(_maximumDefaultSpeed, _acceleration, _deceleration, _maximumSpeedDecelerationFactor, _jumpForce, _maxJumpNumber, _momentumJumpForce, _gravitation, _slopeAcceleration, _slopeDeceleration, _rampAcceleration, _rampDeceleration, _maximumSlopeSpeed, _maximumRampSpeed, _slopeSpeedTransitionFactor, _maximumCoyoteTime, _obstacleRange, _maximumObstacleJumpForce, _minimumObstacleJumpForce, _maximumJumpBuffor, _color) constructor
     {   
         maximumDefaultSpeed = _maximumDefaultSpeed;
         acceleration = _acceleration;
         deceleration = _deceleration;
         maximumSpeedDecelerationFactor = _maximumSpeedDecelerationFactor;
         jumpForce = _jumpForce;
+        maxJumpNumber = _maxJumpNumber;
         momentumJumpForce = _momentumJumpForce;
         gravitation = _gravitation;
         slopeAcceleration = _slopeAcceleration;
@@ -1593,6 +1599,7 @@ function scr_serializeModificatorsPreset(file, choosedPlayer)
         choosedPlayer.decelerationModificator,
         choosedPlayer.maximumSpeedDecelerationFactorModificator,
         choosedPlayer.jumpForceModificator,
+        choosedPlayer.maxJumpNumber,
         choosedPlayer.momentumJumpForceModificator,
         choosedPlayer.gravitationModificator,
         choosedPlayer.slopeAccelerationModificator,
@@ -1652,6 +1659,7 @@ function scr_modificatorsPresetLoad(modificatorsPresetName = modificatorsPresetF
             choosedPlayer.decelerationModificator = instanceData.deceleration;
             choosedPlayer.maximumSpeedDecelerationFactorModificator = instanceData.maximumSpeedDecelerationFactor;
             choosedPlayer.jumpForceModificator = instanceData.jumpForce;
+            choosedPlayer.maxJumpNumberModificator = instanceData.maxJumpNumber;
             choosedPlayer.momentumJumpForceModificator = instanceData.momentumJumpForce;
             choosedPlayer.gravitationModificator = instanceData.gravitation;
             choosedPlayer.slopeAccelerationModificator = instanceData.slopeAcceleration;

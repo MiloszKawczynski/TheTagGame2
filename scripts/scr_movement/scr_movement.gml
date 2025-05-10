@@ -1,6 +1,7 @@
 function scr_topDownMovement()
 {	
 	isGrounded = true;
+    jumpNumber = maxJumpNumber;
 	
 	if (isSkillActive and skill == skillTypes.jumpBack)
 	{
@@ -215,14 +216,7 @@ function scr_platformerMovement()
     
 	if (input_check_pressed("jumpKey", player) or jumpBuffor > 0)
 	{
-		if (isGrounded or coyoteTime > 0)
-		{	
-			jumpBuffor = 0;
-			coyoteTime = 0;
-			isGrounded = false;
-			verticalSpeed = -(jumpForce + momentumJumpForce * min((abs(horizontalSpeed) / maximumDefaultSpeed), 1));
-		}
-		else if (pasive.wallJump and !isGrounded and wallDirection != 0 or wallJumpCoyoteTime > 0)
+        if (pasive.wallJump and !isGrounded and wallDirection != 0 or wallJumpCoyoteTime > 0)
 	    {
             jumpBuffor = 0;
             coyoteTime = 0;
@@ -231,6 +225,19 @@ function scr_platformerMovement()
 		    verticalSpeed = -(jumpForce + momentumJumpForce) * 0.5;
             maximumSpeed = abs(horizontalSpeed);
 	    }
+		else if (isGrounded or jumpNumber > 0 or coyoteTime > 0)
+		{	
+            jumpNumber--;
+			jumpBuffor = 0;
+			coyoteTime = 0;
+			isGrounded = false;
+			verticalSpeed = -(jumpForce + momentumJumpForce * min((abs(horizontalSpeed) / maximumDefaultSpeed), 1));
+            
+            repeat (maxJumpNumber - (jumpNumber + 1)) 
+            {
+                verticalSpeed *= 0.75;
+            }
+		}
         else
 		{
 			if (jumpBuffor == 0)
@@ -288,6 +295,7 @@ function scr_platformerMovement()
 		if (!place_meeting(x, y + 1, o_collision))
 		{
 			isGrounded = false;
+            jumpNumber--;
 			
 			if (vspeed == 0)
 			{
@@ -585,6 +593,7 @@ function scr_platformerCollision()
 				if (place_meeting(x, y + 1, o_collision))
 				{
 					isGrounded = true;
+                    jumpNumber = maxJumpNumber;
 					canBeOnCliff = false;
 					coyoteTime = maximumCoyoteTime;
 				}
