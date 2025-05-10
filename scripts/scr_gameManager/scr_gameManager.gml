@@ -36,7 +36,7 @@ function createUI()
 		
 		rightPoints = new Text("0", f_chaseBarPoints, fa_center, fa_middle, 0, -4);
 		
-		roundTimer = new GradientBar(1);
+		roundTimer = new GradientBar(1, -5);
 		roundTimer.setColor(c_red);
 		with(roundTimer)
 		{

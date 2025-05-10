@@ -59,8 +59,8 @@ function scr_makeTimerBar()
 {
 	var drawTimerBar = function()
 	{					
-		var widthBackground = 797;
-		var heightBackground = 151;
+		var widthBackground = sprite_get_width(s_chaseBarTimer);
+		var heightBackground = sprite_get_height(s_chaseBarTimer);
 		
 		if (!surface_exists(surface))
 		{
@@ -71,7 +71,7 @@ function scr_makeTimerBar()
 	
 		draw_clear_alpha(c_white, 0);
 		
-		var x1 = 29;
+		var x1 = 10;
 		var y1 = 0;
 		var x2 = x1 + (widthBackground - x1) * value;
 		var y2 = y1 + heightBackground;
@@ -108,5 +108,5 @@ function scr_makeTimerBar()
 		draw_surface_ext(surface, posX, posY, scaleX, scaleY, 0, c_white, 1);
 	}
 	
-	setDrawFunction(drawTimerBar, 797, 151);
+	setDrawFunction(drawTimerBar, sprite_get_width(s_chaseBarTimer), sprite_get_height(s_chaseBarTimer));
 }
