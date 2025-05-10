@@ -22,3 +22,6 @@ if (global.createStaticBuffers)
 	
 	log("DONE!");
 }
+
+whoIsChasingTagPosition[0] = players[whoIsChasing].instance.x;
+whoIsChasingTagPosition[1] = players[whoIsChasing].instance.y;

@@ -58,8 +58,11 @@ function createUI()
 			scr_makeStaminaBar();
 		}
 		
-		toStartTimer = new Text("3", f_test);
-		toStartTimer.setScale(0, 0);
+		toStartTimer = new Text("Ready?", f_test);
+        if (!other.isCountdownActive)
+        { 
+            toStartTimer.setScale(0, 0);   
+        }
 		
 		leftPlayerGroup = new Group();
 		leftPlayerGroup.setGrid(1, 1);
@@ -330,7 +333,7 @@ function setGameRulesValues()
 	whoIsChasingTagScale = 1;
 	whoIsChasingStage = 1;
 	
-	isCountdownActive = false;
+	isCountdownActive = global.lockOnStart;
 		
 	vignetteTime = 0;
 	vignettePulse = false;

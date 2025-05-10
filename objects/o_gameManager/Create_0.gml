@@ -1,7 +1,5 @@
 event_inherited();
 
-createUI();
-
 setActiveSkills();
 setPasiveSkills();
 
@@ -9,6 +7,8 @@ setGameRulesValues();
 setGameRulesFunctions();
 
 setPlayersDefaultMovementRules();
+
+createUI();
 
 cullx1 = 0;
 cullx2 = 0;

@@ -15,6 +15,8 @@ global.debug = false;
 global.debugEdit = false;
 global.debugModels = true;
 
+global.lockOnStart = false;
+
 Camera.Zoom = 2;
 Camera.Target = o_cameraTarget;
 

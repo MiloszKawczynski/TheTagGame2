@@ -1,6 +1,6 @@
 if (array_length(o_gameManager.players) != 0)
 {
-	if (o_gameManager.isGameOn)
+	if (o_gameManager.isGameOn or o_gameManager.isCountdownActive)
 	{
 		if (instance_number(o_char) > 1)
 		{
