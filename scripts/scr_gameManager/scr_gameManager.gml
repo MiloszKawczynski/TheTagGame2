@@ -9,7 +9,9 @@ function createUI()
 		
 		leftColor = new Output();
 		rightColor = new Output();
-		
+        isChasingCircleTag = new Output();
+		isChasingCircleTag.setSprite(s_isChasingTagCircle);
+        
 		with(leftColor)
 		{
 			scr_makeDrawCircle();
@@ -23,18 +25,18 @@ function createUI()
 		chaseBar = new Output(, -10);
 		chaseBar.setSprite(s_chaseBar);
 		
-		roundNumber = new Text("Round 0/16", f_chaseBar, fa_center, fa_middle,, -6);
+		roundNumber = new Text("Round 0/16", f_chaseBar, fa_center, fa_middle,, -7);
 		roundNumber.setColor(c_white);
 		
 		leftPortrait = new Output(15, -20);
 		leftPortrait.state.setSpriteSheet(s_chaseBarPortraits, 0);
 		
-		leftPoints = new Text("0", f_chaseBarPoints, fa_center, fa_middle, 0, -4);
+		leftPoints = new Text("0", f_chaseBarPoints, fa_center, fa_middle, 0, -6.5);
 		
 		rightPortrait = new Output(-15, -20);
 		rightPortrait.state.setSpriteSheet(s_chaseBarPortraits, 0);
 		
-		rightPoints = new Text("0", f_chaseBarPoints, fa_center, fa_middle, 0, -4);
+		rightPoints = new Text("0", f_chaseBarPoints, fa_center, fa_middle, 0, -6.5);
 		
 		roundTimer = new GradientBar(1, -5);
 		roundTimer.setColor(c_red);
@@ -78,6 +80,7 @@ function createUI()
 		chaseBarGroup.addComponent(0, 0, roundNumber);
 		chaseBarGroup.addComponent(-0.75, 0, leftPoints);
 		chaseBarGroup.addComponent(0.75, 0, rightPoints);
+		chaseBarGroup.addComponent(-1.05, 0.1, isChasingCircleTag);
 		chaseBarGroup.setProperties(0.2, 0.2);
 		
 		leftPlayerGroup.setProperties(0.125, 0.125);
@@ -88,8 +91,10 @@ function createUI()
 		
 		leftPortrait.setShift(0, -7.5);
 		rightPortrait.setShift(0, -7.5);
+        
+        isChasingCircleTag.setScale(0.175, 0.175);
 		
-		mainLayer.addComponent(5, 1, chaseBarGroup);
+		mainLayer.addComponent(5, 1.05, chaseBarGroup);
 		mainLayer.addComponent(0, 0, leftStamina);
 		mainLayer.addComponent(0, 0, rightStamina);
 		
@@ -132,6 +137,9 @@ function updateUI()
 		roundNumber.setContent(string("Round {0}/16", other.rounds));
 		leftPoints.setContent(string(other.players[0].points));
 		roundTimer.setValue(other.chaseTime / other.maximumChaseTime);
+        
+        isChasingCircleTag.posInGridX = lerp(isChasingCircleTag.posInGridX, 1.05 * lerp(-1, 1, other.whoIsChasing), 0.1);
+        isChasingCircleTag.scaleX = lerp(isChasingCircleTag.scaleX, 0.175 * lerp(1, -1, other.whoIsChasing), 0.1);
 		
 		var leftPlayer = other.players[0].instance;
 		

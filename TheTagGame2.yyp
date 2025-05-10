@@ -949,6 +949,7 @@
     {"id":{"name":"s_ground","path":"sprites/s_ground/s_ground.yy",},},
     {"id":{"name":"s_idleCycle","path":"sprites/s_idleCycle/s_idleCycle.yy",},},
     {"id":{"name":"s_isChasingTag","path":"sprites/s_isChasingTag/s_isChasingTag.yy",},},
+    {"id":{"name":"s_isChasingTagCircle","path":"sprites/s_isChasingTagCircle/s_isChasingTagCircle.yy",},},
     {"id":{"name":"s_lamp","path":"sprites/s_lamp/s_lamp.yy",},},
     {"id":{"name":"s_ledPanel","path":"sprites/s_ledPanel/s_ledPanel.yy",},},
     {"id":{"name":"s_live","path":"sprites/s_live/s_live.yy",},},
