@@ -1,5 +1,11 @@
 function scr_debugPreload()
 {
+	//input_source_set(INPUT_KEYBOARD, 0,, false); 
+	//input_profile_set("P1", 0);	
+	//
+	//input_source_set(INPUT_KEYBOARD, 1,, false);
+	//input_profile_set("P2", 1);
+	
 	scr_dialogBoxPresetLoad("default");
 }
 

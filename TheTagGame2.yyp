@@ -1,5 +1,5 @@
 {
-  "$GMProject":"",
+  "$GMProject":"v1",
   "%Name":"TheTagGame2",
   "AudioGroups":[
     {"$GMAudioGroup":"","%Name":"audiogroup_default","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
@@ -147,6 +147,7 @@
     {"$GMFolder":"","%Name":"Tile Sets","folderPath":"folders/Tile Sets.yy","name":"Tile Sets","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Timelines","folderPath":"folders/Timelines.yy","name":"Timelines","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
+  "ForcedPrefabProjectReferences":[],
   "IncludedFiles":[
     {"$GMIncludedFile":"","%Name":"basic_ref sprite 100_-1_-1_-1_1.sav","CopyToMask":-1,"filePath":"datafiles/content/buffers","name":"basic_ref sprite 100_-1_-1_-1_1.sav","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"basic_ref sprite 100_-1_-1_1_1.sav","CopyToMask":-1,"filePath":"datafiles/content/buffers","name":"basic_ref sprite 100_-1_-1_1_1.sav","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
@@ -341,8 +342,12 @@
     {"$GMIncludedFile":"","%Name":"shadowMask_basicL.png","CopyToMask":-1,"filePath":"datafiles","name":"shadowMask_basicL.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"shadowMask_fire.png","CopyToMask":-1,"filePath":"datafiles","name":"shadowMask_fire.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"shadowMask_santa.png","CopyToMask":-1,"filePath":"datafiles","name":"shadowMask_santa.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"shadowMask_skillTest.png","CopyToMask":-1,"filePath":"datafiles","name":"shadowMask_skillTest.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"test_load_mapping.json","CopyToMask":-1,"filePath":"datafiles","name":"test_load_mapping.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"topWallMask_basic.png","CopyToMask":-1,"filePath":"datafiles","name":"topWallMask_basic.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"topWallMask_fire.png","CopyToMask":-1,"filePath":"datafiles","name":"topWallMask_fire.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"topWallMask_santa.png","CopyToMask":-1,"filePath":"datafiles","name":"topWallMask_santa.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"topWallMask_skillTest.png","CopyToMask":-1,"filePath":"datafiles","name":"topWallMask_skillTest.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
   ],
   "isEcma":false,
   "LibraryEmitters":[
@@ -350,7 +355,7 @@
     {"name":"em_godRays","path":"particlelib/em_godRays/em_godRays.yy",},
   ],
   "MetaData":{
-    "IDEVersion":"2024.11.0.179",
+    "IDEVersion":"2024.13.1.193",
   },
   "name":"TheTagGame2",
   "resources":[
