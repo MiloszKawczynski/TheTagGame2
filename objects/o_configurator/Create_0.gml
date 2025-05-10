@@ -12,8 +12,6 @@ global.createStaticBuffers = false;
 global.saveStaticBuffers = false;
 
 global.debug = false;
-global.debugEdit = false;
-global.debugModels = true;
 
 global.lockOnStart = false;
 

@@ -56,81 +56,78 @@ locate = function()
 	horizontalAlign = newHor;
 	verticalAlign = newVer;
 	
-	if (global.debugModels)
-	{
-		switch (sprite_index)
-		{
-			case(s_cube):
-			{
-				sprite_index = s_cubeCage;
-				
-				if (verticalAlign == 1)
-				{
-					sprite_index = s_cubeCageTop;
-				}
-				
-				if (verticalAlign == -1)
-				{
-					sprite_index = s_cubeCageBottom;
-				}
-				
-				if (horizontalAlign != 2 and horizontalAlign != 0)
-				{
-					image_xscale = horizontalAlign;
-					sprite_index = s_cubeCageSide;
-				}
-				
-				if ((abs(verticalAlign) == 1 and abs(horizontalAlign) == 1) 
-				or (horizontalAlign == 2 and verticalAlign != 2)
-				or (horizontalAlign != 2 and verticalAlign == 2))
-				{
-					sprite_index = s_cubeCageZero;
-				}
-				
-				if (sprite_index == s_cubeCage)
-				{
-					alarm[1] = 5;
-					return;
-				}
-				
-				break;
-			}
-			
-			case(s_slope):
-			{
-				sprite_index = s_slopeCage;
-				
-				if (verticalAlign == 0)
-				{
-					sprite_index = s_slopeCageSupport;
-				}
-				
-				if (verticalAlign == -1)
-				{
-					verticalAlign *= -1;
-				}
-				
-				break;
-			}
-			
-			case(s_ramp):
-			{
-				sprite_index = s_rampCage;
-				
-				if (verticalAlign == 0)
-				{
-					sprite_index = s_rampCageSupport;
-				}
-				
-				if (verticalAlign == -1)
-				{
-					verticalAlign *= -1;
-				}
-					
-				break;
-			}
-		}
-	}
+    switch (sprite_index)
+    {
+        case(s_cube):
+        {
+            sprite_index = s_cubeCage;
+            
+            if (verticalAlign == 1)
+            {
+                sprite_index = s_cubeCageTop;
+            }
+            
+            if (verticalAlign == -1)
+            {
+                sprite_index = s_cubeCageBottom;
+            }
+            
+            if (horizontalAlign != 2 and horizontalAlign != 0)
+            {
+                image_xscale = horizontalAlign;
+                sprite_index = s_cubeCageSide;
+            }
+            
+            if ((abs(verticalAlign) == 1 and abs(horizontalAlign) == 1) 
+            or (horizontalAlign == 2 and verticalAlign != 2)
+            or (horizontalAlign != 2 and verticalAlign == 2))
+            {
+                sprite_index = s_cubeCageZero;
+            }
+            
+            if (sprite_index == s_cubeCage)
+            {
+                alarm[1] = 5;
+                return;
+            }
+            
+            break;
+        }
+        
+        case(s_slope):
+        {
+            sprite_index = s_slopeCage;
+            
+            if (verticalAlign == 0)
+            {
+                sprite_index = s_slopeCageSupport;
+            }
+            
+            if (verticalAlign == -1)
+            {
+                verticalAlign *= -1;
+            }
+            
+            break;
+        }
+        
+        case(s_ramp):
+        {
+            sprite_index = s_rampCage;
+            
+            if (verticalAlign == 0)
+            {
+                sprite_index = s_rampCageSupport;
+            }
+            
+            if (verticalAlign == -1)
+            {
+                verticalAlign *= -1;
+            }
+                
+            break;
+        }
+    }
 	
 	if (horizontalAlign == 2 and verticalAlign == 2)
 	{
