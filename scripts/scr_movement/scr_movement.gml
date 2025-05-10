@@ -249,7 +249,7 @@ function scr_platformerMovement()
 	{		
 		verticalSpeed += gravitation;
         
-        if (pasive.float and verticalSpeed > 0 and input_check("upKey", player))
+        if (pasive.float and input_check("upKey", player) and verticalSpeed > 0)
         {
             verticalSpeed = gravitation * 5;
         }
@@ -561,7 +561,7 @@ function scr_platformerCollision()
 	
 	if (vspeed > 0)
 	{
-		if (place_meeting(x, y + vspeed, o_collision))
+		if (place_meeting(x, y + vspeed, o_collision) or (vspeed == gravitation * 5 and place_meeting(x, y + vspeed * 2, o_collision)))
 		{	
 			while(place_free(x, y + sign(vspeed) * 0.5))
 			{
