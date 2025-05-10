@@ -13,7 +13,7 @@ global.saveStaticBuffers = false;
 
 global.debug = false;
 
-global.lockOnStart = false;
+global.lockOnStart = !global.debug
 
 Camera.Zoom = 2;
 Camera.Target = o_cameraTarget;

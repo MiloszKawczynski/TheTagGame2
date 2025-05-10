@@ -1,3 +1,8 @@
+if (!global.debug)
+{
+    instance_destroy();
+}
+
 ImGui.__Initialize();
 
 fontDefault = ImGui.AddFontDefault();
