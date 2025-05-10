@@ -592,8 +592,10 @@ function setPlayersDefaultMovementRules()
 	gravitation = 0.25;
 	slopeAcceleration = 0.1;
 	slopeDeceleration = 0.1;
+    slopeMinSpeed = 0.1;
 	rampAcceleration = 0.05;
 	rampDeceleration = 0.05;
+	rampMinSpeed = 0.05;
 	maximumSlopeSpeed = 3;
 	maximumRampSpeed = 4.5;
 	slopeSpeedTransitionFactor = 0.5;

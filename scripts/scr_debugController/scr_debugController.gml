@@ -267,8 +267,10 @@ function scr_playersStats()
         o_gameManager.gravitation = scr_statitstic("Gravity",  o_gameManager.gravitation);
         o_gameManager.slopeAcceleration = scr_statitstic("Slope Acceleration",  o_gameManager.slopeAcceleration);
         o_gameManager.slopeDeceleration = scr_statitstic("Slope Deceleration",  o_gameManager.slopeDeceleration);
+        o_gameManager.slopeMinSpeed = scr_statitstic("Slope Min Speed",  o_gameManager.slopeMinSpeed);
         o_gameManager.rampAcceleration = scr_statitstic("Ramp Acceleration",  o_gameManager.rampAcceleration);
         o_gameManager.rampDeceleration = scr_statitstic("Ramp Deceleration",  o_gameManager.rampDeceleration);
+        o_gameManager.rampMinSpeed = scr_statitstic("Ramp Min Speed",  o_gameManager.rampMinSpeed);
         o_gameManager.maximumSlopeSpeed = scr_statitstic("Slope Max Speed",  o_gameManager.maximumSlopeSpeed);
         o_gameManager.maximumRampSpeed = scr_statitstic("Ramp Max Speed",  o_gameManager.maximumRampSpeed);
         o_gameManager.slopeSpeedTransitionFactor = scr_statitstic("Slope Speed Transition Factor",  o_gameManager.slopeSpeedTransitionFactor);
@@ -311,8 +313,10 @@ function scr_playerModificators()
 		choosedPlayer.gravitationModificator = scr_statitstic("Gravity Modificator",  choosedPlayer.gravitationModificator);
 		choosedPlayer.slopeAccelerationModificator = scr_statitstic("Slope Acceleration Modificator",  choosedPlayer.slopeAccelerationModificator);
 		choosedPlayer.slopeDecelerationModificator = scr_statitstic("Slope Deceleration Modificator",  choosedPlayer.slopeDecelerationModificator);
+		choosedPlayer.slopeMinSpeedModificator = scr_statitstic("Slope Min Speed Modificator",  choosedPlayer.slopeMinSpeedModificator);
 		choosedPlayer.rampAccelerationModificator = scr_statitstic("Ramp Acceleration Modificator",  choosedPlayer.rampAccelerationModificator);
 		choosedPlayer.rampDecelerationModificator = scr_statitstic("Ramp Deceleration Modificator",  choosedPlayer.rampDecelerationModificator);
+		choosedPlayer.rampMinSpeedModificator = scr_statitstic("Ramp Min Speed Modificator",  choosedPlayer.rampMinSpeedModificator);
 		choosedPlayer.maximumSlopeSpeedModificator = scr_statitstic("Slope Max Speed Modificator",  choosedPlayer.maximumSlopeSpeedModificator);
 		choosedPlayer.maximumRampSpeedModificator = scr_statitstic("Ramp Max Speed Modificator",  choosedPlayer.maximumRampSpeedModificator);
 		choosedPlayer.slopeSpeedTransitionFactorModificator = scr_statitstic("Slope Speed Transition Factor Modificator",  choosedPlayer.slopeSpeedTransitionFactorModificator);

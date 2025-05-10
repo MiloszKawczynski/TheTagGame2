@@ -359,13 +359,13 @@ function scr_platformerMovement()
 			if (place_meeting(x, y + 1, o_slope))
 			{
 				maximumSpeed -= slopeDeceleration;
-				maximumSpeed = max(maximumSpeed, deceleration * 2);
+				maximumSpeed = max(maximumSpeed, slopeMinSpeed);
 			}
 			
 			if (place_meeting(x, y + 1, o_ramp))
 			{
 				maximumSpeed -= rampDeceleration;
-				maximumSpeed = max(maximumSpeed, deceleration * 2);
+				maximumSpeed = max(maximumSpeed, rampMinSpeed);
 			}
 		}
 	}
