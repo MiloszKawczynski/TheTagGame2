@@ -248,6 +248,12 @@ function scr_platformerMovement()
 	if (!isGrounded)
 	{		
 		verticalSpeed += gravitation;
+        
+        if (pasive.float and verticalSpeed > 0 and input_check("upKey", player))
+        {
+            verticalSpeed = gravitation * 5;
+        }
+        
 		coyoteTime = armez_timer(coyoteTime, -1);
         
         if (wallDirection == 0)
