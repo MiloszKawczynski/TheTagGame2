@@ -109,8 +109,9 @@ isGrounded = false;
 groundImOn = noone;
 lastWallDirection = 0;
 
-
 maximumCaughtRange = 0;
+
+isReady = false;
 
 with(o_char)
 {

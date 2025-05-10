@@ -618,3 +618,16 @@ function setPlayersDefaultMovementRules()
 	minimumObstacleJumpForce = 5;
 	maximumJumpBuffor = 10;
 }
+
+function isEveryoneReady()
+{
+    for(var i = 0; i < array_length(players); i++)
+    {
+        if (!players[i].instance.isReady)
+        {
+            return false;
+        }
+    }
+    
+    return true;
+}
