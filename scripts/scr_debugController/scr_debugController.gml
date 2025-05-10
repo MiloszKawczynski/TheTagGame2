@@ -1437,7 +1437,7 @@ function scr_rulesPresetLoad(rulesPresetName = rulesPresetFileName)
 
 function scr_serializeStatsPreset(file)
 {
-    function statsPresetSerialized(_maximumDefaultSpeed, _acceleration, _deceleration, _maximumSpeedDecelerationFactor, _jumpForce, _momentumJumpForce, _gravitation, _slopeAcceleration, _slopeDeceleration, _rampAcceleration, _rampDeceleration, _maximumSlopeSpeed, _maximumRampSpeed, _slopeSpeedTransitionFactor, _maximumCoyoteTime, _obstacleRange, _maximumObstacleJumpForce, _minimumObstacleJumpForce, _maximumJumpBuffor) constructor
+    function statsPresetSerialized(_maximumDefaultSpeed, _acceleration, _deceleration, _maximumSpeedDecelerationFactor, _jumpForce, _momentumJumpForce, _gravitation, _slopeAcceleration, _slopeDeceleration, _slopeMinSpeed, _rampAcceleration, _rampDeceleration, _rampMinSpeed, _maximumSlopeSpeed, _maximumRampSpeed, _slopeSpeedTransitionFactor, _maximumCoyoteTime, _obstacleRange, _maximumObstacleJumpForce, _minimumObstacleJumpForce, _maximumJumpBuffor) constructor
     {   
         maximumDefaultSpeed = _maximumDefaultSpeed;
         acceleration = _acceleration;
@@ -1448,8 +1448,10 @@ function scr_serializeStatsPreset(file)
         gravitation = _gravitation;
         slopeAcceleration = _slopeAcceleration;
         slopeDeceleration = _slopeDeceleration;
+        slopeMinSpeed = _slopeMinSpeed;
         rampAcceleration = _rampAcceleration;
         rampDeceleration = _rampDeceleration;
+        rampMinSpeed = _rampMinSpeed;
         maximumSlopeSpeed = _maximumSlopeSpeed;
         maximumRampSpeed = _maximumRampSpeed;
         slopeSpeedTransitionFactor = _slopeSpeedTransitionFactor;
@@ -1470,8 +1472,10 @@ function scr_serializeStatsPreset(file)
         o_gameManager.gravitation,
         o_gameManager.slopeAcceleration,
         o_gameManager.slopeDeceleration,
+        o_gameManager.slopeMinSpeed,
         o_gameManager.rampAcceleration,
         o_gameManager.rampDeceleration,
+        o_gameManager.rampMinSpeed,
         o_gameManager.maximumSlopeSpeed,
         o_gameManager.maximumRampSpeed,
         o_gameManager.slopeSpeedTransitionFactor,
@@ -1528,8 +1532,10 @@ function scr_statsPresetLoad(statsPresetName = statsPresetFileName)
             o_gameManager.gravitation = instanceData.gravitation;
             o_gameManager.slopeAcceleration = instanceData.slopeAcceleration;
             o_gameManager.slopeDeceleration = instanceData.slopeDeceleration;
+            o_gameManager.slopeMinSpeed = instanceData.slopeMinSpeed;
             o_gameManager.rampAcceleration = instanceData.rampAcceleration;
             o_gameManager.rampDeceleration = instanceData.rampDeceleration;
+            o_gameManager.rampMinSpeed = instanceData.rampMinSpeed;
             o_gameManager.maximumSlopeSpeed = instanceData.maximumSlopeSpeed;
             o_gameManager.maximumRampSpeed = instanceData.maximumRampSpeed;
             o_gameManager.slopeSpeedTransitionFactor = instanceData.slopeSpeedTransitionFactor;
