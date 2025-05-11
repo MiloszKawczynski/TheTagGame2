@@ -78,9 +78,21 @@ function scr_makeTimerBar()
 		
 		draw_sprite(s_chaseBarTimer, 0, widthBackground / 2, heightBackground / 2);
 		gpu_set_colorwriteenable(1, 1, 1, 0);
-		var change = 50;
-		var colorHueLeft = color_hue_change(o_ground.color, -change);
-		var colorHueRight = color_hue_change(o_ground.color, change);
+        
+        var colorHueLeft = global.c_neon;
+		var colorHueRight = global.c_darkBlue;
+        
+        if (other.whoIsChasing)
+        {
+            colorHueLeft = global.c_darkBlue;
+		    colorHueRight = global.c_neon;
+        }
+        else
+        {
+        	colorHueLeft = global.c_neon;
+		    colorHueRight = global.c_darkBlue;
+        }
+		
 		draw_rectangle_color(x1, y1, x2, y2, colorHueLeft, colorHueRight, colorHueRight, colorHueLeft, false);
 		
 		gpu_set_texrepeat(true);
