@@ -15,6 +15,11 @@ global.debug = false;
 
 global.lockOnStart = !global.debug
 
+global.c_darkBlue = make_color_rgb(95, 102, 150);
+global.c_brown = make_color_rgb(176, 112, 74);
+global.c_skin = make_color_rgb(229, 193, 153);
+global.c_neon = make_color_rgb(188, 224, 1);
+
 Camera.Zoom = 2;
 Camera.Target = o_cameraTarget;
 
