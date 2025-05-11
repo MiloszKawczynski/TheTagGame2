@@ -21,6 +21,11 @@ function createUI()
 		{
 			scr_makeDrawCircle();
 		}
+        
+        with(isChasingCircleTag)
+        {
+            scr_makeDrawCircleChasingTag();
+        }
 		
 		chaseBar = new Output(, -10);
 		chaseBar.setSprite(s_chaseBar);

@@ -13,7 +13,7 @@ function scr_makeDrawCircle()
 		
 		draw_set_color(color);
 		draw_sprite_ext(s_chaseBarCharacterCircle, 0, posX, posY, scaleX, scaleY, 0, color, 1);
-		draw_sprite_ext(s_chaseBarCharacterCircle, 1, posX, posY, scaleX, scaleY, dir * current_time, c_white, 1); 
+		draw_sprite_ext(s_chaseBarCharacterCircle, 1, posX, posY, scaleX, scaleY, dir * current_time, color, 1); 
 	}
 	setDrawFunction(drawCircle);
 	setColor(c_white);
@@ -57,6 +57,8 @@ function scr_makeStaminaBar()
 
 function scr_makeTimerBar()
 {
+    changeColorTimer = 0;
+    
 	var drawTimerBar = function()
 	{					
 		var widthBackground = sprite_get_width(s_chaseBarTimer);
@@ -84,13 +86,15 @@ function scr_makeTimerBar()
         
         if (other.whoIsChasing)
         {
-            colorHueLeft = global.c_darkBlue;
-		    colorHueRight = global.c_neon;
+            changeColorTimer = lerp(changeColorTimer, 1, 0.1);
+            colorHueLeft = merge_color(global.c_neon, global.c_darkBlue, changeColorTimer);
+		    colorHueRight = merge_color(global.c_darkBlue, global.c_neon, changeColorTimer);
         }
         else
         {
-        	colorHueLeft = global.c_neon;
-		    colorHueRight = global.c_darkBlue;
+            changeColorTimer = lerp(changeColorTimer, 0, 0.1);
+        	colorHueLeft = merge_color(global.c_neon, global.c_darkBlue, changeColorTimer);
+		    colorHueRight = merge_color(global.c_darkBlue, global.c_neon, changeColorTimer);
         }
 		
 		draw_rectangle_color(x1, y1, x2, y2, colorHueLeft, colorHueRight, colorHueRight, colorHueLeft, false);
@@ -121,4 +125,17 @@ function scr_makeTimerBar()
 	}
 	
 	setDrawFunction(drawTimerBar, sprite_get_width(s_chaseBarTimer), sprite_get_height(s_chaseBarTimer));
+}
+
+function scr_makeDrawCircleChasingTag()
+{
+	var drawCircle = function()
+	{
+		draw_set_color(c_white);
+        color = merge_color(c_white, o_gameManager.players[other.whoIsChasing].instance.color, 0.4);
+		draw_sprite_ext(s_isChasingTagCircle, 0, posX, posY, scaleX, scaleY, 0, color, 1);
+		draw_sprite_ext(s_isChasingTagCircle, 1, posX, posY, scaleX, scaleY, 0, c_white, 1); 
+	}
+	setDrawFunction(drawCircle);
+	setColor(c_white);
 }
