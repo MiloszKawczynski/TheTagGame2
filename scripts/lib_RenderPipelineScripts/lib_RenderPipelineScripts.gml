@@ -192,8 +192,8 @@ function pipeline_initiate()
 					var l = b.load_pos + b.load_chunk;
 					l = clamp(l, 0, ds_list_size(b.load_queue));
 					var align = string_split(i, "_");
-					var ha = real(align[1]);
-					var va = real(align[2]);
+					var ha = real(align[2]);
+					var va = real(align[3]);
 					
 					for ( var j = b.load_pos; j<l; j++ ) 
 					{
