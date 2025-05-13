@@ -1,7 +1,7 @@
 function scr_topDownMovement()
 {	
 	isGrounded = true;
-    jumpNumber = maxJumpNumber;
+    jumpNumber = 0;
 	
 	if (isSkillActive and skill == skillTypes.jumpBack)
 	{
