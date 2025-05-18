@@ -354,7 +354,8 @@ function setActiveSkills()
 		jumpBack,
 		//gravityManipulation,
         //teleport,
-        float
+        float,
+        drift
 	}
 	
 	skill = function(_name, _usage, _replenish, _value, _rechargePercentage) constructor
@@ -374,8 +375,9 @@ function setActiveSkills()
 	gravityManipulation = new skill("gravity manipulation", 0.01, 0.01, 1, 1);
     teleport = new skill("teleport", 1, 0.005, 20, 1);
     float = new skill("float", 0.02, 0.005, 0.33, 0.33);
+    drift = new skill("drift", 0.03, 0.1, 10, 0.33);
 	
-	array_push(skills, sprint, dash, jumpBack, float);
+	array_push(skills, sprint, dash, jumpBack, float, drift);
 }
 
 function setPasiveSkills()
