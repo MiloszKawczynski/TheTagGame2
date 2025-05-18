@@ -158,7 +158,7 @@ if (o_gameManager.whoIsChasing == player)
 	
 	if (canCaught)
 	{
-		if (input_check_pressed("interactionKey", player))
+		if (input_check_pressed("interactionKey", player) or pasive.autoCatch)
 		{
 			o_gameManager.caught();
 		}
