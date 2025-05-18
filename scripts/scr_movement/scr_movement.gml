@@ -90,17 +90,20 @@ function scr_topDownMovement()
 	
 	scr_TopDownObstaclesInteraction();
 	
-	if (maximumSpeed > maximumDefaultSpeed)
-	{
-		maximumSpeed -= maximumSpeedDecelerationFactor;
-		maximumSpeed = max(maximumSpeed, maximumDefaultSpeed);
-	}
-	
-	if (maximumSpeed < maximumDefaultSpeed)
-	{
-		maximumSpeed += maximumSpeedDecelerationFactor;
-		maximumSpeed = min(maximumSpeed, maximumDefaultSpeed);
-	}
+    if !(skill == skillTypes.float and isSkillActive)
+    {
+    	if (maximumSpeed > maximumDefaultSpeed)
+    	{
+    		maximumSpeed -= maximumSpeedDecelerationFactor;
+    		maximumSpeed = max(maximumSpeed, maximumDefaultSpeed);
+    	}
+    	
+    	if (maximumSpeed < maximumDefaultSpeed)
+    	{
+    		maximumSpeed += maximumSpeedDecelerationFactor;
+    		maximumSpeed = min(maximumSpeed, maximumDefaultSpeed);
+    	}
+    }
     
     if (skill == skillTypes.drift and isSkillActive)
     {
@@ -285,7 +288,12 @@ function scr_platformerMovement()
             {
                 if (isSkillActive)
                 {
-                    verticalSpeed = gravitation * 5;
+                    verticalSpeed = gravitation * skillValue;
+                    
+                    if (place_meeting(x, y + verticalSpeed * 2, o_collision))
+                    {
+                        verticalSpeed = 0;
+                    }
                 }   
             }
             else 
