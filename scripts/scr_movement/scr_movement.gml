@@ -1,6 +1,7 @@
 function scr_topDownMovement()
 {	
 	isGrounded = true;
+    isAirDashUsed = false;
     jumpNumber = 0;
 	
 	if (isSkillActive and skill == skillTypes.jumpBack)
@@ -238,6 +239,18 @@ function scr_platformerMovement()
                 verticalSpeed *= 0.75;
             }
 		}
+        else if (pasive.airDash and !isAirDashUsed)
+        {
+            var dir = sign(desiredHorizontalDirection);
+            if (dir == 0)
+            {
+                dir = sign(image_xscale);
+            }
+            
+            airHorizontalSpeed += dir * jumpForce;
+            
+            isAirDashUsed = true;
+        }
         else
 		{
 			if (jumpBuffor == 0)
@@ -285,6 +298,8 @@ function scr_platformerMovement()
 	}
 
 	horizontalSpeed = clamp(horizontalSpeed, -maximumSpeed, maximumSpeed);
+    horizontalSpeed += airHorizontalSpeed;
+    airHorizontalSpeed = lerp(airHorizontalSpeed, 0, 0.1);
 	
 	speed = point_distance(0, 0, horizontalSpeed, verticalSpeed);
 	
@@ -603,6 +618,7 @@ function scr_platformerCollision()
 				if (place_meeting(x, y + 1, o_collision))
 				{
 					isGrounded = true;
+                    isAirDashUsed = false;
                     jumpNumber = maxJumpNumber;
 					canBeOnCliff = false;
 					coyoteTime = maximumCoyoteTime;
