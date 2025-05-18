@@ -315,6 +315,43 @@ function ImGui_position_3(grid = 16)
 	}
 }
 
+function ImGui_rotation_3(grid = 16)
+{
+	var value = [xr, yr, zr];
+
+	ImGui.DragFloat3("Rotation", value);
+	
+	if (keyboard_check(vk_lshift))
+	{
+		if (value[0] != xr)
+		{
+			xr = value[0];
+			var _xr = xr div grid;
+			xr = (_xr * grid) + (grid / 2);
+		}
+		
+		if (value[1] != yr)
+		{
+			yr = value[1];
+			var _yr = yr div grid;
+			yr = (_yr * grid) + (grid / 2);
+		}
+		
+		if (value[2] != zr) 
+		{
+			zr = value[2];
+			var _zr = zr div grid;
+			zr = (_zr * grid) + (grid / 2);
+		}
+	}
+	else 
+	{
+		xr = value[0];
+		yr = value[1];
+		zr = value[2];	
+	}
+}
+
 function ImGui_scale_2()
 {
 	var value = [image_xscale, image_yscale];
