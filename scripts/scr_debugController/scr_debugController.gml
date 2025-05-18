@@ -350,6 +350,7 @@ function scr_playerModificators()
         choosedPlayer.pasive.wallJump = ImGui.Checkbox("Wall Jump##" + string(choosedPlayerIndex), choosedPlayer.pasive.wallJump);
         choosedPlayer.pasive.alwaysPerfectVault = ImGui.Checkbox("Alawys Perfect Vault##" + string(choosedPlayerIndex), choosedPlayer.pasive.alwaysPerfectVault);
         choosedPlayer.pasive.noUpHillPenalty = ImGui.Checkbox("No Up Hill Penalty##" + string(choosedPlayerIndex), choosedPlayer.pasive.noUpHillPenalty);
+        choosedPlayer.pasive.airDash = ImGui.Checkbox("Air Dash##" + string(choosedPlayerIndex), choosedPlayer.pasive.airDash);
 		
 		for (var i = 0; i < sprite_get_number(s_chaseBarPortraits); i++)
 		{	

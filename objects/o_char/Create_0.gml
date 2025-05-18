@@ -108,6 +108,8 @@ wallJumpCoyoteTime = 0;
 isGrounded = false;
 groundImOn = noone;
 lastWallDirection = 0;
+isAirDashUsed = false;
+airHorizontalSpeed = 0;
 
 maximumCaughtRange = 0;
 

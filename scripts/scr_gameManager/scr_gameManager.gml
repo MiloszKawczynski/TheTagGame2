@@ -386,6 +386,7 @@ function setPasiveSkills()
 		wallJump = false;
         alwaysPerfectVault = false;
         noUpHillPenalty = false;
+        airDash = false;
 	}
 }
 
