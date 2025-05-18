@@ -101,6 +101,14 @@ function scr_topDownMovement()
 		maximumSpeed += maximumSpeedDecelerationFactor;
 		maximumSpeed = min(maximumSpeed, maximumDefaultSpeed);
 	}
+    
+    if (skill == skillTypes.drift and isSkillActive)
+    {
+        direction = driftDirection;
+        horizontalSpeed = 0;
+        verticalSpeed = 0;
+        speed = min(driftSpeed, maximumSpeed);
+    }
 }
 
 function scr_TopDownObstaclesInteraction()
@@ -402,6 +410,12 @@ function scr_platformerMovement()
 			}
 		}
 	}
+    
+    if (skill == skillTypes.drift and isSkillActive)
+    {
+        hspeed = min(driftSpeed, maximumSpeed);
+        horizontalSpeed = min(driftSpeed, maximumSpeed);
+    }
 }
 
 function scr_platformerObstaclesInteraction()

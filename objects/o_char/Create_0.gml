@@ -110,6 +110,9 @@ groundImOn = noone;
 lastWallDirection = 0;
 isAirDashUsed = false;
 airHorizontalSpeed = 0;
+driftDirection = 0;
+driftSpeed = 0;
+driftMeter = 0;
 
 maximumCaughtRange = 0;
 
