@@ -486,6 +486,8 @@ function scr_gravitationChange()
 		
 		Camera.Pitch = 130;
 		Camera.Angle = 90;
+        
+        WorldEnvironment.SunPosition[1] = 1;
 	}
 	else
 	{
@@ -496,6 +498,8 @@ function scr_gravitationChange()
 		
 		Camera.Pitch = 50;
 		Camera.Angle = 80;
+        
+        WorldEnvironment.SunPosition[1] = -1;
 	}
 	
 	with(o_char)
