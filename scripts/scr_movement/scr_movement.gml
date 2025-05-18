@@ -225,13 +225,15 @@ function scr_platformerMovement()
     
 	if (input_check_pressed("jumpKey", player) or jumpBuffor > 0)
 	{
-        if (pasive.wallJump and !isGrounded and wallDirection != 0 or wallJumpCoyoteTime > 0)
+        if (pasive.wallJump and !place_meeting(x, y + 1, o_collision) and !isGrounded and (wallDirection != 0 or wallJumpCoyoteTime > 0))
 	    {
+            log(wallJumpCoyoteTime);
+            wallDirection = 0;
             jumpBuffor = 0;
-            coyoteTime = 0;
+            wallJumpCoyoteTime = 0;
    			isGrounded = false;
-            horizontalSpeed = (jumpForce + momentumJumpForce) * 0.5 * -lastWallDirection;
-		    verticalSpeed = -(jumpForce + momentumJumpForce) * 0.5;
+            horizontalSpeed = (jumpForce + momentumJumpForce) * -lastWallDirection * 0.7;
+		    verticalSpeed = -(jumpForce + momentumJumpForce) * 0.7;
             maximumSpeed = abs(horizontalSpeed);
 	    }
 		else if (isGrounded or jumpNumber > 0 or coyoteTime > 0)
@@ -267,14 +269,14 @@ function scr_platformerMovement()
 			}
 		}
 	}
-    
-    if (wallDirection != 0 and pasive.wallJump)
-    {
-        wallJumpCoyoteTime = maximumCoyoteTime;
-    }
 	
 	if (!isGrounded)
 	{		
+        if (wallDirection != 0 and pasive.wallJump)
+        {
+            wallJumpCoyoteTime = maximumCoyoteTime;
+        }
+        
 		verticalSpeed += gravitation;
         
         if (skill == skillTypes.float)
@@ -636,6 +638,7 @@ function scr_platformerCollision()
                     jumpNumber = maxJumpNumber;
 					canBeOnCliff = false;
 					coyoteTime = maximumCoyoteTime;
+                    wallJumpCoyoteTime = 0;
 				}
 			}
 		
@@ -667,28 +670,9 @@ function scr_platformerCollision()
 				{
 					x += sign(hspeed) * 0.5;
 				}
-			
-				if (pasive.wallRun and abs(hspeed) > acceleration)
-				{
-					if (abs(hspeed) > abs(vspeed))
-					{
-						vspeed = -min(abs(hspeed), maximumDefaultSpeed);
-						platformAnimationState = changeState(true, platformAnimationState, platformWallRunState);
-					}
-					
-					if (place_meeting(x, y + vspeed, o_collision))
-					{
-						vspeed = 0;
-						hspeed = 0;
-                        airHorizontalSpeed = 0;
-					}
-				}
-				else 
-				{
-					maximumSpeed = maximumDefaultSpeed;
-				}
 				
 				hspeed = 0;
+                maximumSpeed = maximumDefaultSpeed;
                 airHorizontalSpeed = 0;
 			}
 		}
