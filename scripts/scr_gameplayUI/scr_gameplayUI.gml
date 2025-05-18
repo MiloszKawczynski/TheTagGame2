@@ -132,8 +132,7 @@ function scr_makeDrawCircleChasingTag()
 	var drawCircle = function()
 	{
 		draw_set_color(c_white);
-        color = merge_color(c_white, o_gameManager.players[other.whoIsChasing].instance.color, 0.4);
-		draw_sprite_ext(s_isChasingTagCircle, 0, posX, posY, scaleX, scaleY, 0, color, 1);
+		draw_sprite_ext(s_isChasingTagCircle, 0, posX, posY, scaleX, scaleY, 0, o_gameManager.players[other.whoIsChasing].instance.color, 1);
 		draw_sprite_ext(s_isChasingTagCircle, 1, posX, posY, scaleX, scaleY, 0, c_white, 1); 
 	}
 	setDrawFunction(drawCircle);
