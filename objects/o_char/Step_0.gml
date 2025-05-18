@@ -92,11 +92,16 @@ if (input_check("skillKey", player) and !skillRecharging and !skillUsed)
 			} 
             case(skillTypes.float):
 			{
-				if (!isGrounded) 
-				{
-                    isSkillActive = 1;
-					isUsed = true;
-				}
+                if (isGrounded and o_gameManager.isGravitationOn)
+                { 
+                    jumpNumber--;
+        			jumpBuffor = 0;
+        			coyoteTime = 0;
+        			isGrounded = false;
+        			verticalSpeed = -skillValue;
+                }
+                isSkillActive = 1;
+                isUsed = true;
 				break;
 			}
             case(skillTypes.drift):
