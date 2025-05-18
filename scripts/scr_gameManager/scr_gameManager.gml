@@ -387,6 +387,7 @@ function setPasiveSkills()
         alwaysPerfectVault = false;
         noUpHillPenalty = false;
         airDash = false;
+        autoCatch = false;
 	}
 }
 
