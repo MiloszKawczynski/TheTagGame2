@@ -352,7 +352,9 @@ function setActiveSkills()
 		sprint,
 		dash,
 		jumpBack,
-		gravityManipulation
+		//gravityManipulation,
+        //teleport,
+        float
 	}
 	
 	skill = function(_name, _usage, _replenish, _value, _rechargePercentage) constructor
@@ -368,10 +370,12 @@ function setActiveSkills()
 	
 	sprint = new skill("sprint", 0.01, 0.01, 0.33, 0);
 	dash = new skill("dash", 1, 0.005, 2, 1);
-	jumpBack = new skill("jump back", 0.33, 0.01, 2, 0.33)
-	gravityManipulation = new skill("gravity manipulation", 0.01, 0.01, 1, 1)
+	jumpBack = new skill("jump back", 0.33, 0.01, 2, 0.33);
+	gravityManipulation = new skill("gravity manipulation", 0.01, 0.01, 1, 1);
+    teleport = new skill("teleport", 1, 0.005, 20, 1);
+    float = new skill("float", 0.02, 0.005, 0.33, 0.33);
 	
-	array_push(skills, sprint, dash, jumpBack, gravityManipulation);
+	array_push(skills, sprint, dash, jumpBack, float);
 }
 
 function setPasiveSkills()
@@ -381,7 +385,6 @@ function setPasiveSkills()
 		wallRun = false;
 		wallJump = false;
         alwaysPerfectVault = false;
-        float = false;
         noUpHillPenalty = false;
 	}
 }

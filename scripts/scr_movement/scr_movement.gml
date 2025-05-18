@@ -256,9 +256,19 @@ function scr_platformerMovement()
 	{		
 		verticalSpeed += gravitation;
         
-        if (pasive.float and input_check("upKey", player) and verticalSpeed > 0)
+        if (skill == skillTypes.float)
         {
-            verticalSpeed = gravitation * 5;
+            if (verticalSpeed > 0)
+            {
+                if (isSkillActive)
+                {
+                    verticalSpeed = gravitation * 5;
+                }   
+            }
+            else 
+            {
+            	isSkillActive = false;
+            }
         }
         
 		coyoteTime = armez_timer(coyoteTime, -1);
