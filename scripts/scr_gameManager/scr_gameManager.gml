@@ -384,7 +384,6 @@ function setPasiveSkills()
 {
 	pasiveSkills = function() constructor
 	{
-		wallRun = false;
 		wallJump = false;
         alwaysPerfectVault = false;
         noUpHillPenalty = false;
