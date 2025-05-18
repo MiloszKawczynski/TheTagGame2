@@ -666,6 +666,7 @@ function scr_platformerCollision()
 					{
 						vspeed = 0;
 						hspeed = 0;
+                        airHorizontalSpeed = 0;
 					}
 				}
 				else 
@@ -674,6 +675,7 @@ function scr_platformerCollision()
 				}
 				
 				hspeed = 0;
+                airHorizontalSpeed = 0;
 			}
 		}
 	}
