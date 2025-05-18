@@ -89,6 +89,15 @@ if (input_check("skillKey", player) and !skillRecharging and !skillUsed)
 					isUsed = true;
 				}
 				break;
+			} 
+            case(skillTypes.float):
+			{
+				if (!isGrounded) 
+				{
+                    isSkillActive = 1;
+					isUsed = true;
+				}
+				break;
 			}
 		}
 	}
@@ -97,6 +106,13 @@ if (input_check("skillKey", player) and !skillRecharging and !skillUsed)
 		skillRecharging = true;
 		skillUsed = true;
 	}
+}
+else 
+{
+	if (skill == skillTypes.float) 
+    { 
+        isSkillActive = 0;
+    }
 }
 
 if (!isUsed)
