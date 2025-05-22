@@ -86,6 +86,14 @@ function setupUIStates()
             leftStamina.setValue(leftPlayer.skillEnergy);
             leftStamina.setShift(pos[0], pos[1]);
             leftStamina.setScale((0.8 * leftPlayer.image_xscale) / Camera.Zoom, 0.8 / Camera.Zoom);
+            if (leftPlayer.skillEnergy == 1)
+            {
+                leftStamina.setAlpha(lerp(leftStamina.alpha, 0, 0.2));
+            }
+            else 
+            {
+            	leftStamina.setAlpha(lerp(leftStamina.alpha, 1, 0.2));
+            }
         
             if (array_length(other.players) == 2)
             {
@@ -121,6 +129,14 @@ function setupUIStates()
                 rightStamina.setValue(rightPlayer.skillEnergy);
                 rightStamina.setShift(pos[0], pos[1]);
                 rightStamina.setScale((0.8 * rightPlayer.image_xscale) / Camera.Zoom, 0.8 / Camera.Zoom);
+                if (rightPlayer.skillEnergy == 1)
+                {
+                    rightStamina.setAlpha(lerp(rightStamina.alpha, 0, 0.2));
+                }
+                else 
+                {
+                	rightStamina.setAlpha(lerp(rightStamina.alpha, 1, 0.2));
+                }
             }
         }
     }

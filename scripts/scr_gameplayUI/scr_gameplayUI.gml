@@ -49,7 +49,7 @@ function scr_makeStaminaBar()
 	
 		surface_reset_target();
 	
-		draw_surface_ext(surface, posX, posY, scaleX, scaleY, 0, c_white, 1);
+		draw_surface_ext(surface, posX, posY, scaleX, scaleY, 0, c_white, alpha);
 	}
 	
 	setDrawFunction(drawStaminaBar, 100, 100);
