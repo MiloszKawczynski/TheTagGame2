@@ -42,7 +42,7 @@ if (!global.debugEdit)
         
         var arguments = [sprite_get_uvs(s_cleaHand, 0), color, true];
         
-        draw_sprite_3d_in_game(s_cleaHand, 0, x + 5 * image_xscale, y, 16 + z + 1, 0, 0, 0, image_xscale, 1, 1, shd_outline, uniformOultuneFunction, arguments,,  angle + armAngle, stretch, squash);
+        draw_sprite_3d_in_game(s_cleaHand, 0, x, y, 16 + z + 1, 0, 0, 0, image_xscale, 1, 1, shd_outline, uniformOultuneFunction, arguments,,  angle + armAngle, stretch, squash);
 	}
 	else 
 	{
