@@ -1,3 +1,4 @@
+scr_setupSprites();
 if (player == 0)
 {
 	color = c_red;
