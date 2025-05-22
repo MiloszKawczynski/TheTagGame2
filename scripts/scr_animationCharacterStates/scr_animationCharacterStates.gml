@@ -1,10 +1,29 @@
+function scr_setupSprites()
+{
+    idle = s_cleaIdle;
+    
+    walk = s_cleaWalk;
+    run = s_cleaRun;
+    sprint = s_cleaSprint;
+    
+    jump = s_cleaJump;
+    
+    fall = s_cleaFall;
+    
+    leap = s_cleaLeap;
+    
+    parkour = s_cleaParkour;
+    
+    vault = s_cleaVault;
+}
+
 //--- Top Down Animation States
 
 function scr_setupTopDownAnimationStates()
 {
 	topDownIdleState = function()
 	{
-		sprite_index = s_cleaIdle;
+		sprite_index = idle;
 		
 		topDownAnimationState = changeAnimationState(speed != 0, topDownAnimationState, topDownMoveState);
 	}
@@ -13,15 +32,15 @@ function scr_setupTopDownAnimationStates()
 	{
 		if (speed < maximumDefaultSpeed)
 		{
-			sprite_index = s_cleaWalk;
+			sprite_index = walk;
 		}
 		else if (speed == maximumDefaultSpeed)
 		{
-			sprite_index = s_cleaRun;
+			sprite_index = run;
 		}
 		else if (speed > maximumDefaultSpeed)
 		{
-			sprite_index = s_cleaSprint;
+			sprite_index = sprint;
 		}
 		
 		setXScaleWithHSpeed();
@@ -31,7 +50,7 @@ function scr_setupTopDownAnimationStates()
 	
 	topDownParkourState = function()
 	{
-		sprite_index = s_cleaVault;
+		sprite_index = vault;
 		image_speed = 0.5;
 		
 		topDownAnimationState = changeAnimationState(playOnce(), topDownAnimationState, topDownMoveState);
@@ -46,7 +65,7 @@ function scr_setupPlatformAnimationStates()
 {
 	platformIdleState = function()
 	{
-		sprite_index = s_cleaIdle;
+		sprite_index = idle;
 		setAngleDependsOnGround();
 		
 		platformAnimationState = changeAnimationState(hspeed != 0, platformAnimationState, platformMoveState);
@@ -57,15 +76,15 @@ function scr_setupPlatformAnimationStates()
 	{
 		if (abs(hspeed) < maximumDefaultSpeed)
 		{
-			sprite_index = s_cleaWalk;
+			sprite_index = walk;
 		}
 		else if (abs(hspeed) == maximumDefaultSpeed)
 		{
-			sprite_index = s_cleaRun;
+			sprite_index = run;
 		}
 		else if (abs(hspeed) > maximumDefaultSpeed)
 		{
-			sprite_index = s_cleaSprint;
+			sprite_index = sprint;
 		}
 		setXScaleWithHSpeed(); 
 		setAngleDependsOnGround();
@@ -76,7 +95,7 @@ function scr_setupPlatformAnimationStates()
 	
 	platformJumpState = function()
 	{
-		sprite_index = s_cleaJump;
+		sprite_index = jump;
 		setXScaleWithHSpeed();
 		playOnce();
 		angle = lerp(angle, (abs(hspeed) / maximumDefaultSpeed) * 15, 0.1);
@@ -90,7 +109,7 @@ function scr_setupPlatformAnimationStates()
 	
 	platformFallState = function()
 	{
-		sprite_index = s_cleaFall;
+		sprite_index = fall;
 		playOnce();
 		setXScaleWithHSpeed();
 		angle = lerp(angle, (-abs(hspeed) / maximumDefaultSpeed) * 15, 0.1);
@@ -102,7 +121,7 @@ function scr_setupPlatformAnimationStates()
 	
 	platformLeapState = function() 
 	{
-		sprite_index = s_cleaLeap;
+		sprite_index = leap;
 		image_speed = 0.225;
 		angle = lerp(angle, (-abs(hspeed) / maximumDefaultSpeed) * 7, 0.1);
 		setXScaleWithHSpeed();
@@ -113,7 +132,7 @@ function scr_setupPlatformAnimationStates()
 	
 	platformParkourState = function()
 	{
-		sprite_index = s_cleaParkour;
+		sprite_index = parkour;
 		image_speed = 0.5;
 		playOnce();
 		
@@ -122,7 +141,7 @@ function scr_setupPlatformAnimationStates()
 	
 	platformWallRunState = function()
 	{
-		sprite_index = s_cleaSprint;
+		sprite_index = sprint;
 		angle = lerp(angle, -90, 0.1);
 		
 		platformAnimationState = changeAnimationState(place_meeting(x, y + 1, o_collision) and vspeed >= 0, platformAnimationState, platformIdleState);
