@@ -10,6 +10,7 @@ uniform vec3 color;
 uniform vec4 uvs;
 uniform float glow;
 uniform float time;
+uniform bool hand;
 
 const float rad_circle = 6.28319;
 
@@ -39,6 +40,12 @@ void main()
 	float tol = 0.0;
 	
 	vec4 baseColor = texture2D( gm_BaseTexture, v_vTexcoord );
+    
+    if (hand)
+    {
+        baseColor.rgb += color;
+    }
+    
 	float outline = 0.0;
 
 	for (float i = 1.0; i <= thick; i++)

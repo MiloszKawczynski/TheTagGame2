@@ -20,16 +20,29 @@ for (var i = 0; i < ds_list_size(afterimageList); i++)
 
 if (!global.debugEdit)
 {
+    if (canCaught)
+    {
+        armAngle = lerp(armAngle, -40, 0.1);
+    }
+    else 
+    {
+        armAngle = lerp(armAngle, 40, 0.1);
+    }
+    
 	if (o_gameManager.whoIsChasing == player and o_gameManager.whoIsChasingStage == 2)
 	{
-		var uniformOultuneFunction = function(uvs, color)
+		var uniformOultuneFunction = function(uvs, color, hand)
 		{
-			setChasingOutlineUniform(uvs, color);
+			setChasingOutlineUniform(uvs, color, hand);
 		}
 		
-		var arguments = [sprite_get_uvs(sprite_index, image_index), color];
+		var arguments = [sprite_get_uvs(sprite_index, image_index), color, false];
 		
 		draw_sprite_3d_in_game(sprite_index, image_index, x, y, 16 + z, 0, 0, 0, image_xscale, 1, 1, shd_outline, uniformOultuneFunction, arguments,, angle, stretch, squash);
+        
+        var arguments = [sprite_get_uvs(s_cleaHand, 0), color, true];
+        
+        draw_sprite_3d_in_game(s_cleaHand, 0, x + 5 * image_xscale, y, 16 + z + 1, 0, 0, 0, image_xscale, 1, 1, shd_outline, uniformOultuneFunction, arguments,,  angle + armAngle, stretch, squash);
 	}
 	else 
 	{
