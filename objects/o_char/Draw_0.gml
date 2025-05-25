@@ -42,7 +42,7 @@ if (!global.debugEdit)
         }
     }
     
-	if (o_gameManager.whoIsChasing == player and o_gameManager.whoIsChasingStage == 2)
+	if (o_gameManager.whoIsChasing == player and o_gameManager.whoIsChasingStage >= 2)
 	{
 		var uniformOultuneFunction = function(uvs, color, hand)
 		{

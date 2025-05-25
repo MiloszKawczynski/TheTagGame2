@@ -141,7 +141,8 @@ function drawUI()
 	
 	ui.draw();
 	
-    if (uiState == UIcountdownState)
+    if (uiState == UIcountdownState
+        or uiState == UIbreathState)
     {
     	var pos = [];
     
@@ -174,6 +175,8 @@ function setGameRulesValues()
 	vignetteTime = 0;
 	vignettePulse = false;
 	pulseCounter = 0;
+    
+    breathTimer = 0;
 }
 
 function setActiveSkills()
