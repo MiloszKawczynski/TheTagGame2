@@ -23,6 +23,32 @@ function scr_vignettePulse()
 	{
 		var _params = fx_get_parameters(_fx_struct);
 		_params.g_VignetteEdges = edges;
+        _params.g_VignetteTexture = s_vignette;
+
+		fx_set_parameters(_fx_struct, _params);
+	}
+}
+
+function scr_vignettePlayerPulse(strength, teamId)
+{
+	vignetteTime = armez_timer(vignetteTime, 0.025);
+	var edges = [1, 1.1];
+	edges[0] = 1 - (0.02 * strength) + animcurve_get_point(ac_vignettePulse, 0, vignetteTime) * (0.25 + 0.1 * strength);
+	edges[1] = 1.1 - (0.02 * strength) + animcurve_get_point(ac_vignettePulse, 0, vignetteTime) * (0.25 + 0.1 * strength);
+			
+	if (vignetteTime == 1)
+	{
+		vignetteTime = 0;
+		vignettePulse = false;
+	}
+		
+	var _fx_struct = layer_get_fx("vignette");
+
+	if (_fx_struct != -1)
+	{
+		var _params = fx_get_parameters(_fx_struct);
+		_params.g_VignetteEdges = edges;
+        _params.g_VignetteTexture = global.s_teamColors[teamId];
 
 		fx_set_parameters(_fx_struct, _params);
 	}
