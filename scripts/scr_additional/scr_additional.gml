@@ -332,7 +332,7 @@ function ImGui_scale_2()
 	}
 }
 
-function changeState(condition, machine, newState)
+function changeAnimationState(condition, machine, newState)
 {
 	if (condition)
 	{
@@ -365,6 +365,29 @@ function playOnce()
 	}
 	
 	return false;
+}
+
+function doOnce(flag)
+{
+	if (flag)
+	{
+		flag = false;
+		return true;
+	}
+	
+	return false;
+}
+
+function changeState(condition, machine, newState, flag)
+{
+	if (condition)
+	{
+        flag = true;
+		machine = newState;
+		machine();
+	}
+	
+	return machine;
 }
 
 function world_to_gui(xx, yy, zz) 
