@@ -20,6 +20,15 @@ global.c_brown = make_color_rgb(176, 112, 74);
 global.c_skin = make_color_rgb(229, 193, 153);
 global.c_neon = make_color_rgb(188, 224, 1);
 
+global.c_teamColors = array_create();
+array_push(global.c_teamColors,
+c_red,
+c_lime);
+
+global.s_teamColors = array_create();
+
+isTeamColorsSpriteCreated = false
+
 Camera.Zoom = 2;
 Camera.Target = o_cameraTarget;
 
