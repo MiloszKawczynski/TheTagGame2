@@ -1,20 +1,13 @@
 if (array_length(o_gameManager.players) != 0)
 {
-	if (o_gameManager.isGameOn or o_gameManager.isCountdownActive)
-	{
-		if (instance_number(o_char) > 1)
-		{
-			scr_follow_many_characters();
-		}
-		else
-		{
-			scr_follow_one_character();
-		}
-	}
-	else
-	{
-		scr_follow_one_character();
-	}
+    if (instance_number(o_char) > 1)
+    {
+        scr_follow_many_characters();
+    }
+    else
+    {
+        scr_follow_one_character();
+    }
 }
 
 if (global.debugEdit)

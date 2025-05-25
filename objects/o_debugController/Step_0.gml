@@ -1,4 +1,4 @@
-if (!o_gameManager.isGameOn and !hide)
+if (!hide)
 {	
 	if (currentTab == 3)			
 	{
@@ -139,7 +139,7 @@ if (keyboard_check_pressed(vk_f1))
 	previousTab = -1;
 }
 
-if (o_gameManager.isGameOn and keyboard_check_pressed(ord("P")))
+if (keyboard_check_pressed(ord("P")))
 {
 	o_gameManager.startStop();
 
