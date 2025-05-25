@@ -22,9 +22,9 @@ if (!global.debugEdit)
 {
     if (slap)
     {
-        armAngle = lerp(armAngle, 90, 0.2);
+        armAngle = lerp(armAngle, 40 + 360, 0.2);
         
-        if (abs(armAngle - 90) < 3)
+        if (abs(armAngle - (40 + 360)) < 3)
         {
             slap = false;
             o_gameManager.caught();
