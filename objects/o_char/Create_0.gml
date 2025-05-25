@@ -173,3 +173,34 @@ squash = 1;
 
 thick = 7;
 glow = 0;
+
+function reset()
+{
+    with(o_start)
+    {
+        if (other.player == linkToPlayer)
+        {
+            other.x = x;
+            other.y = y;
+        }
+    }
+    
+    speed = 0;
+    hspeed = 0;
+    vspeed = 0;
+    desiredHorizontalDirection = 0;
+    desiredVerticalDirection = 0;
+    horizontalSpeed = 0;
+    verticalSpeed = 0;
+    skillEnergy = 1;
+    
+    nearestPlayer = id;
+    canCaught = false;
+    
+    thick = 7;
+    glow = 0;
+    
+    isReady = false;
+    
+    log(string("P{0}: {1}", player + 1, o_gameManager.players[player].points), color);
+}
