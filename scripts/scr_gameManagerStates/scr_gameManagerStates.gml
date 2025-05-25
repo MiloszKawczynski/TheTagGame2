@@ -311,6 +311,8 @@ function setupLogicStates()
         	scr_vignettePullBack();
         }
         
+        Camera.Zoom = 1
+        
         if (whoIsChasingStage == 3)
         {
             reset();
