@@ -17,6 +17,12 @@ function scr_topDownMovement()
 
 	desiredHorizontalDirection = input_check("rightKey", player) - input_check("leftKey", player);
 	desiredVerticalDirection = input_check("downKey", player) - input_check("upKey", player);
+    
+    if (o_gameManager.logicState == o_gameManager.breathState)
+    {
+        desiredHorizontalDirection = 0;
+        desiredVerticalDirection = 0;
+    }
 	
 	if (isSkillActive and skill == skillTypes.jumpBack)
 	{
@@ -215,6 +221,11 @@ function scr_platformerMovement()
 	{
 		desiredHorizontalDirection *= -1;
 	}
+    
+    if (o_gameManager.logicState == o_gameManager.breathState)
+    {
+        desiredHorizontalDirection = 0;
+    }
 	
 	horizontalSpeed += desiredHorizontalDirection * acceleration;
 		

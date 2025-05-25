@@ -33,6 +33,7 @@ function setupUIStates()
     {
         updateBar();
         updateWhoIsChasing();
+        updateStamina();
     }
     
     //--- UI update functions
@@ -193,11 +194,24 @@ function setupUIStates()
                 if (whoIsChasingTagScale <= 0.1)
                 {
                     whoIsChasingStage = 2;
+                    breathTimer = 1;
                     
                     whoIsChasingTagScale = 0;
                     part_type_color1(imChasingType, instTo.color);
                     part_emitter_region(imChasingSystem, 0, instTo.x - 16, instTo.x + 16, instTo.y - 16, instTo.y + 16, ps_shape_rectangle, ps_distr_linear);
                     part_emitter_burst(imChasingSystem, 0, imChasingType, 32);
+                }
+                
+                break;
+            }
+            
+            case(2):
+            {
+                breathTimer = armez_timer(breathTimer, -0.02, 0);
+                
+                if (breathTimer == 0)
+                {
+                    whoIsChasingStage = 3;
                 }
                 
                 break;
@@ -274,6 +288,22 @@ function setupLogicStates()
         }
         
         updateGameTime();
+    }
+    
+    breathState = function()
+    {
+        if (logicOnce)
+        {
+            logicOnce = false;
+            
+            uiState = changeState(true, uiState, UIbreathState);
+        }
+        
+        if (whoIsChasingStage == 3)
+        {
+            reset();
+            advanceToNextRound();
+        }
     }
     
     //--- logic functions
@@ -491,7 +521,7 @@ function setupLogicStates()
 		whoIsChasing = !whoIsChasing;
 		playerWasCaught = true;
 	
-		reset();
-        advanceToNextRound();
+        logicOnce = true;
+        logicState = changeState(true, logicState, breathState);
 	}
 }
