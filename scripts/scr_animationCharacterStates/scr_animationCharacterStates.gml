@@ -6,7 +6,7 @@ function scr_setupTopDownAnimationStates()
 	{
 		sprite_index = s_cleaIdle;
 		
-		topDownAnimationState = changeState(speed != 0, topDownAnimationState, topDownMoveState);
+		topDownAnimationState = changeAnimationState(speed != 0, topDownAnimationState, topDownMoveState);
 	}
 	
 	topDownMoveState = function()
@@ -26,7 +26,7 @@ function scr_setupTopDownAnimationStates()
 		
 		setXScaleWithHSpeed();
 		
-		topDownAnimationState = changeState(speed == 0, topDownAnimationState, topDownIdleState);
+		topDownAnimationState = changeAnimationState(speed == 0, topDownAnimationState, topDownIdleState);
 	}
 	
 	topDownParkourState = function()
@@ -34,7 +34,7 @@ function scr_setupTopDownAnimationStates()
 		sprite_index = s_cleaVault;
 		image_speed = 0.5;
 		
-		topDownAnimationState = changeState(playOnce(), topDownAnimationState, topDownMoveState);
+		topDownAnimationState = changeAnimationState(playOnce(), topDownAnimationState, topDownMoveState);
 	}
 	
 	topDownAnimationState = topDownIdleState;
@@ -49,8 +49,8 @@ function scr_setupPlatformAnimationStates()
 		sprite_index = s_cleaIdle;
 		setAngleDependsOnGround();
 		
-		platformAnimationState = changeState(hspeed != 0, platformAnimationState, platformMoveState);
-		platformAnimationState = changeState(isGrounded == false, platformAnimationState, platformJumpState);
+		platformAnimationState = changeAnimationState(hspeed != 0, platformAnimationState, platformMoveState);
+		platformAnimationState = changeAnimationState(isGrounded == false, platformAnimationState, platformJumpState);
 	}
 	
 	platformMoveState = function()
@@ -70,8 +70,8 @@ function scr_setupPlatformAnimationStates()
 		setXScaleWithHSpeed(); 
 		setAngleDependsOnGround();
 		
-		platformAnimationState = changeState(hspeed == 0, platformAnimationState, platformIdleState);
-		platformAnimationState = changeState(isGrounded == false, platformAnimationState, platformJumpState);
+		platformAnimationState = changeAnimationState(hspeed == 0, platformAnimationState, platformIdleState);
+		platformAnimationState = changeAnimationState(isGrounded == false, platformAnimationState, platformJumpState);
 	}
 	
 	platformJumpState = function()
@@ -83,9 +83,9 @@ function scr_setupPlatformAnimationStates()
 		stretch = clamp(1 + ((abs(vspeed) / jumpForce) * 0.3), 1, 1.3);
 		squash = (1 - (stretch - 1));
 		
-		platformAnimationState = changeState(vspeed >= 0 , platformAnimationState, platformFallState);
-		platformAnimationState = changeState(isGrounded == true, platformAnimationState, platformIdleState);
-		platformAnimationState = changeState(abs(hspeed) > maximumDefaultSpeed, platformAnimationState, platformLeapState);
+		platformAnimationState = changeAnimationState(vspeed >= 0 , platformAnimationState, platformFallState);
+		platformAnimationState = changeAnimationState(isGrounded == true, platformAnimationState, platformIdleState);
+		platformAnimationState = changeAnimationState(abs(hspeed) > maximumDefaultSpeed, platformAnimationState, platformLeapState);
 	}
 	
 	platformFallState = function()
@@ -95,9 +95,9 @@ function scr_setupPlatformAnimationStates()
 		setXScaleWithHSpeed();
 		angle = lerp(angle, (-abs(hspeed) / maximumDefaultSpeed) * 15, 0.1);
 		
-		platformAnimationState = changeState(isGrounded == true, platformAnimationState, platformIdleState);
-		platformAnimationState = changeState(vspeed < 0, platformAnimationState, platformJumpState);
-		platformAnimationState = changeState(abs(hspeed) > maximumDefaultSpeed, platformAnimationState, platformLeapState);
+		platformAnimationState = changeAnimationState(isGrounded == true, platformAnimationState, platformIdleState);
+		platformAnimationState = changeAnimationState(vspeed < 0, platformAnimationState, platformJumpState);
+		platformAnimationState = changeAnimationState(abs(hspeed) > maximumDefaultSpeed, platformAnimationState, platformLeapState);
 	}
 	
 	platformLeapState = function() 
@@ -107,8 +107,8 @@ function scr_setupPlatformAnimationStates()
 		angle = lerp(angle, (-abs(hspeed) / maximumDefaultSpeed) * 7, 0.1);
 		setXScaleWithHSpeed();
 		
-		platformAnimationState = changeState(isGrounded == true, platformAnimationState, platformIdleState);
-		platformAnimationState = changeState(abs(hspeed) <= maximumDefaultSpeed, platformAnimationState, platformFallState);
+		platformAnimationState = changeAnimationState(isGrounded == true, platformAnimationState, platformIdleState);
+		platformAnimationState = changeAnimationState(abs(hspeed) <= maximumDefaultSpeed, platformAnimationState, platformFallState);
 	}
 	
 	platformParkourState = function()
@@ -117,7 +117,7 @@ function scr_setupPlatformAnimationStates()
 		image_speed = 0.5;
 		playOnce();
 		
-		platformAnimationState = changeState(vspeed >= 0, platformAnimationState, platformJumpState);
+		platformAnimationState = changeAnimationState(vspeed >= 0, platformAnimationState, platformJumpState);
 	}
 	
 	platformWallRunState = function()
@@ -125,8 +125,8 @@ function scr_setupPlatformAnimationStates()
 		sprite_index = s_cleaSprint;
 		angle = lerp(angle, -90, 0.1);
 		
-		platformAnimationState = changeState(place_meeting(x, y + 1, o_collision) and vspeed >= 0, platformAnimationState, platformIdleState);
-		platformAnimationState = changeState(!place_meeting(x - 1, y, o_collision) and !place_meeting(x + 1, y, o_collision), platformAnimationState, platformFallState);
+		platformAnimationState = changeAnimationState(place_meeting(x, y + 1, o_collision) and vspeed >= 0, platformAnimationState, platformIdleState);
+		platformAnimationState = changeAnimationState(!place_meeting(x - 1, y, o_collision) and !place_meeting(x + 1, y, o_collision), platformAnimationState, platformFallState);
 	}
 	
 	platformAnimationState = platformIdleState;
