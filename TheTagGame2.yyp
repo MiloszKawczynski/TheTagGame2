@@ -1025,11 +1025,11 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"r_characterSelection","path":"rooms/r_characterSelection/r_characterSelection.yy",},},
     {"roomId":{"name":"r_lobby","path":"rooms/r_lobby/r_lobby.yy",},},
     {"roomId":{"name":"r_levelEditor","path":"rooms/r_levelEditor/r_levelEditor.yy",},},
     {"roomId":{"name":"r_levelEditorBig","path":"rooms/r_levelEditorBig/r_levelEditorBig.yy",},},
     {"roomId":{"name":"r_gym","path":"rooms/r_gym/r_gym.yy",},},
+    {"roomId":{"name":"r_characterSelection","path":"rooms/r_characterSelection/r_characterSelection.yy",},},
     {"roomId":{"name":"rm_init","path":"rooms/rm_init/rm_init.yy",},},
     {"roomId":{"name":"rm_demo1","path":"rooms/rm_demo1/rm_demo1.yy",},},
     {"roomId":{"name":"rm_demo2","path":"rooms/rm_demo2/rm_demo2.yy",},},

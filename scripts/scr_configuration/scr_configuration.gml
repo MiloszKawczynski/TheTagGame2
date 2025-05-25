@@ -3,7 +3,7 @@ function scr_preload()
 	if (room == r_levelEditor or room == r_levelEditorBig)
 	{
 		//scr_levelLoad("metroChasev1.1");
-		scr_levelLoad("skilltest");
+		scr_levelLoad("basic");
 	}
 	scr_rulesPresetLoad("default");
 	scr_statsPresetLoad("default");
