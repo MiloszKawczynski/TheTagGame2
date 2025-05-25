@@ -179,8 +179,8 @@ function setupUIStates()
                     whoIsChasingStage = 1;
                 }
                 
-                whoIsChasingTagPosition[0] = lerp(whoIsChasingTagPosition[0], instTo.x, 0.1);
-                whoIsChasingTagPosition[1] = lerp(whoIsChasingTagPosition[1], instTo.y, 0.1)
+                whoIsChasingTagPosition[0] = lerp(whoIsChasingTagPosition[0], instTo.x, 0.2);
+                whoIsChasingTagPosition[1] = lerp(whoIsChasingTagPosition[1], instTo.y, 0.2);
                 break;
             }
         
@@ -304,7 +304,7 @@ function setupLogicStates()
         
         if (vignettePulse)
         {
-            scr_vignettePlayerPulse(3, !whoIsChasing);
+            scr_vignettePlayerPulse(6, !whoIsChasing);
         }
         else 
         {
@@ -525,6 +525,11 @@ function setupLogicStates()
     
     function caught()
 	{
+        var instTo = players[!whoIsChasing].instance;
+        part_type_color1(imChasingType, instTo.color);
+        part_emitter_region(imChasingSystem, 0, instTo.x - 16, instTo.x + 16, instTo.y - 16, instTo.y + 16, ps_shape_rectangle, ps_distr_linear);
+        part_emitter_burst(imChasingSystem, 0, imChasingType, 32);
+        
 		log(string("Player {0} CAUGHT!", whoIsChasing), players[whoIsChasing].instance.color);
 		
 		whoIsChasingTagPosition[0] = players[whoIsChasing].instance.x;

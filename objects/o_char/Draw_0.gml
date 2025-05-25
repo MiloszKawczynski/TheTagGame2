@@ -20,29 +20,22 @@ for (var i = 0; i < ds_list_size(afterimageList); i++)
 
 if (!global.debugEdit)
 {
-    if (slap)
+    if (canCaught)
     {
-        armAngle = lerp(armAngle, 40 + 360, 0.2);
+        armX = lerp(armX, nearestPlayer.x, 0.3);
+        armY = lerp(armY, nearestPlayer.y, 0.3);
         
-        if (abs(armAngle - (40 + 360)) < 3)
-        {
-            slap = false;
-            o_gameManager.caught();
-        }
+        armScale = lerp(armScale, 2, 0.1);
     }
     else 
     {
-        if (canCaught)
-        {
-            armAngle = lerp(armAngle, -40, 0.1);
-        }
-        else 
-        {
-            armAngle = lerp(armAngle, 40, 0.1);
-        }
+        armX = lerp(armX, x + 24 * image_xscale, 0.2);
+        armY = lerp(armY, y - 16, 0.2);
+        
+        armScale = lerp(armScale, 1, 0.1);
     }
     
-	if (o_gameManager.whoIsChasing == player and o_gameManager.whoIsChasingStage >= 2)
+	if (o_gameManager.whoIsChasing == player and (o_gameManager.whoIsChasingStage >= 2))
 	{
 		var uniformOultuneFunction = function(uvs, color, hand)
 		{
@@ -55,7 +48,7 @@ if (!global.debugEdit)
         
         var arguments = [sprite_get_uvs(s_cleaHand, 0), color, true];
         
-        draw_sprite_3d_in_game(s_cleaHand, 0, x, y, 16 + z + 1, 0, 0, 0, image_xscale, 1, 1, shd_outline, uniformOultuneFunction, arguments,,  angle + armAngle, stretch, squash);
+        draw_sprite_3d_in_game(s_cleaHand, 0, armX, armY, 16 + z + 1, 0, 0, 0, image_xscale * armScale, armScale, 1, shd_outline, uniformOultuneFunction, arguments,,  angle - 40, stretch, squash);
 	}
 	else 
 	{

@@ -238,7 +238,7 @@ if (o_gameManager.logicState == o_gameManager.gameState and o_gameManager.whoIsC
 	{
 		if (input_check_pressed("interactionKey", player) or pasive.autoCatch)
 		{
-            slap = true;
+            o_gameManager.caught();
 		}
 	}
 }

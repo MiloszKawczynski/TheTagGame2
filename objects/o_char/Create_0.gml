@@ -1,5 +1,7 @@
 scr_setupSprites();
-armAngle = 0;
+armScale = 0;
+armX = x;
+armY = y;
 
 if (player == 0)
 {
