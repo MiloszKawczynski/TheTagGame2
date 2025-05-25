@@ -297,6 +297,18 @@ function setupLogicStates()
             logicOnce = false;
             
             uiState = changeState(true, uiState, UIbreathState);
+            
+            scr_vignetteReset();
+            vignettePulse = true;
+        }
+        
+        if (vignettePulse)
+        {
+            scr_vignettePlayerPulse(3, !whoIsChasing);
+        }
+        else 
+        {
+        	scr_vignettePullBack();
         }
         
         if (whoIsChasingStage == 3)
@@ -517,7 +529,7 @@ function setupLogicStates()
 		
 		whoIsChasingTagPosition[0] = players[whoIsChasing].instance.x;
 		whoIsChasingTagPosition[1] = players[whoIsChasing].instance.y;
-		
+        
 		whoIsChasing = !whoIsChasing;
 		playerWasCaught = true;
 	

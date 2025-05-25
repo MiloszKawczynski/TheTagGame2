@@ -981,6 +981,7 @@
     {"id":{"name":"s_tartanTexture","path":"sprites/s_tartanTexture/s_tartanTexture.yy",},},
     {"id":{"name":"s_temp","path":"sprites/s_temp/s_temp.yy",},},
     {"id":{"name":"s_triangle","path":"sprites/s_triangle/s_triangle.yy",},},
+    {"id":{"name":"s_vignette","path":"sprites/s_vignette/s_vignette.yy",},},
     {"id":{"name":"s_walkCycle","path":"sprites/s_walkCycle/s_walkCycle.yy",},},
     {"id":{"name":"s_wall","path":"sprites/s_wall/s_wall.yy",},},
     {"id":{"name":"s_wallTopMask","path":"sprites/s_wallTopMask/s_wallTopMask.yy",},},
