@@ -132,7 +132,9 @@ with(o_char)
 surface = surface_create(maximumCaughtRange * 2, maximumCaughtRange * 2);
 
 nearestPlayer = id;
-canCaught = false;afterimageList = ds_list_create();
+canCaught = false;
+slap = false;
+
 afterimageList = ds_list_create();
 
 setAfterImageUniform = function(alphaDecay, color)

@@ -20,13 +20,26 @@ for (var i = 0; i < ds_list_size(afterimageList); i++)
 
 if (!global.debugEdit)
 {
-    if (canCaught)
+    if (slap)
     {
-        armAngle = lerp(armAngle, -40, 0.1);
+        armAngle = lerp(armAngle, 90, 0.2);
+        
+        if (abs(armAngle - 90) < 3)
+        {
+            slap = false;
+            o_gameManager.caught();
+        }
     }
     else 
     {
-        armAngle = lerp(armAngle, 40, 0.1);
+        if (canCaught)
+        {
+            armAngle = lerp(armAngle, -40, 0.1);
+        }
+        else 
+        {
+            armAngle = lerp(armAngle, 40, 0.1);
+        }
     }
     
 	if (o_gameManager.whoIsChasing == player and o_gameManager.whoIsChasingStage == 2)
