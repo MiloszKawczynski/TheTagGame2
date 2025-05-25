@@ -132,16 +132,6 @@ function createUI()
 	part_system_automatic_draw(imChasingSystem, false);
 }
 
-function updateUI()
-{
-	ui.step();
-	
-	updateBar();
-	updateStamina();
-	updateCountdown();
-    updateWhoIsChasing();
-}
-
 function drawUI()
 {
 	if (global.debugEdit)
