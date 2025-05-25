@@ -63,11 +63,7 @@ function createUI()
 			scr_makeStaminaBar();
 		}
 		
-		toStartTimer = new Text("Ready?", f_test);
-        if (!other.isCountdownActive)
-        { 
-            toStartTimer.setScale(0, 0);   
-        }
+		toStartTimer = new Text("", f_test);
 		
 		leftPlayerGroup = new Group();
 		leftPlayerGroup.setGrid(1, 1);
@@ -155,14 +151,17 @@ function drawUI()
 	
 	ui.draw();
 	
-	var pos = [];
-
-	pos = world_to_gui(
-		whoIsChasingTagPosition[0],
-		whoIsChasingTagPosition[1],
-		whoIsChasingTagPosition[2]);
-
-	draw_sprite_ext(s_isChasingTag, 3, pos[0], pos[1] - 60 / Camera.Zoom, (0.4 * whoIsChasingTagScale) / Camera.Zoom, (0.4 * whoIsChasingTagScale) / Camera.Zoom, 0, c_white, 1);
+    if (uiState == UIcountdownState)
+    {
+    	var pos = [];
+    
+    	pos = world_to_gui(
+    		whoIsChasingTagPosition[0],
+    		whoIsChasingTagPosition[1],
+    		whoIsChasingTagPosition[2]);
+    
+    	draw_sprite_ext(s_isChasingTag, 3, pos[0], pos[1] - 60 / Camera.Zoom, (0.4 * whoIsChasingTagScale) / Camera.Zoom, (0.4 * whoIsChasingTagScale) / Camera.Zoom, 0, c_white, 1);
+    }
 }
 
 function setGameRulesValues()
@@ -172,7 +171,6 @@ function setGameRulesValues()
 	
 	isGravitationOn = false;
 	chaseTime = maximumChaseTime;
-	isGameOn = false;
 	rounds = 0;
 	players = [];
 	
@@ -182,8 +180,6 @@ function setGameRulesValues()
 	whoIsChasingTagPosition = [0, 0, 0];
 	whoIsChasingTagScale = 1;
 	whoIsChasingStage = 1;
-	
-	isCountdownActive = global.lockOnStart;
 		
 	vignetteTime = 0;
 	vignettePulse = false;
@@ -237,218 +233,6 @@ function setPasiveSkills()
 	}
 }
 
-function setGameRulesFunctions()
-{
-	reset = function()
-	{
-		with(o_debugController)
-		{
-			scr_clearLog();
-		}
-		
-		chaseTime = maximumChaseTime;
-	
-		if (isGravitationOn)
-		{
-			isGravitationOn = !isGravitationOn;
-			scr_gravitationChange();
-		}
-		
-		instance_activate_object(o_start);
-		
-		with(o_char)
-		{
-			var playerNumber = player;
-			
-			with(o_start)
-			{
-				if (playerNumber == linkToPlayer)
-				{
-					other.x = x;
-					other.y = y;
-				}
-			}
-			
-			speed = 0;
-			hspeed = 0;
-			vspeed = 0;
-			desiredHorizontalDirection = 0;
-			desiredVerticalDirection = 0;
-			horizontalSpeed = 0;
-			verticalSpeed = 0;
-			skillEnergy = 1;
-			
-			nearestPlayer = id;
-			canCaught = false;
-			
-			thick = 7;
-			glow = 0;
-			
-			log(string("P{0}: {1}", player + 1, other.players[player].points), color);
-		}
-		
-		with(o_cameraTarget)
-		{
-			var _x = 0;
-			var _y = 0;
-			
-			with(o_char)
-			{
-				_x += x;
-				_y += y;
-			}
-			
-			x = _x / instance_number(o_char);
-			y = _y / instance_number(o_char);
-			
-			Camera.x = x;
-			Camera.y = y;
-		}
-		
-		if (instance_exists(o_debugController))
-		{
-			o_debugController.previousTab = -1;
-		}
-		
-		if (isGameOn)
-		{
-			rounds++;
-			
-			if (rounds > 15)
-			{
-				var indexOfWinner = 0;
-				for(var i = 0; i < array_length(players); i++)
-				{
-					if (players[i].points > players[indexOfWinner].points)
-					{
-						indexOfWinner = i;
-					}
-				}
-				
-				if (players[0].points == players[1].points)
-				{
-					log(string("Round {0}/15", rounds));
-				}
-				else
-				{			
-					log("END");
-					log(string("WINNER: Player {0}", indexOfWinner), c_orange);
-					
-					startStop();
-				}
-			}
-			else
-			{		
-				log(string("Round {0}/16", rounds));
-			}
-			
-			with(ui)
-			{
-				toStartTimer.setContent("3");
-				toStartTimer.setScale(5, 5);
-			}
-			isCountdownActive = true;
-		}
-		
-		scr_vignetteReset();
-	}
-	
-	startStop = function()
-	{
-		isGameOn = !isGameOn;
-		
-		if (isGameOn)
-		{
-			for (var i = 0; i < array_length(players); i++)
-			{
-				players[i].points = 0;
-			}
-			
-			players[0].instance.isChasing = true;
-			players[1].instance.isChasing = false;
-			
-			rounds = 0;
-			chaseTime = maximumChaseTime;
-			
-			playerWasCaught = false;
-			
-			reset();
-		}
-		
-		whoIsChasingTagPosition[0] = players[0].instance.x;
-		whoIsChasingTagPosition[1] = players[0].instance.y;
-	}
-	
-	gameLogic = function()
-	{
-		if (isGameOn and !isCountdownActive)
-		{
-			chaseTime--;
-			
-			for (var i = 0; i < 4; i++)
-			{
-				if ((chaseTime - (i * 40)) mod (maximumChaseTime div changesPerChase) == 0)
-				{
-					vignettePulse = true;
-					
-					if (i == 3)
-					{
-						audio_play_sound(sn_gravityChangeWarning, 0, false);
-					}
-				}
-			}
-			
-			if (vignettePulse)
-			{
-				scr_vignettePulse();
-			}
-			else
-			{
-				if (pulseCounter == 0)
-				{
-					scr_vignettePullBack();
-				}
-			}
-		
-			if (chaseTime mod (maximumChaseTime div changesPerChase) == 0)
-			{
-				isGravitationOn = !isGravitationOn;
-				scr_gravitationChange();
-				log("CHANGE!", c_yellow);
-			}
-			
-			if (chaseTime <= 0)
-			{
-				with(o_char)
-				{
-					if (!isChasing)
-					{
-						log(string("Player {0} ESCAPED!", player), color);
-					}
-				}
-				
-				players[!whoIsChasing].points++;
-				
-				reset();
-			}
-		}
-	}
-	
-	caught = function()
-	{
-		log(string("Player {0} CAUGHT!", whoIsChasing), players[whoIsChasing].instance.color);
-		
-		whoIsChasingTagPosition[0] = players[whoIsChasing].instance.x;
-		whoIsChasingTagPosition[1] = players[whoIsChasing].instance.y;
-		
-		whoIsChasing = !whoIsChasing;
-		playerWasCaught = true;
-	
-		reset();
-	}
-}
-
-
 function setPlayersDefaultMovementRules()
 {
 	maximumDefaultSpeed = 6;
@@ -473,17 +257,4 @@ function setPlayersDefaultMovementRules()
 	maximumObstacleJumpForce = 10;
 	minimumObstacleJumpForce = 5;
 	maximumJumpBuffor = 10;
-}
-
-function isEveryoneReady()
-{
-    for(var i = 0; i < array_length(players); i++)
-    {
-        if (!players[i].instance.isReady)
-        {
-            return false;
-        }
-    }
-    
-    return true;
 }

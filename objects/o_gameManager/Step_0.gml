@@ -1,11 +1,11 @@
-updateUI();
-
 if (input_check_pressed("debugPlayKey"))
 {
 	startStop();
 }
 
-gameLogic();
+ui.step();
+uiState();
+logicState();
 
 if (alarm[0] == -1 and false)
 {

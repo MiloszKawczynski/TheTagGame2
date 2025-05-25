@@ -4,7 +4,8 @@ if (place_meeting(x, y, o_start))
 	z = 8;
 }
 
-if (!o_gameManager.isCountdownActive)
+if (o_gameManager.logicState == o_gameManager.freeState
+    or o_gameManager.logicState == o_gameManager.gameState)
 {
 	if (o_gameManager.isGravitationOn)
 	{
@@ -207,7 +208,7 @@ else
 
 skillEnergy = clamp(skillEnergy, 0, 1);
 
-if (o_gameManager.whoIsChasing == player)
+if (o_gameManager.logicState == o_gameManager.gameState and o_gameManager.whoIsChasing == player)
 {
 	nearestPlayer = instance_nearest_notme(x, y, o_char);
 
@@ -297,11 +298,4 @@ else
 if (!isReady and input_check_long_pressed("interactionKey", player))
 {
     isReady = true;
-    with(o_gameManager)
-    {
-        if (isEveryoneReady())
-        {
-            startStop();
-        }
-    }
 }
