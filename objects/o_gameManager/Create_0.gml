@@ -10,6 +10,7 @@ setPlayersDefaultMovementRules();
 
 createUI();
 
+setupUIStates();
 cullx1 = 0;
 cullx2 = 0;
 cully1 = 0;
