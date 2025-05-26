@@ -11,6 +11,7 @@ if (player == 0)
     pasive.wallJump = true;
 	
 	portrait = 1;
+    art = sVN_adam;
 }
 
 if (player == 1)
@@ -20,6 +21,7 @@ if (player == 1)
 	pasive = new o_gameManager.pasiveSkills();
 	
 	portrait = 2;
+    art = sVN_trickster;
 }
 
 o_gameManager.players[player] = 
@@ -27,6 +29,20 @@ o_gameManager.players[player] =
 	instance: id,
 	points: 0
 };
+
+var playerId = player;
+var playrtArt = art;
+with(o_gameManager.ui)
+{
+    if (playerId == 0)
+    {
+        leftFullBodyPortrait.state.setSpriteSheet(playrtArt, 0);
+    }
+    else 
+    {
+    	rightFullBodyPortrait.state.setSpriteSheet(playrtArt, 0);
+    }
+}
 
 maximumDefaultSpeedModificator = 0;
 accelerationModificator = 0;

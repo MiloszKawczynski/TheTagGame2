@@ -1,7 +1,8 @@
-function scr_follow_one_character()
+function scr_follow_one_character(id = 0)
 {
-	x = o_char.x;
-	y = o_char.y;
+    var char = o_gameManager.players[id].instance;
+	x = char.x;
+	y = char.y;
 	
 	if (!instance_exists(o_debugController) or (global.debugAutoCamera and !global.debugEdit))
 	{
