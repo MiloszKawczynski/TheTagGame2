@@ -311,10 +311,11 @@ function setupLogicStates()
         	scr_vignettePullBack();
         }
         
-        Camera.Zoom = 1
+        o_cameraTarget.cameraMarginFactor = 1;
         
         if (whoIsChasingStage == 3)
         {
+            o_cameraTarget.cameraMarginFactor = 2;
             reset();
             advanceToNextRound();
         }
