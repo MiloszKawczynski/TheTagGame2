@@ -128,6 +128,7 @@ function createUI()
 	
 	imChasingSystem = part_system_copy(ps_imChasing, 0);
 	imChasingType = part_type_copy(ps_imChasing, 0);
+	iChatchedType = part_type_copy(ps_iCatched, 0);
 	part_emitter_type(imChasingSystem, 0, imChasingType);
 	part_system_automatic_draw(imChasingSystem, false);
 }
@@ -153,6 +154,19 @@ function drawUI()
     
     	draw_sprite_ext(s_isChasingTag, 3, pos[0], pos[1] - 60 / Camera.Zoom, (0.4 * whoIsChasingTagScale) / Camera.Zoom, (0.4 * whoIsChasingTagScale) / Camera.Zoom, 0, c_white, 1);
     }
+    
+    if (uiState == UIbreathState)
+    {
+        var shockPositionPlayer = players[whoIsChasing].instance;
+        var shockPosition = array_create(3);
+        shockPosition[0] = shockPositionPlayer.x;
+        shockPosition[1] = shockPositionPlayer.y;
+        shockPosition[2] = 0;
+        
+        var shockGUIPosition = world_to_gui(shockPosition[0], shockPosition[1], shockPosition[2]);
+        
+        draw_sprite_ext(s_shockBubble, 0, shockGUIPosition[0], shockGUIPosition[1], shockScale / Camera.Zoom, shockScale / Camera.Zoom, 0, c_white, 1);
+    }
 }
 
 function setGameRulesValues()
@@ -171,6 +185,7 @@ function setGameRulesValues()
 	whoIsChasingTagPosition = [0, 0, 0];
 	whoIsChasingTagScale = 1;
 	whoIsChasingStage = 1;
+    shockScale = 2;
 		
 	vignetteTime = 0;
 	vignettePulse = false;
