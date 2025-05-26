@@ -300,7 +300,10 @@ function setupLogicStates()
             
             scr_vignetteReset();
             vignettePulse = true;
+            shockScale = 4;
         }
+        
+        shockScale = lerp(shockScale, 0, 0.25);
         
         if (vignettePulse)
         {
@@ -529,9 +532,10 @@ function setupLogicStates()
     function caught()
 	{
         var instTo = players[!whoIsChasing].instance;
-        part_type_color1(imChasingType, instTo.color);
+        part_type_color1(imChasingType, players[!whoIsChasing].instance.color);
         part_emitter_region(imChasingSystem, 0, instTo.x - 16, instTo.x + 16, instTo.y - 16, instTo.y + 16, ps_shape_rectangle, ps_distr_linear);
         part_emitter_burst(imChasingSystem, 0, imChasingType, 32);
+        part_emitter_burst(imChasingSystem, 0, iChatchedType, 32);
         
 		log(string("Player {0} CAUGHT!", whoIsChasing), players[whoIsChasing].instance.color);
 		
