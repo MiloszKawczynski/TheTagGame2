@@ -147,10 +147,13 @@ function setupUIStates()
         var scale = countDownScale;
         var content = countDownContent;
         
-        with(ui)
-    	{
-            toStartTimer.setScale(scale, scale);
-            toStartTimer.setContent(string(content));
+        if (whoIsChasingStage >= 2)
+        {
+            with(ui)
+    	    {
+                toStartTimer.setScale(scale, scale);
+                toStartTimer.setContent(string(content));
+            }
         }
     }
     
@@ -418,6 +421,11 @@ function setupLogicStates()
     
     function countdownLogic()
     {
+        if (whoIsChasingStage < 2)
+        {
+            return false;
+        }
+        
         countDownScale = lerp(countDownScale, 0, 0.075);
             
         if (countDownScale <= 0.1)
