@@ -6,7 +6,8 @@ if (place_meeting(x, y, o_start))
 
 if (o_gameManager.logicState == o_gameManager.freeState
     or o_gameManager.logicState == o_gameManager.gameState
-    or o_gameManager.logicState == o_gameManager.breathState)
+    or o_gameManager.logicState == o_gameManager.breathState
+    or o_gameManager.logicState == o_gameManager.pointState)
 {
 	if (o_gameManager.isGravitationOn)
 	{

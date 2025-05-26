@@ -36,6 +36,13 @@ function setupUIStates()
         updateStamina();
     }
     
+    UIPointState = function()
+    {
+        updateBar();
+        updateStamina();
+        updateFullBodyPortrait();
+    }
+    
     //--- UI update functions
 
     function updateBar()
@@ -221,6 +228,22 @@ function setupUIStates()
             }
         }
     }
+
+    function updateFullBodyPortrait()
+    {
+        var hide = false;
+        
+        if (breathTimer < 0.2)
+        {
+            hide = true;
+        }
+        
+        with(ui)
+    	{
+            leftFullBodyPortrait.posInGridX = lerp(leftFullBodyPortrait.posInGridX, 0 + lerp(-4, 1, other.whoIsChasing * !hide), 0.1);
+            rightFullBodyPortrait.posInGridX = lerp(rightFullBodyPortrait.posInGridX, 10 + lerp(4, -1, !other.whoIsChasing * !hide), 0.1);
+        }
+    }
 }
 
 //--- logic States
@@ -322,6 +345,45 @@ function setupLogicStates()
         if (whoIsChasingStage == 3)
         {
             o_cameraTarget.cameraMarginFactor = 2;
+            reset();
+            advanceToNextRound();
+        }
+    }
+    
+    pointState = function()
+    {
+        if (logicOnce)
+        {
+            logicOnce = false;
+            
+            uiState = changeState(true, uiState, UIPointState);
+            
+            scr_vignetteReset();
+            vignettePulse = true;
+            
+            breathTimer = 1;
+            
+            audio_play_sound(choose(sn_point_1, sn_point_3), 0, false);
+        }
+        
+        Camera.Zoom = 1;
+        
+        if (vignettePulse)
+        {
+            scr_vignettePlayerPulse(12, !whoIsChasing);
+        }
+        else 
+        {
+            if (breathTimer < 0.2)
+            {
+        	    scr_vignettePullBack();
+            }
+        }
+        
+        breathTimer = armez_timer(breathTimer, -0.007, 0);
+        
+        if (breathTimer == 0)
+        {
             reset();
             advanceToNextRound();
         }
@@ -495,8 +557,9 @@ function setupLogicStates()
             
             players[!whoIsChasing].points++;
             
-            reset();
-            advanceToNextRound();
+            
+            logicOnce = true;
+            logicState = changeState(true, logicState, pointState);
         }
     }
     

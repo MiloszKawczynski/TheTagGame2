@@ -2,7 +2,14 @@ if (array_length(o_gameManager.players) != 0)
 {
     if (instance_number(o_char) > 1)
     {
-        scr_follow_many_characters();
+        if (o_gameManager.logicState == o_gameManager.pointState)
+        {
+            scr_follow_one_character(!o_gameManager.whoIsChasing);
+        }
+        else 
+        {
+        	scr_follow_many_characters();
+        }
     }
     else
     {

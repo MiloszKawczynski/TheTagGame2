@@ -103,6 +103,16 @@ function createUI()
 		mainLayer.addComponent(0, 0, rightStamina);
 		
 		mainLayer.addComponent(5, 5, toStartTimer);
+        
+        leftFullBodyPortrait = new Output(0, 0);
+		rightFullBodyPortrait = new Output(0, 0);
+        
+        leftFullBodyPortrait.setScale(0.225, 0.225);
+        rightFullBodyPortrait.setScale(-0.225, 0.225);
+        
+        mainLayer.addComponent(-2, 5, leftFullBodyPortrait);
+		mainLayer.addComponent(12, 5, rightFullBodyPortrait);
+        
 	
 		pushLayer(mainLayer);
 	}
