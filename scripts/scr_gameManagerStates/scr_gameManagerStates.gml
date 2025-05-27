@@ -363,7 +363,7 @@ function setupLogicStates()
             
             breathTimer = 1;
             
-            audio_play_sound(choose(sn_point_1, sn_point_3), 0, false);
+            audio_play_sound(choose(sn_point_0, sn_point_1, sn_point_2, sn_point_3), 0, false);
         }
         
         Camera.Zoom = 1;
