@@ -557,7 +557,22 @@ function setupLogicStates()
             
             players[!whoIsChasing].points++;
             
+            var winnerColor = merge_color(players[whoIsChasing].instance.color, players[!whoIsChasing].instance.color, 0.5);
             
+            if (players[!whoIsChasing].points > players[whoIsChasing].points)
+            {
+                winnerColor = players[!whoIsChasing].instance.color;
+            }
+    else if (players[!whoIsChasing].points < players[whoIsChasing].points)
+            {
+                winnerColor = players[whoIsChasing].instance.color;
+            }
+            
+            with(o_ledPanel)
+            {
+                setColorTo(winnerColor);
+            }
+                    
             logicOnce = true;
             logicState = changeState(true, logicState, pointState);
         }
