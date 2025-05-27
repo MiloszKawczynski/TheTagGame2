@@ -443,7 +443,7 @@ function setupLogicStates()
     function stop()
     {
         logicOnce = true;
-        logicState = changeState(true, freeState, countdownState);
+        logicState = changeState(true, logicState, freeState);
     
         whoIsChasingTagPosition[0] = players[0].instance.x;
         whoIsChasingTagPosition[1] = players[0].instance.y;
