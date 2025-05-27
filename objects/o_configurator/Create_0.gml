@@ -1,3 +1,5 @@
+randomize();
+
 global.gameLevelName = "";
 enum staticBuffersOptionType
 {
