@@ -49,7 +49,7 @@ function setupUIStates()
     {
         with(ui)
     	{
-            roundNumber.setContent(string("Round {0}/16", other.rounds));
+            roundNumber.setContent(string("Round {0}/16", other.rounds + 1));
             leftPoints.setContent(string(other.players[0].points));
             roundTimer.setValue(other.chaseTime / other.maximumChaseTime);
             
