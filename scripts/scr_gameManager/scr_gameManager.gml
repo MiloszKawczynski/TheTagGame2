@@ -108,9 +108,9 @@ function createUI()
         
         isChasingCircleTag.setScale(0.175, 0.175);
 		
-		mainLayer.addComponent(5, 1.05, chaseBarGroup);
-		mainLayer.addComponent(0, 0, leftStamina);
+        mainLayer.addComponent(0, 0, leftStamina);
 		mainLayer.addComponent(0, 0, rightStamina);
+		mainLayer.addComponent(5, 1.05, chaseBarGroup);
 		
 		mainLayer.addComponent(5, 5, toStartTimer);
         
@@ -160,8 +160,6 @@ function drawUI()
 		return;
 	}
 	
-	ui.draw();
-	
     if (uiState == UIcountdownState
         or uiState == UIbreathState)
     {
@@ -187,6 +185,8 @@ function drawUI()
         
         draw_sprite_ext(s_shockBubble, 0, shockGUIPosition[0], shockGUIPosition[1], shockScale / Camera.Zoom, shockScale / Camera.Zoom, 0, c_white, 1);
     }
+    
+    ui.draw();
 }
 
 function setGameRulesValues()
