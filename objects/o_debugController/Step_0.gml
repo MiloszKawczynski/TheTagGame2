@@ -145,3 +145,11 @@ if (keyboard_check_pressed(ord("P")))
 
 	previousTab = -1;
 }
+
+if (global.debugEdit)
+{
+	if (place_meeting(x, y, o_collision))
+	{
+		instance_destroy();
+	}
+}
