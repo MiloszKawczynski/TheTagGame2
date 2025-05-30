@@ -950,6 +950,7 @@
     {"id":{"name":"s_cleaVault","path":"sprites/s_cleaVault/s_cleaVault.yy",},},
     {"id":{"name":"s_cleaWalk","path":"sprites/s_cleaWalk/s_cleaWalk.yy",},},
     {"id":{"name":"s_crowd","path":"sprites/s_crowd/s_crowd.yy",},},
+    {"id":{"name":"s_crowdCorner","path":"sprites/s_crowdCorner/s_crowdCorner.yy",},},
     {"id":{"name":"s_crowdSide","path":"sprites/s_crowdSide/s_crowdSide.yy",},},
     {"id":{"name":"s_cube","path":"sprites/s_cube/s_cube.yy",},},
     {"id":{"name":"s_cubeCage","path":"sprites/s_cubeCage/s_cubeCage.yy",},},
