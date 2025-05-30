@@ -1,4 +1,4 @@
-if (!global.debug)
+if (!DEBUG)
 {
     instance_destroy();
 }
@@ -11,7 +11,6 @@ fontRoboto = ImGui.AddFontFromFile("fonts/Roboto-Regular.ttf", 18);
 init = true;
 ImGui.ConfigFlagToggle(ImGuiConfigFlags.DockingEnable);	
 
-global.debug = true;
 global.debugCameraAxis = false;
 global.debugAutoCamera = true;
 global.debugEdit = false;

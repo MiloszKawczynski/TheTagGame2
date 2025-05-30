@@ -53,7 +53,7 @@ function scr_topDownMovement()
 	}
 	
 	speed = point_distance(0, 0, horizontalSpeed, verticalSpeed);
-	if (instance_exists(o_debugController) and global.debugCameraAxis and !global.debugEdit)
+	if (instance_exists(o_debugController) and global.debugCameraAxis and !DEBUG)
 	{
 		direction = point_direction(0, 0, horizontalSpeed, verticalSpeed) + Camera.Forward;
 	}

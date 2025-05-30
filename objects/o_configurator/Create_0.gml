@@ -1,3 +1,6 @@
+#macro Release:DEBUG false
+#macro Debug:DEBUG true 
+
 randomize();
 
 global.gameLevelName = "";
@@ -13,9 +16,12 @@ global.loadStaticBuffers = false;
 global.createStaticBuffers = false;
 global.saveStaticBuffers = false;
 
-global.debug = false;
+global.lockOnStart = true;
 
-global.lockOnStart = !global.debug
+if (DEBUG)
+{
+    global.lockOnStart = false;
+}
 
 global.c_darkBlue = make_color_rgb(95, 102, 150);
 global.c_brown = make_color_rgb(176, 112, 74);
