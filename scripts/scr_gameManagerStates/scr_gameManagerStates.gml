@@ -72,31 +72,21 @@ function setupUIStates()
             if (other.isGravitationOn)
             {
                 pos = world_to_gui(
-                    leftPlayer.x + leftPlayer.image_xscale * 28 + leftPlayer.hspeed,
-                    leftPlayer.y - 20 + leftPlayer.vspeed,
+                    leftPlayer.x + (6 - 25) + leftPlayer.hspeed,
+                    leftPlayer.y + leftPlayer.vspeed + 20,
                     leftPlayer.z);
             }
             else 
             {
-                if (sign(leftPlayer.image_xscale) == 1) 
-                {
-                    pos = world_to_gui(
-                        leftPlayer.x + leftPlayer.image_xscale * 16 + leftPlayer.hspeed,
-                        leftPlayer.y - 48 + leftPlayer.vspeed,
-                        leftPlayer.z);
-                }
-                else 
-                {
-                    pos = world_to_gui(
-                        leftPlayer.x + leftPlayer.image_xscale * 36 + leftPlayer.hspeed,
-                        leftPlayer.y - 40 + leftPlayer.vspeed,
-                        leftPlayer.z);
-                }
+                pos = world_to_gui(
+                    leftPlayer.x + (6 - 25) + leftPlayer.hspeed,
+                    leftPlayer.y + leftPlayer.vspeed,
+                    leftPlayer.z);
             }
             
             leftStamina.setValue(leftPlayer.skillEnergy);
             leftStamina.setShift(pos[0], pos[1]);
-            leftStamina.setScale((0.8 * leftPlayer.image_xscale) / Camera.Zoom, 0.8 / Camera.Zoom);
+            leftStamina.setScale(0.8 / Camera.Zoom, 0.8 / Camera.Zoom);
             if (leftPlayer.skillEnergy == 1)
             {
                 leftStamina.setAlpha(lerp(leftStamina.alpha, 0, 0.2));
@@ -115,31 +105,21 @@ function setupUIStates()
                 if (other.isGravitationOn)
                 {
                     pos = world_to_gui(
-                        rightPlayer.x + rightPlayer.image_xscale * 28 + rightPlayer.hspeed,
-                        rightPlayer.y - 20 + rightPlayer.vspeed,
+                        rightPlayer.x + (6 - 25) + rightPlayer.hspeed,
+                        rightPlayer.y + rightPlayer.vspeed + 20,
                         rightPlayer.z);
                 }
                 else 
                 {
-                    if (sign(rightPlayer.image_xscale) == 1) 
-                    {
-                        pos = world_to_gui(
-                            rightPlayer.x + rightPlayer.image_xscale * 16 + rightPlayer.hspeed,
-                            rightPlayer.y - 48 + rightPlayer.vspeed,
-                            rightPlayer.z);
-                    }
-                    else 
-                    {
-                        pos = world_to_gui(
-                            rightPlayer.x + rightPlayer.image_xscale * 36 + rightPlayer.hspeed,
-                            rightPlayer.y - 40 + rightPlayer.vspeed,
-                            rightPlayer.z);
-                    }
+                    pos = world_to_gui(
+                        rightPlayer.x + (6 - 25) + rightPlayer.hspeed,
+                        rightPlayer.y + rightPlayer.vspeed,
+                        rightPlayer.z);
                 }
                 
                 rightStamina.setValue(rightPlayer.skillEnergy);
                 rightStamina.setShift(pos[0], pos[1]);
-                rightStamina.setScale((0.8 * rightPlayer.image_xscale) / Camera.Zoom, 0.8 / Camera.Zoom);
+                rightStamina.setScale(0.8 / Camera.Zoom, 0.8 / Camera.Zoom);
                 if (rightPlayer.skillEnergy == 1)
                 {
                     rightStamina.setAlpha(lerp(rightStamina.alpha, 0, 0.2));
