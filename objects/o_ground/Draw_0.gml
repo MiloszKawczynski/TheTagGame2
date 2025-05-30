@@ -13,19 +13,6 @@ if (!global.debugEdit and alarm[0] == -1)
 	fauxton_model_draw_override(groundModel);
 	shader_reset();
 	
-	shader_set(shd_defaultGround);
-	
-	RenderPipeline.default_world_shader_set(RenderPipeline.uniGround);
-	
-	shader_set_uniform_f_array(colorUniform, 
-		[color_get_red(color2) / 255,
-		color_get_green(color2) / 255,
-		color_get_blue(color2) / 255]
-	)
-	
-	fauxton_model_draw_override(groundModel2);
-	shader_reset();
-	
 	shader_set(shd_shadows);
 	shader_set_uniform_f(sizeUniform, texelW, texelH);
 	shader_set_uniform_f(thickUniform, 8);
