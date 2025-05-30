@@ -931,6 +931,7 @@
     {"id":{"name":"s_characterSelection","path":"sprites/s_characterSelection/s_characterSelection.yy",},},
     {"id":{"name":"s_chaseBar","path":"sprites/s_chaseBar/s_chaseBar.yy",},},
     {"id":{"name":"s_chaseBarCharacterCircle","path":"sprites/s_chaseBarCharacterCircle/s_chaseBarCharacterCircle.yy",},},
+    {"id":{"name":"s_chaseBarPointsPocket","path":"sprites/s_chaseBarPointsPocket/s_chaseBarPointsPocket.yy",},},
     {"id":{"name":"s_chaseBarPortraits","path":"sprites/s_chaseBarPortraits/s_chaseBarPortraits.yy",},},
     {"id":{"name":"s_chaseBarTimer","path":"sprites/s_chaseBarTimer/s_chaseBarTimer.yy",},},
     {"id":{"name":"s_chaseBarTimerTexture","path":"sprites/s_chaseBarTimerTexture/s_chaseBarTimerTexture.yy",},},

@@ -53,6 +53,9 @@ function setupUIStates()
             leftPoints.setContent(string(other.players[0].points));
             roundTimer.setValue(other.chaseTime / other.maximumChaseTime);
             
+            chaseBarPointsPocketLeft.setColor(o_gameManager.players[0].instance.color);
+            chaseBarPointsPocketRight.setColor(o_gameManager.players[1].instance.color);
+            
             isChasingCircleTag.posInGridX = lerp(isChasingCircleTag.posInGridX, 1.05 * lerp(-1, 1, other.whoIsChasing), 0.1);
             isChasingCircleTag.scaleX = lerp(isChasingCircleTag.scaleX, 0.175 * lerp(1, -1, other.whoIsChasing), 0.1);
         }

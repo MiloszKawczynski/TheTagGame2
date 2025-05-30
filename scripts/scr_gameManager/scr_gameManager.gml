@@ -29,6 +29,12 @@ function createUI()
 		
 		chaseBar = new Output(, -10);
 		chaseBar.setSprite(s_chaseBar);
+        
+        chaseBarPointsPocketLeft = new Output(, -10);
+		chaseBarPointsPocketLeft.setSprite(s_chaseBarPointsPocket);
+        
+        chaseBarPointsPocketRight = new Output(, -10);
+		chaseBarPointsPocketRight.setSprite(s_chaseBarPointsPocket);
 		
 		roundNumber = new Text("Round 0/16", f_chaseBar, fa_center, fa_middle,, -7);
 		roundNumber.setColor(c_white);
@@ -78,6 +84,8 @@ function createUI()
 		chaseBarGroup = new Group();
 		chaseBarGroup.setGrid(1, 1);
 		chaseBarGroup.addComponent(0, 0, chaseBar);
+		chaseBarGroup.addComponent(0, 0, chaseBarPointsPocketLeft);
+		chaseBarGroup.addComponent(0, 0, chaseBarPointsPocketRight);
 		chaseBarGroup.addComponent(-1, -1, roundTimer);
 		chaseBarGroup.addComponent(-1.15, -0.45, leftPlayerGroup);
 		chaseBarGroup.addComponent(1.15, -0.45, rightPlayerGroup);
@@ -86,6 +94,8 @@ function createUI()
 		chaseBarGroup.addComponent(0.75, 0, rightPoints);
 		chaseBarGroup.addComponent(-1.05, 0.1, isChasingCircleTag);
 		chaseBarGroup.setProperties(0.2, 0.2);
+        
+        chaseBarPointsPocketRight.setScale(-0.2, 0.2);
 		
 		leftPlayerGroup.setProperties(0.125, 0.125);
 		rightPlayerGroup.setProperties(0.125, 0.125);
