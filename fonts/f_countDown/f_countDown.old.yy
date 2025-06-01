@@ -1,6 +1,6 @@
 {
   "$GMFont":"",
-  "%Name":"f_test",
+  "%Name":"f_countDown",
   "AntiAlias":1,
   "applyKerning":0,
   "ascender":30,
@@ -8,6 +8,11 @@
   "bold":false,
   "canGenerateBitmap":true,
   "charset":0,
+  "ConfigValues":{
+    "Release":{
+      "textureGroupId":"{ \"name\":\"Default\", \"path\":\"texturegroups/Default\" }",
+    },
+  },
   "first":0,
   "fontName":"Consolas",
   "glyphOperations":0,
@@ -136,7 +141,7 @@
   "last":0,
   "lineHeight":37,
   "maintainGms1Font":false,
-  "name":"f_test",
+  "name":"f_countDown",
   "parent":{
     "name":"1_Fonts",
     "path":"folders/1_Fonts.yy",

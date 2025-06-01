@@ -396,6 +396,7 @@
     {"id":{"name":"atf_smallFont","path":"fonts/atf_smallFont/atf_smallFont.yy",},},
     {"id":{"name":"f_chaseBar","path":"fonts/f_chaseBar/f_chaseBar.yy",},},
     {"id":{"name":"f_chaseBarPoints","path":"fonts/f_chaseBarPoints/f_chaseBarPoints.yy",},},
+    {"id":{"name":"f_countDown","path":"fonts/f_countDown/f_countDown.yy",},},
     {"id":{"name":"f_test","path":"fonts/f_test/f_test.yy",},},
     {"id":{"name":"fnt_consolas","path":"fonts/fnt_consolas/fnt_consolas.yy",},},
     {"id":{"name":"fnt_demo_font","path":"fonts/fnt_demo_font/fnt_demo_font.yy",},},

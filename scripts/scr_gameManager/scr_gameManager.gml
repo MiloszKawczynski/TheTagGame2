@@ -42,12 +42,12 @@ function createUI()
 		leftPortrait = new Output(15, -20);
 		leftPortrait.state.setSpriteSheet(s_chaseBarPortraits, 0);
 		
-		leftPoints = new Text("0", f_chaseBarPoints, fa_center, fa_middle, 0, -6.5);
+		leftPoints = new Text("0", f_chaseBarPoints, fa_center, fa_middle, 0, -6);
 		
 		rightPortrait = new Output(-15, -20);
 		rightPortrait.state.setSpriteSheet(s_chaseBarPortraits, 0);
 		
-		rightPoints = new Text("0", f_chaseBarPoints, fa_center, fa_middle, 0, -6.5);
+		rightPoints = new Text("0", f_chaseBarPoints, fa_center, fa_middle, 0, -6);
 		
 		roundTimer = new GradientBar(1, -5);
 		roundTimer.setColor(c_red);
@@ -69,7 +69,7 @@ function createUI()
 			scr_makeStaminaBar();
 		}
 		
-		toStartTimer = new Text("", f_test);
+		toStartTimer = new Text("", f_countDown);
 		
 		leftPlayerGroup = new Group();
 		leftPlayerGroup.setGrid(1, 1);
