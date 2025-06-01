@@ -31,17 +31,20 @@ maximumObstacleJumpForceModificator = 0;
 minimumObstacleJumpForceModificator = 0;
 maximumJumpBufforModificator = 0;
 
-function setupStats()
+function setupStats(isCharacterSet)
 {
-    var characterReference;
-    characterReference = global.characters[characterID];
-    
-    color = characterReference.color;
-    skill = characterReference.active;
-    pasive = characterReference.pasive;
-    art = characterReference.art;
-    miniArt = characterReference.miniArt;
-    vignetteID = characterReference.vignetteID;
+    if (isCharacterSet)
+    {
+        var characterReference;
+        characterReference = global.characters[characterID];
+        
+        color = characterReference.color;
+        skill = characterReference.active;
+        pasive = characterReference.pasive;
+        art = characterReference.art;
+        miniArt = characterReference.miniArt;
+        vignetteID = characterReference.vignetteID;
+    }
     
     var playerId = player;
     var playerArt = art;
@@ -122,7 +125,7 @@ function setupStats()
     runTrailSurface = undefined;
 }
 
-setupStats();
+setupStats(true);
 
 maximumSpeed = maximumDefaultSpeed;
 desiredHorizontalDirection = 0;

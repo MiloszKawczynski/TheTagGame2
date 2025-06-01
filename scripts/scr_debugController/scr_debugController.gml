@@ -316,6 +316,7 @@ function scr_playerModificators()
 				if (ImGui.Selectable(_characher.name, isSelected))
 				{
 					choosedPlayer.characterID = i;
+                    choosedPlayer.setupStats(true);
 				}
 			}
 		
@@ -392,7 +393,7 @@ function scr_playerModificators()
         
         if (ImGui.Button("Apply##" + string(i)))
         {
-            choosedPlayer.setupStats();
+            choosedPlayer.setupStats(false);
         }
 		
 		returnList = scr_fileSearchList("modificators", modificatorsPresetFileName, modificatorsPresetsFiles);
