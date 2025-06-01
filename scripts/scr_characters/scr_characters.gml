@@ -17,7 +17,12 @@ function scr_createCharacters()
 	{
 		adam,
 		riley,
+        miriam,
 		trickster,
+        david,
+        feather,
+        snowWhite,
+        karen,
         clea,
 	}
    
@@ -25,17 +30,32 @@ function scr_createCharacters()
     adam = new character("Adam", sVN_adam, 1, global.c_runnersUp, sprint, adamPasive);
     
     var rileyPasive = new pasiveSkills();
-    riley = new character("Riley", sVN_adam, 1, global.c_runnersUp, drift, rileyPasive);
+    riley = new character("Riley", sVN_riley, 1, global.c_runnersUp, drift, rileyPasive);
+    
+    var miriamPasive = new pasiveSkills();
+    miriam = new character("Miriam", sVN_miriam, 1, global.c_gravitieri, sprint, miriamPasive);
     
     var tricksterPasive = new pasiveSkills();
     tricksterPasive.wallJump = true;
     trickster = new character("Trickster", sVN_trickster, 3, global.c_chaosCrew, drift, tricksterPasive);
     
+    var davidPasive = new pasiveSkills();
+    david = new character("David", sVN_david, 2, global.c_runnersUp, sprint, davidPasive);
+    
+    var featherPasive = new pasiveSkills();
+    feather = new character("Feather", sVN_feather, 2, global.c_gravitieri, float, featherPasive);
+    
+    var snowWhitePasive = new pasiveSkills();
+    snowWhite = new character("Snow White", sVN_snowWhite, 2, global.c_gravitieri, dash, snowWhitePasive);
+    
+    var karenPasive = new pasiveSkills();
+    karen = new character("Karen", sVN_karen, 2, global.c_theRunners, dash, karenPasive);
+    
     var cleaPasive = new pasiveSkills();
     clea = new character("Clea", sVN_clea, 2, global.c_gravitieri, sprint, cleaPasive);
     
     global.characters = array_create();
-    array_push(global.characters, adam, riley, trickster, clea);
+    array_push(global.characters, adam, riley, miriam, trickster, david, snowWhite, karen, clea);
 }
 
 function setActiveSkills()
