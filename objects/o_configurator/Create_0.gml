@@ -23,6 +23,7 @@ if (DEBUG)
     global.lockOnStart = false;
 }
 
+global.c_discordBlack = make_color_rgb(17, 17, 17);
 global.c_darkBlue = make_color_rgb(95, 102, 150);
 global.c_brown = make_color_rgb(176, 112, 74);
 global.c_skin = make_color_rgb(229, 193, 153);

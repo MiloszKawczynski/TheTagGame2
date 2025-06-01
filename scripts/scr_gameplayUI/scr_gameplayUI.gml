@@ -57,8 +57,6 @@ function scr_makeStaminaBar()
 
 function scr_makeTimerBar()
 {
-    changeColorTimer = 0;
-    
 	var drawTimerBar = function()
 	{					
 		var widthBackground = sprite_get_width(s_chaseBarTimer);
@@ -81,23 +79,10 @@ function scr_makeTimerBar()
 		draw_sprite(s_chaseBarTimer, 0, widthBackground / 2, heightBackground / 2);
 		gpu_set_colorwriteenable(1, 1, 1, 0);
         
-        var colorHueLeft = global.c_neon;
-		var colorHueRight = global.c_darkBlue;
+        var colLeft = color_hue_change(global.c_darkBlue, -20);
+        var colRight = color_hue_change(global.c_darkBlue, 20);
         
-        if (other.whoIsChasing)
-        {
-            changeColorTimer = lerp(changeColorTimer, 1, 0.1);
-            colorHueLeft = merge_color(global.c_neon, global.c_darkBlue, changeColorTimer);
-		    colorHueRight = merge_color(global.c_darkBlue, global.c_neon, changeColorTimer);
-        }
-        else
-        {
-            changeColorTimer = lerp(changeColorTimer, 0, 0.1);
-        	colorHueLeft = merge_color(global.c_neon, global.c_darkBlue, changeColorTimer);
-		    colorHueRight = merge_color(global.c_darkBlue, global.c_neon, changeColorTimer);
-        }
-		
-		draw_rectangle_color(x1, y1, x2, y2, colorHueLeft, colorHueRight, colorHueRight, colorHueLeft, false);
+		draw_rectangle_color(x1, y1, x2, y2, colLeft, colRight, colRight, colLeft, false);
 		
 		gpu_set_texrepeat(true);
 		draw_set_color(c_white);
