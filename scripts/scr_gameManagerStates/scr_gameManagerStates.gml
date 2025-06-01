@@ -366,7 +366,8 @@ function setupLogicStates()
             
             breathTimer = 1;
             
-            audio_play_sound(choose(sn_point_0, sn_point_1, sn_point_2, sn_point_3), 0, false);
+            audio_play_sound(choose(sn_oneliner1, sn_oneliner2, sn_oneliner3, sn_oneliner4), 0, false);
+            audio_play_sound(choose(sn_evade1, sn_evade2, sn_evade3), 0, false);
         }
         
         Camera.Zoom = 1;
@@ -620,6 +621,8 @@ function setupLogicStates()
     
     function caught()
 	{
+        audio_play_sound(choose(sn_catch1, sn_catch2, sn_catch3), 0, false);
+        
         var instTo = players[!whoIsChasing].instance;
         part_type_color1(imChasingType, players[!whoIsChasing].instance.color);
         part_emitter_region(imChasingSystem, 0, instTo.x - 16, instTo.x + 16, instTo.y - 16, instTo.y + 16, ps_shape_rectangle, ps_distr_linear);

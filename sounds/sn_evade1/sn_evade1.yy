@@ -1,6 +1,6 @@
 {
   "$GMSound":"",
-  "%Name":"sn_point_2",
+  "%Name":"sn_evade1",
   "audioGroupId":{
     "name":"audiogroup_default",
     "path":"audiogroups/audiogroup_default",
@@ -9,8 +9,8 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":1.509297,
-  "name":"sn_point_2",
+  "duration":4.466349,
+  "name":"sn_evade1",
   "parent":{
     "name":"Sounds",
     "path":"folders/Sounds.yy",
@@ -19,7 +19,7 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"sn_point_2.wav",
+  "soundFile":"sn_evade1.wav",
   "type":0,
   "volume":1.0,
 }

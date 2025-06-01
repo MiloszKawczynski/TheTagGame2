@@ -1,6 +1,6 @@
 {
   "$GMSound":"",
-  "%Name":"sn_point_3",
+  "%Name":"sn_catch2",
   "audioGroupId":{
     "name":"audiogroup_default",
     "path":"audiogroups/audiogroup_default",
@@ -9,8 +9,8 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":1.7647165,
-  "name":"sn_point_3",
+  "duration":4.5288434,
+  "name":"sn_catch2",
   "parent":{
     "name":"Sounds",
     "path":"folders/Sounds.yy",
@@ -19,7 +19,7 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"sn_point_3.wav",
+  "soundFile":"sn_catch2.wav",
   "type":0,
   "volume":1.0,
 }

@@ -1,6 +1,6 @@
 {
   "$GMSound":"",
-  "%Name":"sn_point_1",
+  "%Name":"sn_oneliner1",
   "audioGroupId":{
     "name":"audiogroup_default",
     "path":"audiogroups/audiogroup_default",
@@ -9,8 +9,8 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":1.3235375,
-  "name":"sn_point_1",
+  "duration":2.530975,
+  "name":"sn_oneliner1",
   "parent":{
     "name":"Sounds",
     "path":"folders/Sounds.yy",
@@ -19,7 +19,7 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"sn_point_1.wav",
+  "soundFile":"sn_oneliner1.wav",
   "type":0,
   "volume":1.0,
 }
