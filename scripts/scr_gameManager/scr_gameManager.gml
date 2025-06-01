@@ -127,25 +127,6 @@ function createUI()
 		pushLayer(mainLayer);
 	}
 	
-	characterColorUiUpdate = function()
-	{
-		with(ui)
-		{
-			leftColor.setColor(other.players[0].instance.color);
-			leftPortrait.state.setSpriteSheet(s_chaseBarPortraits, other.players[0].instance.portrait);
-			leftStamina.setColor(other.players[0].instance.color);
-			leftPoints.setColor(other.players[0].instance.color);
-				
-			if (array_length(other.players) == 2)
-			{
-				rightColor.setColor(other.players[1].instance.color);
-				rightPortrait.state.setSpriteSheet(s_chaseBarPortraits, other.players[1].instance.portrait);
-				rightStamina.setColor(other.players[1].instance.color);
-				rightPoints.setColor(other.players[1].instance.color);
-			}
-		}
-	}
-	
 	imChasingSystem = part_system_copy(ps_imChasing, 0);
 	imChasingType = part_type_copy(ps_imChasing, 0);
 	iChatchedType = part_type_copy(ps_iCatched, 0);
@@ -212,53 +193,6 @@ function setGameRulesValues()
 	pulseCounter = 0;
     
     breathTimer = 0;
-}
-
-function setActiveSkills()
-{
-	enum skillTypes
-	{
-		sprint,
-		dash,
-		jumpBack,
-		//gravityManipulation,
-        //teleport,
-        float,
-        drift
-	}
-	
-	skill = function(_name, _usage, _replenish, _value, _rechargePercentage) constructor
-	{
-		name = _name;
-		usage = _usage;
-		replenish = _replenish;
-		value = _value;
-		rechargePercentage = _rechargePercentage;
-	}
-	
-	skills = [];
-	
-	sprint = new skill("sprint", 0.01, 0.01, 0.33, 0);
-	dash = new skill("dash", 1, 0.005, 2, 1);
-	jumpBack = new skill("jump back", 0.33, 0.01, 2, 0.33);
-	gravityManipulation = new skill("gravity manipulation", 0.01, 0.01, 1, 1);
-    teleport = new skill("teleport", 1, 0.005, 20, 1);
-    float = new skill("float", 0.02, 0.005, 5, 0.33);
-    drift = new skill("drift", 0.03, 0.1, 10, 0.33);
-	
-	array_push(skills, sprint, dash, jumpBack, float, drift);
-}
-
-function setPasiveSkills()
-{
-	pasiveSkills = function() constructor
-	{
-		wallJump = false;
-        alwaysPerfectVault = false;
-        noUpHillPenalty = false;
-        airDash = false;
-        autoCatch = false;
-	}
 }
 
 function setPlayersDefaultMovementRules()

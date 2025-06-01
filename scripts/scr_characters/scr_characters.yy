@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_characters",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_characters",
+  "parent":{
+    "name":"5_Scripts",
+    "path":"folders/5_Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

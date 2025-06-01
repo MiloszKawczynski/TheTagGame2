@@ -336,7 +336,7 @@ function setupLogicStates()
         
         if (vignettePulse)
         {
-            scr_vignettePlayerPulse(6, !whoIsChasing);
+            scr_vignettePlayerPulse(6, players[!whoIsChasing].instance.vignetteID);
         }
         else 
         {
@@ -374,7 +374,7 @@ function setupLogicStates()
         
         if (vignettePulse)
         {
-            scr_vignettePlayerPulse(12, !whoIsChasing);
+            scr_vignettePlayerPulse(12, players[!whoIsChasing].instance.vignetteID);
         }
         else 
         {
@@ -567,7 +567,7 @@ function setupLogicStates()
             {
                 winnerColor = players[!whoIsChasing].instance.color;
             }
-    else if (players[!whoIsChasing].points < players[whoIsChasing].points)
+            else if (players[!whoIsChasing].points < players[whoIsChasing].points)
             {
                 winnerColor = players[whoIsChasing].instance.color;
             }

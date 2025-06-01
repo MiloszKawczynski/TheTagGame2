@@ -3,17 +3,6 @@ function scr_topDownMovement()
 	isGrounded = true;
     isAirDashUsed = false;
     jumpNumber = 0;
-	
-	if (isSkillActive and skill == skillTypes.jumpBack)
-	{
-		if (desiredHorizontalDirection * -1 != input_check("rightKey", player) - input_check("leftKey", player)
-		or desiredVerticalDirection * -1 != input_check("downKey", player) - input_check("upKey", player)) 
-		{
-			isSkillActive = false;
-		}
-		
-		isSkillActive--;
-	}
 
 	desiredHorizontalDirection = input_check("rightKey", player) - input_check("leftKey", player);
 	desiredVerticalDirection = input_check("downKey", player) - input_check("upKey", player);
@@ -23,12 +12,6 @@ function scr_topDownMovement()
         desiredHorizontalDirection = 0;
         desiredVerticalDirection = 0;
     }
-	
-	if (isSkillActive and skill == skillTypes.jumpBack)
-	{
-		desiredHorizontalDirection *= -1;
-		desiredVerticalDirection *= -1;
-	}
 	
 	horizontalSpeed += desiredHorizontalDirection * acceleration;
 	verticalSpeed += desiredVerticalDirection * acceleration;
@@ -96,7 +79,7 @@ function scr_topDownMovement()
 	
 	scr_TopDownObstaclesInteraction();
 	
-    if !(skill == skillTypes.float and isSkillActive)
+    if !(skillType == skillTypes.float and isSkillActive)
     {
     	if (maximumSpeed > maximumDefaultSpeed)
     	{
@@ -111,7 +94,7 @@ function scr_topDownMovement()
     	}
     }
     
-    if (skill == skillTypes.drift and isSkillActive)
+    if (skillType == skillTypes.drift and isSkillActive)
     {
         direction = driftDirection;
         horizontalSpeed = 0;
@@ -205,22 +188,7 @@ function scr_platformerMovement()
 	horizontalSpeed = hspeed;
 	verticalSpeed = vspeed;
 	
-	if (isSkillActive and skill == skillTypes.jumpBack)
-	{
-		if (desiredHorizontalDirection * -1 != input_check("rightKey", player) - input_check("leftKey", player)) 
-		{
-			isSkillActive = false;
-		}
-		
-		isSkillActive--;
-	}
-	
 	desiredHorizontalDirection = input_check("rightKey", player) - input_check("leftKey", player);
-	
-	if (isSkillActive and skill == skillTypes.jumpBack)
-	{
-		desiredHorizontalDirection *= -1;
-	}
     
     if (o_gameManager.logicState == o_gameManager.breathState)
     {
@@ -293,7 +261,7 @@ function scr_platformerMovement()
         
 		verticalSpeed += gravitation;
         
-        if (skill == skillTypes.float)
+        if (skillType == skillTypes.float)
         {
             if (verticalSpeed > 0)
             {
@@ -432,7 +400,7 @@ function scr_platformerMovement()
 		}
 	}
     
-    if (skill == skillTypes.drift and isSkillActive)
+    if (skillType == skillTypes.drift and isSkillActive)
     {
         hspeed = min(driftSpeed, maximumSpeed);
         horizontalSpeed = min(driftSpeed, maximumSpeed);

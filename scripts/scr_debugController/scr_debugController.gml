@@ -304,6 +304,23 @@ function scr_playerModificators()
     if (ImGui.CollapsingHeader("Modificators"))
     {
 		ImGui.Text(string("Player {0} Modificators", choosedPlayerIndex));
+        
+        if (ImGui.BeginCombo("##Character" + string(choosedPlayerIndex), global.characters[choosedPlayer.characterID].name, ImGuiComboFlags.HeightLarge))
+		{
+			for (var i = 0; i < array_length(global.characters); i++)
+			{				
+				var _characher = global.characters[i];
+				
+				var isSelected = (choosedPlayer.characterID == _characher);
+
+				if (ImGui.Selectable(_characher.name, isSelected))
+				{
+					choosedPlayer.characterID = i;
+				}
+			}
+		
+			ImGui.EndCombo();
+		}
 		
 		choosedPlayer.maximumDefaultSpeedModificator = scr_statitstic("Default Speed Modificator",  choosedPlayer.maximumDefaultSpeedModificator);
 		choosedPlayer.accelerationModificator = scr_statitstic("Acceleration Modificator",  choosedPlayer.accelerationModificator);
@@ -329,17 +346,17 @@ function scr_playerModificators()
 		choosedPlayer.maximumJumpBufforModificator = scr_statitstic("Maximum Jump Buffor Modificator",  choosedPlayer.maximumJumpBufforModificator);
 		choosedPlayer.color = ImGui.ColorEdit3("Color", choosedPlayer.color);
 		
-		if (ImGui.BeginCombo("##Skill" + string(choosedPlayerIndex), o_gameManager.skills[choosedPlayer.skill].name, ImGuiComboFlags.HeightLarge))
+		if (ImGui.BeginCombo("##Skill" + string(choosedPlayerIndex), global.skills[choosedPlayer.skillType].name, ImGuiComboFlags.HeightLarge))
 		{
-			for (var i = 0; i < array_length(o_gameManager.skills); i++)
+			for (var i = 0; i < array_length(global.skills); i++)
 			{				
-				var skill = o_gameManager.skills[i];
+				var skill = global.skills[i];
 				
-				var isSelected = (o_gameManager.skills[choosedPlayer.skill] == skill);
+				var isSelected = (choosedPlayer.skillType == skill.type);
 
 				if (ImGui.Selectable(skill.name, isSelected))
 				{
-					choosedPlayer.skill = i;
+					choosedPlayer.skill = global.skills[i];
 				}
 			}
 		
@@ -359,7 +376,7 @@ function scr_playerModificators()
 				ImGui.SameLine();
 			}
 						
-			var isSelected = i == choosedPlayer.portrait;
+			var isSelected = i == choosedPlayer.miniArt;
 			var bgAlpha = 0;
 			
 			if (isSelected)
@@ -369,14 +386,14 @@ function scr_playerModificators()
 			
 			if (ImGui.ImageButton("##portrait " + string(i), s_chaseBarPortraits, i, c_white, 1, c_aqua, bgAlpha, 32, 32))
 			{
-				choosedPlayer.portrait = i;
+				choosedPlayer.miniArt = i;
 			}
 		}
-		
-		with(choosedPlayer)
-		{
-			setupStats();
-		}
+        
+        if (ImGui.Button("Apply##" + string(i)))
+        {
+            choosedPlayer.setupStats();
+        }
 		
 		returnList = scr_fileSearchList("modificators", modificatorsPresetFileName, modificatorsPresetsFiles);
 		

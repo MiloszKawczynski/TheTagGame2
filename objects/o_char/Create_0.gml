@@ -1,28 +1,4 @@
 scr_setupSprites();
-armScale = 0;
-armX = x;
-armY = y;
-
-if (player == 0)
-{
-	color = c_red;
-	skill = skillTypes.sprint;
-	pasive = new o_gameManager.pasiveSkills();
-    pasive.wallJump = true;
-	
-	portrait = 1;
-    art = sVN_adam;
-}
-
-if (player == 1)
-{
-	color = c_lime;
-	skill = skillTypes.sprint;
-	pasive = new o_gameManager.pasiveSkills();
-	
-	portrait = 2;
-    art = sVN_trickster;
-}
 
 o_gameManager.players[player] = 
 {
@@ -30,19 +6,7 @@ o_gameManager.players[player] =
 	points: 0
 };
 
-var playerId = player;
-var playrtArt = art;
-with(o_gameManager.ui)
-{
-    if (playerId == 0)
-    {
-        leftFullBodyPortrait.state.setSpriteSheet(playrtArt, 0);
-    }
-    else 
-    {
-    	rightFullBodyPortrait.state.setSpriteSheet(playrtArt, 0);
-    }
-}
+characterID = characterTypes.adam;
 
 maximumDefaultSpeedModificator = 0;
 accelerationModificator = 0;
@@ -66,13 +30,49 @@ obstacleRangeModificator = 0;
 maximumObstacleJumpForceModificator = 0;
 minimumObstacleJumpForceModificator = 0;
 maximumJumpBufforModificator = 0;
-skillEnergy = 1;
-skillRecharging = false;
-skillUsed = false;
-isSkillActive = 0;
 
 function setupStats()
 {
+    var characterReference;
+    characterReference = global.characters[characterID];
+    
+    color = characterReference.color;
+    skill = characterReference.active;
+    pasive = characterReference.pasive;
+    art = characterReference.art;
+    miniArt = characterReference.miniArt;
+    vignetteID = characterReference.vignetteID;
+    
+    var playerId = player;
+    var playerArt = art;
+    var playerMiniArt = miniArt;
+    var playerColor = color;
+    
+    with(o_gameManager.ui)
+    {
+        if (playerId == 0)
+        {
+            leftFullBodyPortrait.state.setSpriteSheet(playerArt, 0);
+            leftPortrait.state.setSpriteSheet(s_chaseBarPortraits, playerMiniArt);
+            leftColor.setColor(playerColor);
+            leftStamina.setColor(playerColor);
+            leftPoints.setColor(playerColor);
+        }
+        else 
+        {
+        	rightFullBodyPortrait.state.setSpriteSheet(playerArt, 0);
+            rightPortrait.state.setSpriteSheet(s_chaseBarPortraits, playerMiniArt);
+            rightColor.setColor(playerColor);
+            rightStamina.setColor(playerColor);
+            rightPoints.setColor(playerColor);
+        }
+    }
+    
+    skillEnergy = 1;
+    skillRecharging = false;
+    skillUsed = false;
+    isSkillActive = 0;
+    
 	maximumDefaultSpeed = o_gameManager.maximumDefaultSpeed + maximumDefaultSpeedModificator;
     
     if (pasive.noUpHillPenalty)
@@ -106,17 +106,25 @@ function setupStats()
 	minimumObstacleJumpForce = o_gameManager.minimumObstacleJumpForce + minimumObstacleJumpForceModificator;
 	maximumJumpBuffor = o_gameManager.maximumJumpBuffor + maximumJumpBufforModificator;
 	
-	skillUsage = o_gameManager.skills[skill].usage;
-	skillReplenish = o_gameManager.skills[skill].replenish;
-	skillValue = o_gameManager.skills[skill].value;
-	skillRechargePercentage = o_gameManager.skills[skill].rechargePercentage;
-	
-	o_gameManager.characterColorUiUpdate();
+    skillType = skill.type;
+	skillUsage = skill.usage;
+	skillReplenish = skill.replenish;
+	skillValue = skill.value;
+	skillRechargePercentage = skill.rechargePercentage;
+    
+    runTrailSystem = part_system_copy(ps_runTrail, 0);
+    runTrailType = part_type_copy(ps_runTrail, 0);
+    part_type_color1(runTrailType, color)
+    part_emitter_type(runTrailSystem, 0, runTrailType);
+    
+    part_system_automatic_draw(runTrailSystem, false);
+    
+    runTrailSurface = undefined;
 }
 
 setupStats();
 
-maximumSpeed = 6;
+maximumSpeed = maximumDefaultSpeed;
 desiredHorizontalDirection = 0;
 desiredVerticalDirection = 0;
 horizontalSpeed = 0;
@@ -179,15 +187,6 @@ setChasingOutlineUniform = function(uvs, color, hand)
 
 z = 0;
 
-runTrailSystem = part_system_copy(ps_runTrail, 0);
-runTrailType = part_type_copy(ps_runTrail, 0);
-part_type_color1(runTrailType, color)
-part_emitter_type(runTrailSystem, 0, runTrailType);
-
-part_system_automatic_draw(runTrailSystem, false);
-
-runTrailSurface = undefined;
-
 scr_setupTopDownAnimationStates();
 scr_setupPlatformAnimationStates();
 
@@ -197,6 +196,10 @@ squash = 1;
 
 thick = 7;
 glow = 0;
+
+armScale = 0;
+armX = x;
+armY = y;
 
 function reset()
 {

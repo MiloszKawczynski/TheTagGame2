@@ -32,7 +32,7 @@ if (input_check("skillKey", player) and !skillRecharging and !skillUsed)
 {
 	if (skillEnergy >= skillUsage)
 	{
-		switch(skill)
+		switch(skillType)
 		{
 			case(skillTypes.sprint):
 			{
@@ -65,34 +65,6 @@ if (input_check("skillKey", player) and !skillRecharging and !skillUsed)
 				}
 				break;
 			}
-			case(skillTypes.jumpBack):
-			{
-				if (speed != 0 and isGrounded) 
-				{
-					if (o_gameManager.isGravitationOn)
-					{
-						desiredHorizontalDirection *= -1; 
-						hspeed *= -1;
-						horizontalSpeed = hspeed;
-						maximumSpeed += skillValue;
-						y -= abs(horizontalSpeed);
-						scr_platformerCollision();
-					}
-					else 
-					{
-						desiredHorizontalDirection *= -1; 
-						desiredVerticalDirection *= -1;
-						direction += 180; 
-						horizontalSpeed = lengthdir_x(maximumSpeed + skillValue, direction);
-						verticalSpeed = lengthdir_y(maximumSpeed + skillValue, direction);
-						maximumSpeed = point_distance(0, 0, horizontalSpeed, verticalSpeed);
-					}
-					skillUsed = true;
-					isSkillActive = 3;
-					isUsed = true;
-				}
-				break;
-			} 
             case(skillTypes.float):
 			{
                 if (isGrounded and o_gameManager.isGravitationOn)
@@ -149,12 +121,12 @@ if (input_check("skillKey", player) and !skillRecharging and !skillUsed)
 }
 else 
 {
-	if (skill == skillTypes.float) 
+	if (skillType == skillTypes.float) 
     { 
         isSkillActive = 0;
     }
     
-    if (skill == skillTypes.drift) 
+    if (skillType == skillTypes.drift) 
     { 
         if (isSkillActive)
         {

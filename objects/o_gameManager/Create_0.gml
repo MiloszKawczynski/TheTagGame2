@@ -1,8 +1,5 @@
 event_inherited();
 
-setActiveSkills();
-setPasiveSkills();
-
 setGameRulesValues();
 
 setPlayersDefaultMovementRules();
