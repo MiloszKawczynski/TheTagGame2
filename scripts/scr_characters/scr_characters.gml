@@ -1,4 +1,4 @@
-function character(_name, _codeName, _art, _miniArt, _color, _active, _pasive) constructor 
+function character(_name, _codeName, _art, _miniArt, _color, _active, _pasive, _stats) constructor 
 {
     name = _name;
     codeName = _codeName;
@@ -27,7 +27,39 @@ function character(_name, _codeName, _art, _miniArt, _color, _active, _pasive) c
     vaultAnimation = asset_get_index(string("s_{0}Vault", codeName));
     
     tripAnimation = asset_get_index(string("s_{0}Trip", codeName));
+    
+    stats = _stats;
 }
+
+function scr_setupStatsModificators(characterReference)
+{
+    maximumDefaultSpeedModificator = characterReference.stats.maximumDefaultSpeedModificator;
+    accelerationModificator = characterReference.stats.accelerationModificator;
+    decelerationModificator = characterReference.stats.decelerationModificator;
+    maximumSpeedDecelerationFactorModificator = characterReference.stats.maximumSpeedDecelerationFactorModificator;
+    jumpForceModificator = characterReference.stats.jumpForceModificator;
+    maxJumpNumberModificator = characterReference.stats.maxJumpNumberModificator;
+    momentumJumpForceModificator = characterReference.stats.momentumJumpForceModificator;
+    gravitationModificator = characterReference.stats.gravitationModificator;
+    slopeAccelerationModificator = characterReference.stats.slopeAccelerationModificator;
+    slopeDecelerationModificator = characterReference.stats.slopeDecelerationModificator;
+    slopeMinSpeedModificator = characterReference.stats.slopeMinSpeedModificator;
+    rampAccelerationModificator = characterReference.stats.rampAccelerationModificator;
+    rampDecelerationModificator = characterReference.stats.rampDecelerationModificator;
+    rampMinSpeedModificator = characterReference.stats.rampMinSpeedModificator;
+    maximumSlopeSpeedModificator = characterReference.stats.maximumSlopeSpeedModificator;
+    maximumRampSpeedModificator = characterReference.stats.maximumRampSpeedModificator;
+    slopeSpeedTransitionFactorModificator = characterReference.stats.slopeSpeedTransitionFactorModificator;
+    maximumCoyoteTimeModificator = characterReference.stats.maximumCoyoteTimeModificator;
+    obstacleRangeModificator = characterReference.stats.obstacleRangeModificator;
+    maximumObstacleJumpForceModificator = characterReference.stats.maximumObstacleJumpForceModificator;
+    minimumObstacleJumpForceModificator = characterReference.stats.minimumObstacleJumpForceModificator;
+    maximumJumpBufforModificator = characterReference.stats.maximumJumpBufforModificator;
+    skillUsageModificator = characterReference.stats.skillUsageModificator;
+	skillReplenishModificator = characterReference.stats.skillReplenishModificator;
+	skillValueModificator = characterReference.stats.skillValueModificator;
+}
+
 
 function scr_createCharacters()
 {
@@ -45,34 +77,39 @@ function scr_createCharacters()
         karen,
         clea,
 	}
+    
+    var emptyPasive = new pasiveSkills();
+    var emptyStats = new statsModificators();
    
     var adamPasive = new pasiveSkills();
-    adam = new character("Adam", "adam", sVN_adam, 1, global.c_runnersUp, sprint, adamPasive);
+    var adamStats = new statsModificators();
+    adamStats.accelerationModificator = 1;
+    adam = new character("Adam", "adam", sVN_adam, 1, global.c_runnersUp, sprint, adamPasive, adamStats);
     
     var rileyPasive = new pasiveSkills();
-    riley = new character("Riley", "adam", sVN_riley, 1, global.c_runnersUp, drift, rileyPasive);
+    riley = new character("Riley", "adam", sVN_riley, 1, global.c_runnersUp, drift, rileyPasive, emptyStats);
     
     var miriamPasive = new pasiveSkills();
-    miriam = new character("Miriam", "adam", sVN_miriam, 1, global.c_gravitieri, sprint, miriamPasive);
+    miriam = new character("Miriam", "adam", sVN_miriam, 1, global.c_gravitieri, sprint, miriamPasive, emptyStats);
     
     var tricksterPasive = new pasiveSkills();
     tricksterPasive.wallJump = true;
-    trickster = new character("Trickster", "adam", sVN_trickster, 3, global.c_chaosCrew, drift, tricksterPasive);
+    trickster = new character("Trickster", "adam", sVN_trickster, 3, global.c_chaosCrew, drift, tricksterPasive, emptyStats);
     
     var davidPasive = new pasiveSkills();
-    david = new character("David", "clea", sVN_david, 2, global.c_runnersUp, sprint, davidPasive);
+    david = new character("David", "clea", sVN_david, 2, global.c_runnersUp, sprint, davidPasive, emptyStats);
     
     var featherPasive = new pasiveSkills();
-    feather = new character("Feather", "clea", sVN_feather, 2, global.c_gravitieri, float, featherPasive);
+    feather = new character("Feather", "clea", sVN_feather, 2, global.c_gravitieri, float, featherPasive, emptyStats);
     
     var snowWhitePasive = new pasiveSkills();
-    snowWhite = new character("Snow White", "clea", sVN_snowWhite, 2, global.c_gravitieri, dash, snowWhitePasive);
+    snowWhite = new character("Snow White", "clea", sVN_snowWhite, 2, global.c_gravitieri, dash, snowWhitePasive, emptyStats);
     
     var karenPasive = new pasiveSkills();
-    karen = new character("Karen", "clea", sVN_karen, 2, global.c_theRunners, dash, karenPasive);
+    karen = new character("Karen", "clea", sVN_karen, 2, global.c_theRunners, dash, karenPasive, emptyStats);
     
     var cleaPasive = new pasiveSkills();
-    clea = new character("Clea", "clea", sVN_clea, 2, global.c_gravitieri, sprint, cleaPasive);
+    clea = new character("Clea", "clea", sVN_clea, 2, global.c_gravitieri, sprint, cleaPasive, emptyStats);
     
     global.characters = array_create();
     array_push(global.characters, adam, riley, miriam, trickster, david, snowWhite, karen, clea);
@@ -120,4 +157,34 @@ function pasiveSkills() constructor
     noUpHillPenalty = false;
     airDash = false;
     autoCatch = false;
+}
+
+function statsModificators() constructor
+{
+    maximumDefaultSpeedModificator = 0;
+    accelerationModificator = 0;
+    decelerationModificator = 0;
+    maximumSpeedDecelerationFactorModificator = 0;
+    jumpForceModificator = 0;
+    maxJumpNumberModificator = 0;
+    momentumJumpForceModificator = 0;
+    gravitationModificator = 0;
+    slopeAccelerationModificator = 0;
+    slopeDecelerationModificator = 0;
+    slopeMinSpeedModificator = 0;
+    rampAccelerationModificator = 0;
+    rampDecelerationModificator = 0;
+    rampMinSpeedModificator = 0;
+    maximumSlopeSpeedModificator = 0;
+    maximumRampSpeedModificator = 0;
+    slopeSpeedTransitionFactorModificator = 0;
+    maximumCoyoteTimeModificator = 0;
+    obstacleRangeModificator = 0;
+    maximumObstacleJumpForceModificator = 0;
+    minimumObstacleJumpForceModificator = 0;
+    maximumJumpBufforModificator = 0;
+    
+    skillUsageModificator = 0;
+	skillReplenishModificator = 0;
+	skillValueModificator = 0;
 }

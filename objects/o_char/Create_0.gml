@@ -49,6 +49,7 @@ function setupStats(isCharacterSet)
         vignetteID = characterReference.vignetteID;
         
         scr_setupSprites(characterReference);
+        scr_setupStatsModificators(characterReference);
     }
     
     var playerId = player;
