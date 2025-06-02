@@ -161,30 +161,30 @@ function pasiveSkills() constructor
 
 function statsModificators() constructor
 {
-    maximumDefaultSpeedModificator = 0;
-    accelerationModificator = 0;
-    decelerationModificator = 0;
-    maximumSpeedDecelerationFactorModificator = 0;
-    jumpForceModificator = 0;
-    maxJumpNumberModificator = 0;
-    momentumJumpForceModificator = 0;
-    gravitationModificator = 0;
-    slopeAccelerationModificator = 0;
-    slopeDecelerationModificator = 0;
-    slopeMinSpeedModificator = 0;
-    rampAccelerationModificator = 0;
-    rampDecelerationModificator = 0;
-    rampMinSpeedModificator = 0;
-    maximumSlopeSpeedModificator = 0;
-    maximumRampSpeedModificator = 0;
-    slopeSpeedTransitionFactorModificator = 0;
-    maximumCoyoteTimeModificator = 0;
-    obstacleRangeModificator = 0;
-    maximumObstacleJumpForceModificator = 0;
-    minimumObstacleJumpForceModificator = 0;
-    maximumJumpBufforModificator = 0;
+    maximumDefaultSpeedModificator = 1;
+    accelerationModificator = 1;
+    decelerationModificator = 1;
+    maximumSpeedDecelerationFactorModificator = 1;
+    jumpForceModificator = 1;
+    maxJumpNumberModificator = 1;
+    momentumJumpForceModificator = 1;
+    gravitationModificator = 1;
+    slopeAccelerationModificator = 1;
+    slopeDecelerationModificator = 1;
+    slopeMinSpeedModificator = 1;
+    rampAccelerationModificator = 1;
+    rampDecelerationModificator = 1;
+    rampMinSpeedModificator = 1;
+    maximumSlopeSpeedModificator = 1;
+    maximumRampSpeedModificator = 1;
+    slopeSpeedTransitionFactorModificator = 1;
+    maximumCoyoteTimeModificator = 1;
+    obstacleRangeModificator = 1;
+    maximumObstacleJumpForceModificator = 1;
+    minimumObstacleJumpForceModificator = 1;
+    maximumJumpBufforModificator = 1;
     
-    skillUsageModificator = 0;
-	skillReplenishModificator = 0;
-	skillValueModificator = 0;
+    skillUsageModificator = 1;
+	skillReplenishModificator = 1;
+	skillValueModificator = 1;
 }
