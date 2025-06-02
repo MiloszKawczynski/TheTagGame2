@@ -1,22 +1,22 @@
-function scr_setupSprites()
+function scr_setupSprites(characterReference)
 {
-    idleAnimation = s_cleaIdle;
+    idleAnimation = characterReference.idleAnimation;
     
-    walkAnimation = s_cleaWalk;
-    runAnimation = s_cleaRun;
-    sprintAnimation = s_cleaSprint;
+    walkAnimation = characterReference.walkAnimation;
+    runAnimation = characterReference.runAnimation;
+    sprintAnimation = characterReference.sprintAnimation;
     
-    jumpAnimation = s_cleaJump;
+    jumpAnimation = characterReference.jumpAnimation;
     
-    fallAnimation = s_cleaFall;
+    fallAnimation = characterReference.fallAnimation;
     
-    leapAnimation = s_cleaLeap;
+    leapAnimation = characterReference.leapAnimation;
     
-    parkourAnimation = s_cleaParkour;
+    parkourAnimation = characterReference.parkourAnimation;
     
-    vaultAnimation = s_cleaVault;
+    vaultAnimation = characterReference.vaultAnimation;
     
-    tripAnimation = s_cleaTrip;
+    tripAnimation = characterReference.tripAnimation;
 }
 
 //--- Top Down Animation States

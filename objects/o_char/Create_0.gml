@@ -1,5 +1,3 @@
-scr_setupSprites();
-
 o_gameManager.players[player] = 
 {
 	instance: id,
@@ -44,6 +42,8 @@ function setupStats(isCharacterSet)
         art = characterReference.art;
         miniArt = characterReference.miniArt;
         vignetteID = characterReference.vignetteID;
+        
+        scr_setupSprites(characterReference);
     }
     
     var playerId = player;

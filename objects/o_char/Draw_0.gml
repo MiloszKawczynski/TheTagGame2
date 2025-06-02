@@ -46,9 +46,9 @@ if (!global.debugEdit)
 		
 		draw_sprite_3d_in_game(sprite_index, image_index, x, y, 16 + z, 0, 0, 0, image_xscale, 1, 1, shd_outline, uniformOultuneFunction, arguments,, angle, stretch, squash);
         
-        var arguments = [sprite_get_uvs(s_cleaHand, 0), color, true];
+        var arguments = [sprite_get_uvs(s_hand, 0), color, true];
         
-        draw_sprite_3d_in_game(s_cleaHand, 0, armX, armY, 16 + z + 1, 0, 0, 0, image_xscale * armScale, armScale, 1, shd_outline, uniformOultuneFunction, arguments,,  angle - 40, stretch, squash);
+        draw_sprite_3d_in_game(s_hand, 0, armX, armY, 16 + z + 1, 0, 0, 0, image_xscale * armScale, armScale, 1, shd_outline, uniformOultuneFunction, arguments,,  angle - 40, stretch, squash);
 	}
 	else 
 	{

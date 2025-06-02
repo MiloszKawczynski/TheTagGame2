@@ -35,7 +35,7 @@
   "origin":4,
   "parent":{
     "name":"clea",
-    "path":"folders/4_Sprites/clea.yy",
+    "path":"folders/4_Sprites/gameSprites/clea.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
