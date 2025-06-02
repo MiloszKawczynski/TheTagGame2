@@ -361,6 +361,7 @@ function scr_playerModificators()
 				if (ImGui.Selectable(skill.name, isSelected))
 				{
 					choosedPlayer.skill = global.skills[i];
+                    choosedPlayer.setupStats(false);
 				}
 			}
 		
@@ -391,6 +392,7 @@ function scr_playerModificators()
 			if (ImGui.ImageButton("##portrait " + string(i), s_chaseBarPortraits, i, c_white, 1, c_aqua, bgAlpha, 32, 32))
 			{
 				choosedPlayer.miniArt = i;
+                choosedPlayer.setupStats(false);
 			}
 		}
         
