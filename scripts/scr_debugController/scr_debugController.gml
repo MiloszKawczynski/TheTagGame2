@@ -345,6 +345,9 @@ function scr_playerModificators()
 		choosedPlayer.minimumObstacleJumpForceModificator = scr_statitstic("Minimum Obstacle Jump Modificator",  choosedPlayer.minimumObstacleJumpForceModificator);
 		choosedPlayer.maximumObstacleJumpForceModificator = scr_statitstic("Maximum Obstacle Jump Modificator",  choosedPlayer.maximumObstacleJumpForceModificator);
 		choosedPlayer.maximumJumpBufforModificator = scr_statitstic("Maximum Jump Buffor Modificator",  choosedPlayer.maximumJumpBufforModificator);
+		choosedPlayer.skillUsageModificator = scr_statitstic("Skill Usage Modificator",  choosedPlayer.skillUsageModificator);
+		choosedPlayer.skillReplenishModificator = scr_statitstic("Skill Replenish Modificator",  choosedPlayer.skillReplenishModificator);
+		choosedPlayer.skillValueModificator = scr_statitstic("Skill Value Modificator",  choosedPlayer.skillValueModificator);
 		choosedPlayer.color = ImGui.ColorEdit3("Color", choosedPlayer.color);
 		
 		if (ImGui.BeginCombo("##Skill" + string(choosedPlayerIndex), global.skills[choosedPlayer.skillType].name, ImGuiComboFlags.HeightLarge))

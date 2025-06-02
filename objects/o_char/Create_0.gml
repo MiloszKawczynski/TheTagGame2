@@ -28,6 +28,9 @@ obstacleRangeModificator = 0;
 maximumObstacleJumpForceModificator = 0;
 minimumObstacleJumpForceModificator = 0;
 maximumJumpBufforModificator = 0;
+skillUsageModificator = 0;
+skillReplenishModificator = 0;
+skillValueModificator = 0;
 
 obstacleSurface = undefined;
 
@@ -112,9 +115,9 @@ function setupStats(isCharacterSet)
 	maximumJumpBuffor = o_gameManager.maximumJumpBuffor + maximumJumpBufforModificator;
 	
     skillType = skill.type;
-	skillUsage = skill.usage;
-	skillReplenish = skill.replenish;
-	skillValue = skill.value;
+	skillUsage = skill.usage + skillUsageModificator;
+	skillReplenish = skill.replenish + skillReplenishModificator;
+	skillValue = skill.value + skillValueModificator;
 	skillRechargePercentage = skill.rechargePercentage;
     
     runTrailSystem = part_system_copy(ps_runTrail, 0);
