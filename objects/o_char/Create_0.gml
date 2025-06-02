@@ -25,6 +25,7 @@ maximumRampSpeedModificator = 1;
 slopeSpeedTransitionFactorModificator = 1;
 maximumCoyoteTimeModificator = 1;
 obstacleRangeModificator = 1;
+catchRangeModificator = 1;
 maximumObstacleJumpForceModificator = 1;
 minimumObstacleJumpForceModificator = 1;
 maximumJumpBufforModificator = 1;
@@ -111,6 +112,7 @@ function setupStats(isCharacterSet)
 	slopeSpeedTransitionFactor = o_gameManager.slopeSpeedTransitionFactor * slopeSpeedTransitionFactorModificator;
 	maximumCoyoteTime = o_gameManager.maximumCoyoteTime * maximumCoyoteTimeModificator;
 	obstacleRange = o_gameManager.obstacleRange * obstacleRangeModificator;
+	catchRange = o_gameManager.catchRange * catchRangeModificator;
 	maximumObstacleJumpForce = o_gameManager.maximumObstacleJumpForce * maximumObstacleJumpForceModificator;
 	minimumObstacleJumpForce = o_gameManager.minimumObstacleJumpForce * minimumObstacleJumpForceModificator;
 	maximumJumpBuffor = o_gameManager.maximumJumpBuffor * maximumJumpBufforModificator;

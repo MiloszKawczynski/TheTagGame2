@@ -216,6 +216,7 @@ function setPlayersDefaultMovementRules()
 	slopeSpeedTransitionFactor = 0.5;
 	maximumCoyoteTime = 10;
 	obstacleRange = 60;
+	catchRange = 60;
 	maximumObstacleJumpForce = 10;
 	minimumObstacleJumpForce = 5;
 	maximumJumpBuffor = 10;

@@ -186,7 +186,7 @@ if (o_gameManager.logicState == o_gameManager.gameState and o_gameManager.whoIsC
 {
 	nearestPlayer = instance_nearest_notme(x, y, o_char);
 
-	if (distance_to_object(nearestPlayer) < obstacleRange and !collision_line(x, y, nearestPlayer.x, nearestPlayer.y, o_collision, true, true))
+	if (distance_to_object(nearestPlayer) < catchRange and !collision_line(x, y, nearestPlayer.x, nearestPlayer.y, o_collision, true, true))
 	{
 		if (!canCaught)
 		{

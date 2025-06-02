@@ -52,6 +52,7 @@ function scr_setupStatsModificators(characterReference)
     slopeSpeedTransitionFactorModificator = characterReference.stats.slopeSpeedTransitionFactorModificator;
     maximumCoyoteTimeModificator = characterReference.stats.maximumCoyoteTimeModificator;
     obstacleRangeModificator = characterReference.stats.obstacleRangeModificator;
+    catchRangeModificator = characterReference.stats.catchRangeModificator;
     maximumObstacleJumpForceModificator = characterReference.stats.maximumObstacleJumpForceModificator;
     minimumObstacleJumpForceModificator = characterReference.stats.minimumObstacleJumpForceModificator;
     maximumJumpBufforModificator = characterReference.stats.maximumJumpBufforModificator;
@@ -180,6 +181,7 @@ function statsModificators() constructor
     slopeSpeedTransitionFactorModificator = 1;
     maximumCoyoteTimeModificator = 1;
     obstacleRangeModificator = 1;
+    catchRangeModificator = 1;
     maximumObstacleJumpForceModificator = 1;
     minimumObstacleJumpForceModificator = 1;
     maximumJumpBufforModificator = 1;

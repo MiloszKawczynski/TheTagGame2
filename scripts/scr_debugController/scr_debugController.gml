@@ -342,6 +342,7 @@ function scr_playerModificators()
 		choosedPlayer.slopeSpeedTransitionFactorModificator = scr_statitstic("Slope Speed Transition Factor Modificator",  choosedPlayer.slopeSpeedTransitionFactorModificator);
 		choosedPlayer.maximumCoyoteTimeModificator = scr_statitstic("Coyote Time Modificator",  choosedPlayer.maximumCoyoteTimeModificator);
 		choosedPlayer.obstacleRangeModificator = scr_statitstic("Obstacle Range Modificator",  choosedPlayer.obstacleRangeModificator);
+		choosedPlayer.catchRangeModificator = scr_statitstic("Catch Range Modificator",  choosedPlayer.catchRangeModificator);
 		choosedPlayer.minimumObstacleJumpForceModificator = scr_statitstic("Minimum Obstacle Jump Modificator",  choosedPlayer.minimumObstacleJumpForceModificator);
 		choosedPlayer.maximumObstacleJumpForceModificator = scr_statitstic("Maximum Obstacle Jump Modificator",  choosedPlayer.maximumObstacleJumpForceModificator);
 		choosedPlayer.maximumJumpBufforModificator = scr_statitstic("Maximum Jump Buffor Modificator",  choosedPlayer.maximumJumpBufforModificator);
