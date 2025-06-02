@@ -232,5 +232,8 @@ function reset()
     
     isReady = false;
     
+    topDownAnimationState = topDownIdleState;
+    platformAnimationState = platformIdleState;
+    
     log(string("P{0}: {1}", player + 1, o_gameManager.players[player].points), color);
 }

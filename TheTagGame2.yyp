@@ -974,6 +974,7 @@
     {"id":{"name":"s_cleaParkour","path":"sprites/s_cleaParkour/s_cleaParkour.yy",},},
     {"id":{"name":"s_cleaRun","path":"sprites/s_cleaRun/s_cleaRun.yy",},},
     {"id":{"name":"s_cleaSprint","path":"sprites/s_cleaSprint/s_cleaSprint.yy",},},
+    {"id":{"name":"s_cleaTrip","path":"sprites/s_cleaTrip/s_cleaTrip.yy",},},
     {"id":{"name":"s_cleaVault","path":"sprites/s_cleaVault/s_cleaVault.yy",},},
     {"id":{"name":"s_cleaWalk","path":"sprites/s_cleaWalk/s_cleaWalk.yy",},},
     {"id":{"name":"s_crowd","path":"sprites/s_crowd/s_crowd.yy",},},

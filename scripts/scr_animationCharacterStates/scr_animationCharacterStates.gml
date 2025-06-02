@@ -15,6 +15,8 @@ function scr_setupSprites()
     parkour = s_cleaParkour;
     
     vault = s_cleaVault;
+    
+    trip = s_cleaTrip;
 }
 
 //--- Top Down Animation States
@@ -54,6 +56,17 @@ function scr_setupTopDownAnimationStates()
 		image_speed = 0.5;
 		
 		topDownAnimationState = changeAnimationState(playOnce(), topDownAnimationState, topDownMoveState);
+	}
+    
+    topDownTripState = function()
+	{
+		sprite_index = trip;
+		image_speed = 0.2;
+		
+        if (playOnce())
+        {
+            image_index = image_number - 1;
+        }
 	}
 	
 	topDownAnimationState = topDownIdleState;
@@ -146,6 +159,17 @@ function scr_setupPlatformAnimationStates()
 		
 		platformAnimationState = changeAnimationState(place_meeting(x, y + 1, o_collision) and vspeed >= 0, platformAnimationState, platformIdleState);
 		platformAnimationState = changeAnimationState(!place_meeting(x - 1, y, o_collision) and !place_meeting(x + 1, y, o_collision), platformAnimationState, platformFallState);
+	}
+    
+    platformTripState = function()
+	{
+		sprite_index = trip;
+		image_speed = 0.2;
+		
+        if (playOnce())
+        {
+            image_index = image_number - 1;
+        }
 	}
 	
 	platformAnimationState = platformIdleState;

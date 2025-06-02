@@ -623,6 +623,12 @@ function setupLogicStates()
 	{
         audio_play_sound(choose(sn_catch1, sn_catch2, sn_catch3), 0, false);
         
+        with(players[!whoIsChasing].instance)
+        {
+            topDownAnimationState = changeAnimationState(true, topDownAnimationState, topDownTripState);
+            platformAnimationState = changeAnimationState(true, platformAnimationState, platformTripState);
+        }
+        
         var instTo = players[!whoIsChasing].instance;
         part_type_color1(imChasingType, players[!whoIsChasing].instance.color);
         part_emitter_region(imChasingSystem, 0, instTo.x - 16, instTo.x + 16, instTo.y - 16, instTo.y + 16, ps_shape_rectangle, ps_distr_linear);
