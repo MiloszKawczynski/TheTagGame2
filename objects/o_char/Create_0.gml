@@ -29,6 +29,8 @@ maximumObstacleJumpForceModificator = 0;
 minimumObstacleJumpForceModificator = 0;
 maximumJumpBufforModificator = 0;
 
+obstacleSurface = undefined;
+
 function setupStats(isCharacterSet)
 {
     if (isCharacterSet)
@@ -123,6 +125,15 @@ function setupStats(isCharacterSet)
     part_system_automatic_draw(runTrailSystem, false);
     
     runTrailSurface = undefined;
+    
+    if (surface_exists(obstacleSurface))
+    {
+        surface_resize(obstacleSurface, obstacleRange * 2, obstacleRange * 2)
+    }
+    else 
+    {
+    	obstacleSurface = surface_create(obstacleRange * 2, obstacleRange * 2);
+    }
 }
 
 setupStats(true);
@@ -146,19 +157,7 @@ driftDirection = 0;
 driftSpeed = 0;
 driftMeter = 0;
 
-maximumCaughtRange = 0;
-
 isReady = false;
-
-with(o_char)
-{
-	if (obstacleRange > other.maximumCaughtRange)
-	{
-		other.maximumCaughtRange = obstacleRange;
-	}
-}
-
-surface = surface_create(maximumCaughtRange * 2, maximumCaughtRange * 2);
 
 nearestPlayer = id;
 canCaught = false;
