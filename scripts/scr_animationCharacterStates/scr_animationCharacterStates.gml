@@ -1,22 +1,22 @@
 function scr_setupSprites()
 {
-    idle = s_cleaIdle;
+    idleAnimation = s_cleaIdle;
     
-    walk = s_cleaWalk;
-    run = s_cleaRun;
-    sprint = s_cleaSprint;
+    walkAnimation = s_cleaWalk;
+    runAnimation = s_cleaRun;
+    sprintAnimation = s_cleaSprint;
     
-    jump = s_cleaJump;
+    jumpAnimation = s_cleaJump;
     
-    fall = s_cleaFall;
+    fallAnimation = s_cleaFall;
     
-    leap = s_cleaLeap;
+    leapAnimation = s_cleaLeap;
     
-    parkour = s_cleaParkour;
+    parkourAnimation = s_cleaParkour;
     
-    vault = s_cleaVault;
+    vaultAnimation = s_cleaVault;
     
-    trip = s_cleaTrip;
+    tripAnimation = s_cleaTrip;
 }
 
 //--- Top Down Animation States
@@ -25,7 +25,7 @@ function scr_setupTopDownAnimationStates()
 {
 	topDownIdleState = function()
 	{
-		sprite_index = idle;
+		sprite_index = idleAnimation;
 		
 		topDownAnimationState = changeAnimationState(speed != 0, topDownAnimationState, topDownMoveState);
 	}
@@ -34,15 +34,15 @@ function scr_setupTopDownAnimationStates()
 	{
 		if (speed < maximumDefaultSpeed)
 		{
-			sprite_index = walk;
+			sprite_index = walkAnimation;
 		}
 		else if (speed == maximumDefaultSpeed)
 		{
-			sprite_index = run;
+			sprite_index = runAnimation;
 		}
 		else if (speed > maximumDefaultSpeed)
 		{
-			sprite_index = sprint;
+			sprite_index = sprintAnimation;
 		}
 		
 		setXScaleWithHSpeed();
@@ -52,7 +52,7 @@ function scr_setupTopDownAnimationStates()
 	
 	topDownParkourState = function()
 	{
-		sprite_index = vault;
+		sprite_index = vaultAnimation;
 		image_speed = 0.5;
 		
 		topDownAnimationState = changeAnimationState(playOnce(), topDownAnimationState, topDownMoveState);
@@ -60,7 +60,7 @@ function scr_setupTopDownAnimationStates()
     
     topDownTripState = function()
 	{
-		sprite_index = trip;
+		sprite_index = tripAnimation;
 		image_speed = 0.2;
 		
         if (playOnce())
@@ -78,7 +78,7 @@ function scr_setupPlatformAnimationStates()
 {
 	platformIdleState = function()
 	{
-		sprite_index = idle;
+		sprite_index = idleAnimation;
 		setAngleDependsOnGround();
 		
 		platformAnimationState = changeAnimationState(hspeed != 0, platformAnimationState, platformMoveState);
@@ -89,15 +89,15 @@ function scr_setupPlatformAnimationStates()
 	{
 		if (abs(hspeed) < maximumDefaultSpeed)
 		{
-			sprite_index = walk;
+			sprite_index = walkAnimation;
 		}
 		else if (abs(hspeed) == maximumDefaultSpeed)
 		{
-			sprite_index = run;
+			sprite_index = runAnimation;
 		}
 		else if (abs(hspeed) > maximumDefaultSpeed)
 		{
-			sprite_index = sprint;
+			sprite_index = sprintAnimation;
 		}
 		setXScaleWithHSpeed(); 
 		setAngleDependsOnGround();
@@ -108,7 +108,7 @@ function scr_setupPlatformAnimationStates()
 	
 	platformJumpState = function()
 	{
-		sprite_index = jump;
+		sprite_index = jumpAnimation;
 		setXScaleWithHSpeed();
 		playOnce();
 		angle = lerp(angle, (abs(hspeed) / maximumDefaultSpeed) * 15, 0.1);
@@ -122,7 +122,7 @@ function scr_setupPlatformAnimationStates()
 	
 	platformFallState = function()
 	{
-		sprite_index = fall;
+		sprite_index = fallAnimation;
 		playOnce();
 		setXScaleWithHSpeed();
 		angle = lerp(angle, (-abs(hspeed) / maximumDefaultSpeed) * 15, 0.1);
@@ -134,7 +134,7 @@ function scr_setupPlatformAnimationStates()
 	
 	platformLeapState = function() 
 	{
-		sprite_index = leap;
+		sprite_index = leapAnimation;
 		image_speed = 0.225;
 		angle = lerp(angle, (-abs(hspeed) / maximumDefaultSpeed) * 7, 0.1);
 		setXScaleWithHSpeed();
@@ -145,7 +145,7 @@ function scr_setupPlatformAnimationStates()
 	
 	platformParkourState = function()
 	{
-		sprite_index = parkour;
+		sprite_index = parkourAnimation;
 		image_speed = 0.5;
 		playOnce();
 		
@@ -154,7 +154,7 @@ function scr_setupPlatformAnimationStates()
 	
 	platformWallRunState = function()
 	{
-		sprite_index = sprint;
+		sprite_index = sprintAnimation;
 		angle = lerp(angle, -90, 0.1);
 		
 		platformAnimationState = changeAnimationState(place_meeting(x, y + 1, o_collision) and vspeed >= 0, platformAnimationState, platformIdleState);
@@ -163,7 +163,7 @@ function scr_setupPlatformAnimationStates()
     
     platformTripState = function()
 	{
-		sprite_index = trip;
+		sprite_index = tripAnimation;
 		image_speed = 0.2;
 		
         if (playOnce())
