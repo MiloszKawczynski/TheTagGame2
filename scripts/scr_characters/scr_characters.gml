@@ -145,6 +145,12 @@ function scr_createCharacters()
     //--- SNOW WHITE ---
     
     var snowWhitePasive = new pasiveSkills();
+    
+    var snowWhiteStats = new statsModificators();
+    snowWhiteStats.obstacleRangeModificator = 1.2;
+    snowWhiteStats.minimumObstacleJumpForceModificator = 0.7;
+    snowWhiteStats.maximumObstacleJumpForceModificator = 1.2;
+    
     snowWhite = new character("Snow White", "clea", sVN_snowWhite, 2, global.c_gravitieri, dash, snowWhitePasive, emptyStats);
     
     //--- KARENN ---
