@@ -102,7 +102,15 @@ function scr_createCharacters()
     //--- MIRIAM ---
     
     var miriamPasive = new pasiveSkills();
-    miriam = new character("Miriam", "adam", sVN_miriam, 1, global.c_gravitieri, sprint, miriamPasive, emptyStats);
+    miriamPasive.autoCatch = true;
+    
+    var miriamStats = new statsModificators();
+    miriamStats.minimumObstacleJumpForceModificator = 1.5;
+    miriamStats.maximumObstacleJumpForceModificator = 0.5 * 1.5;
+    miriamStats.obstacleRangeModificator = 0.5;
+    miriamStats.catchRangeModificator = 0.1;
+    
+    miriam = new character("Miriam", "adam", sVN_miriam, 1, global.c_gravitieri, dash, miriamPasive, miriamStats);
     
     //--- TRICKSTER ---
     
