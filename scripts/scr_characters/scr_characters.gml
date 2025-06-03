@@ -116,6 +116,12 @@ function scr_createCharacters()
     
     var tricksterPasive = new pasiveSkills();
     tricksterPasive.wallJump = true;
+    
+    var tricksterStats = new statsModificators();
+    tricksterStats.jumpForceModificator = 1.15;
+    tricksterStats.momentumJumpForceModificator = -0.1;
+    
+    
     trickster = new character("Trickster", "adam", sVN_trickster, 3, global.c_chaosCrew, drift, tricksterPasive, emptyStats);
     
     //--- DAVID ---
