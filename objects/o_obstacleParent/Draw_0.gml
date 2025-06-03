@@ -3,6 +3,12 @@ for(var i = 0; i < instance_number(o_char); i++)
 	var char = instance_find(o_char, i);
 	var dist = point_distance(x, y, char.x, char.y);
     var charDistance = char.obstacleRange;
+    
+    if (!surface_exists(char.obstacleSurface))
+    {
+        char.setupStats(false);
+    }
+    
     var charSurface = char.obstacleSurface;
 
 	if (dist < charDistance or success > 0)
