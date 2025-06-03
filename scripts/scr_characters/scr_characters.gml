@@ -83,7 +83,10 @@ function scr_createCharacters()
     //--- ADAM ---
     
     var adamPasive = new pasiveSkills();
+    adamPasive.alwaysPerfectVault = true;
+    
     var adamStats = new statsModificators();
+    
     adam = new character("Adam", "adam", sVN_adam, 1, global.c_runnersUp, sprint, adamPasive, adamStats);
     
     //--- RILEY ---
