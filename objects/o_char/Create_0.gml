@@ -96,21 +96,31 @@ function setupStats(isCharacterSet)
     
 	acceleration = o_gameManager.acceleration * accelerationModificator;
 	deceleration = o_gameManager.deceleration * decelerationModificator;
+    
 	maximumSpeedDecelerationFactor = o_gameManager.maximumSpeedDecelerationFactor * maximumSpeedDecelerationFactorModificator;
+    
 	jumpForce = o_gameManager.jumpForce * jumpForceModificator;
 	maxJumpNumber = o_gameManager.maxJumpNumber * maxJumpNumberModificator;
 	momentumJumpForce = o_gameManager.momentumJumpForce * momentumJumpForceModificator;
+    
 	gravitation = o_gameManager.gravitation * gravitationModificator;
+    
 	slopeAcceleration = o_gameManager.slopeAcceleration * slopeAccelerationModificator;
 	slopeDeceleration = o_gameManager.slopeDeceleration * slopeDecelerationModificator;
+    
 	rampAcceleration = o_gameManager.rampAcceleration * rampAccelerationModificator;
 	rampDeceleration = o_gameManager.rampDeceleration * rampDecelerationModificator;
+    
 	slopeSpeedTransitionFactor = o_gameManager.slopeSpeedTransitionFactor * slopeSpeedTransitionFactorModificator;
+    
 	maximumCoyoteTime = o_gameManager.maximumCoyoteTime * maximumCoyoteTimeModificator;
+    
 	obstacleRange = o_gameManager.obstacleRange * obstacleRangeModificator;
 	catchRange = o_gameManager.catchRange * catchRangeModificator;
+    
 	maximumObstacleJumpForce = o_gameManager.maximumObstacleJumpForce * maximumObstacleJumpForceModificator;
 	minimumObstacleJumpForce = o_gameManager.minimumObstacleJumpForce * minimumObstacleJumpForceModificator;
+    
 	maximumJumpBuffor = o_gameManager.maximumJumpBuffor * maximumJumpBufforModificator;
 	
     skillType = skill.type;
