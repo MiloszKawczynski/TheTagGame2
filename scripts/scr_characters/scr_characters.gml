@@ -129,7 +129,12 @@ function scr_createCharacters()
     //--- DAVID ---
     
     var davidPasive = new pasiveSkills();
-    david = new character("David", "clea", sVN_david, 2, global.c_runnersUp, sprint, davidPasive, emptyStats);
+    
+    var davidStats = new statsModificators();
+    davidStats.maxJumpNumberModificator = 3;
+    davidStats.maximumDefaultSpeedModificator = 0.8;
+    
+    david = new character("David", "clea", sVN_david, 2, global.c_runnersUp, float, davidPasive, davidStats);
     
     //--- FEATHER ---
     
