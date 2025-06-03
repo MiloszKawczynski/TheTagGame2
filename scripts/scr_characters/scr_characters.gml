@@ -161,7 +161,17 @@ function scr_createCharacters()
     //--- KARENN ---
     
     var karenPasive = new pasiveSkills();
-    karen = new character("Karen", "clea", sVN_karen, 2, global.c_theRunners, dash, karenPasive, emptyStats);
+    
+    var karenStats = new statsModificators();
+    karenStats.maximumDefaultSpeedModificator = 1.25;
+    karenStats.accelerationModificator = 0.9;
+    karenStats.decelerationModificator = 0.5;
+    karenStats.rampAccelerationModificator = 1.2;
+    karenStats.slopeAccelerationModificator = 1.2;
+    karenStats.rampDecelerationModificator = 2;
+    karenStats.slopeDecelerationModificator = 2;
+    
+    karen = new character("Karen", "clea", sVN_karen, 2, global.c_theRunners, sprint, karenPasive, karenStats);
     
     //--- CLEA ---
     
