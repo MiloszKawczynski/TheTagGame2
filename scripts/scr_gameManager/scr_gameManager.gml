@@ -211,8 +211,6 @@ function setPlayersDefaultMovementRules()
 	rampAcceleration = 0.05;
 	rampDeceleration = 0.05;
 	rampMinSpeed = 0.05;
-	maximumSlopeSpeed = 3;
-	maximumRampSpeed = 4.5;
 	slopeSpeedTransitionFactor = 0.5;
 	maximumCoyoteTime = 10;
 	obstacleRange = 60;

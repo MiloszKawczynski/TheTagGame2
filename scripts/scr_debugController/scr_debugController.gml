@@ -337,8 +337,6 @@ function scr_playerModificators()
 		choosedPlayer.rampAccelerationModificator = scr_statitstic("Ramp Acceleration Modificator",  choosedPlayer.rampAccelerationModificator);
 		choosedPlayer.rampDecelerationModificator = scr_statitstic("Ramp Deceleration Modificator",  choosedPlayer.rampDecelerationModificator);
 		choosedPlayer.rampMinSpeedModificator = scr_statitstic("Ramp Min Speed Modificator",  choosedPlayer.rampMinSpeedModificator);
-		choosedPlayer.maximumSlopeSpeedModificator = scr_statitstic("Slope Max Speed Modificator",  choosedPlayer.maximumSlopeSpeedModificator);
-		choosedPlayer.maximumRampSpeedModificator = scr_statitstic("Ramp Max Speed Modificator",  choosedPlayer.maximumRampSpeedModificator);
 		choosedPlayer.slopeSpeedTransitionFactorModificator = scr_statitstic("Slope Speed Transition Factor Modificator",  choosedPlayer.slopeSpeedTransitionFactorModificator);
 		choosedPlayer.maximumCoyoteTimeModificator = scr_statitstic("Coyote Time Modificator",  choosedPlayer.maximumCoyoteTimeModificator);
 		choosedPlayer.obstacleRangeModificator = scr_statitstic("Obstacle Range Modificator",  choosedPlayer.obstacleRangeModificator);

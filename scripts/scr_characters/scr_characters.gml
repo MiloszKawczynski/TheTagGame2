@@ -47,8 +47,6 @@ function scr_setupStatsModificators(characterReference)
     rampAccelerationModificator = characterReference.stats.rampAccelerationModificator;
     rampDecelerationModificator = characterReference.stats.rampDecelerationModificator;
     rampMinSpeedModificator = characterReference.stats.rampMinSpeedModificator;
-    maximumSlopeSpeedModificator = characterReference.stats.maximumSlopeSpeedModificator;
-    maximumRampSpeedModificator = characterReference.stats.maximumRampSpeedModificator;
     slopeSpeedTransitionFactorModificator = characterReference.stats.slopeSpeedTransitionFactorModificator;
     maximumCoyoteTimeModificator = characterReference.stats.maximumCoyoteTimeModificator;
     obstacleRangeModificator = characterReference.stats.obstacleRangeModificator;
@@ -176,8 +174,6 @@ function statsModificators() constructor
     rampAccelerationModificator = 1;
     rampDecelerationModificator = 1;
     rampMinSpeedModificator = 1;
-    maximumSlopeSpeedModificator = 1;
-    maximumRampSpeedModificator = 1;
     slopeSpeedTransitionFactorModificator = 1;
     maximumCoyoteTimeModificator = 1;
     obstacleRangeModificator = 1;

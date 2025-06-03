@@ -20,8 +20,6 @@ slopeMinSpeedModificator = 1;
 rampAccelerationModificator = 1;
 rampDecelerationModificator = 1;
 rampMinSpeedModificator = 1;
-maximumSlopeSpeedModificator = 1;
-maximumRampSpeedModificator = 1;
 slopeSpeedTransitionFactorModificator = 1;
 maximumCoyoteTimeModificator = 1;
 obstacleRangeModificator = 1;
@@ -107,8 +105,6 @@ function setupStats(isCharacterSet)
 	slopeDeceleration = o_gameManager.slopeDeceleration * slopeDecelerationModificator;
 	rampAcceleration = o_gameManager.rampAcceleration * rampAccelerationModificator;
 	rampDeceleration = o_gameManager.rampDeceleration * rampDecelerationModificator;
-	maximumSlopeSpeed = o_gameManager.maximumSlopeSpeed * maximumSlopeSpeedModificator;
-	maximumRampSpeed = o_gameManager.maximumRampSpeed * maximumRampSpeedModificator;
 	slopeSpeedTransitionFactor = o_gameManager.slopeSpeedTransitionFactor * slopeSpeedTransitionFactorModificator;
 	maximumCoyoteTime = o_gameManager.maximumCoyoteTime * maximumCoyoteTimeModificator;
 	obstacleRange = o_gameManager.obstacleRange * obstacleRangeModificator;
