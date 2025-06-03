@@ -84,7 +84,6 @@ function scr_createCharacters()
     
     var adamPasive = new pasiveSkills();
     var adamStats = new statsModificators();
-    adamStats.accelerationModificator = 1;
     adam = new character("Adam", "adam", sVN_adam, 1, global.c_runnersUp, sprint, adamPasive, adamStats);
     
     //--- RILEY ---
@@ -132,7 +131,13 @@ function scr_createCharacters()
     //--- FEATHER ---
     
     var featherPasive = new pasiveSkills();
-    feather = new character("Feather", "clea", sVN_feather, 2, global.c_gravitieri, float, featherPasive, emptyStats);
+    featherPasive.noUpHillPenalty = true;
+    
+    var featherStats = new statsModificators();
+    featherStats.slopeAccelerationModificator = 0.7;
+    featherStats.rampAccelerationModificator = 0.7;
+    
+    feather = new character("Feather", "clea", sVN_feather, 2, global.c_gravitieri, float, featherPasive, featherStats);
     
     //--- SNOW WHITE ---
     
@@ -152,7 +157,7 @@ function scr_createCharacters()
     //-----------
     
     global.characters = array_create();
-    array_push(global.characters, adam, riley, miriam, trickster, david, snowWhite, karen, clea);
+    array_push(global.characters, adam, riley, miriam, trickster, david, feather, snowWhite, karen, clea);
 }
 
 function setActiveSkills()
