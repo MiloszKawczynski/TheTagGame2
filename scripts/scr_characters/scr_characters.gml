@@ -80,35 +80,55 @@ function scr_createCharacters()
     var emptyPasive = new pasiveSkills();
     var emptyStats = new statsModificators();
    
+    //--- ADAM ---
+    
     var adamPasive = new pasiveSkills();
     var adamStats = new statsModificators();
     adamStats.accelerationModificator = 1;
     adam = new character("Adam", "adam", sVN_adam, 1, global.c_runnersUp, sprint, adamPasive, adamStats);
     
+    //--- RILEY ---
+    
     var rileyPasive = new pasiveSkills();
     riley = new character("Riley", "adam", sVN_riley, 1, global.c_runnersUp, drift, rileyPasive, emptyStats);
     
+    //--- MIRIAM ---
+    
     var miriamPasive = new pasiveSkills();
     miriam = new character("Miriam", "adam", sVN_miriam, 1, global.c_gravitieri, sprint, miriamPasive, emptyStats);
+    
+    //--- TRICKSTER ---
     
     var tricksterPasive = new pasiveSkills();
     tricksterPasive.wallJump = true;
     trickster = new character("Trickster", "adam", sVN_trickster, 3, global.c_chaosCrew, drift, tricksterPasive, emptyStats);
     
+    //--- DAVID ---
+    
     var davidPasive = new pasiveSkills();
     david = new character("David", "clea", sVN_david, 2, global.c_runnersUp, sprint, davidPasive, emptyStats);
+    
+    //--- FEATHER ---
     
     var featherPasive = new pasiveSkills();
     feather = new character("Feather", "clea", sVN_feather, 2, global.c_gravitieri, float, featherPasive, emptyStats);
     
+    //--- SNOW WHITE ---
+    
     var snowWhitePasive = new pasiveSkills();
     snowWhite = new character("Snow White", "clea", sVN_snowWhite, 2, global.c_gravitieri, dash, snowWhitePasive, emptyStats);
+    
+    //--- KARENN ---
     
     var karenPasive = new pasiveSkills();
     karen = new character("Karen", "clea", sVN_karen, 2, global.c_theRunners, dash, karenPasive, emptyStats);
     
+    //--- CLEA ---
+    
     var cleaPasive = new pasiveSkills();
     clea = new character("Clea", "clea", sVN_clea, 2, global.c_gravitieri, sprint, cleaPasive, emptyStats);
+    
+    //-----------
     
     global.characters = array_create();
     array_push(global.characters, adam, riley, miriam, trickster, david, snowWhite, karen, clea);
