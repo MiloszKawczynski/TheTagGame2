@@ -90,7 +90,14 @@ function scr_createCharacters()
     //--- RILEY ---
     
     var rileyPasive = new pasiveSkills();
-    riley = new character("Riley", "adam", sVN_riley, 1, global.c_runnersUp, drift, rileyPasive, emptyStats);
+    rileyPasive.airDash = true;
+    
+    var rileyStats = new statsModificators();
+    rileyStats.slopeSpeedTransitionFactorModificator = 1.2;
+    rileyStats.slopeAccelerationModificator = 1.1;
+    rileyStats.rampAccelerationModificator = 1.1;
+    
+    riley = new character("Riley", "adam", sVN_riley, 1, global.c_runnersUp, drift, rileyPasive, rileyStats);
     
     //--- MIRIAM ---
     
