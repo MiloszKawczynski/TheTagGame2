@@ -161,7 +161,12 @@ function scr_createCharacters()
     //--- CLEA ---
     
     var cleaPasive = new pasiveSkills();
-    clea = new character("Clea", "clea", sVN_clea, 2, global.c_gravitieri, sprint, cleaPasive, emptyStats);
+    
+    var cleaStats = new statsModificators();
+    cleaStats.skillUsageModificator = 0.9;
+    cleaStats.skillValueModificator = 1.1;
+    
+    clea = new character("Clea", "clea", sVN_clea, 2, global.c_gravitieri, sprint, cleaPasive, cleaStats);
     
     //-----------
     
