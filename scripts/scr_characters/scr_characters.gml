@@ -156,7 +156,7 @@ function scr_createCharacters()
     snowWhiteStats.minimumObstacleJumpForceModificator = 0.7;
     snowWhiteStats.maximumObstacleJumpForceModificator = 1.2;
     
-    snowWhite = new character("Snow White", "clea", sVN_snowWhite, 2, global.c_gravitieri, dash, snowWhitePasive, emptyStats);
+    snowWhite = new character("Snow White", "clea", sVN_snowWhite, 2, global.c_gravitieri, dash, snowWhitePasive, snowWhiteStats);
     
     //--- KARENN ---
     
