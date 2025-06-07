@@ -3,14 +3,14 @@ if (!isBindingFinilize)
 	calculateFirstFreePlayer();
 	if (firstFreePlayer < numberOfPlayers)
 	{
-		if (input_check_pressed("joinP1", 10) and !isWSADBind)
+		if (input_check_pressed("joinP1", 2) and !isWSADBind)
 		{ 
 			input_source_set(INPUT_KEYBOARD, firstFreePlayer,, false);
 			input_profile_set("P1", firstFreePlayer);	
 			isWSADBind = true;
 		}
 		
-		if (input_check_pressed("joinP2", 10) and !isArrowsBind)
+		if (input_check_pressed("joinP2", 2) and !isArrowsBind)
 		{ 
 			input_source_set(INPUT_KEYBOARD, firstFreePlayer,, false);
 			input_profile_set("P2", firstFreePlayer);

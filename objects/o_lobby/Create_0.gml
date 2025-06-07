@@ -1,15 +1,14 @@
-keyboardShare = [10];
 firstFreePlayer = 0;
 isBindingFinilize = false;
-numberOfPlayers = 4;
+numberOfPlayers = 2;
 
 isWSADBind = false;
 isArrowsBind = false;
 
 input_source_mode_set(INPUT_SOURCE_MODE.FIXED);
 
-input_source_set(INPUT_KEYBOARD, 10);
-input_profile_set("keyboard_and_mouse", 10);
+input_source_set(INPUT_KEYBOARD, 2);
+input_profile_set("keyboard_and_mouse", 2);
 
 window_set_fullscreen(true);
 
