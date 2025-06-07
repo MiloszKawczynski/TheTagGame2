@@ -629,6 +629,12 @@ function setupLogicStates()
             platformAnimationState = changeAnimationState(true, platformAnimationState, platformTripState);
         }
         
+        with(players[whoIsChasing].instance)
+        {
+            topDownAnimationState = changeAnimationState(true, topDownAnimationState, topDownJoyState);
+            platformAnimationState = changeAnimationState(true, platformAnimationState, platformJoyState);
+        }
+        
         var instTo = players[!whoIsChasing].instance;
         part_type_color1(imChasingType, players[!whoIsChasing].instance.color);
         part_emitter_region(imChasingSystem, 0, instTo.x - 16, instTo.x + 16, instTo.y - 16, instTo.y + 16, ps_shape_rectangle, ps_distr_linear);

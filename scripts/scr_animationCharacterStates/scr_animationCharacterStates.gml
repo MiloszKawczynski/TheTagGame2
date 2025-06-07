@@ -17,6 +17,7 @@ function scr_setupSprites(characterReference)
     vaultAnimation = characterReference.vaultAnimation;
     
     tripAnimation = characterReference.tripAnimation;
+    joyAnimation = characterReference.joyAnimation;
 }
 
 //--- Top Down Animation States
@@ -67,6 +68,12 @@ function scr_setupTopDownAnimationStates()
         {
             image_index = image_number - 1;
         }
+	}
+    
+    topDownJoyState = function()
+	{
+		sprite_index = joyAnimation;
+		image_speed = 1;
 	}
 	
 	topDownAnimationState = topDownIdleState;
@@ -170,6 +177,12 @@ function scr_setupPlatformAnimationStates()
         {
             image_index = image_number - 1;
         }
+	}
+    
+    platformJoyState = function()
+	{
+		sprite_index = joyAnimation;
+		image_speed = 1;
 	}
 	
 	platformAnimationState = platformIdleState;

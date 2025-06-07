@@ -27,6 +27,7 @@ function character(_name, _codeName, _art, _miniArt, _color, _active, _pasive, _
     vaultAnimation = asset_get_index(string("s_{0}Vault", codeName));
     
     tripAnimation = asset_get_index(string("s_{0}Trip", codeName));
+    joyAnimation = asset_get_index(string("s_{0}Joy", codeName));
     
     stats = _stats;
 }
