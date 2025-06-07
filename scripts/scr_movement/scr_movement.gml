@@ -225,11 +225,6 @@ function scr_platformerMovement()
 			coyoteTime = 0;
 			isGrounded = false;
 			verticalSpeed = -(jumpForce + momentumJumpForce * min((abs(horizontalSpeed) / maximumDefaultSpeed), 1));
-            
-            repeat (maxJumpNumber - (jumpNumber + 1)) 
-            {
-                verticalSpeed *= 0.75;
-            }
 		}
         else if (pasive.airDash and !isAirDashUsed)
         {

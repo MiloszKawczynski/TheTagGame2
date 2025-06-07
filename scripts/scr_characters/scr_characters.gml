@@ -83,8 +83,6 @@ function scr_createCharacters()
     //--- ADAM ---
     
     var adamPasive = new pasiveSkills();
-    adamPasive.alwaysPerfectVault = true;
-    
     var adamStats = new statsModificators();
     
     adam = new character("Adam", "adam", sVN_adam, 1, global.c_runnersUp, sprint, adamPasive, adamStats);
@@ -105,12 +103,12 @@ function scr_createCharacters()
     
     var miriamPasive = new pasiveSkills();
     miriamPasive.autoCatch = true;
+    miriamPasive.alwaysPerfectVault = true;
     
     var miriamStats = new statsModificators();
-    miriamStats.minimumObstacleJumpForceModificator = 1.5;
-    miriamStats.maximumObstacleJumpForceModificator = 0.5 * 1.5;
-    miriamStats.obstacleRangeModificator = 0.5;
-    miriamStats.catchRangeModificator = 0.1;
+    miriamStats.maximumObstacleJumpForceModificator = 0.5;
+    miriamStats.obstacleRangeModificator = 0.75;
+    miriamStats.catchRangeModificator = 0.2;
     
     miriam = new character("Miriam", "adam", sVN_miriam, 1, global.c_gravitieri, dash, miriamPasive, miriamStats);
     
@@ -121,10 +119,9 @@ function scr_createCharacters()
     
     var tricksterStats = new statsModificators();
     tricksterStats.jumpForceModificator = 1.15;
-    tricksterStats.momentumJumpForceModificator = -0.1;
     
     
-    trickster = new character("Trickster", "adam", sVN_trickster, 3, global.c_chaosCrew, drift, tricksterPasive, emptyStats);
+    trickster = new character("Trickster", "adam", sVN_trickster, 3, global.c_chaosCrew, drift, tricksterPasive, tricksterStats);
     
     //--- DAVID ---
     
@@ -142,8 +139,6 @@ function scr_createCharacters()
     featherPasive.noUpHillPenalty = true;
     
     var featherStats = new statsModificators();
-    featherStats.slopeAccelerationModificator = 0.7;
-    featherStats.rampAccelerationModificator = 0.7;
     
     feather = new character("Feather", "clea", sVN_feather, 2, global.c_gravitieri, float, featherPasive, featherStats);
     
@@ -178,8 +173,9 @@ function scr_createCharacters()
     var cleaPasive = new pasiveSkills();
     
     var cleaStats = new statsModificators();
+    cleaStats.maximumDefaultSpeedModificator = 0.5;
     cleaStats.skillUsageModificator = 0.9;
-    cleaStats.skillValueModificator = 1.1;
+    cleaStats.skillValueModificator = 1.2;
     
     clea = new character("Clea", "clea", sVN_clea, 2, global.c_gravitieri, sprint, cleaPasive, cleaStats);
     
@@ -204,10 +200,10 @@ function setActiveSkills()
 	global.skills = [];
 	
 	sprint = new activeSkill("sprint", skillTypes.sprint, 0.01, 0.01, 0.33, 0);
-	dash = new activeSkill("dash", skillTypes.dash, 1, 0.005, 2, 1);
+	dash = new activeSkill("dash", skillTypes.dash, 1, 0.01, 2, 1);
 	//gravityManipulation = new activeSkill("gravity manipulation", skillTypes.float, 0.01, 0.01, 1, 1);
     //teleport = new activeSkill("teleport", skillTypes.dash, 1, 0.005, 20, 1);
-    float = new activeSkill("float", skillTypes.float, 0.02, 0.005, 5, 0.33);
+    float = new activeSkill("float", skillTypes.float, 0.015, 0.005, 5, 0.33);
     drift = new activeSkill("drift", skillTypes.drift, 0.03, 0.1, 10, 0.33);
 	
 	array_push(global.skills, sprint, dash, float, drift);

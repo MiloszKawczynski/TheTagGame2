@@ -67,21 +67,36 @@ if (input_check("skillKey", player) and !skillRecharging and !skillUsed)
 			}
             case(skillTypes.float):
 			{
-                if (isGrounded and o_gameManager.isGravitationOn)
-                { 
-                    jumpNumber--;
-        			jumpBuffor = 0;
-        			coyoteTime = 0;
-        			isGrounded = false;
-        			verticalSpeed = -skillValue;
+                if ((speed != 0 and isGrounded) or (!isGrounded and vspeed > 0)) 
+				{
+                    if (isSkillActive == 0) 
+                    {
+                        if (o_gameManager.isGravitationOn)
+    					{
+    						horizontalSpeed = maximumDefaultSpeed * 1.5 * sign(hspeed);
+    						maximumSpeed = max(abs(horizontalSpeed), maximumSpeed);
+    					}
+    					else 
+    					{
+    						horizontalSpeed = lengthdir_x(maximumDefaultSpeed * 1.5, direction);
+    						verticalSpeed = lengthdir_y(maximumDefaultSpeed * 1.5, direction);
+    						maximumSpeed = max(point_distance(0, 0, horizontalSpeed, verticalSpeed), maximumSpeed);
+    					}
+                    }
+                    
+                    if (isGrounded and o_gameManager.isGravitationOn)
+                    { 
+                        isGrounded = false;
+                        verticalSpeed = -skillValue;
+                    }
+                    isSkillActive = 1;
+                    isUsed = true;
                 }
-                isSkillActive = 1;
-                isUsed = true;
 				break;
 			}
             case(skillTypes.drift):
 			{
-				if (isGrounded and isSkillActive == 0) 
+				if (isSkillActive == 0) 
 				{
                     isSkillActive = 1;
                     driftDirection = lastDirection; 
@@ -98,16 +113,7 @@ if (input_check("skillKey", player) and !skillRecharging and !skillUsed)
                 
                 if (isSkillActive)
                 { 
-                    if (isGrounded)
-                    {
-                        isUsed = true;
-                    }
-                    else 
-                    {
-                    	isUsed = false;
-                        isSkillActive = 0;
-                        skillUsed = true;
-                    }
+                    isUsed = true;
                 }
 				break;
 			}
@@ -132,35 +138,38 @@ else
         {
             isSkillActive = 0;
             
-            if (o_gameManager.isGravitationOn)
+            if (isGrounded)
             {
-                var dir = sign(desiredHorizontalDirection);
-                if (dir == 0)
+                if (o_gameManager.isGravitationOn)
                 {
-                    dir = sign(image_xscale);
+                    var dir = sign(desiredHorizontalDirection);
+                    if (dir == 0)
+                    {
+                        dir = sign(image_xscale);
+                    }
+                    
+                    horizontalSpeed = (max(hspeed, maximumSpeed) + (abs(driftMeter - skillEnergy) / 1) * skillValue) * dir;
+                    hspeed = horizontalSpeed;
+                    maximumSpeed = abs(horizontalSpeed);
+                    scr_platformerCollision();
                 }
-                
-                horizontalSpeed = (max(hspeed, maximumSpeed) + (abs(driftMeter - skillEnergy) / 1) * skillValue) * dir;
-                hspeed = horizontalSpeed;
-                maximumSpeed = abs(horizontalSpeed);
-                scr_platformerCollision();
-            }
-            else
-            { 
-                speed = max(speed, maximumSpeed) + (abs(driftMeter - skillEnergy) / 1) * skillValue;
-                maximumSpeed = speed;
-                
-                if (desiredHorizontalDirection == 0 and desiredVerticalDirection == 0)
-                {
-                    direction = lastDirection;
+                else
+                { 
+                    speed = max(speed, maximumSpeed) + (abs(driftMeter - skillEnergy) / 1) * skillValue;
+                    maximumSpeed = speed;
+                    
+                    if (desiredHorizontalDirection == 0 and desiredVerticalDirection == 0)
+                    {
+                        direction = lastDirection;
+                    }
+                    else 
+                    {
+                    	direction = point_direction(0, 0, desiredHorizontalDirection, desiredVerticalDirection);
+                    }
+                    horizontalSpeed = lengthdir_x(speed, direction);
+                    verticalSpeed = lengthdir_y(speed, direction);
+                    scr_topDownCollision();
                 }
-                else 
-                {
-                	direction = point_direction(0, 0, desiredHorizontalDirection, desiredVerticalDirection);
-                }
-                horizontalSpeed = lengthdir_x(speed, direction);
-                verticalSpeed = lengthdir_y(speed, direction);
-                scr_topDownCollision();
             }
         }
     }
