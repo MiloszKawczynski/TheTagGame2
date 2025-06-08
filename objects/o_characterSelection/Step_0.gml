@@ -5,128 +5,134 @@ var isChange = 0;
 var p1Before = false;
 var p2Before = false;
 
-if (input_check_pressed("rightKey", 0)) 
-{ 
-    p1Selected++; 
-    isChange = 1; 
-    charChangeP1 = true;
-    p1Before = true;
+if (!isP1Selected)
+{
+    if (input_check_pressed("rightKey", 0)) 
+    { 
+        p1Selected++; 
+        isChange = 1; 
+        charChangeP1 = true;
+        p1Before = true;
+        
+        if (p1Selected >= 10)
+        {
+            p1Selected = 0;
+        } 
+    }
     
-    if (p1Selected >= 10)
-    {
-        p1Selected = 0;
-    } 
+    if (input_check_pressed("leftKey", 0)) 
+    { 
+        p1Selected--; 
+        isChange = -1;
+        charChangeP1 = true; 
+        p1Before = true;
+        
+        if (p1Selected < 0)
+        {
+            p1Selected = 9;
+        } 
+    }
+    
+    if (input_check_pressed("downKey", 0)) 
+    { 
+        p1Selected += 5; 
+        isChange = 1; 
+        charChangeP1 = true;
+        p1Before = true;
+        
+        if (p1Selected >= 10)
+        {
+            p1Selected -= 10;
+        } 
+        
+        while (p1Selected < 0)
+        {
+            p1Selected -= 5;
+        }  
+    }
+    
+    if (input_check_pressed("upKey", 0)) 
+    { 
+        p1Selected -= 5; 
+        isChange = -1; 
+        charChangeP1 = true;
+        p1Before = true;
+        
+        if (p1Selected < 0)
+        {
+            p1Selected += 10;
+        } 
+        
+        while (p1Selected > 10)
+        {
+            p1Selected -= 5;
+        }  
+    }
 }
 
-if (input_check_pressed("rightKey", 1))
-{ 
-    p2Selected++; 
-    isChange = 1; 
-    charChangeP2 = true; 
-    p2Before = true;
+if (!isP2Selected)
+{
+    if (input_check_pressed("rightKey", 1))
+    { 
+        p2Selected++; 
+        isChange = 1; 
+        charChangeP2 = true; 
+        p2Before = true;
+        
+        if (p2Selected >= 10)
+        {
+            p2Selected = 0;
+        } 
+    }
     
-    if (p2Selected >= 10)
-    {
-        p2Selected = 0;
-    } 
-}
+    if (input_check_pressed("leftKey", 1)) 
+    { 
+        p2Selected--; 
+        isChange = -1;
+        charChangeP2 = true;
+        p2Before = true;
+        
+        if (p2Selected < 0)
+        {
+            p2Selected = 9;
+        }  
+    }
     
-if (input_check_pressed("leftKey", 0)) 
-{ 
-    p1Selected--; 
-    isChange = -1;
-    charChangeP1 = true; 
-    p1Before = true;
+    if (input_check_pressed("downKey", 1)) 
+    { 
+        p2Selected += 5; 
+        isChange = 1; 
+        charChangeP2 = true;
+        p2Before = true;
+        
+        if (p2Selected >= 10)
+        {
+            p2Selected -= 10;
+        } 
+        
+        while (p2Selected < 0)
+        {
+            p2Selected -= 5;
+        }  
+    }
     
-    if (p1Selected < 0)
-    {
-        p1Selected = 9;
-    } 
-}
-
-if (input_check_pressed("leftKey", 1)) 
-{ 
-    p2Selected--; 
-    isChange = -1;
-    charChangeP2 = true;
-    p2Before = true;
-    
-    if (p2Selected < 0)
-    {
-        p2Selected = 9;
-    }  
-}
-    
-if (input_check_pressed("downKey", 0)) 
-{ 
-    p1Selected += 5; 
-    isChange = 1; 
-    charChangeP1 = true;
-    p1Before = true;
-    
-    if (p1Selected >= 10)
-    {
-        p1Selected -= 10;
-    } 
-    
-    while (p1Selected < 0)
-    {
-        p1Selected -= 5;
-    }  
-}
-
-if (input_check_pressed("downKey", 1)) 
-{ 
-    p2Selected += 5; 
-    isChange = 1; 
-    charChangeP2 = true;
-    p2Before = true;
-    
-    if (p2Selected >= 10)
-    {
-        p2Selected -= 10;
-    } 
-    
-    while (p2Selected < 0)
-    {
-        p2Selected -= 5;
-    }  
-}
-    
-if (input_check_pressed("upKey", 0)) 
-{ 
-    p1Selected -= 5; 
-    isChange = -1; 
-    charChangeP1 = true;
-    p1Before = true;
-    
-    if (p1Selected < 0)
-    {
-        p1Selected += 10;
-    } 
-    
-    while (p1Selected > 10)
-    {
-        p1Selected -= 5;
-    }  
-}
-
-if (input_check_pressed("upKey", 1)) 
-{ 
-    p2Selected -= 5; 
-    isChange = -1; 
-    charChangeP2 = true;
-    p2Before = true;
-    
-    if (p2Selected < 0)
-    {
-        p2Selected += 10;
-    } 
-    
-    while (p2Selected > 10)
-    {
-        p2Selected -= 5;
-    }  
+    if (input_check_pressed("upKey", 1)) 
+    { 
+        p2Selected -= 5; 
+        isChange = -1; 
+        charChangeP2 = true;
+        p2Before = true;
+        
+        if (p2Selected < 0)
+        {
+            p2Selected += 10;
+        } 
+        
+        while (p2Selected > 10)
+        {
+            p2Selected -= 5;
+        }  
+    }
 }
     
 if (isChange != 0)
@@ -154,14 +160,52 @@ if (p2Before)
     }
 }
 
-if (input_check_pressed("interactionKey", 0) or input_check_pressed("interactionKey", 1))
+if (input_check_pressed("interactionKey", 0))
 {
     audio_play_sound(sn_uiAccept, 0, false);
+    
+    isP1Selected = true;
+    ui.characterSelectionSlotBorderP1.setColor(global.c_darkBlue);
+    if (p1Selected == 0)
+    {
+        global.leftCharacter = irandom(array_length(global.characters));
+    }
+    else 
+    {
+    	global.leftCharacter = p1Selected - 1;
+    }
 }
 
-if (input_check_pressed("leave", 0) or input_check_pressed("leave", 1))
+if (input_check_pressed("interactionKey", 1))
+{
+    audio_play_sound(sn_uiAccept, 0, false);
+    
+    isP2Selected = true;
+    ui.characterSelectionSlotBorderP2.setColor(global.c_darkBlue);
+    if (p2Selected == 0)
+    {
+        global.rightCharacter = irandom(array_length(global.characters));
+    }
+    else 
+    {
+    	global.rightCharacter = p2Selected - 1;
+    }
+}
+
+if (input_check_pressed("leave", 0))
 {
     audio_play_sound(sn_uiCancel, 0, false);
+    ui.characterSelectionSlotBorderP1.setColor(c_white);
+    
+    isP1Selected = false;
+}
+
+if (input_check_pressed("leave", 1))
+{
+    audio_play_sound(sn_uiCancel, 0, false);
+    ui.characterSelectionSlotBorderP2.setColor(c_white);
+    
+    isP2Selected = false;
 }
     
 with(ui)
@@ -223,4 +267,9 @@ tileY++;
 if (tileY > room_height)
 {
     tileY = 0;
+}
+
+if (isP1Selected and isP2Selected)
+{
+    room_goto(r_levelEditor);
 }

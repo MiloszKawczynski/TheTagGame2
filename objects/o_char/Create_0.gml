@@ -4,7 +4,15 @@ o_gameManager.players[player] =
 	points: 0
 };
 
-characterID = characterTypes.adam;
+if (player == 0)
+{
+    characterID = global.leftCharacter;
+}
+
+if (player == 1)
+{
+    characterID = global.rightCharacter;
+}
 
 maximumDefaultSpeedModificator = 1;
 accelerationModificator = 1;

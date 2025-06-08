@@ -5,6 +5,9 @@ tileY = 0;
 p1Selected = 0;
 p2Selected = 4;
 
+isP1Selected = false;
+isP2Selected = false;
+
 charChangeP1 = false;
 charChangeP2 = false;
 
@@ -101,7 +104,7 @@ with(ui)
     {
         var drawBorder = function()
         {
-            draw_sprite_ext(s_characterSelectionSlotBorder, 0, posX, posY, scaleX, scaleY, 0, c_white, 1);
+            draw_sprite_ext(s_characterSelectionSlotBorder, 0, posX, posY, scaleX, scaleY, 0, color, 1);
         }
         setDrawFunction(drawBorder);
     }
@@ -111,7 +114,7 @@ with(ui)
     {
         var drawBorder = function()
         {
-            draw_sprite_ext(s_characterSelectionSlotBorder, 1, posX, posY, scaleX, scaleY, 0, c_white, 1);
+            draw_sprite_ext(s_characterSelectionSlotBorder, 1, posX, posY, scaleX, scaleY, 0, color, 1);
         }
         setDrawFunction(drawBorder);
     }
