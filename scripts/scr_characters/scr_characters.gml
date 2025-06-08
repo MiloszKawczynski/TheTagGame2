@@ -110,7 +110,8 @@ function scr_createCharacters()
     miriamPasive.alwaysPerfectVault = true;
     
     var miriamStats = new statsModificators();
-    miriamStats.maximumObstacleJumpForceModificator = 0.5;
+    miriamStats.minimumObstacleJumpForceModificator = 0.7;
+    miriamStats.maximumObstacleJumpForceModificator = 0.7;
     miriamStats.obstacleRangeModificator = 0.75;
     miriamStats.catchRangeModificator = 0.2;
     
