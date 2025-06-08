@@ -870,6 +870,7 @@
     {"id":{"name":"sn_catch1","path":"sounds/sn_catch1/sn_catch1.yy",},},
     {"id":{"name":"sn_catch2","path":"sounds/sn_catch2/sn_catch2.yy",},},
     {"id":{"name":"sn_catch3","path":"sounds/sn_catch3/sn_catch3.yy",},},
+    {"id":{"name":"sn_counter","path":"sounds/sn_counter/sn_counter.yy",},},
     {"id":{"name":"sn_evade1","path":"sounds/sn_evade1/sn_evade1.yy",},},
     {"id":{"name":"sn_evade2","path":"sounds/sn_evade2/sn_evade2.yy",},},
     {"id":{"name":"sn_evade3","path":"sounds/sn_evade3/sn_evade3.yy",},},

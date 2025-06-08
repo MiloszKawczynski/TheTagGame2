@@ -492,6 +492,11 @@ function setupLogicStates()
             return false;
         }
         
+        if (countDownScale == 5 and countDownContent == 3)
+        {
+            audio_play_sound(sn_counter, 0, false);
+        }
+        
         countDownScale = lerp(countDownScale, 0, 0.075);
             
         if (countDownScale <= 0.1)
