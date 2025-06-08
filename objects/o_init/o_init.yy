@@ -1,22 +1,18 @@
 {
   "$GMObject":"",
-  "%Name":"o_characterSelection",
+  "%Name":"o_init",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"o_characterSelection",
+  "name":"o_init",
   "overriddenProperties":[],
   "parent":{
     "name":"2_Objects",
     "path":"folders/2_Objects.yy",
   },
-  "parentObjectId":{
-    "name":"ato_ui",
-    "path":"objects/ato_ui/ato_ui.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -34,7 +30,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"s_debug",
+    "path":"sprites/s_debug/s_debug.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }
