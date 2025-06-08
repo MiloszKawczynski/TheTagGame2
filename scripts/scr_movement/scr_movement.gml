@@ -237,6 +237,18 @@ function scr_platformerMovement()
             airHorizontalSpeed += dir * jumpForce;
             
             isAirDashUsed = true;
+            
+            part_emitter_region(runTrailSystem, 0, x - 5, x + 5, y - 32, y, ps_shape_rectangle, ps_distr_linear);
+            if (sign(image_xscale) == 1)
+            {
+                part_type_direction(airDashType, 180 - 5, 180 + 5, 0, 0);
+            }
+            
+            if (sign(image_xscale) == -1)
+            {
+            	part_type_direction(airDashType, 0 - 5, 0 + 5, 0, 0);
+            }
+            part_emitter_burst(runTrailSystem, 0, airDashType, 32);
         }
         else
 		{

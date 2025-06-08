@@ -469,6 +469,7 @@
     {"id":{"name":"RenderPipeline","path":"objects/RenderPipeline/RenderPipeline.yy",},},
     {"id":{"name":"SpotLight","path":"objects/SpotLight/SpotLight.yy",},},
     {"id":{"name":"WorldEnvironment","path":"objects/WorldEnvironment/WorldEnvironment.yy",},},
+    {"id":{"name":"ps_airDash","path":"particles/ps_airDash/ps_airDash.yy",},},
     {"id":{"name":"ps_godRays","path":"particles/ps_godRays/ps_godRays.yy",},},
     {"id":{"name":"ps_iCatched","path":"particles/ps_iCatched/ps_iCatched.yy",},},
     {"id":{"name":"ps_imChasing","path":"particles/ps_imChasing/ps_imChasing.yy",},},
