@@ -984,6 +984,7 @@
     {"id":{"name":"s_characterSelection","path":"sprites/s_characterSelection/s_characterSelection.yy",},},
     {"id":{"name":"s_characterSelectionBox","path":"sprites/s_characterSelectionBox/s_characterSelectionBox.yy",},},
     {"id":{"name":"s_characterSelectionDescription","path":"sprites/s_characterSelectionDescription/s_characterSelectionDescription.yy",},},
+    {"id":{"name":"s_characterSelectionDificulty","path":"sprites/s_characterSelectionDificulty/s_characterSelectionDificulty.yy",},},
     {"id":{"name":"s_characterSelectionName","path":"sprites/s_characterSelectionName/s_characterSelectionName.yy",},},
     {"id":{"name":"s_characterSelectionSlot","path":"sprites/s_characterSelectionSlot/s_characterSelectionSlot.yy",},},
     {"id":{"name":"s_characterSelectionSlotBorder","path":"sprites/s_characterSelectionSlotBorder/s_characterSelectionSlotBorder.yy",},},

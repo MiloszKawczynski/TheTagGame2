@@ -143,8 +143,12 @@ with(ui)
     characterDescriptionTextLeft = new Text(global.characters[other.p1Selected - 1].desc, f_characterDesc, fa_left, fa_top);
     characterDescriptionTextLeft.setColor(global.c_discordBlack);
     
+    characterDificultyLeft = new LedBar(global.characters[other.p1Selected - 1].dificulty, 3, 50);
+    characterDificultyLeft.setSpriteSheet(s_characterSelectionDificulty);
+    
     characterInfoGroupLeft.addComponent(0, 0, characterNameLeft);
     characterInfoGroupLeft.addComponent(0.25, 0.35, characterNameTextLeft);
+    characterInfoGroupLeft.addComponent(1.9, 0.09, characterDificultyLeft);
     characterInfoGroupLeft.addComponent(0, 2, characterDescriptionLeft);
     characterInfoGroupLeft.addComponent(0.1, 2.2, characterDescriptionTextLeft);
     
@@ -165,8 +169,12 @@ with(ui)
     characterDescriptionTextRight = new Text(global.characters[other.p2Selected - 1].desc, f_characterDesc, fa_right, fa_top);
     characterDescriptionTextRight.setColor(global.c_discordBlack);
     
+    characterDificultyRight = new LedBar(global.characters[other.p2Selected - 1].dificulty, 3, 50);
+    characterDificultyRight.setSpriteSheet(s_characterSelectionDificulty);
+    
     characterInfoGroupRight.addComponent(0, 0, characterNameRight);
     characterInfoGroupRight.addComponent(-0.25, 0.35, characterNameTextRight);
+    characterInfoGroupRight.addComponent(-1.9, 0.09, characterDificultyRight);
     characterInfoGroupRight.addComponent(0, 2, characterDescriptionRight);
     characterInfoGroupRight.addComponent(-0.1, 2.2, characterDescriptionTextRight);
     
