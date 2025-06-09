@@ -89,7 +89,7 @@ function scr_createCharacters()
     var adamPasive = new pasiveSkills();
     var adamStats = new statsModificators();
     
-    adam = new character("Adam", "adam", sVN_adam, 1, global.c_runnersUp, sprint, adamPasive, adamStats);
+    adam = new character("Adam", "adam", sVN_adam, 1, global.c_adam, sprint, adamPasive, adamStats);
     
     //--- RILEY ---
     
@@ -101,7 +101,7 @@ function scr_createCharacters()
     rileyStats.slopeAccelerationModificator = 1.1;
     rileyStats.rampAccelerationModificator = 1.1;
     
-    riley = new character("Riley", "adam", sVN_riley, 1, global.c_runnersUp, drift, rileyPasive, rileyStats);
+    riley = new character("Riley", "adam", sVN_riley, 2, global.c_riley, drift, rileyPasive, rileyStats);
     
     //--- MIRIAM ---
     
@@ -115,7 +115,7 @@ function scr_createCharacters()
     miriamStats.obstacleRangeModificator = 0.75;
     miriamStats.catchRangeModificator = 0.2;
     
-    miriam = new character("Miriam", "adam", sVN_miriam, 1, global.c_gravitieri, dash, miriamPasive, miriamStats);
+    miriam = new character("Miriam", "adam", sVN_miriam, 3, global.c_miriam, dash, miriamPasive, miriamStats);
     
     //--- TRICKSTER ---
     
@@ -126,7 +126,7 @@ function scr_createCharacters()
     tricksterStats.jumpForceModificator = 1.15;
     
     
-    trickster = new character("Trickster", "adam", sVN_trickster, 3, global.c_chaosCrew, drift, tricksterPasive, tricksterStats);
+    trickster = new character("Trickster", "adam", sVN_trickster, 4, global.c_trickster, drift, tricksterPasive, tricksterStats);
     
     //--- DAVID ---
     
@@ -136,7 +136,7 @@ function scr_createCharacters()
     davidStats.maxJumpNumberModificator = 3;
     davidStats.maximumDefaultSpeedModificator = 0.8;
     
-    david = new character("David", "clea", sVN_david, 2, global.c_runnersUp, float, davidPasive, davidStats);
+    david = new character("David", "clea", sVN_david, 5, global.c_david, float, davidPasive, davidStats);
     
     //--- FEATHER ---
     
@@ -145,7 +145,7 @@ function scr_createCharacters()
     
     var featherStats = new statsModificators();
     
-    feather = new character("Feather", "clea", sVN_feather, 2, global.c_gravitieri, float, featherPasive, featherStats);
+    feather = new character("Feather", "clea", sVN_feather, 6, global.c_feather, float, featherPasive, featherStats);
     
     //--- SNOW WHITE ---
     
@@ -156,7 +156,7 @@ function scr_createCharacters()
     snowWhiteStats.minimumObstacleJumpForceModificator = 0.7;
     snowWhiteStats.maximumObstacleJumpForceModificator = 1.2;
     
-    snowWhite = new character("Snow White", "clea", sVN_snowWhite, 2, global.c_gravitieri, dash, snowWhitePasive, snowWhiteStats);
+    snowWhite = new character("Snow White", "clea", sVN_snowWhite, 7, global.c_snowWhite, dash, snowWhitePasive, snowWhiteStats);
     
     //--- KARENN ---
     
@@ -171,7 +171,7 @@ function scr_createCharacters()
     karenStats.rampDecelerationModificator = 2;
     karenStats.slopeDecelerationModificator = 2;
     
-    karen = new character("Karen", "clea", sVN_karen, 2, global.c_theRunners, sprint, karenPasive, karenStats);
+    karen = new character("Karen", "clea", sVN_karen, 8, global.c_karen, sprint, karenPasive, karenStats);
     
     //--- CLEA ---
     
@@ -182,7 +182,7 @@ function scr_createCharacters()
     cleaStats.skillUsageModificator = 0.9;
     cleaStats.skillValueModificator = 1.2;
     
-    clea = new character("Clea", "clea", sVN_clea, 2, global.c_gravitieri, sprint, cleaPasive, cleaStats);
+    clea = new character("Clea", "clea", sVN_clea, 9, global.c_clea, sprint, cleaPasive, cleaStats);
     
     //-----------
     

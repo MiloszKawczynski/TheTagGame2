@@ -26,15 +26,34 @@ global.c_unitySquad = make_color_rgb(0, 194, 255);
 global.c_chaosCrew = make_color_rgb(97, 0, 255);
 global.c_theRunners = make_color_rgb(255, 167, 0);
 
+global.c_adam = make_color_rgb(187, 0, 119);
+global.c_clea = make_color_rgb(255, 0, 0);
+global.c_david = make_color_rgb(40, 42, 53);
+global.c_feather = make_color_rgb(204, 0, 255);
+global.c_karen = make_color_rgb(255, 129, 127);
+global.c_miriam = make_color_rgb(130, 0, 0);
+global.c_riley = make_color_rgb(255, 255, 0);
+global.c_snowWhite = make_color_rgb(255, 255, 255);
+global.c_trickster = make_color_rgb(97, 0, 255);
+
 global.c_teamColors = array_create();
 array_push(global.c_teamColors,
-global.c_runnersUp,
-global.c_gravitieri,
-global.c_flyingApocalypse,
-global.c_parkourPunishment,
-global.c_unitySquad,
-global.c_chaosCrew,
-global.c_theRunners
+//global.c_runnersUp,
+//global.c_gravitieri,
+//global.c_flyingApocalypse,
+//global.c_parkourPunishment,
+//global.c_unitySquad,
+//global.c_chaosCrew,
+//global.c_theRunners
+global.c_adam,
+global.c_clea,
+global.c_david,
+global.c_feather,
+global.c_karen,
+global.c_miriam,
+global.c_riley,
+global.c_snowWhite,
+global.c_trickster
 );
 
 global.s_teamColors = array_create();
