@@ -314,6 +314,11 @@ if (isP1Selected and isP2Selected)
         setPositionInGrid(lerp(posInGridX, other.leftHide, 0.2), posInGridY);
     }
     
+    with(ui.characterInfoGroupLeft)
+    {
+        setPositionInGrid(lerp(posInGridX, other.leftHide - 3, 0.2), posInGridY);
+    }
+    
     with(ui.characterRight)
     {
         setPositionInGrid(lerp(posInGridX, other.rightHide, 0.2), posInGridY);
@@ -322,6 +327,11 @@ if (isP1Selected and isP2Selected)
     with(ui.characterRightBck)
     {
         setPositionInGrid(lerp(posInGridX, other.rightHide, 0.2), posInGridY);
+    }
+    
+    with(ui.characterInfoGroupRight)
+    {
+        setPositionInGrid(lerp(posInGridX, other.rightHide + 3, 0.2), posInGridY);
     }
     
     dividerX = lerp(dividerX, -room_width * 0.15, 0.2);

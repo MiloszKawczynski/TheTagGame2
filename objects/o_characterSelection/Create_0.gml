@@ -2,8 +2,8 @@ event_inherited();
 
 leftHide = -2;
 rightHide = 12;
-leftShow = 3;
-rightShow = 7;
+leftShow = 3.5;
+rightShow = 6.5;
 
 dividerX = 0;
 
