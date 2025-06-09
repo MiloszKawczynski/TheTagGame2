@@ -144,9 +144,19 @@ if (p1Before)
 {
     with(ui)
     {
-        characterLeft.setPositionInGrid(3, 5.5);
-        characterLeftBck.setPositionInGrid(-2, 5.5);
-        characterLeftBck.setSprite(global.characters[max(other.p1Selected - 1, 0)].art);
+        characterLeft.setPositionInGrid(other.leftShow, 5.5);
+        characterLeftBck.setPositionInGrid(other.leftHide, 5.5);
+        
+        if (other.p1Selected == 0)
+        {
+            characterLeft.setSprite(characterLeftBck.state.sprite);
+            characterLeftBck.setSprite(sVN_random); 
+        }
+        else 
+        {
+        	characterLeft.setSprite(characterLeftBck.state.sprite);
+            characterLeftBck.setSprite(global.characters[other.p1Selected - 1].art); 
+        }
     }
 }
 
@@ -154,9 +164,19 @@ if (p2Before)
 {
     with(ui)
     {
-        characterRight.setPositionInGrid(7, 5.5);
-        characterRightBck.setPositionInGrid(11, 5.5);
-        characterRightBck.setSprite(global.characters[max(other.p2Selected - 1, 0)].art);
+        characterRight.setPositionInGrid(other.rightShow, 5.5);
+        characterRightBck.setPositionInGrid(other.rightHide, 5.5);
+        
+        if (other.p2Selected == 0)
+        {
+            characterRight.setSprite(characterRightBck.state.sprite);
+            characterRightBck.setSprite(sVN_random); 
+        }
+        else 
+        {
+        	characterRight.setSprite(characterRightBck.state.sprite);
+            characterRightBck.setSprite(global.characters[other.p2Selected - 1].art); 
+        }
     }
 }
 
@@ -168,7 +188,7 @@ if (input_check_pressed("interactionKey", 0))
     ui.characterSelectionSlotBorderP1.setColor(global.c_darkBlue);
     if (p1Selected == 0)
     {
-        global.leftCharacter = irandom(array_length(global.characters));
+        global.leftCharacter = irandom(array_length(global.characters) - 1);
     }
     else 
     {
@@ -184,7 +204,7 @@ if (input_check_pressed("interactionKey", 1))
     ui.characterSelectionSlotBorderP2.setColor(global.c_darkBlue);
     if (p2Selected == 0)
     {
-        global.rightCharacter = irandom(array_length(global.characters));
+        global.rightCharacter = irandom(array_length(global.characters) - 1);
     }
     else 
     {
@@ -231,8 +251,8 @@ with(ui)
     {
         with(characterLeft)
         {
-            setPositionInGrid(lerp(posInGridX, -2, 0.2), 5.5);
-            if (posInGridX <= -1.9)
+            setPositionInGrid(lerp(posInGridX, o_characterSelection.leftHide, 0.2), posInGridY);
+            if (posInGridX <= o_characterSelection.leftHide + 0.01)
             {
                 o_characterSelection.charChangeP1 = false;
             }
@@ -240,7 +260,7 @@ with(ui)
         
         with(characterLeftBck)
         {
-            setPositionInGrid(lerp(posInGridX, 3, 0.2), 5.5);
+            setPositionInGrid(lerp(posInGridX, o_characterSelection.leftShow, 0.2), posInGridY);
         }
     }
     
@@ -248,8 +268,8 @@ with(ui)
     {
         with(characterRight)
         {
-            setPositionInGrid(lerp(posInGridX, 11, 0.2), 5.5);
-            if (posInGridX >= 10.9)
+            setPositionInGrid(lerp(posInGridX, o_characterSelection.rightHide, 0.2), posInGridY);
+            if (posInGridX >= o_characterSelection.rightHide - 0.01)
             {
                 o_characterSelection.charChangeP2 = false;
             }
@@ -257,7 +277,7 @@ with(ui)
         
         with(characterRightBck)
         {
-            setPositionInGrid(lerp(posInGridX, 7, 0.2), 5.5);
+            setPositionInGrid(lerp(posInGridX, o_characterSelection.rightShow, 0.2), posInGridY);
         }
     }
 }
@@ -271,5 +291,36 @@ if (tileY > room_height)
 
 if (isP1Selected and isP2Selected)
 {
-    room_goto(r_levelEditor);
+    with(ui.characterSelectionGroup)
+    {
+        setPositionInGrid(posInGridX, lerp(posInGridY, 12, 0.2));
+    }
+    
+    with(ui.characterLeft)
+    {
+        setPositionInGrid(lerp(posInGridX, other.leftHide, 0.2), posInGridY);
+    }
+    
+    with(ui.characterLeftBck)
+    {
+        setPositionInGrid(lerp(posInGridX, other.leftHide, 0.2), posInGridY);
+    }
+    
+    with(ui.characterRight)
+    {
+        setPositionInGrid(lerp(posInGridX, other.rightHide, 0.2), posInGridY);
+    }
+    
+    with(ui.characterRightBck)
+    {
+        setPositionInGrid(lerp(posInGridX, other.rightHide, 0.2), posInGridY);
+    }
+    
+    dividerX = lerp(dividerX, -room_width * 0.15, 0.2);
+    
+    if (abs(dividerX - (-room_width * 0.15) < 0.01))
+    {
+        instance_create_depth(x, y, depth, o_levelSelection);
+        instance_destroy();
+    }
 }

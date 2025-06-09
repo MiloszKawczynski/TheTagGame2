@@ -1,5 +1,12 @@
 event_inherited();
 
+leftHide = -2;
+rightHide = 12;
+leftShow = 3;
+rightShow = 7;
+
+dividerX = 0;
+
 tileY = 0;
 
 p1Selected = 0;
@@ -123,11 +130,11 @@ with(ui)
     characterSelectionGroup.addComponent(-2, -1, characterSelectionSlotBorderP1);
     characterSelectionGroup.addComponent(2, -1, characterSelectionSlotBorderP2);
     
-    mainLayer.addComponent(3, 5.5, characterLeft);
-    mainLayer.addComponent(7, 5.5, characterRight);
+    mainLayer.addComponent(other.leftShow, 5.5, characterLeft);
+    mainLayer.addComponent(other.rightShow, 5.5, characterRight);
     
-    mainLayer.addComponent(-2, 5.5, characterLeftBck);
-    mainLayer.addComponent(11, 5.5, characterRightBck);
+    mainLayer.addComponent(other.leftHide, 5.5, characterLeftBck);
+    mainLayer.addComponent(other.rightHide, 5.5, characterRightBck);
     
     mainLayer.addComponent(5, 8, characterSelectionGroup);
     
