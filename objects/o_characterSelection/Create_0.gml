@@ -9,8 +9,8 @@ dividerX = 0;
 
 tileY = 0;
 
-p1Selected = 0;
-p2Selected = 4;
+p1Selected = 1;
+p2Selected = 9;
 
 isP1Selected = false;
 isP2Selected = false;
@@ -127,8 +127,8 @@ with(ui)
     }
     
     
-    characterSelectionGroup.addComponent(-2, -1, characterSelectionSlotBorderP1);
-    characterSelectionGroup.addComponent(2, -1, characterSelectionSlotBorderP2);
+    characterSelectionGroup.addComponent(-1, -1, characterSelectionSlotBorderP1);
+    characterSelectionGroup.addComponent(2, 1, characterSelectionSlotBorderP2);
     
     mainLayer.addComponent(other.leftShow, 5.5, characterLeft);
     mainLayer.addComponent(other.rightShow, 5.5, characterRight);
