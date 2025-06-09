@@ -209,7 +209,6 @@ function scr_platformerMovement()
 	{
         if (pasive.wallJump and !place_meeting(x, y + 1, o_collision) and !isGrounded and (wallDirection != 0 or wallJumpCoyoteTime > 0))
 	    {
-            log(wallJumpCoyoteTime);
             wallDirection = 0;
             jumpBuffor = 0;
             wallJumpCoyoteTime = 0;
