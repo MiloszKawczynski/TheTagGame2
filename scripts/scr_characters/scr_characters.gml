@@ -106,7 +106,7 @@ function scr_createCharacters()
     
     var rileyDesc = "Umiejętność: Drift\n\nZbiega z górki\nszybciej niż inni\n\nW powietrzu potrafi\nwykonać air dash";
     
-    riley = new character("Riley", rileyDesc, "adam", sVN_riley, 2, global.c_riley, drift, rileyPasive, rileyStats);
+    riley = new character("Riley", rileyDesc, "riley", sVN_riley, 2, global.c_riley, drift, rileyPasive, rileyStats);
     
     //--- MIRIAM ---
     
