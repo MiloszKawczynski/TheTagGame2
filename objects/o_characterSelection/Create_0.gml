@@ -128,11 +128,56 @@ with(ui)
     characterSelectionGroup.addComponent(-1, -1, characterSelectionSlotBorderP1);
     characterSelectionGroup.addComponent(2, 1, characterSelectionSlotBorderP2);
     
+    characterInfoGroupLeft = new Group();
+    characterInfoGroupLeft.setGrid(1, 1);
+    
+    characterNameLeft = new Output();
+    characterNameLeft.setSprite(s_characterSelectionName);
+    
+    characterNameTextLeft = new Text(global.characters[other.p1Selected - 1].name, f_characterName, fa_left, fa_top);
+    characterNameTextLeft.setColor(global.c_discordBlack);
+    
+    characterDescriptionLeft = new Output();
+    characterDescriptionLeft.setSprite(s_characterSelectionDescription);
+    
+    characterDescriptionTextLeft = new Text(global.characters[other.p1Selected - 1].desc, f_characterDesc, fa_left, fa_top);
+    characterDescriptionTextLeft.setColor(global.c_discordBlack);
+    
+    characterInfoGroupLeft.addComponent(0, 0, characterNameLeft);
+    characterInfoGroupLeft.addComponent(0.25, 0.35, characterNameTextLeft);
+    characterInfoGroupLeft.addComponent(0, 2, characterDescriptionLeft);
+    characterInfoGroupLeft.addComponent(0.1, 2.2, characterDescriptionTextLeft);
+    
+    characterInfoGroupRight = new Group();
+    characterInfoGroupRight.setGrid(1, 1);
+    
+    characterNameRight = new Output();
+    characterNameRight.setSprite(s_characterSelectionName);
+    characterNameRight.setScale(-1, 1);
+    
+    characterNameTextRight = new Text(global.characters[other.p2Selected - 1].name, f_characterName, fa_right, fa_top);
+    characterNameTextRight.setColor(global.c_discordBlack);
+    
+    characterDescriptionRight = new Output();
+    characterDescriptionRight.setSprite(s_characterSelectionDescription);
+    characterDescriptionRight.setScale(-1, 1);
+    
+    characterDescriptionTextRight = new Text(global.characters[other.p2Selected - 1].desc, f_characterDesc, fa_right, fa_top);
+    characterDescriptionTextRight.setColor(global.c_discordBlack);
+    
+    characterInfoGroupRight.addComponent(0, 0, characterNameRight);
+    characterInfoGroupRight.addComponent(-0.25, 0.35, characterNameTextRight);
+    characterInfoGroupRight.addComponent(0, 2, characterDescriptionRight);
+    characterInfoGroupRight.addComponent(-0.1, 2.2, characterDescriptionTextRight);
+    
     mainLayer.addComponent(other.leftShow, 5.5, characterLeft);
     mainLayer.addComponent(other.rightShow, 5.5, characterRight);
     
     mainLayer.addComponent(other.leftHide, 5.5, characterLeftBck);
     mainLayer.addComponent(other.rightHide, 5.5, characterRightBck);
+    
+    mainLayer.addComponent(0.4, 0.5, characterInfoGroupLeft);
+    mainLayer.addComponent(9.6, 0.5, characterInfoGroupRight);
     
     mainLayer.addComponent(5, 8, characterSelectionGroup);
     

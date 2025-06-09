@@ -151,11 +151,15 @@ if (p1Before)
         {
             characterLeft.setSprite(characterLeftBck.state.sprite);
             characterLeftBck.setSprite(sVN_random); 
+            characterNameTextLeft.setContent("Losowy biegacz"); 
+            characterDescriptionTextLeft.setContent("???"); 
         }
         else 
         {
         	characterLeft.setSprite(characterLeftBck.state.sprite);
             characterLeftBck.setSprite(global.characters[other.p1Selected - 1].art); 
+            characterNameTextLeft.setContent(global.characters[other.p1Selected - 1].name); 
+            characterDescriptionTextLeft.setContent(global.characters[other.p1Selected - 1].desc); 
         }
     }
 }
@@ -171,11 +175,15 @@ if (p2Before)
         {
             characterRight.setSprite(characterRightBck.state.sprite);
             characterRightBck.setSprite(sVN_random); 
+            characterNameTextRight.setContent("Losowy biegacz"); 
+            characterDescriptionTextRight.setContent("???"); 
         }
         else 
         {
         	characterRight.setSprite(characterRightBck.state.sprite);
             characterRightBck.setSprite(global.characters[other.p2Selected - 1].art); 
+            characterNameTextRight.setContent(global.characters[other.p2Selected - 1].name); 
+            characterDescriptionTextRight.setContent(global.characters[other.p2Selected - 1].desc); 
         }
     }
 }
