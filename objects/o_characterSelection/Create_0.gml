@@ -75,8 +75,6 @@ with(ui)
         	setDrawFunction(drawSlot);
         }
         
-        char++;
-        
         characterSelectionGroup.addComponent(i, -1, characterSelectionSlot);
         
         characterSelectionSlot = new Output();
@@ -84,7 +82,7 @@ with(ui)
         
         with(characterSelectionSlot)
         {
-            charID = char;
+            charID = char + 5;
             sampler = shader_get_sampler_index(shd_characterSlot, "character")
             slotTexture = sprite_get_texture(s_characterSelectionSlot, 0);
             
