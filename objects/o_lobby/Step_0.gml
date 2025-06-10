@@ -87,6 +87,7 @@ else
 		if (input_check_pressed("interactionKey", i))
 		{
 			room_goto(r_characterSelection);
+			//room_goto(r_levelEditor);
 			break;
 		}
 	}

@@ -58,6 +58,10 @@ global.c_trickster
 
 global.s_teamColors = array_create();
 
+global.leftCharacter = 0;
+global.rightCharacter = 0;
+global.gameLevelName = "empty";
+
 isTeamColorsSpriteCreated = false
 
 scr_createCharacters();

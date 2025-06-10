@@ -11,8 +11,9 @@ function scr_createLevels()
     santa = new level("santa");
     fire = new level("fire");
     shaft = new level("shaft");
+    side = new level("side");
     
     
     global.levels = array_create();
-    array_push(global.levels, basic, santa, fire, shaft);
+    array_push(global.levels, basic, santa, fire, shaft, side);
 }

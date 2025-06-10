@@ -65,9 +65,6 @@ function scr_setupStatsModificators(characterReference)
 
 function scr_createCharacters()
 {
-    global.leftCharacter = undefined;
-    global.rightCharacter = undefined;
-    
     setActiveSkills();
     
     enum characterTypes
