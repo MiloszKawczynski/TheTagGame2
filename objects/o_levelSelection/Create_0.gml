@@ -23,7 +23,7 @@ with(ui)
         var drawView = function()
         { 
             draw_sprite_ext(s_levelSelectionMain, 0, posX, posY, scaleX, scaleY, 0, c_white, 1);
-            draw_sprite_stretched(global.levels[value].shadow, 0, posX - width / 2 + 19.5, posY - height / 2 + 34, width - 19 - 18, height - 34 - 34); 
+            draw_sprite_stretched(global.levels[value].topWall, 1, posX - width / 2 + 19.5, posY - height / 2 + 34, width - 19 - 18, height - 34 - 34); 
         }
         setDrawFunction(drawView);
     }
