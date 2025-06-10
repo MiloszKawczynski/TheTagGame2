@@ -1,6 +1,5 @@
 randomize();
 
-global.gameLevelName = "";
 enum staticBuffersOptionType
 {
 	create,

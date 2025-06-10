@@ -342,7 +342,8 @@ if (isP1Selected and isP2Selected)
     
     if (abs(dividerX - (-room_width * 0.15) < 0.01))
     {
-        instance_create_depth(x, y, depth, o_levelSelection);
+        var inst = instance_create_depth(x, y, depth, o_levelSelection);
+        inst.tileY = tileY;
         instance_destroy();
     }
 }

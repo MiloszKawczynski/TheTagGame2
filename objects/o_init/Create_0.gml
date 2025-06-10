@@ -61,5 +61,6 @@ global.s_teamColors = array_create();
 isTeamColorsSpriteCreated = false
 
 scr_createCharacters();
+scr_createLevels();
 
 window_set_fullscreen(true);

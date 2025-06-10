@@ -1,3 +1,5 @@
+draw_clear(merge_color(global.c_darkBlue, global.c_neon, dividerX / (-room_width * 0.15)));
+
 var p1Color = c_black;
 var p2Color = c_black;
 
