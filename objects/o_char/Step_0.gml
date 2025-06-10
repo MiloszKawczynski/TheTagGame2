@@ -96,7 +96,7 @@ if (input_check("skillKey", player) and !skillRecharging and !skillUsed)
 			}
             case(skillTypes.drift):
 			{
-				if (isSkillActive == 0) 
+				if (speed != 0 and isSkillActive == 0) 
 				{
                     isSkillActive = 1;
                     driftDirection = lastDirection; 
