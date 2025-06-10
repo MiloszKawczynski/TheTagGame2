@@ -33,6 +33,8 @@ if (isChange != 0)
         selected = 0;
     }
     
+    ui.levelName.setContent(global.levels[selected].name); 
+    
     if (isChange == 1)
     {
         ui.arrowDown.setScale(1.5, 1.5);
@@ -130,6 +132,11 @@ with(ui.arrowUp)
 with(ui.mainLevelView)
 {
     setPositionInGrid(lerp(posInGridX, 6.8, 0.2), lerp(posInGridY, 5, 0.2));
+}
+
+with(ui.levelName)
+{
+    setPositionInGrid(lerp(posInGridX, 6.8, 0.2), lerp(posInGridY, 2.5, 0.2));
 }
 
 with(ui)

@@ -93,8 +93,11 @@ with(ui)
     arrowDown = new Output();
     arrowDown.setSprite(s_levelSelectionArrow);
     
-    //mainLayer.addComponent(6.8, 5, mainLevelView);
+    levelName = new Text(global.levels[other.selected].name, f_characterName);
+    levelName.setColor(global.c_discordBlack);
+    
     mainLayer.addComponent(12, 5, mainLevelView);
+    mainLayer.addComponent(12, 2.5, levelName);
     
     mainLayer.addComponent(2.1, 0.5, arrowUp);
     mainLayer.addComponent(1.4, 9.5, arrowDown);
