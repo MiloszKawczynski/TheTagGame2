@@ -83,7 +83,7 @@ with(ui)
         
         array_push(levelsCarousel, subLevelView)
         
-        mainLayer.addComponent(lerp(2.1, 1.4, j / 3), 2 + j * 2, subLevelView);
+        mainLayer.addComponent(-2, 2 + j * 2, subLevelView);
     }
     
     arrowUp = new Output();
@@ -93,7 +93,8 @@ with(ui)
     arrowDown = new Output();
     arrowDown.setSprite(s_levelSelectionArrow);
     
-    mainLayer.addComponent(6.8, 5, mainLevelView);
+    //mainLayer.addComponent(6.8, 5, mainLevelView);
+    mainLayer.addComponent(12, 5, mainLevelView);
     
     mainLayer.addComponent(2.1, 0.5, arrowUp);
     mainLayer.addComponent(1.4, 9.5, arrowDown);

@@ -116,12 +116,20 @@ if (isChange != 0)
 
 with(ui.arrowDown)
 {
+    setPositionInGrid(lerp(posInGridX, 1.4, 0.2), lerp(posInGridY, 9.5, 0.2));
     setScale(lerp(scaleX, 1, 0.2), lerp(scaleY, 1, 0.2));
 }
 
 with(ui.arrowUp)
 {
+    setPositionInGrid(lerp(posInGridX, 2.1, 0.2), lerp(posInGridY, 0.5, 0.2));
     setScale(lerp(scaleX, 1, 0.2), lerp(scaleY, -1, 0.2));
+}
+
+
+with(ui.mainLevelView)
+{
+    setPositionInGrid(lerp(posInGridX, 6.8, 0.2), lerp(posInGridY, 5, 0.2));
 }
 
 with(ui)

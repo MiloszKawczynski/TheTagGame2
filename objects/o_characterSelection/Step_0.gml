@@ -340,10 +340,14 @@ if (isP1Selected and isP2Selected)
     
     dividerX = lerp(dividerX, -room_width * 0.15, 0.2);
     
+    if (!instance_exists(o_levelSelection))
+    {
+        var inst = instance_create_depth(x, y, depth - 1, o_levelSelection);
+        inst.tileY = tileY;
+    }
+    
     if (abs(dividerX - (-room_width * 0.15) < 0.01))
     {
-        var inst = instance_create_depth(x, y, depth, o_levelSelection);
-        inst.tileY = tileY;
         instance_destroy();
     }
 }
