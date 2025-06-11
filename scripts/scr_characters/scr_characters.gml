@@ -122,7 +122,7 @@ function scr_createCharacters()
     
     var miriamDesc = "Umiejętność: Dash\n\nMniejszy zasięg\nłapania i wybicia\n\nŁapanie jest\nautomatyczne\n\nWybicie jest zawsze\nidealne";
     
-    miriam = new character("Miriam", miriamDesc, "adam", sVN_miriam, 3, global.c_miriam, dash, miriamPasive, miriamStats);
+    miriam = new character("Miriam", miriamDesc, "miriam", sVN_miriam, 3, global.c_miriam, dash, miriamPasive, miriamStats);
     miriam.dificulty = [1, 1, 0];
     
     //--- TRICKSTER ---
@@ -148,7 +148,7 @@ function scr_createCharacters()
     
     var davidDesc = "Umiejętność: Float\n\nPotrafi trzy razy\nskoczyć\n\nWolniej biega"
     
-    david = new character("David", davidDesc, "clea", sVN_david, 5, global.c_david, float, davidPasive, davidStats);
+    david = new character("David", davidDesc, "adam", sVN_david, 5, global.c_david, float, davidPasive, davidStats);
     david.dificulty = [1, 1, 1];
     
     //--- FEATHER ---
@@ -174,7 +174,7 @@ function scr_createCharacters()
     
     var snowWhiteDesc = "Umiejętność: Dash\n\nŁapie przeszkody z\nwiększej odległości\n\nSłabe wybica\nsą gorsze\n\nDobre wybicia\nsą lepsze"
     
-    snowWhite = new character("Snow White", snowWhiteDesc, "clea", sVN_snowWhite, 7, global.c_snowWhite, dash, snowWhitePasive, snowWhiteStats);
+    snowWhite = new character("Snow White", snowWhiteDesc, "trickster", sVN_snowWhite, 7, global.c_snowWhite, dash, snowWhitePasive, snowWhiteStats);
     snowWhite.dificulty = [1, 1, 0];
     
     //--- KARENN ---
