@@ -1,5 +1,7 @@
 cameraMarginFactor = 2;
 
+follow = -1;
+
 function reset()
 {
     var _x = 0;

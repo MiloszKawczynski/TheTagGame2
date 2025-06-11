@@ -1,20 +1,27 @@
-if (array_length(o_gameManager.players) != 0)
+if (follow == -1)
 {
-    if (instance_number(o_char) > 1)
+    if (array_length(o_gameManager.players) != 0)
     {
-        if (o_gameManager.logicState == o_gameManager.pointState)
+        if (instance_number(o_char) > 1)
         {
-            scr_follow_one_character(!o_gameManager.whoIsChasing);
+            if (o_gameManager.logicState == o_gameManager.pointState)
+            {
+                scr_follow_one_character(!o_gameManager.whoIsChasing);
+            }
+            else 
+            {
+            	scr_follow_many_characters();
+            }
         }
-        else 
+        else
         {
-        	scr_follow_many_characters();
+            scr_follow_one_character();
         }
     }
-    else
-    {
-        scr_follow_one_character();
-    }
+}
+else 
+{
+	scr_follow_one_character(follow);
 }
 
 if (global.debugEdit)

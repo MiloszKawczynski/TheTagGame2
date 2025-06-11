@@ -173,6 +173,8 @@ function scr_cameraControll()
 	ImGui.Text(string("Angle: {0}", Camera.Angle));
 	ImGui.Text(string("Pitch: {0}", Camera.Pitch));
 	ImGui.Text(string("Zoom: {0}", Camera.Zoom));
+    
+    o_cameraTarget.follow = ImGui.InputInt("Follow", o_cameraTarget.follow);
 	
 	ImGui.Separator();
 }

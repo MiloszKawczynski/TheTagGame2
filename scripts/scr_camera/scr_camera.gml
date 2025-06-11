@@ -3,11 +3,6 @@ function scr_follow_one_character(id = 0)
     var char = o_gameManager.players[id].instance;
 	x = char.x;
 	y = char.y;
-	
-	if (!instance_exists(o_debugController) or (global.debugAutoCamera and !global.debugEdit))
-	{
-		Camera.Zoom = 2;
-	}
 }
 
 function scr_follow_many_characters()
