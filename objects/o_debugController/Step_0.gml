@@ -27,6 +27,7 @@ if (!hide)
 		scr_objectsInspector();
 		
 		RENDER_QUALITY = ImGui.InputFloat("Quality", RENDER_QUALITY);
+		RENDER_FIDELITY = ImGui.InputFloat("Fidelity", RENDER_FIDELITY);
 		
 		if (ImGui.Button(":D"))
 		{
