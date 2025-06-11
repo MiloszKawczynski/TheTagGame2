@@ -14,17 +14,17 @@ function scr_preload()
 	isBindingFinilize = true;
 	firstFreePlayer = 2;
     
-    if (DEBUG)
-    {
-        input_source_set(INPUT_KEYBOARD, 0,, false); 
-        input_profile_set("P1", 0);	
-        
-        input_source_set(INPUT_KEYBOARD, 1,, false); 
-        input_profile_set("P1", 1);	
-    }
+    //if (DEBUG)
+    //{
+        //input_source_set(INPUT_KEYBOARD, 0,, false); 
+        //input_profile_set("P1", 0);	
+        //
+        //input_source_set(INPUT_KEYBOARD, 1,, false); 
+        //input_profile_set("P2", 1);	
+    //}
 	
 	//Create and Save
-	switch(staticBuffersOptionType.disable)
+	switch(staticBuffersOptionType.load)
 	{
 		case(staticBuffersOptionType.create):
 		{
