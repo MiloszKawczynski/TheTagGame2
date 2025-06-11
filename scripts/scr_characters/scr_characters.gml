@@ -135,7 +135,7 @@ function scr_createCharacters()
     
     var tricksterDesc = "Umiejętność: Drift\n\nWyżej skacze\n\nPotrafi skakać po\nścianach";
     
-    trickster = new character("Trickster", tricksterDesc, "adam", sVN_trickster, 4, global.c_trickster, drift, tricksterPasive, tricksterStats);
+    trickster = new character("Trickster", tricksterDesc, "trickster", sVN_trickster, 4, global.c_trickster, drift, tricksterPasive, tricksterStats);
     trickster.dificulty = [1, 1, 0];
     
     //--- DAVID ---
