@@ -31,3 +31,5 @@ alarm[0] = 3;
 buffersMap = ds_map_create();
 
 scr_gravitationChange();
+
+hideUI = false;

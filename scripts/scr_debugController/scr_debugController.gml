@@ -175,6 +175,7 @@ function scr_cameraControll()
 	ImGui.Text(string("Zoom: {0}", Camera.Zoom));
     
     o_cameraTarget.follow = ImGui.InputInt("Follow", o_cameraTarget.follow);
+    o_gameManager.hideUI = ImGui.Checkbox("Hide UI", o_gameManager.hideUI);
 	
 	ImGui.Separator();
 }

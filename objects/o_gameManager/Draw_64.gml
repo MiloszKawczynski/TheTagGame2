@@ -1,1 +1,4 @@
-drawUI();
+if (!hideUI)
+{
+    drawUI();
+}
