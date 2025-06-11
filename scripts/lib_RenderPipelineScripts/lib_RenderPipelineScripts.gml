@@ -105,24 +105,9 @@ function pipeline_initiate()
 	
 		var uAmbCol = fauxton_world_environment.ambient_color;
 		var uSunCol = fauxton_world_environment.sun_color;
-		var color_return = function(color){
-			var r,g,b;
-			r = color_get_red(color)/255;
-			g = color_get_green(color)/255;
-			b = color_get_blue(color)/255;
-			var ret = array_create(3);
-			ret = [ r, g, b];
-			return ret;
-		}
-		var acol, scol;
-		acol = array_create(3);
-		scol = array_create(3);
-		
-		acol = color_return(uAmbCol);
-		shader_set_uniform_f_array(uniforms.amb_col, acol);
-			
-		scol = color_return(uSunCol);
-		shader_set_uniform_f_array(uniforms.sun_col, scol);
+
+		shader_set_uniform_f_array(uniforms.amb_col, WorldEnvironment.acol);
+		shader_set_uniform_f_array(uniforms.sun_col, WorldEnvironment.scol);
 			
 		shader_set_uniform_f(uniforms.sun_int, fauxton_world_environment.sun_intensity);
 		var s = fauxton_world_environment.sun_pos;
@@ -132,14 +117,15 @@ function pipeline_initiate()
 		var _LightNum = instance_number(__fauxtonLight);
 		shader_set_uniform_f(uniforms.light_num, _LightNum);
 		
-		var lPos = [];
-		var lCol = [];
-		var lRad = [];
-		var lType = [];
-		var lDir = [];
-		var lCutoff = [];
-		
-		if ( _LightNum > 0 ){
+		if ( _LightNum > 0 )
+        {
+            var lPos = [];
+    		var lCol = [];
+    		var lRad = [];
+    		var lType = [];
+    		var lDir = [];
+    		var lCutoff = [];
+            
 			for ( var i=0; i<_LightNum; i++ )
 			{
 				var lightId = instance_find(__fauxtonLight, i);
