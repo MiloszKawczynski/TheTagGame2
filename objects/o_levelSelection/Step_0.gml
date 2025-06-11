@@ -9,13 +9,13 @@ if (tileY > room_height)
 
 var isChange = 0;
 
-if (input_check_pressed("rightKey", 0) or input_check_pressed("upKey", 0)) 
+if (input_check_pressed("upKey", 0)) 
 { 
     selected++; 
     isChange = -1;
 }
 
-if (input_check_pressed("leftKey", 0) or input_check_pressed("downKey", 0)) 
+if (input_check_pressed("downKey", 0)) 
 { 
     selected--;
     isChange = 1;
