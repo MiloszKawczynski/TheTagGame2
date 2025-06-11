@@ -1126,6 +1126,7 @@
     {"id":{"name":"s_walkCycle","path":"sprites/s_walkCycle/s_walkCycle.yy",},},
     {"id":{"name":"s_wall","path":"sprites/s_wall/s_wall.yy",},},
     {"id":{"name":"s_wallTopMask_basic","path":"sprites/s_wallTopMask_basic/s_wallTopMask_basic.yy",},},
+    {"id":{"name":"s_wallTopMask_empty","path":"sprites/s_wallTopMask_empty/s_wallTopMask_empty.yy",},},
     {"id":{"name":"s_wallTopMask_fire","path":"sprites/s_wallTopMask_fire/s_wallTopMask_fire.yy",},},
     {"id":{"name":"s_wallTopMask_santa","path":"sprites/s_wallTopMask_santa/s_wallTopMask_santa.yy",},},
     {"id":{"name":"s_wallTopMask_shaft","path":"sprites/s_wallTopMask_shaft/s_wallTopMask_shaft.yy",},},
