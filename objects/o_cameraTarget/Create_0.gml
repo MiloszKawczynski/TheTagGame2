@@ -18,4 +18,9 @@ function reset()
     
     Camera.x = x;
     Camera.y = y;
+    Camera.pTo = Camera.Pitch;
+    Camera.aTo = Camera.Angle;
+    Camera.zTo = Camera.Zoom;
 }
+
+reset();
