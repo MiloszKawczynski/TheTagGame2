@@ -134,6 +134,50 @@ if (!isP2Selected)
         }  
     }
 }
+
+if (input_check_pressed("interactionKey", 0) and !isP1Selected)
+{
+    audio_play_sound(sn_uiAccept, 0, false);
+    
+    isP1Selected = true;
+    p1Before = true;
+    isChange = 1;
+    ui.characterSelectionSlotBorderP1.setColor(global.c_darkBlue);
+    if (p1Selected == 0)
+    {
+        global.leftCharacter = irandom(array_length(global.characters) - 1);
+        p1Selected = global.leftCharacter + 1;
+        charChangeP1 = true;
+    }
+    else 
+    {
+    	global.leftCharacter = p1Selected - 1;
+    }
+    
+    audio_play_sound(global.characters[global.leftCharacter].selectAudio, 0, false);
+}
+
+if (input_check_pressed("interactionKey", 1) and !isP2Selected)
+{
+    audio_play_sound(sn_uiAccept, 0, false);
+    
+    isP2Selected = true;
+    p2Before = true;
+    isChange = 1;
+    ui.characterSelectionSlotBorderP2.setColor(global.c_darkBlue);
+    if (p2Selected == 0)
+    {
+        global.rightCharacter = irandom(array_length(global.characters) - 1);
+        p2Selected = global.rightCharacter + 1;
+        charChangeP2 = true;
+    }
+    else 
+    {
+    	global.rightCharacter = p2Selected - 1;
+    }
+    
+    audio_play_sound(global.characters[global.rightCharacter].selectAudio, 0, false);
+}
     
 if (isChange != 0)
 {
@@ -190,42 +234,6 @@ if (p2Before)
             characterDificultyRight.setValue(global.characters[other.p2Selected - 1].dificulty);
         }
     }
-}
-
-if (input_check_pressed("interactionKey", 0))
-{
-    audio_play_sound(sn_uiAccept, 0, false);
-    
-    isP1Selected = true;
-    ui.characterSelectionSlotBorderP1.setColor(global.c_darkBlue);
-    if (p1Selected == 0)
-    {
-        global.leftCharacter = irandom(array_length(global.characters) - 1);
-    }
-    else 
-    {
-    	global.leftCharacter = p1Selected - 1;
-    }
-    
-    audio_play_sound(global.characters[global.leftCharacter].selectAudio, 0, false);
-}
-
-if (input_check_pressed("interactionKey", 1))
-{
-    audio_play_sound(sn_uiAccept, 0, false);
-    
-    isP2Selected = true;
-    ui.characterSelectionSlotBorderP2.setColor(global.c_darkBlue);
-    if (p2Selected == 0)
-    {
-        global.rightCharacter = irandom(array_length(global.characters) - 1);
-    }
-    else 
-    {
-    	global.rightCharacter = p2Selected - 1;
-    }
-    
-    audio_play_sound(global.characters[global.rightCharacter].selectAudio, 0, false);
 }
 
 if (input_check_pressed("leave", 0))
@@ -307,51 +315,64 @@ if (tileY > room_height)
 
 if (isP1Selected and isP2Selected)
 {
-    with(ui.characterSelectionGroup)
+    var isAnySelectionAudioIsPlaying = false;
+    for (var i = 0; i < array_length(global.characters); i++)
     {
-        setPositionInGrid(posInGridX, lerp(posInGridY, 12, 0.2));
+        if (audio_is_playing(global.characters[i].selectAudio))
+        {
+            isAnySelectionAudioIsPlaying = true;
+            break;
+        }
     }
     
-    with(ui.characterLeft)
+    if (!isAnySelectionAudioIsPlaying)
     {
-        setPositionInGrid(lerp(posInGridX, other.leftHide, 0.2), posInGridY);
-    }
-    
-    with(ui.characterLeftBck)
-    {
-        setPositionInGrid(lerp(posInGridX, other.leftHide, 0.2), posInGridY);
-    }
-    
-    with(ui.characterInfoGroupLeft)
-    {
-        setPositionInGrid(lerp(posInGridX, other.leftHide - 3, 0.2), posInGridY);
-    }
-    
-    with(ui.characterRight)
-    {
-        setPositionInGrid(lerp(posInGridX, other.rightHide, 0.2), posInGridY);
-    }
-    
-    with(ui.characterRightBck)
-    {
-        setPositionInGrid(lerp(posInGridX, other.rightHide, 0.2), posInGridY);
-    }
-    
-    with(ui.characterInfoGroupRight)
-    {
-        setPositionInGrid(lerp(posInGridX, other.rightHide + 3, 0.2), posInGridY);
-    }
-    
-    dividerX = lerp(dividerX, -room_width * 0.15, 0.2);
-    
-    if (!instance_exists(o_levelSelection))
-    {
-        var inst = instance_create_depth(x, y, depth - 1, o_levelSelection);
-        inst.tileY = tileY;
-    }
-    
-    if (abs(dividerX - (-room_width * 0.15) < 0.01))
-    {
-        instance_destroy();
+        with(ui.characterSelectionGroup)
+        {
+            setPositionInGrid(posInGridX, lerp(posInGridY, 12, 0.2));
+        }
+        
+        with(ui.characterLeft)
+        {
+            setPositionInGrid(lerp(posInGridX, other.leftHide, 0.2), posInGridY);
+        }
+        
+        with(ui.characterLeftBck)
+        {
+            setPositionInGrid(lerp(posInGridX, other.leftHide, 0.2), posInGridY);
+        }
+        
+        with(ui.characterInfoGroupLeft)
+        {
+            setPositionInGrid(lerp(posInGridX, other.leftHide - 3, 0.2), posInGridY);
+        }
+        
+        with(ui.characterRight)
+        {
+            setPositionInGrid(lerp(posInGridX, other.rightHide, 0.2), posInGridY);
+        }
+        
+        with(ui.characterRightBck)
+        {
+            setPositionInGrid(lerp(posInGridX, other.rightHide, 0.2), posInGridY);
+        }
+        
+        with(ui.characterInfoGroupRight)
+        {
+            setPositionInGrid(lerp(posInGridX, other.rightHide + 3, 0.2), posInGridY);
+        }
+        
+        dividerX = lerp(dividerX, -room_width * 0.15, 0.2);
+        
+        if (!instance_exists(o_levelSelection))
+        {
+            var inst = instance_create_depth(x, y, depth - 1, o_levelSelection);
+            inst.tileY = tileY;
+        }
+        
+        if (abs(dividerX - (-room_width * 0.15) < 0.01))
+        {
+            instance_destroy();
+        }
     }
 }
