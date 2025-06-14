@@ -243,8 +243,8 @@ function setupUIStates()
         
         with(ui)
     	{
-            leftFullBodyPortrait.posInGridX = lerp(leftFullBodyPortrait.posInGridX, 0 + lerp(-4, 1, other.whoIsChasing * !hide), 0.1);
-            rightFullBodyPortrait.posInGridX = lerp(rightFullBodyPortrait.posInGridX, 10 + lerp(4, -1, !other.whoIsChasing * !hide), 0.1);
+            leftFullBodyPortrait.posInGridX = lerp(leftFullBodyPortrait.posInGridX, 0 + lerp(-4, 2, other.whoIsChasing * !hide), 0.1);
+            rightFullBodyPortrait.posInGridX = lerp(rightFullBodyPortrait.posInGridX, 10 + lerp(4, -2, !other.whoIsChasing * !hide), 0.1);
         }
     }
 }
