@@ -30,6 +30,6 @@ function scr_follow_many_characters()
 	if (!instance_exists(o_debugController) or (global.debugAutoCamera and !global.debugEdit))
 	{
 		Camera.Zoom = (highestDistanceBetweenPlayers / 225) * cameraMarginFactor;
-		Camera.Zoom = clamp(Camera.Zoom, 1, 3);
+		Camera.Zoom = clamp(Camera.Zoom, 1, 3.75);  
 	}
 }

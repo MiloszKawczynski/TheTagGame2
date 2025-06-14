@@ -347,7 +347,7 @@ function setupLogicStates()
         
         if (whoIsChasingStage == 3)
         {
-            o_cameraTarget.cameraMarginFactor = 2;
+            o_cameraTarget.cameraMarginFactor = o_cameraTarget.gameCameraMarginFactor;
             reset();
             advanceToNextRound();
         }

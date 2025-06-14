@@ -1,4 +1,5 @@
-cameraMarginFactor = 2;
+gameCameraMarginFactor = 1;
+cameraMarginFactor = gameCameraMarginFactor;
 
 follow = -1;
 
