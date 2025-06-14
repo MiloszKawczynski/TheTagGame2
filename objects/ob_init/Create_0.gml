@@ -5,7 +5,7 @@ FAUXTON_START();
 is_phone = ( os_type == os_android || os_type == os_winphone || os_type == os_ios )
 if ( is_phone )
 {
-	RENDER_FIDELITY = 2;
+	RENDER_FIDELITY = 1;
 	RENDER_QUALITY = 1;
 }
 
