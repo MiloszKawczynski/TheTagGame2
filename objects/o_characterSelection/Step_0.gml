@@ -236,7 +236,7 @@ if (p2Before)
     }
 }
 
-if (input_check_pressed("leave", 0))
+if (input_check_pressed("leave", 0) and !isP2Selected)
 {
     audio_play_sound(sn_uiCancel, 0, false);
     ui.characterSelectionSlotBorderP1.setColor(c_white);
@@ -244,7 +244,7 @@ if (input_check_pressed("leave", 0))
     isP1Selected = false;
 }
 
-if (input_check_pressed("leave", 1))
+if (input_check_pressed("leave", 1) and !isP1Selected)
 {
     audio_play_sound(sn_uiCancel, 0, false);
     ui.characterSelectionSlotBorderP2.setColor(c_white);
