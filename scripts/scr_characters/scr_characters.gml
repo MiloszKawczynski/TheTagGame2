@@ -178,7 +178,7 @@ function scr_createCharacters()
     snowWhiteStats.minimumObstacleJumpForceModificator = 0.7;
     snowWhiteStats.maximumObstacleJumpForceModificator = 1.2;
     
-    var snowWhiteDesc = "Umiejętność: Dash\n\nŁapie przeszkody z\nwiększej odległości\n\nSłabe wybica\nsą gorsze\n\nDobre wybicia\nsą lepsze"
+    var snowWhiteDesc = "Umiejętność: Dash\n\nŁapie przeszkody z\nwiększej odległości\n\nSłabe wybicia\nsą gorsze\n\nDobre wybicia\nsą lepsze"
     
     snowWhite = new character("Snow White", snowWhiteDesc, "trickster", sVN_snowWhite, 7, global.c_snowWhite, dash, snowWhitePasive, snowWhiteStats);
     snowWhite.dificulty = [1, 1, 0];
@@ -196,7 +196,7 @@ function scr_createCharacters()
     karenStats.rampDecelerationModificator = 2;
     karenStats.slopeDecelerationModificator = 2;
     
-    var karenDesc = "Umiejętność: Sprint\n\nDłużej się\nrozpędza i chamuje\n\nSzybciej biega\n\nGorzej wbiega\npod górę\n\nZbiega z górki\nszybciej niż inni"
+    var karenDesc = "Umiejętność: Sprint\n\nDłużej się\nrozpędza i hamuje\n\nSzybciej biega\n\nGorzej wbiega\npod górę\n\nZbiega z górki\nszybciej niż inni"
     
     karen = new character("Karen", karenDesc, "clea", sVN_karen, 8, global.c_karen, sprint, karenPasive, karenStats);
     karen.dificulty = [1, 1, 0];
