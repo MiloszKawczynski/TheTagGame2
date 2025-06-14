@@ -120,6 +120,49 @@ function createUI()
         leftFullBodyPortrait.setScale(0.225, 0.225);
         rightFullBodyPortrait.setScale(-0.225, 0.225);
         
+        winingScreenBlack = new Output(0, 0);
+        with(winingScreenBlack)
+        {
+            var draw = function()
+        	{
+                draw_set_color(color);
+                draw_set_alpha(alpha);
+                draw_rectangle(0, 0, room_width, room_height, false);
+                draw_set_alpha(1);
+        	}
+        	setDrawFunction(draw);
+        }
+        winingScreenBlack.setColor(c_black);
+        winingScreenBlack.setAlpha(0);
+        
+        winingScreenCover = new Output(0, 0);
+        winingScreenCover.setSprite(s_winScreenCover);
+        winingScreenCover.setScale(0.42, 0.42);
+        
+        winingScreenTriangles = new Output(0, 0);
+        winingScreenTriangles.setSprite(s_winningScreenTriangles);
+        winingScreenTriangles.setScale(0.42, 0.42);
+        
+        winningScreenWinner = new Text("Wygrywa", f_winScreen);
+        winningScreenWinner.setColor(global.c_neon);
+        winningScreenWinner.setScale(0.25, 0.25);
+        
+        winningScreenPlayer = new Text("gracz 1 jako", f_winScreen);
+        winningScreenPlayer.setColor(global.c_neon);
+        winningScreenPlayer.setScale(0.05, 0.05);
+        
+        winningScreenName = new Text("Adam", f_winScreen);
+        winningScreenName.setColor(global.c_neon);
+        winningScreenName.setScale(0.25, 0.25);
+        
+        
+        mainLayer.addComponent(-6, 5, winingScreenBlack);
+        mainLayer.addComponent(-6, 5, winingScreenCover);
+        mainLayer.addComponent(-6, 5, winingScreenTriangles);
+        mainLayer.addComponent(-3.5, 4, winningScreenWinner);
+        mainLayer.addComponent(-3.5, 5, winningScreenPlayer);
+        mainLayer.addComponent(-3.5, 6, winningScreenName);
+        
         mainLayer.addComponent(-2, 5, leftFullBodyPortrait);
 		mainLayer.addComponent(12, 5, rightFullBodyPortrait);
         
@@ -178,6 +221,7 @@ function setGameRulesValues()
 	isGravitationOn = false;
 	chaseTime = maximumChaseTime;
 	rounds = 0;
+    numberOfRounds = 15;
 	players = [];
 	
 	whoIsChasing = 0;
@@ -187,6 +231,8 @@ function setGameRulesValues()
 	whoIsChasingTagScale = 1;
 	whoIsChasingStage = 1;
     shockScale = 2;
+    
+    whoIsWinner = 0;
 		
 	vignetteTime = 0;
 	vignettePulse = false;

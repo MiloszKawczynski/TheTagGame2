@@ -1,5 +1,3 @@
-randomize();
-
 enum staticBuffersOptionType
 {
 	create,

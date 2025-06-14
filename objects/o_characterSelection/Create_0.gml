@@ -15,8 +15,11 @@ p2Selected = 9;
 isP1Selected = false;
 isP2Selected = false;
 
-charChangeP1 = false;
-charChangeP2 = false;
+charChangeP1 = true;
+charChangeP2 = true;
+
+init = true;
+introAlpha = 0;
 
 window_set_fullscreen(true);
 
@@ -178,16 +181,16 @@ with(ui)
     characterInfoGroupRight.addComponent(0, 2, characterDescriptionRight);
     characterInfoGroupRight.addComponent(-0.1, 2.2, characterDescriptionTextRight);
     
-    mainLayer.addComponent(other.leftShow, 5.5, characterLeft);
-    mainLayer.addComponent(other.rightShow, 5.5, characterRight);
+    mainLayer.addComponent(other.leftHide, 5.5, characterLeft);
+    mainLayer.addComponent(other.rightHide, 5.5, characterRight);
     
     mainLayer.addComponent(other.leftHide, 5.5, characterLeftBck);
     mainLayer.addComponent(other.rightHide, 5.5, characterRightBck);
     
-    mainLayer.addComponent(0.4, 0.5, characterInfoGroupLeft);
-    mainLayer.addComponent(9.6, 0.5, characterInfoGroupRight);
+    mainLayer.addComponent(other.leftHide - 3, 0.5, characterInfoGroupLeft);
+    mainLayer.addComponent(other.rightHide + 3, 0.5, characterInfoGroupRight);
     
-    mainLayer.addComponent(5, 8, characterSelectionGroup);
+    mainLayer.addComponent(5, 12, characterSelectionGroup);
     
     pushLayer(mainLayer);
 }

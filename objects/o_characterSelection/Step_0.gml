@@ -1,9 +1,23 @@
 ui.step();
 
+introAlpha = armez_timer(introAlpha);
+
 var isChange = 0;
 
 var p1Before = false;
 var p2Before = false;
+
+if (init)
+{
+    init = false;
+    charChangeP1 = true;
+    charChangeP2 = true;
+    
+    ui.characterLeftBck.setPositionInGrid(other.leftHide, 5.5);
+    ui.characterRightBck.setPositionInGrid(other.rightHide, 5.5);
+    ui.characterLeft.setPositionInGrid(other.leftHide, 5.5);
+    ui.characterRight.setPositionInGrid(other.rightHide, 5.5);
+}
 
 if (!isP1Selected)
 {
@@ -140,14 +154,14 @@ if (input_check_pressed("interactionKey", 0) and !isP1Selected)
     audio_play_sound(sn_uiAccept, 0, false);
     
     isP1Selected = true;
-    p1Before = true;
-    isChange = 1;
     ui.characterSelectionSlotBorderP1.setColor(global.c_darkBlue);
     if (p1Selected == 0)
     {
         global.leftCharacter = irandom(array_length(global.characters) - 1);
         p1Selected = global.leftCharacter + 1;
         charChangeP1 = true;
+        p1Before = true;
+        isChange = 1;
     }
     else 
     {
@@ -162,14 +176,14 @@ if (input_check_pressed("interactionKey", 1) and !isP2Selected)
     audio_play_sound(sn_uiAccept, 0, false);
     
     isP2Selected = true;
-    p2Before = true;
-    isChange = 1;
     ui.characterSelectionSlotBorderP2.setColor(global.c_darkBlue);
     if (p2Selected == 0)
     {
         global.rightCharacter = irandom(array_length(global.characters) - 1);
         p2Selected = global.rightCharacter + 1;
         charChangeP2 = true;
+        p2Before = true;
+        isChange = 1;
     }
     else 
     {
@@ -276,15 +290,16 @@ with(ui)
         with(characterLeft)
         {
             setPositionInGrid(lerp(posInGridX, o_characterSelection.leftHide, 0.2), posInGridY);
-            if (posInGridX <= o_characterSelection.leftHide + 0.01)
-            {
-                o_characterSelection.charChangeP1 = false;
-            }
         }
         
         with(characterLeftBck)
         {
             setPositionInGrid(lerp(posInGridX, o_characterSelection.leftShow, 0.2), posInGridY);
+        }
+        
+        if (characterLeft.posInGridX <= o_characterSelection.leftHide + 0.01 and characterLeftBck.posInGridX >= o_characterSelection.leftShow - 0.01)
+        {
+            o_characterSelection.charChangeP1 = false;
         }
     }
     
@@ -293,15 +308,16 @@ with(ui)
         with(characterRight)
         {
             setPositionInGrid(lerp(posInGridX, o_characterSelection.rightHide, 0.2), posInGridY);
-            if (posInGridX >= o_characterSelection.rightHide - 0.01)
-            {
-                o_characterSelection.charChangeP2 = false;
-            }
         }
         
         with(characterRightBck)
         {
             setPositionInGrid(lerp(posInGridX, o_characterSelection.rightShow, 0.2), posInGridY);
+        }
+        
+        if (characterRight.posInGridX >= o_characterSelection.rightHide - 0.01 and characterRightBck.posInGridX <= o_characterSelection.rightShow + 0.01)
+        {
+            o_characterSelection.charChangeP2 = false;
         }
     }
 }
@@ -374,5 +390,22 @@ if (isP1Selected and isP2Selected)
         {
             instance_destroy();
         }
+    }
+}
+else 
+{
+	with(ui.characterSelectionGroup)
+    {
+        setPositionInGrid(posInGridX, lerp(posInGridY, 8, 0.2));
+    }
+    
+    with(ui.characterInfoGroupLeft)
+    {
+        setPositionInGrid(lerp(posInGridX, 0.4, 0.2), posInGridY);
+    }
+    
+    with(ui.characterInfoGroupRight)
+    {
+        setPositionInGrid(lerp(posInGridX, 9.6, 0.2), posInGridY);
     }
 }

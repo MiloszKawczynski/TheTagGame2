@@ -258,7 +258,7 @@ function pipeline_initiate()
 }
 function pipeline_load()
 {
-	if (o_gameManager.alarm[0] == -1)
+	if (instance_exists(o_gameManager) and o_gameManager.alarm[0] == -1)
 	{
 		render_build_fidelity();
 		if ( !instance_exists(WorldEnvironment) )

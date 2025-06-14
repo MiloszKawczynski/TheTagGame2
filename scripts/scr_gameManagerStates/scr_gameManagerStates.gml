@@ -43,6 +43,16 @@ function setupUIStates()
         updateFullBodyPortrait();
     }
     
+    UIWinState = function()
+    {
+        updateWinScreen();
+    }
+    
+    UITransitionEndState = function()
+    {
+        updateTransitionScreen();
+    }
+    
     //--- UI update functions
 
     function updateBar()
@@ -247,6 +257,78 @@ function setupUIStates()
             rightFullBodyPortrait.posInGridX = lerp(rightFullBodyPortrait.posInGridX, 10 + lerp(4, -2, !other.whoIsChasing * !hide), 0.1);
         }
     }
+    
+    function updateWinScreen()
+    {
+        var hide = false;
+        
+        with(ui)
+    	{
+            with(winingScreenBlack)
+            {
+                alpha = lerp(alpha, 1, 0.05);
+            }
+            
+            with(winingScreenCover)
+            {
+                setPositionInGrid(lerp(posInGridX, 5, 0.2), 5);
+            }
+            
+            with(winingScreenTriangles)
+            {
+                setPositionInGrid(lerp(posInGridX, 5, 0.2), 5);
+            }
+            
+            if (other.whoIsWinner == 0)
+            {
+                leftFullBodyPortrait.posInGridX = lerp(leftFullBodyPortrait.posInGridX, 0 + lerp(-4, 2, other.whoIsChasing * !hide), 0.1);
+            }
+            else 
+            {
+            	rightFullBodyPortrait.posInGridX = lerp(rightFullBodyPortrait.posInGridX, 10 + lerp(4, -2, !other.whoIsChasing * !hide), 0.1);
+            }
+            
+            winningScreenWinner.posInGridY = lerp(winningScreenWinner.posInGridY, 4, 0.2);
+            winningScreenPlayer.posInGridY = lerp(winningScreenPlayer.posInGridY, 5.05, 0.15);
+            winningScreenName.posInGridY = lerp(winningScreenName.posInGridY, 6, 0.1);
+        }
+    }
+    
+    function updateTransitionScreen()
+    {
+        var hide = true;
+        
+        with(ui)
+    	{
+            with(winingScreenBlack)
+            {
+                color = merge_color(color, global.c_darkBlue, 0.1);
+            }
+            
+            with(winingScreenCover)
+            {
+                setPositionInGrid(lerp(posInGridX, 5 + 10 * lerp(-1, 1, o_gameManager.whoIsWinner), 0.2), 5);
+            }
+            
+            with(winingScreenTriangles)
+            {
+                setPositionInGrid(lerp(posInGridX, 5 + 10 * lerp(1, -1, o_gameManager.whoIsWinner), 0.2), 5);
+            }
+            
+            if (other.whoIsWinner == 0)
+            {
+                leftFullBodyPortrait.posInGridX = lerp(leftFullBodyPortrait.posInGridX, 0 + lerp(-4, 2, other.whoIsChasing * !hide), 0.1);
+            }
+            else 
+            {
+            	rightFullBodyPortrait.posInGridX = lerp(rightFullBodyPortrait.posInGridX, 10 + lerp(4, -2, !other.whoIsChasing * !hide), 0.1);
+            }
+            
+            winningScreenWinner.posInGridY = lerp(winningScreenWinner.posInGridY, 15, 0.2);
+            winningScreenPlayer.posInGridY = lerp(winningScreenPlayer.posInGridY, 15, 0.15);
+            winningScreenName.posInGridY = lerp(winningScreenName.posInGridY, 15, 0.1);
+        }
+    }
 }
 
 //--- logic States
@@ -393,6 +475,67 @@ function setupLogicStates()
         }
     }
     
+    winState = function()
+    {
+        if (logicOnce)
+        {
+            logicOnce = false;
+            
+            with(ui)
+        	{
+                with(winingScreenCover)
+                {
+                    setPositionInGrid(5 + 10 * lerp(-1, 1, o_gameManager.whoIsWinner), 5);
+                    setScale(lerp(-0.42, 0.42, o_gameManager.whoIsWinner), 0.42);
+                    setColor(o_gameManager.players[o_gameManager.whoIsWinner].instance.color);
+                }
+                
+                with(winingScreenTriangles)
+                {
+                    setPositionInGrid(5 + 10 * lerp(1, -1, o_gameManager.whoIsWinner), 5);
+                    setScale(lerp(-0.42, 0.42, o_gameManager.whoIsWinner), 0.42);
+                    setColor(o_gameManager.players[o_gameManager.whoIsWinner].instance.color);
+                }
+                
+                winningScreenWinner.setPositionInGrid(5 + lerp(1.5, -1.5, o_gameManager.whoIsWinner), -5);
+                winningScreenPlayer.setPositionInGrid(5 + lerp(1.5, -1.5, o_gameManager.whoIsWinner), -5);
+                winningScreenName.setPositionInGrid(5 + lerp(1.5, -1.5, o_gameManager.whoIsWinner), -5);
+                
+                winningScreenPlayer.setContent(string("gracz {0} jako", o_gameManager.whoIsWinner + 1));
+                winningScreenName.setContent(global.characters[o_gameManager.players[o_gameManager.whoIsWinner].instance.characterID].name);
+            }
+            
+            uiState = changeState(true, uiState, UIWinState);
+        }
+        
+        if (input_check_long_pressed("jumpKey", 0) or input_check_long_pressed("jumpKey", 1))
+        {
+            logicOnce = true;
+            logicState = changeState(true, logicState, transitionEndState);
+        }
+    }
+    
+    transitionEndState = function()
+    {
+        if (logicOnce)
+        {
+            logicOnce = false;
+            
+            uiState = changeState(true, uiState, UITransitionEndState);
+            
+            transitionTimer = 0;
+        }
+        
+        transitionTimer = armez_timer(transitionTimer, 0.05)
+        
+        if (transitionTimer == 1)
+        {
+            application_surface_enable(true);
+            application_surface_draw_enable(true);
+            room_goto(r_characterSelection);
+        }
+    }
+    
     //--- logic functions
 
     function isEveryoneReady()
@@ -451,6 +594,22 @@ function setupLogicStates()
     
         whoIsChasingTagPosition[0] = players[0].instance.x;
         whoIsChasingTagPosition[1] = players[0].instance.y;
+        
+        with(ui)
+        {
+            winingScreenBlack.setPositionInGrid(5, 5);
+            winingScreenBlack.setAlpha(0);
+            winingScreenBlack.setColor(c_black);
+            winingScreenCover.setPositionInGrid(-6, 5);
+            winingScreenTriangles.setPositionInGrid(-6, 5);
+        
+            leftFullBodyPortrait.setPositionInGrid(-2, 5);
+		    rightFullBodyPortrait.setPositionInGrid(12, 5);
+            
+            winningScreenWinner.setPositionInGrid(-3.5, 4);
+            winningScreenPlayer.setPositionInGrid(-3.5, 5);
+            winningScreenName.setPositionInGrid(-3.5, 6);
+        }
     }
     
     function reset()
@@ -591,10 +750,7 @@ function setupLogicStates()
     {
         rounds++;
         
-        logicOnce = true;
-        logicState = changeState(true, logicState, countdownState);
-        
-        if (rounds > 15)
+        if (rounds > numberOfRounds)
         {
             var indexOfWinner = 0;
             for(var i = 0; i < array_length(players); i++)
@@ -614,7 +770,14 @@ function setupLogicStates()
                 log("END");
                 log(string("WINNER: Player {0}", indexOfWinner), c_orange);
                 
-                stop();
+                whoIsWinner = indexOfWinner;
+                
+                //stop();
+                
+                logicOnce = true;
+                logicState = changeState(true, logicState, winState);
+                
+                return;
             }
         }
         else
@@ -622,6 +785,8 @@ function setupLogicStates()
             log(string("Round {0}/16", rounds));
         }
         
+        logicOnce = true;
+        logicState = changeState(true, logicState, countdownState);
     }
     
     function caught()

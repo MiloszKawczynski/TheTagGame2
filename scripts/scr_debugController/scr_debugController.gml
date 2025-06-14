@@ -1415,13 +1415,14 @@ function scr_editorOptions()
 
 function scr_serializeRulesPreset(file)
 {
-	function rulesPresetSerialized(_maximumChaseTime, _changesPerChase) constructor
+	function rulesPresetSerialized(_maximumChaseTime, _changesPerChase, _numberOfRound) constructor
 	{	
 		maximumChaseTime = _maximumChaseTime;
 		changesPerChase = _changesPerChase;
+		numberOfRounds = _numberOfRounds;
 	}
 	
-    var instanceSerialized = new rulesPresetSerialized(o_gameManager.maximumChaseTime, o_gameManager.changesPerChase);
+    var instanceSerialized = new rulesPresetSerialized(o_gameManager.maximumChaseTime, o_gameManager.changesPerChase, o_gameManager.numberOfRounds);
 
 	file_text_write_string(file, json_stringify(instanceSerialized));
 	file_text_writeln(file);
@@ -1459,9 +1460,10 @@ function scr_rulesPresetLoad(rulesPresetName = rulesPresetFileName)
             var jsonString = file_text_read_string(file);
 			file_text_readln(file);
             var instanceData = json_parse(jsonString);
-
+ 
             o_gameManager.maximumChaseTime = instanceData.maximumChaseTime;
 			o_gameManager.changesPerChase = instanceData.changesPerChase;
+			o_gameManager.numberOfRounds = instanceData.numberOfRounds;
 			o_gameManager.reset();
         }
 
@@ -1751,6 +1753,7 @@ function scr_gameRules()
 	timeInSeconds = ImGui.InputInt("Chase Time (sek)", timeInSeconds);
 	o_gameManager.maximumChaseTime = timeInSeconds * 60
 	o_gameManager.changesPerChase = ImGui.InputInt("Changes Per Chase", o_gameManager.changesPerChase);
+	o_gameManager.numberOfRounds = ImGui.InputInt("Number of rounds", o_gameManager.numberOfRounds);
 	
 }
 
