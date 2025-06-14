@@ -505,6 +505,7 @@
     {"$GMIncludedFile":"","%Name":"shadowMask_santa.png","CopyToMask":-1,"filePath":"datafiles","name":"shadowMask_santa.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"shadowMask_shaft.png","CopyToMask":-1,"filePath":"datafiles","name":"shadowMask_shaft.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"shadowMask_side.png","CopyToMask":-1,"filePath":"datafiles","name":"shadowMask_side.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"shadowMask_skilltest.png","CopyToMask":-1,"filePath":"datafiles","name":"shadowMask_skilltest.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"test_load_mapping.json","CopyToMask":-1,"filePath":"datafiles","name":"test_load_mapping.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"topWallMask_.png","CopyToMask":-1,"filePath":"datafiles","name":"topWallMask_.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"topWallMask_basic.png","CopyToMask":-1,"filePath":"datafiles","name":"topWallMask_basic.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
@@ -513,6 +514,7 @@
     {"$GMIncludedFile":"","%Name":"topWallMask_santa.png","CopyToMask":-1,"filePath":"datafiles","name":"topWallMask_santa.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"topWallMask_shaft.png","CopyToMask":-1,"filePath":"datafiles","name":"topWallMask_shaft.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"topWallMask_side.png","CopyToMask":-1,"filePath":"datafiles","name":"topWallMask_side.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"topWallMask_skilltest.png","CopyToMask":-1,"filePath":"datafiles","name":"topWallMask_skilltest.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
   ],
   "isEcma":false,
   "LibraryEmitters":[
