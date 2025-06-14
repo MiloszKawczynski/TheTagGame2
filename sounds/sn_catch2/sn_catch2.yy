@@ -12,8 +12,8 @@
   "duration":4.5288434,
   "name":"sn_catch2",
   "parent":{
-    "name":"Sounds",
-    "path":"folders/Sounds.yy",
+    "name":"game",
+    "path":"folders/Sounds/game.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

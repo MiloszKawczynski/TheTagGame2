@@ -12,8 +12,8 @@
   "duration":0.0,
   "name":"sn_uiAccept",
   "parent":{
-    "name":"Sounds",
-    "path":"folders/Sounds.yy",
+    "name":"ui",
+    "path":"folders/Sounds/ui.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

@@ -12,8 +12,8 @@
   "duration":0.120181404,
   "name":"sn_uiHover",
   "parent":{
-    "name":"Sounds",
-    "path":"folders/Sounds.yy",
+    "name":"ui",
+    "path":"folders/Sounds/ui.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

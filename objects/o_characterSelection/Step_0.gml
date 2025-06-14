@@ -206,6 +206,8 @@ if (input_check_pressed("interactionKey", 0))
     {
     	global.leftCharacter = p1Selected - 1;
     }
+    
+    audio_play_sound(global.characters[global.leftCharacter].selectAudio, 0, false);
 }
 
 if (input_check_pressed("interactionKey", 1))
@@ -222,6 +224,8 @@ if (input_check_pressed("interactionKey", 1))
     {
     	global.rightCharacter = p2Selected - 1;
     }
+    
+    audio_play_sound(global.characters[global.rightCharacter].selectAudio, 0, false);
 }
 
 if (input_check_pressed("leave", 0))

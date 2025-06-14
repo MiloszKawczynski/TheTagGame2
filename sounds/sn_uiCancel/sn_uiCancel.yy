@@ -12,8 +12,8 @@
   "duration":0.16346939,
   "name":"sn_uiCancel",
   "parent":{
-    "name":"Sounds",
-    "path":"folders/Sounds.yy",
+    "name":"ui",
+    "path":"folders/Sounds/ui.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

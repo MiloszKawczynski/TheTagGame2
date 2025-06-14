@@ -1,6 +1,6 @@
 {
   "$GMSound":"",
-  "%Name":"sn_catch1",
+  "%Name":"sn_tricksterSelect",
   "audioGroupId":{
     "name":"audiogroup_default",
     "path":"audiogroups/audiogroup_default",
@@ -9,17 +9,17 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":4.4903855,
-  "name":"sn_catch1",
+  "duration":2.377143,
+  "name":"sn_tricksterSelect",
   "parent":{
-    "name":"game",
-    "path":"folders/Sounds/game.yy",
+    "name":"characterSelect",
+    "path":"folders/Sounds/characterSelect.yy",
   },
   "preload":false,
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"sn_catch1.wav",
+  "soundFile":"sn_tricksterSelect.mp3",
   "type":0,
   "volume":1.0,
 }

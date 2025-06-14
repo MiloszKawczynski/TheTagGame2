@@ -11,6 +11,8 @@ function character(_name, _desc, _codeName, _art, _miniArt, _color, _active, _pa
     pasive = _pasive;
     vignetteID = array_find_index(global.c_teamColors, function(c) { return c == color; });
     
+    selectAudio = asset_get_index(string("sn_{0}Select", codeName));
+    
     
     idleAnimation = asset_get_index(string("s_{0}Idle", codeName));
     

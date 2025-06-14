@@ -12,8 +12,8 @@
   "duration":4.5480723,
   "name":"sn_evade2",
   "parent":{
-    "name":"Sounds",
-    "path":"folders/Sounds.yy",
+    "name":"game",
+    "path":"folders/Sounds/game.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

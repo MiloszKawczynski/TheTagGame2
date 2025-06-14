@@ -12,8 +12,8 @@
   "duration":7.2788434,
   "name":"sn_counter",
   "parent":{
-    "name":"Sounds",
-    "path":"folders/Sounds.yy",
+    "name":"game",
+    "path":"folders/Sounds/game.yy",
   },
   "preload":false,
   "resourceType":"GMSound",
