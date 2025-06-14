@@ -320,7 +320,7 @@ function scr_platformerMovement()
 			groundImOn = instance_place(x, y + 1, o_collision);
 		}
 		
-		if (!place_meeting(x, y + 1, o_collision))
+		if (!place_meeting(x, y + 1, o_collision) and groundImOn != undefined)
 		{
 			isGrounded = false;
             jumpNumber--;
