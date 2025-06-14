@@ -555,12 +555,30 @@ function scr_topDownCollision()
 			x += sign(hspeed) * 0.5;
 			y += sign(vspeed) * 0.5;
 		}
-			
-		hspeed = 0;
-		vspeed = 0;
-		horizontalSpeed = 0;
-		verticalSpeed = 0;
-		maximumSpeed = maximumDefaultSpeed;
+        
+        if (instance_place(x + sign(hspeed), y + sign(vspeed), o_collision).object_index == o_block)
+        {
+		    hspeed = 0;
+		    vspeed = 0;
+		    horizontalSpeed = 0;
+		    verticalSpeed = 0;
+		    maximumSpeed = maximumDefaultSpeed;
+        }
+        else 
+        {
+            if (abs(hspeed) > abs(vspeed))
+            {
+		        vspeed = 0;
+		        verticalSpeed = 0;
+            }
+            else 
+            {
+            	hspeed = 0;
+                horizontalSpeed = 0;
+            }
+            
+            scr_topDownCollision();
+        }
 	}
 }
 
