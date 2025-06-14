@@ -362,7 +362,7 @@ if (isP1Selected and isP2Selected)
             setPositionInGrid(lerp(posInGridX, other.rightHide + 3, 0.2), posInGridY);
         }
         
-        dividerX = lerp(dividerX, -room_width * 0.15, 0.2);
+        dividerX = lerp(dividerX, -room_width * 0.2, 0.2);
         
         if (!instance_exists(o_levelSelection))
         {
@@ -370,7 +370,7 @@ if (isP1Selected and isP2Selected)
             inst.tileY = tileY;
         }
         
-        if (abs(dividerX - (-room_width * 0.15) < 0.01))
+        if (abs(dividerX - (-room_width * 0.2) < 0.01))
         {
             instance_destroy();
         }
