@@ -1,6 +1,6 @@
 {
   "$GMSound":"",
-  "%Name":"sn_oneliner4",
+  "%Name":"sn_rileyWin3",
   "audioGroupId":{
     "name":"audiogroup_default",
     "path":"audiogroups/audiogroup_default",
@@ -9,17 +9,17 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":1.3235375,
-  "name":"sn_oneliner4",
+  "duration":2.1159184,
+  "name":"sn_rileyWin3",
   "parent":{
-    "name":"Sounds",
-    "path":"folders/Sounds.yy",
+    "name":"winOneliners",
+    "path":"folders/Sounds/winOneliners.yy",
   },
   "preload":false,
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"sn_oneliner4.wav",
+  "soundFile":"sn_rileyWin3.mp3",
   "type":0,
   "volume":1.0,
 }

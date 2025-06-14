@@ -1,6 +1,6 @@
 {
   "$GMSound":"",
-  "%Name":"sn_oneliner2",
+  "%Name":"sn_adamWin2",
   "audioGroupId":{
     "name":"audiogroup_default",
     "path":"audiogroups/audiogroup_default",
@@ -9,17 +9,17 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":1.509297,
-  "name":"sn_oneliner2",
+  "duration":1.2277551,
+  "name":"sn_adamWin2",
   "parent":{
-    "name":"Sounds",
-    "path":"folders/Sounds.yy",
+    "name":"winOneliners",
+    "path":"folders/Sounds/winOneliners.yy",
   },
   "preload":false,
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"sn_oneliner2.wav",
+  "soundFile":"sn_adamWin2.mp3",
   "type":0,
   "volume":1.0,
 }

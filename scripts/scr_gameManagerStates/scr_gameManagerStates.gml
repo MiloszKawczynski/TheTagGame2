@@ -366,7 +366,7 @@ function setupLogicStates()
             
             breathTimer = 1;
             
-            audio_play_sound(choose(sn_oneliner1, sn_oneliner2, sn_oneliner3, sn_oneliner4), 0, false);
+            audio_play_sound(global.characters[players[!whoIsChasing].instance.characterID].winAudio[choose(0, 1, 2)], 0, false);
             audio_play_sound(choose(sn_evade1, sn_evade2, sn_evade3), 0, false);
         }
         

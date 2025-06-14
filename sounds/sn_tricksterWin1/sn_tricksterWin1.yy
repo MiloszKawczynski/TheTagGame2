@@ -1,6 +1,6 @@
 {
   "$GMSound":"",
-  "%Name":"sn_oneliner3",
+  "%Name":"sn_tricksterWin1",
   "audioGroupId":{
     "name":"audiogroup_default",
     "path":"audiogroups/audiogroup_default",
@@ -9,17 +9,17 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":1.7647165,
-  "name":"sn_oneliner3",
+  "duration":1.8285714,
+  "name":"sn_tricksterWin1",
   "parent":{
-    "name":"Sounds",
-    "path":"folders/Sounds.yy",
+    "name":"winOneliners",
+    "path":"folders/Sounds/winOneliners.yy",
   },
   "preload":false,
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"sn_oneliner3.wav",
+  "soundFile":"sn_tricksterWin1.mp3",
   "type":0,
   "volume":1.0,
 }
