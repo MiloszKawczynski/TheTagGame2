@@ -1,3 +1,51 @@
+function place_meeting_precise(x2, y2, obj)
+{
+    var times30 = (speed div 30);
+    
+    var halfDistX = (x + x2) / 2;
+    var halfDistY = (y + y2) / 2;
+    
+    repeat (times30) 
+    {
+        if (!place_meeting(halfDistX, halfDistY, obj))
+        {
+        	halfDistX = (x + halfDistX) / 2;
+        	halfDistY = (y + halfDistY) / 2;
+        }
+        else 
+        {
+            return place_meeting(halfDistX, halfDistY, obj);
+        }
+    }
+    
+    return place_meeting(x2, y2, obj);
+}
+
+function instance_place_precise(x2, y2, obj)
+{
+    var times30 = (speed div 30);
+    
+    var halfDistX = (x + x2) / 2;
+    var halfDistY = (y + y2) / 2;
+    
+    repeat (times30) 
+    {
+        if (instance_place(halfDistX, halfDistY, obj) == noone)
+        {
+        	halfDistX = (x + halfDistX) / 2;
+        	halfDistY = (y + halfDistY) / 2;
+        }
+        else 
+        {
+            return instance_place(halfDistX, halfDistY, obj);
+        }
+    }
+    
+    return instance_place(x2, y2, obj);
+}
+
+
+
 function scr_topDownMovement()
 {	
 	isGrounded = true;
@@ -199,7 +247,7 @@ function scr_platformerMovement()
 		
 	jumpBuffor = armez_timer(jumpBuffor, -1);
 	
-    var wallDirection = place_meeting(x + 1, y - 1, o_collision) - place_meeting(x - 1, y - 1, o_collision);
+    var wallDirection = place_meeting_precise(x + 1, y - 1, o_collision) - place_meeting_precise(x - 1, y - 1, o_collision);
     if (wallDirection != 0)
     {
         lastWallDirection = wallDirection;
@@ -207,7 +255,7 @@ function scr_platformerMovement()
     
 	if (input_check_pressed("jumpKey", player) or jumpBuffor > 0)
 	{
-        if (pasive.wallJump and !place_meeting(x, y + 1, o_collision) and !isGrounded and (wallDirection != 0 or wallJumpCoyoteTime > 0))
+        if (pasive.wallJump and !place_meeting_precise(x, y + 1, o_collision) and !isGrounded and (wallDirection != 0 or wallJumpCoyoteTime > 0))
 	    {
             wallDirection = 0;
             jumpBuffor = 0;
@@ -275,7 +323,7 @@ function scr_platformerMovement()
                 {
                     verticalSpeed = gravitation * skillValue;
                     
-                    if (place_meeting(x, y + verticalSpeed * 2, o_collision))
+                    if (place_meeting_precise(x, y + verticalSpeed * 2, o_collision))
                     {
                         verticalSpeed = 0;
                     }
@@ -315,12 +363,12 @@ function scr_platformerMovement()
 	
 	if (isGrounded)
 	{			
-		if (instance_place(x, y + 1, o_collision) != noone)
+		if (instance_place_precise(x, y + 1, o_collision) != noone)
 		{
-			groundImOn = instance_place(x, y + 1, o_collision);
+			groundImOn = instance_place_precise(x, y + 1, o_collision);
 		}
 		
-		if (!place_meeting(x, y + 1, o_collision) and groundImOn != undefined)
+		if (!place_meeting_precise(x, y + 1, o_collision) and groundImOn != undefined)
 		{
 			isGrounded = false;
             jumpNumber--;
@@ -360,7 +408,7 @@ function scr_platformerMovement()
 	
 	if (desiredHorizontalDirection != 0)
 	{
-		if (place_meeting(x, y + 1, o_block) and isGrounded)
+		if (place_meeting_precise(x, y + 1, o_block) and isGrounded)
 		{
 			if (maximumSpeed > maximumDefaultSpeed)
 			{
@@ -376,29 +424,29 @@ function scr_platformerMovement()
 		}
 	}
 	
-	if (hspeed != 0 and instance_place(x, y + 1, o_diagonal) != noone)
+	if (hspeed != 0 and instance_place_precise(x, y + 1, o_diagonal) != noone)
 	{
-		if (instance_place(x, y + 1, o_diagonal).image_xscale != image_xscale)
+		if (instance_place_precise(x, y + 1, o_diagonal).image_xscale != image_xscale)
 		{
-			if (place_meeting(x, y + 1, o_ramp))
+			if (place_meeting_precise(x, y + 1, o_ramp))
 			{
 				maximumSpeed += rampAcceleration;
 			}
 			
-			if (place_meeting(x, y + 1, o_slope))
+			if (place_meeting_precise(x, y + 1, o_slope))
 			{
 				maximumSpeed += slopeAcceleration;
 			}
 		}
 		else
 		{
-			if (place_meeting(x, y + 1, o_slope))
+			if (place_meeting_precise(x, y + 1, o_slope))
 			{
 				maximumSpeed -= slopeDeceleration;
 				maximumSpeed = max(maximumSpeed, slopeMinSpeed);
 			}
 			
-			if (place_meeting(x, y + 1, o_ramp))
+			if (place_meeting_precise(x, y + 1, o_ramp))
 			{
 				maximumSpeed -= rampDeceleration;
 				maximumSpeed = max(maximumSpeed, rampMinSpeed);
@@ -452,25 +500,25 @@ function scr_platformerObstaclesInteraction()
 
 function scr_topDownCollision()
 {	
-	if (place_meeting(x + hspeed, y, o_collision))
+	if (place_meeting_precise(x + hspeed, y, o_collision))
 	{
-		if (!place_meeting(x + hspeed, y - abs(hspeed) - 1, o_collision))
+		if (!place_meeting_precise(x + hspeed, y - abs(hspeed) - 1, o_collision))
 		{
-			while (place_meeting(x + hspeed, y, o_collision))
+			while (place_meeting_precise(x + hspeed, y, o_collision))
 			{
 				y -= 0.5;
 			}
 		}
-		else if (!place_meeting(x + hspeed, y + abs(hspeed) + 1, o_collision))
+		else if (!place_meeting_precise(x + hspeed, y + abs(hspeed) + 1, o_collision))
 		{
-			while (place_meeting(x + hspeed, y, o_collision))
+			while (place_meeting_precise(x + hspeed, y, o_collision))
 			{
 				y += 0.5;
 			}
 		}
 		else
 		{
-			while (!place_meeting(x + sign(hspeed), y, o_collision))
+			while (!place_meeting_precise(x + sign(hspeed), y, o_collision))
 			{
 				x += sign(hspeed) * 0.5;
 			}
@@ -481,24 +529,24 @@ function scr_topDownCollision()
 		}
 	}
 	
-	if (place_meeting(x, y + vspeed, o_collision))
+	if (place_meeting_precise(x, y + vspeed, o_collision))
 	{
-		if (!place_meeting(x - abs(vspeed * 2) - 1, y + vspeed, o_collision))
+		if (!place_meeting_precise(x - abs(vspeed * 2) - 1, y + vspeed, o_collision))
 		{
 			var isRamp = false;
 			var yy = y;
-			while(!place_meeting(x, yy, o_collision))
+			while(!place_meeting_precise(x, yy, o_collision))
 			{
 				yy += sign(vspeed) * 0.5;
 			}
 			
-			if (instance_place(x, yy, o_collision).object_index == o_ramp)
+			if (instance_place_precise(x, yy, o_collision).object_index == o_ramp)
 			{
 				isRamp = true;
 			}
 			
 			var xx = x
-			while (place_meeting(x, y + vspeed, o_collision))
+			while (place_meeting_precise(x, y + vspeed, o_collision))
 			{
 				x -= 0.5;
 			}
@@ -509,22 +557,22 @@ function scr_topDownCollision()
 				y -= vspeed / 2;
 			}
 		}
-		else if (!place_meeting(x + abs(vspeed * 2) + 1, y + vspeed, o_collision))
+		else if (!place_meeting_precise(x + abs(vspeed * 2) + 1, y + vspeed, o_collision))
 		{
 			var isRamp = false;
 			var yy = y;
-			while(!place_meeting(x, yy, o_collision))
+			while(!place_meeting_precise(x, yy, o_collision))
 			{
 				yy += sign(vspeed) * 0.5;
 			}
 			
-			if (instance_place(x, yy, o_collision).object_index == o_ramp)
+			if (instance_place_precise(x, yy, o_collision).object_index == o_ramp)
 			{
 				isRamp = true;
 			}
 			
 			var xx = x
-			while (place_meeting(x, y + vspeed, o_collision))
+			while (place_meeting_precise(x, y + vspeed, o_collision))
 			{
 				x += 0.5;
 			}
@@ -537,7 +585,7 @@ function scr_topDownCollision()
 		}
 		else
 		{
-			while (!place_meeting(x, y + sign(vspeed), o_collision))
+			while (!place_meeting_precise(x, y + sign(vspeed), o_collision))
 			{
 				y += sign(vspeed) * 0.5;
 			}
@@ -548,15 +596,15 @@ function scr_topDownCollision()
 		}
 	}
 	
-	if (place_meeting(x + hspeed, y + vspeed, o_collision) and desiredHorizontalDirection != 0 and desiredVerticalDirection != 0)
+	if (place_meeting_precise(x + hspeed, y + vspeed, o_collision) and desiredHorizontalDirection != 0 and desiredVerticalDirection != 0)
 	{
-		while (!place_meeting(x + sign(hspeed), y + sign(vspeed), o_collision))
+		while (!place_meeting_precise(x + sign(hspeed), y + sign(vspeed), o_collision))
 		{
 			x += sign(hspeed) * 0.5;
 			y += sign(vspeed) * 0.5;
 		}
         
-        if (instance_place(x + sign(hspeed), y + sign(vspeed), o_collision).object_index == o_block)
+        if (instance_place_precise(x + sign(hspeed), y + sign(vspeed), o_collision).object_index == o_block)
         {
 		    hspeed = 0;
 		    vspeed = 0;
@@ -586,22 +634,22 @@ function scr_platformerCollision()
 {	
 	if (vspeed < 0)
 	{
-		if (place_meeting(x, y + vspeed, o_collision))
+		if (place_meeting_precise(x, y + vspeed, o_collision))
 		{	
 			var slopeSlide = false;
 			
-			if (desiredHorizontalDirection != 1 and !place_meeting(x - abs(vspeed * 2) - 1, y + vspeed, o_collision))
+			if (desiredHorizontalDirection != 1 and !place_meeting_precise(x - abs(vspeed * 2) - 1, y + vspeed, o_collision))
 			{
-				while (place_meeting(x, y + vspeed, o_collision))
+				while (place_meeting_precise(x, y + vspeed, o_collision))
 				{
 					x -= 0.5;
 				}
 				slopeSlide = true;
 			}
 			
-			if (desiredHorizontalDirection != -1 and !place_meeting(x + abs(vspeed * 2) + 1, y + vspeed, o_collision))
+			if (desiredHorizontalDirection != -1 and !place_meeting_precise(x + abs(vspeed * 2) + 1, y + vspeed, o_collision))
 			{
-				while (place_meeting(x, y + vspeed, o_collision))
+				while (place_meeting_precise(x, y + vspeed, o_collision))
 				{
 					x += 0.5;
 				}
@@ -621,7 +669,7 @@ function scr_platformerCollision()
 	
 	if (vspeed > 0)
 	{
-		if (place_meeting(x, y + vspeed, o_collision) or (vspeed == gravitation * 5 and place_meeting(x, y + vspeed * 2, o_collision)))
+		if (place_meeting_precise(x, y + vspeed, o_collision) or (vspeed == gravitation * 5 and place_meeting_precise(x, y + vspeed * 2, o_collision)))
 		{	
 			while(place_free(x, y + sign(vspeed) * 0.5))
 			{
@@ -630,9 +678,9 @@ function scr_platformerCollision()
 		
 			if (!isGrounded)
 			{
-				if (place_meeting(x, y + 1, o_diagonal))
+				if (place_meeting_precise(x, y + 1, o_diagonal))
 				{
-					if (instance_place(x, y + 1, o_diagonal).image_xscale != sign(horizontalSpeed) and hspeed != 0 and instance_place(x, y + 1, o_diagonal).image_yscale == 1)
+					if (instance_place_precise(x, y + 1, o_diagonal).image_xscale != sign(horizontalSpeed) and hspeed != 0 and instance_place_precise(x, y + 1, o_diagonal).image_yscale == 1)
 					{
 						hspeed += vspeed * slopeSpeedTransitionFactor * image_xscale;
 						if (abs(hspeed) > maximumSpeed)
@@ -642,7 +690,7 @@ function scr_platformerCollision()
 					}
 				}
 		
-				if (place_meeting(x, y + 1, o_collision))
+				if (place_meeting_precise(x, y + 1, o_collision))
 				{
 					isGrounded = true;
                     isAirDashUsed = false;
@@ -657,27 +705,27 @@ function scr_platformerCollision()
 		}
 	}
 	
-	if (place_meeting(x + hspeed, y, o_collision))
+	if (place_meeting_precise(x + hspeed, y, o_collision))
 	{
-		if (!place_meeting(x + hspeed, y - abs(hspeed) - 1, o_collision))
+		if (!place_meeting_precise(x + hspeed, y - abs(hspeed) - 1, o_collision))
 		{
-			while (place_meeting(x + hspeed, y, o_collision))
+			while (place_meeting_precise(x + hspeed, y, o_collision))
 			{
 				y -= 0.5;
 			}
 		}
 		else
 		{
-			if (!place_meeting(x + hspeed, y + abs(hspeed) + 1, o_collision))
+			if (!place_meeting_precise(x + hspeed, y + abs(hspeed) + 1, o_collision))
 			{
-				while (place_meeting(x + hspeed, y, o_collision))
+				while (place_meeting_precise(x + hspeed, y, o_collision))
 				{
 					y += 0.5;
 				}
 			}
 			else
 			{
-				while (!place_meeting(x + sign(hspeed), y, o_collision))
+				while (!place_meeting_precise(x + sign(hspeed), y, o_collision))
 				{
 					x += sign(hspeed) * 0.5;
 				}
@@ -689,17 +737,17 @@ function scr_platformerCollision()
 		}
 	}
 	
-	if (vspeed >= 0 and !place_meeting(x + hspeed, y + 1, o_collision) and place_meeting(x + hspeed, y + ceil(abs(hspeed)) + 1, o_collision))
+	if (vspeed >= 0 and !place_meeting_precise(x + hspeed, y + 1, o_collision) and place_meeting_precise(x + hspeed, y + ceil(abs(hspeed)) + 1, o_collision))
 	{
-		while (!place_meeting(x + hspeed, y + 0.5, o_collision))
+		while (!place_meeting_precise(x + hspeed, y + 0.5, o_collision))
 		{
 			y += 0.5;
 		}
 	}
 	
-	if (place_meeting(x + hspeed, y + vspeed, o_collision) and abs(vspeed) >= 1)
+	if (place_meeting_precise(x + hspeed, y + vspeed, o_collision) and abs(vspeed) >= 1)
 	{
-		var collisionObject = instance_place(x + hspeed, y + vspeed, o_collision);
+		var collisionObject = instance_place_precise(x + hspeed, y + vspeed, o_collision);
 		
 		while (place_free(x + sign(hspeed), y + sign(vspeed)))
 		{
