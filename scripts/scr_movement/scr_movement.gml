@@ -50,7 +50,7 @@ function scr_topDownMovement()
 {	
 	isGrounded = true;
     isAirDashUsed = false;
-    jumpNumber = 0;
+    jumpNumber = maxJumpNumber - 1;
 
 	desiredHorizontalDirection = input_check("rightKey", player) - input_check("leftKey", player);
 	desiredVerticalDirection = input_check("downKey", player) - input_check("upKey", player);
