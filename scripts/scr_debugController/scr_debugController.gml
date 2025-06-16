@@ -6,7 +6,7 @@ function scr_debugPreload()
 	//input_source_set(INPUT_KEYBOARD, 1,, false);
 	//input_profile_set("P2", 1);
 	
-	scr_dialogBoxPresetLoad("default");
+	//scr_dialogBoxPresetLoad("default");
 }
 
 function scr_addPlayer(idNumber)
