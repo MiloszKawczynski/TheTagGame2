@@ -140,13 +140,6 @@ if (keyboard_check_pressed(vk_f1))
 	previousTab = -1;
 }
 
-if (keyboard_check_pressed(ord("P")))
-{
-	o_gameManager.startStop();
-
-	previousTab = -1;
-}
-
 if (global.debugEdit)
 {
 	if (place_meeting(x, y, o_collision))
