@@ -61,7 +61,7 @@ function __input_config_verbs()
             rightKey: 		[input_binding_gamepad_axis(gp_axislh, false), input_binding_gamepad_button(gp_padr)],
 			jumpKey:  		[input_binding_gamepad_button(gp_face1)],
 			interactionKey: [input_binding_gamepad_button(gp_face3)],
-			skillKey: 		[input_binding_gamepad_button(gp_shoulderl), input_binding_gamepad_button(gp_shoulderr)],
+			skillKey: 		[input_binding_gamepad_button(gp_shoulderl), input_binding_gamepad_button(gp_shoulderr), input_binding_gamepad_button(gp_shoulderlb), input_binding_gamepad_button(gp_shoulderrb)],
 		
 			leave: 			[input_binding_gamepad_button(gp_face2)],
 		
