@@ -1019,6 +1019,7 @@
     {"id":{"name":"shd_tree_sway","path":"shaders/shd_tree_sway/shd_tree_sway.yy",},},
     {"id":{"name":"shd_vfog","path":"shaders/shd_vfog/shd_vfog.yy",},},
     {"id":{"name":"shdImGui","path":"shaders/shdImGui/shdImGui.yy",},},
+    {"id":{"name":"mus_mainTheme","path":"sounds/mus_mainTheme/mus_mainTheme.yy",},},
     {"id":{"name":"sn_adamSelect","path":"sounds/sn_adamSelect/sn_adamSelect.yy",},},
     {"id":{"name":"sn_adamWin1","path":"sounds/sn_adamWin1/sn_adamWin1.yy",},},
     {"id":{"name":"sn_adamWin2","path":"sounds/sn_adamWin2/sn_adamWin2.yy",},},

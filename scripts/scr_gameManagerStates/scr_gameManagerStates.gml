@@ -565,6 +565,11 @@ function setupLogicStates()
     
     function start()
     {
+        if (!audio_is_playing(mus_mainTheme))
+        {
+            audio_play_sound(mus_mainTheme, 0, true);
+        }
+        
         logicOnce = true;
         logicState = changeState(true, logicState, countdownState);
         
@@ -589,6 +594,8 @@ function setupLogicStates()
     
     function stop()
     {
+        audio_stop_sound(mus_mainTheme);
+        
         logicOnce = true;
         logicState = changeState(true, logicState, freeState);
     
