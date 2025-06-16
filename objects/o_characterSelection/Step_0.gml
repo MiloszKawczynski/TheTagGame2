@@ -149,7 +149,7 @@ if (!isP2Selected)
     }
 }
 
-if (input_check_pressed("jumpKey", 0) and !isP1Selected)
+if (input_check_pressed("acceptKey", 0) and !isP1Selected)
 {
     audio_play_sound(sn_uiAccept, 0, false);
     
@@ -171,7 +171,7 @@ if (input_check_pressed("jumpKey", 0) and !isP1Selected)
     audio_play_sound(global.characters[global.leftCharacter].selectAudio, 0, false);
 }
 
-if (input_check_pressed("jumpKey", 1) and !isP2Selected)
+if (input_check_pressed("acceptKey", 1) and !isP2Selected)
 {
     audio_play_sound(sn_uiAccept, 0, false);
     

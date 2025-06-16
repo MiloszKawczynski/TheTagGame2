@@ -35,6 +35,7 @@ function __input_config_verbs()
 			interactionKey: [input_binding_key(vk_space)],
 			skillKey: 		[input_binding_key(vk_lshift)],
 			
+            acceptKey:      [input_binding_key(vk_space)],
 			leave: 			[input_binding_key(vk_backspace)],
 			debugPlayKey:	[input_binding_key(vk_f2)],
 		},
@@ -49,6 +50,7 @@ function __input_config_verbs()
 			interactionKey: [input_binding_key(vk_rshift)],
 			skillKey: 		[input_binding_key(vk_rcontrol)],
 			
+            acceptKey:      [input_binding_key(vk_rshift)],
 			leave: 			[input_binding_key(vk_end)],
 			debugPlayKey:	[input_binding_key(vk_f2)],
 		},
@@ -63,8 +65,8 @@ function __input_config_verbs()
 			interactionKey: [input_binding_gamepad_button(gp_face3)],
 			skillKey: 		[input_binding_gamepad_button(gp_shoulderl), input_binding_gamepad_button(gp_shoulderr), input_binding_gamepad_button(gp_shoulderlb), input_binding_gamepad_button(gp_shoulderrb)],
 		
+            acceptKey:      [input_binding_gamepad_button(gp_face1)],
 			leave: 			[input_binding_gamepad_button(gp_face2)],
-		
 			debugPlayKey:	[input_binding_gamepad_button(gp_start)],
         }
     };

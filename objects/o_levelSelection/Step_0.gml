@@ -398,14 +398,14 @@ with(ui)
     }
 }
 
-if (input_check_pressed("jumpKey", 0))
+if (input_check_pressed("acceptKey", 0))
 {
     audio_play_sound(sn_uiAccept, 0, false);
     
     p1Accepted = true;
 }
 
-if (input_check_pressed("jumpKey", 1))
+if (input_check_pressed("acceptKey", 1))
 {
     audio_play_sound(sn_uiAccept, 0, false);
     

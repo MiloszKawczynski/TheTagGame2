@@ -278,7 +278,7 @@ else
 	part_emitter_stream(runTrailSystem, 0, runTrailType, 0);
 }
 
-if (!isReady and input_check_long_pressed("jumpKey", player))
+if (!isReady and input_check_long_pressed("acceptKey", player))
 {
     isReady = true;
 }
