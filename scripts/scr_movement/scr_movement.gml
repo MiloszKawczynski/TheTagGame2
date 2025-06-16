@@ -500,6 +500,24 @@ function scr_platformerObstaclesInteraction()
 
 function scr_topDownCollision()
 {	
+    if (place_meeting_precise(x + hspeed, y + vspeed, o_collision) and desiredHorizontalDirection != 0 and desiredVerticalDirection != 0)
+	{
+        if (instance_place_precise(x + hspeed, y + vspeed, o_collision).object_index != o_block)
+        {
+            if (abs(hspeed) > abs(vspeed))
+            {
+		        vspeed = 0;
+		        verticalSpeed = 0;
+            }
+            else 
+            {
+            	hspeed = 0;
+                horizontalSpeed = 0;
+            }
+        }
+	}
+    
+    
 	if (place_meeting_precise(x + hspeed, y, o_collision))
 	{
 		if (!place_meeting_precise(x + hspeed, y - abs(hspeed) - 1, o_collision))
@@ -594,39 +612,6 @@ function scr_topDownCollision()
 			verticalSpeed = 0;
 			maximumSpeed = maximumDefaultSpeed;
 		}
-	}
-	
-	if (place_meeting_precise(x + hspeed, y + vspeed, o_collision) and desiredHorizontalDirection != 0 and desiredVerticalDirection != 0)
-	{
-		while (!place_meeting_precise(x + sign(hspeed), y + sign(vspeed), o_collision))
-		{
-			x += sign(hspeed) * 0.5;
-			y += sign(vspeed) * 0.5;
-		}
-        
-        if (instance_place_precise(x + sign(hspeed), y + sign(vspeed), o_collision).object_index == o_block)
-        {
-		    hspeed = 0;
-		    vspeed = 0;
-		    horizontalSpeed = 0;
-		    verticalSpeed = 0;
-		    maximumSpeed = maximumDefaultSpeed;
-        }
-        else 
-        {
-            if (abs(hspeed) > abs(vspeed))
-            {
-		        vspeed = 0;
-		        verticalSpeed = 0;
-            }
-            else 
-            {
-            	hspeed = 0;
-                horizontalSpeed = 0;
-            }
-            
-            scr_topDownCollision();
-        }
 	}
 }
 
