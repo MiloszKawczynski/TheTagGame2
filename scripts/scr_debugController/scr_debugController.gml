@@ -1415,7 +1415,7 @@ function scr_editorOptions()
 
 function scr_serializeRulesPreset(file)
 {
-	function rulesPresetSerialized(_maximumChaseTime, _changesPerChase, _numberOfRound) constructor
+	function rulesPresetSerialized(_maximumChaseTime, _changesPerChase, _numberOfRounds) constructor
 	{	
 		maximumChaseTime = _maximumChaseTime;
 		changesPerChase = _changesPerChase;
