@@ -281,11 +281,11 @@ function setupUIStates()
             
             if (other.whoIsWinner == 0)
             {
-                leftFullBodyPortrait.posInGridX = lerp(leftFullBodyPortrait.posInGridX, 0 + lerp(-4, 2, other.whoIsChasing * !hide), 0.1);
+                leftFullBodyPortrait.posInGridX = lerp(leftFullBodyPortrait.posInGridX, 2, 0.1);
             }
             else 
             {
-            	rightFullBodyPortrait.posInGridX = lerp(rightFullBodyPortrait.posInGridX, 10 + lerp(4, -2, !other.whoIsChasing * !hide), 0.1);
+            	rightFullBodyPortrait.posInGridX = lerp(rightFullBodyPortrait.posInGridX, 8, 0.1);
             }
             
             winningScreenWinner.posInGridY = lerp(winningScreenWinner.posInGridY, 4, 0.2);
