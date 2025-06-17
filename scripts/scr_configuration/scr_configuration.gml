@@ -24,7 +24,7 @@ function scr_preload()
     //}
 	
 	//Create and Save
-	switch(staticBuffersOptionType.load)
+	switch(staticBuffersOptionType.disable)
 	{
 		case(staticBuffersOptionType.create):
 		{
