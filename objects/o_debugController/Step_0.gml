@@ -35,6 +35,20 @@ if (!hide)
 			instance_destroy();
 			return;
 		}
+        
+        if (ImGui.Button(":DD"))
+		{
+            var sum = 0;
+            with(o_collision)
+            {
+                if (model == undefined)
+                {
+                    sum++;
+                }
+            }
+            log(string("With model: {0}", instance_number(o_collision) - sum));
+            log(string("Without model: {0}", sum));
+        }
 			
 		scr_logsOptions();
 	}
