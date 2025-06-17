@@ -13,4 +13,4 @@ fauxton_model_draw_enable(model, false);
 
 colorUniform = shader_get_uniform(shd_defaultReplaceWhite, "color");
 
-alarm[0] = 2;
+//alarm[0] = 2;
