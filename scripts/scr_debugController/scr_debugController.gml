@@ -1137,8 +1137,9 @@ function scr_levelLoad(levelName = editorFileName)
 			file_text_readln(file);
             var instanceData = json_parse(jsonString);
 
-			if (!variable_struct_exists(instanceData, "layerName"))
+			if (!variable_struct_exists(instanceData, "layerName") or !layer_exists(instanceData.layerName))
 			{
+                log(instanceData.layerName);
 				instanceData.layerName = "level";
 			}
 				
