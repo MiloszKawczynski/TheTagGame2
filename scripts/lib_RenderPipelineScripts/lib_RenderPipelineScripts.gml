@@ -105,6 +105,15 @@ function pipeline_initiate()
 	
 		var uAmbCol = fauxton_world_environment.ambient_color;
 		var uSunCol = fauxton_world_environment.sun_color;
+        var color_return = function(color){
+			var r,g,b;
+			r = color_get_red(color)/255;
+			g = color_get_green(color)/255;
+			b = color_get_blue(color)/255;
+			var ret = array_create(3);
+			ret = [ r, g, b];
+			return ret;
+		}
 
 		shader_set_uniform_f_array(uniforms.amb_col, WorldEnvironment.acol);
 		shader_set_uniform_f_array(uniforms.sun_col, WorldEnvironment.scol);
