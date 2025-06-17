@@ -154,7 +154,7 @@ function scr_createCharacters()
     
     var davidDesc = "Umiejętność: Float\n\nPotrafi trzy razy\nskoczyć\n\nWolniej biega"
     
-    david = new character("David", davidDesc, "adam", sVN_david, 5, global.c_david, float, davidPasive, davidStats);
+    david = new character("David", davidDesc, "david", sVN_david, 5, global.c_david, float, davidPasive, davidStats);
     david.dificulty = [1, 1, 1];
     
     //--- FEATHER ---
@@ -166,7 +166,7 @@ function scr_createCharacters()
     
     var featherDesc = "Umiejętność: Float\n\nNie zwalnia biegnąc\npod górę";
     
-    feather = new character("Feather", featherDesc, "clea", sVN_feather, 6, global.c_feather, float, featherPasive, featherStats);
+    feather = new character("Feather", featherDesc, "riley", sVN_feather, 6, global.c_feather, float, featherPasive, featherStats);
     feather.dificulty = [1, 1, 1];
     
     //--- SNOW WHITE ---

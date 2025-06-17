@@ -1,6 +1,6 @@
 {
   "$GMSound":"",
-  "%Name":"sn_tricksterWin2",
+  "%Name":"sn_karenWin1",
   "audioGroupId":{
     "name":"audiogroup_default",
     "path":"audiogroups/audiogroup_default",
@@ -9,8 +9,8 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.0,
-  "name":"sn_tricksterWin2",
+  "duration":1.9330612,
+  "name":"sn_karenWin1",
   "parent":{
     "name":"winOneliners",
     "path":"folders/Sounds/winOneliners.yy",
@@ -19,7 +19,7 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"sn_tricksterWin2.mp3",
+  "soundFile":"sn_karenWin1.mp3",
   "type":0,
   "volume":1.0,
 }

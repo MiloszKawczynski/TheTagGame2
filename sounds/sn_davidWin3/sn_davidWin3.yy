@@ -1,6 +1,6 @@
 {
   "$GMSound":"",
-  "%Name":"sn_tricksterWin2",
+  "%Name":"sn_davidWin3",
   "audioGroupId":{
     "name":"audiogroup_default",
     "path":"audiogroups/audiogroup_default",
@@ -10,7 +10,7 @@
   "compression":0,
   "conversionMode":0,
   "duration":0.0,
-  "name":"sn_tricksterWin2",
+  "name":"sn_davidWin3",
   "parent":{
     "name":"winOneliners",
     "path":"folders/Sounds/winOneliners.yy",
@@ -19,7 +19,7 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"sn_tricksterWin2.mp3",
+  "soundFile":"sn_davidWin3.mp3",
   "type":0,
   "volume":1.0,
 }
