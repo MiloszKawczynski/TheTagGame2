@@ -6,7 +6,11 @@
   ],
   "configs":{
     "children":[
-      {"children":[],"name":"Debug",},
+      {"children":[
+          {"children":[],"name":"PlotMap",},
+          {"children":[],"name":"Arena",},
+          {"children":[],"name":"Lobby",},
+        ],"name":"Debug",},
       {"children":[],"name":"Release",},
     ],
     "name":"Default",

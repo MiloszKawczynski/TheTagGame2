@@ -1,5 +1,18 @@
+enum DebugDestination
+{
+    Arena,
+    PlotMap,
+    Lobby
+}
+
 #macro Release:DEBUG false
 #macro Debug:DEBUG true 
+
+#macro Release:DESTINATION DebugDestination.Lobby
+
+#macro Arena:DESTINATION DebugDestination.Arena
+#macro PlotMap:DESTINATION DebugDestination.PlotMap
+#macro Lobby:DESTINATION DebugDestination.Lobby
 
 randomize();
 
