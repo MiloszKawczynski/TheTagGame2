@@ -8,6 +8,7 @@ editor = function()
 }
 
 RENDER_QUALITY = 8;
+RENDER_FIDELITY = 1;
 
 fauxton_world_environment.sun_color = SunColor;
 fauxton_world_environment.ambient_color = AmbientColor;
