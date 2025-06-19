@@ -166,7 +166,7 @@ function scr_createCharacters()
     
     var featherDesc = "Umiejętność: Float\n\nNie zwalnia biegnąc\npod górę";
     
-    feather = new character("Feather", featherDesc, "riley", sVN_feather, 6, global.c_feather, float, featherPasive, featherStats);
+    feather = new character("Feather", featherDesc, "feather", sVN_feather, 6, global.c_feather, float, featherPasive, featherStats);
     feather.dificulty = [1, 1, 1];
     
     //--- SNOW WHITE ---
@@ -180,7 +180,7 @@ function scr_createCharacters()
     
     var snowWhiteDesc = "Umiejętność: Dash\n\nŁapie przeszkody z\nwiększej odległości\n\nSłabe wybicia\nsą gorsze\n\nDobre wybicia\nsą lepsze"
     
-    snowWhite = new character("Snow White", snowWhiteDesc, "trickster", sVN_snowWhite, 7, global.c_snowWhite, dash, snowWhitePasive, snowWhiteStats);
+    snowWhite = new character("Snow White", snowWhiteDesc, "snowWhite", sVN_snowWhite, 7, global.c_snowWhite, dash, snowWhitePasive, snowWhiteStats);
     snowWhite.dificulty = [1, 1, 0];
     
     //--- KARENN ---
@@ -198,7 +198,7 @@ function scr_createCharacters()
     
     var karenDesc = "Umiejętność: Sprint\n\nDłużej się\nrozpędza i hamuje\n\nSzybciej biega\n\nGorzej wbiega\npod górę\n\nZbiega z górki\nszybciej niż inni"
     
-    karen = new character("Karen", karenDesc, "clea", sVN_karen, 8, global.c_karen, sprint, karenPasive, karenStats);
+    karen = new character("Karen", karenDesc, "karen", sVN_karen, 8, global.c_karen, sprint, karenPasive, karenStats);
     karen.dificulty = [1, 1, 0];
     
     //--- CLEA ---
