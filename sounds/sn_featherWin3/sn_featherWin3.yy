@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":2.1159184,
+  "duration":1.8705442,
   "name":"sn_featherWin3",
   "parent":{
     "name":"winOneliners",
@@ -19,7 +19,7 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"sn_featherWin3.mp3",
+  "soundFile":"sn_featherWin3.wav",
   "type":0,
   "volume":1.0,
 }

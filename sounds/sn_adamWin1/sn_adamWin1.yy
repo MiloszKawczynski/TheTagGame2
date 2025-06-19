@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":1.28,
+  "duration":1.25,
   "name":"sn_adamWin1",
   "parent":{
     "name":"winOneliners",
@@ -19,7 +19,7 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"sn_adamWin1.mp3",
+  "soundFile":"sn_adamWin1.wav",
   "type":0,
   "volume":1.0,
 }

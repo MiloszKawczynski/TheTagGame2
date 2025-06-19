@@ -1056,6 +1056,7 @@
     {"id":{"name":"sn_karenWin1","path":"sounds/sn_karenWin1/sn_karenWin1.yy",},},
     {"id":{"name":"sn_karenWin2","path":"sounds/sn_karenWin2/sn_karenWin2.yy",},},
     {"id":{"name":"sn_karenWin3","path":"sounds/sn_karenWin3/sn_karenWin3.yy",},},
+    {"id":{"name":"sn_miriamSelect","path":"sounds/sn_miriamSelect/sn_miriamSelect.yy",},},
     {"id":{"name":"sn_rileySelect","path":"sounds/sn_rileySelect/sn_rileySelect.yy",},},
     {"id":{"name":"sn_rileyWin1","path":"sounds/sn_rileyWin1/sn_rileyWin1.yy",},},
     {"id":{"name":"sn_rileyWin2","path":"sounds/sn_rileyWin2/sn_rileyWin2.yy",},},

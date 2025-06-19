@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.9926531,
+  "duration":0.96875286,
   "name":"sn_rileyWin2",
   "parent":{
     "name":"winOneliners",
@@ -19,7 +19,7 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"sn_rileyWin2.mp3",
+  "soundFile":"sn_rileyWin2.wav",
   "type":0,
   "volume":1.0,
 }

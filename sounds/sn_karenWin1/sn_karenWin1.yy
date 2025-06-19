@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":1.9330612,
+  "duration":2.5937414,
   "name":"sn_karenWin1",
   "parent":{
     "name":"winOneliners",
@@ -19,7 +19,7 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"sn_karenWin1.mp3",
+  "soundFile":"sn_karenWin1.wav",
   "type":0,
   "volume":1.0,
 }

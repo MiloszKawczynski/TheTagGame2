@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":2.4293878,
+  "duration":1.9821315,
   "name":"sn_davidSelect",
   "parent":{
     "name":"characterSelect",
@@ -19,7 +19,7 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"sn_davidSelect.mp3",
+  "soundFile":"sn_davidSelect.wav",
   "type":0,
   "volume":1.0,
 }

@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":1.8285714,
+  "duration":1.7410657,
   "name":"sn_tricksterWin1",
   "parent":{
     "name":"winOneliners",
@@ -19,7 +19,7 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"sn_tricksterWin1.mp3",
+  "soundFile":"sn_tricksterWin1.wav",
   "type":0,
   "volume":1.0,
 }

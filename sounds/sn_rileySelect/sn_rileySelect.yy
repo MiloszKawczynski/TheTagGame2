@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":1.9591837,
+  "duration":1.9241043,
   "name":"sn_rileySelect",
   "parent":{
     "name":"characterSelect",
@@ -19,7 +19,7 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"sn_rileySelect.mp3",
+  "soundFile":"sn_rileySelect.wav",
   "type":0,
   "volume":1.0,
 }

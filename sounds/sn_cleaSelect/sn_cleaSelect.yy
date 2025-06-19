@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":1.4367347,
+  "duration":1.3928572,
   "name":"sn_cleaSelect",
   "parent":{
     "name":"characterSelect",
@@ -19,7 +19,7 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"sn_cleaSelect.mp3",
+  "soundFile":"sn_cleaSelect.wav",
   "type":0,
   "volume":1.0,
 }
