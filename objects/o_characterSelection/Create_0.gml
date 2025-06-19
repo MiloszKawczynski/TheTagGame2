@@ -6,6 +6,7 @@ leftShow = 3.5;
 rightShow = 6.5;
 
 dividerX = 0;
+dividerColor = global.c_neon;
 
 tileY = 0;
 
@@ -138,13 +139,13 @@ with(ui)
     characterNameLeft.setSprite(s_characterSelectionName);
     
     characterNameTextLeft = new Text(global.characters[other.p1Selected - 1].name, f_characterName, fa_left, fa_top);
-    characterNameTextLeft.setColor(global.c_discordBlack);
+    characterNameTextLeft.setColor(c_white);
     
     characterDescriptionLeft = new Output();
     characterDescriptionLeft.setSprite(s_characterSelectionDescription);
     
     characterDescriptionTextLeft = new Text(global.characters[other.p1Selected - 1].desc, f_characterDesc, fa_left, fa_top);
-    characterDescriptionTextLeft.setColor(global.c_discordBlack);
+    characterDescriptionTextLeft.setColor(c_white);
     
     characterDificultyLeft = new LedBar(global.characters[other.p1Selected - 1].dificulty, 3, 50);
     characterDificultyLeft.setSpriteSheet(s_characterSelectionDificulty);
@@ -163,14 +164,14 @@ with(ui)
     characterNameRight.setScale(-1, 1);
     
     characterNameTextRight = new Text(global.characters[other.p2Selected - 1].name, f_characterName, fa_right, fa_top);
-    characterNameTextRight.setColor(global.c_discordBlack);
+    characterNameTextRight.setColor(c_white);
     
     characterDescriptionRight = new Output();
     characterDescriptionRight.setSprite(s_characterSelectionDescription);
     characterDescriptionRight.setScale(-1, 1);
     
     characterDescriptionTextRight = new Text(global.characters[other.p2Selected - 1].desc, f_characterDesc, fa_right, fa_top);
-    characterDescriptionTextRight.setColor(global.c_discordBlack);
+    characterDescriptionTextRight.setColor(c_white);
     
     characterDificultyRight = new LedBar(global.characters[other.p2Selected - 1].dificulty, 3, 50);
     characterDificultyRight.setSpriteSheet(s_characterSelectionDificulty);

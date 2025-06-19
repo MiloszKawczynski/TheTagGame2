@@ -379,6 +379,7 @@ if (isP1Selected and isP2Selected)
         }
         
         dividerX = lerp(dividerX, -room_width * 0.2, 0.2);
+        dividerColor = merge_color(dividerColor, global.c_discordBlack, 0.2);
         
         if (!instance_exists(o_levelSelection))
         {
