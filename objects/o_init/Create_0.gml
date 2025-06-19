@@ -40,13 +40,13 @@ global.c_chaosCrew = make_color_rgb(97, 0, 255);
 global.c_theRunners = make_color_rgb(255, 167, 0);
 
 global.c_adam = make_color_rgb(187, 0, 119);
-global.c_clea = make_color_rgb(255, 0, 0);
-global.c_david = make_color_rgb(40, 42, 53);
+global.c_clea = make_color_rgb(255, 129, 127);
+global.c_david = make_color_rgb(255, 255, 255);
 global.c_feather = make_color_rgb(204, 0, 255);
-global.c_karen = make_color_rgb(255, 129, 127);
-global.c_miriam = make_color_rgb(130, 0, 0);
+global.c_karen = make_color_rgb(255, 0, 0);
+global.c_miriam = make_color_rgb(255, 149, 0);
 global.c_riley = make_color_rgb(255, 255, 0);
-global.c_snowWhite = make_color_rgb(255, 255, 255);
+global.c_snowWhite = make_color_rgb(108, 250, 255);
 global.c_trickster = make_color_rgb(97, 0, 255);
 
 global.c_teamColors = array_create();
