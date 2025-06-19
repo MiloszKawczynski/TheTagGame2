@@ -236,3 +236,13 @@ function color_hue_change(color, change)
 {
 	return make_color_hsv(color_get_hue(color) + change, color_get_saturation(color), color_get_value(color));
 }
+
+function color_saturation_change(color, change)
+{
+	return make_color_hsv(color_get_hue(color), color_get_saturation(color) + change, color_get_value(color));
+}
+
+function color_value_change(color, change)
+{
+	return make_color_hsv(color_get_hue(color), color_get_saturation(color), color_get_value(color) + change);
+}
