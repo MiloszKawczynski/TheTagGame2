@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"shd_crowd",
+  "name":"shd_crowd",
+  "parent":{
+    "name":"6_Shaders",
+    "path":"folders/6_Shaders.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

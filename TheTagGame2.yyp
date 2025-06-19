@@ -1012,6 +1012,7 @@
     {"id":{"name":"shd_afterimage","path":"shaders/shd_afterimage/shd_afterimage.yy",},},
     {"id":{"name":"shd_catchingArrow","path":"shaders/shd_catchingArrow/shd_catchingArrow.yy",},},
     {"id":{"name":"shd_characterSlot","path":"shaders/shd_characterSlot/shd_characterSlot.yy",},},
+    {"id":{"name":"shd_crowd","path":"shaders/shd_crowd/shd_crowd.yy",},},
     {"id":{"name":"shd_default","path":"shaders/shd_default/shd_default.yy",},},
     {"id":{"name":"shd_defaultGround","path":"shaders/shd_defaultGround/shd_defaultGround.yy",},},
     {"id":{"name":"shd_defaultLed","path":"shaders/shd_defaultLed/shd_defaultLed.yy",},},
