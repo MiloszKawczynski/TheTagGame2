@@ -49,6 +49,21 @@ if (!hide)
             log(string("With model: {0}", instance_number(o_collision) - sum));
             log(string("Without model: {0}", sum));
         }
+        
+        if (keyboard_check_pressed(vk_f3))
+        {
+            debug_input_record(debug_input_filter_keyboard);
+        }
+        
+        if (keyboard_check_pressed(vk_f4))
+        {
+            debug_input_save(get_project_path() + "input.data");
+        }
+        
+        if (keyboard_check_pressed(vk_f5))
+        {
+            debug_input_playback(get_project_path() + "input.data");
+        }
 			
 		scr_logsOptions();
 	}
