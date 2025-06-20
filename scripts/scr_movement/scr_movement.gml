@@ -504,15 +504,18 @@ function scr_topDownCollision()
 	{
         if (instance_place_precise(x + hspeed, y + vspeed, o_collision).object_index != o_block)
         {
-            if (abs(hspeed) > abs(vspeed))
+            if (hspeed != 0 and vspeed != 0)
             {
-		        vspeed = 0;
-		        verticalSpeed = 0;
-            }
-            else 
-            {
-            	hspeed = 0;
-                horizontalSpeed = 0;
+                if (abs(hspeed) > abs(vspeed))
+                {
+    		        vspeed = 0;
+    		        verticalSpeed = 0;
+                }
+                else if (abs(hspeed) < abs(vspeed))
+                {
+                	hspeed = 0;
+                    horizontalSpeed = 0;
+                }
             }
         }
 	}
@@ -520,23 +523,23 @@ function scr_topDownCollision()
     
 	if (place_meeting_precise(x + hspeed, y, o_collision))
 	{
-		if (!place_meeting_precise(x + hspeed, y - abs(hspeed) - 1, o_collision))
+		if (!place_meeting(x + hspeed, y - abs(hspeed * 2) - 1, o_collision))
 		{
-			while (place_meeting_precise(x + hspeed, y, o_collision))
+			while (place_meeting(x + hspeed, y, o_collision))
 			{
 				y -= 0.5;
 			}
 		}
-		else if (!place_meeting_precise(x + hspeed, y + abs(hspeed) + 1, o_collision))
+		else if (!place_meeting(x + hspeed, y + abs(hspeed * 2) + 1, o_collision))
 		{
-			while (place_meeting_precise(x + hspeed, y, o_collision))
+			while (place_meeting(x + hspeed, y, o_collision))
 			{
 				y += 0.5;
 			}
 		}
 		else
 		{
-			while (!place_meeting_precise(x + sign(hspeed), y, o_collision))
+			while (!place_meeting(x + sign(hspeed), y, o_collision))
 			{
 				x += sign(hspeed) * 0.5;
 			}
@@ -547,63 +550,61 @@ function scr_topDownCollision()
 		}
 	}
 	
-	if (place_meeting_precise(x, y + vspeed, o_collision))
+	if (place_meeting(x, y + vspeed, o_collision))
 	{
-		if (!place_meeting_precise(x - abs(vspeed * 2) - 1, y + vspeed, o_collision))
+		if (!place_meeting(x - abs(vspeed * 2) - 1, y + vspeed, o_collision))
 		{
 			var isRamp = false;
 			var yy = y;
-			while(!place_meeting_precise(x, yy, o_collision))
+			while(!place_meeting(x, yy, o_collision))
 			{
 				yy += sign(vspeed) * 0.5;
 			}
 			
-			if (instance_place_precise(x, yy, o_collision).object_index == o_ramp)
+			if (instance_place(x, yy, o_collision).object_index == o_ramp)
 			{
 				isRamp = true;
 			}
 			
 			var xx = x
-			while (place_meeting_precise(x, y + vspeed, o_collision))
+			while (place_meeting(x, y + vspeed, o_collision))
 			{
 				x -= 0.5;
 			}
-			
 			if (isRamp)
 			{
 				x = (x + xx) / 2
 				y -= vspeed / 2;
 			}
 		}
-		else if (!place_meeting_precise(x + abs(vspeed * 2) + 1, y + vspeed, o_collision))
+		else if (!place_meeting(x + abs(vspeed * 2) + 1, y + vspeed, o_collision))
 		{
 			var isRamp = false;
 			var yy = y;
-			while(!place_meeting_precise(x, yy, o_collision))
+			while(!place_meeting(x, yy, o_collision))
 			{
 				yy += sign(vspeed) * 0.5;
 			}
 			
-			if (instance_place_precise(x, yy, o_collision).object_index == o_ramp)
+			if (instance_place(x, yy, o_collision).object_index == o_ramp)
 			{
 				isRamp = true;
 			}
 			
 			var xx = x
-			while (place_meeting_precise(x, y + vspeed, o_collision))
+			while (place_meeting(x, y + vspeed, o_collision))
 			{
 				x += 0.5;
 			}
-			
 			if (isRamp)
 			{
-				x = (x + xx) / 2
+				x = (x + xx) / 2;
 				y -= vspeed / 2;
 			}
 		}
 		else
 		{
-			while (!place_meeting_precise(x, y + sign(vspeed), o_collision))
+			while (!place_meeting(x, y + sign(vspeed), o_collision))
 			{
 				y += sign(vspeed) * 0.5;
 			}
