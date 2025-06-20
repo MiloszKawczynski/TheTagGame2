@@ -7,7 +7,8 @@ void main()
 {
 	vec4 baseColor = texture2D( gm_BaseTexture, v_vTexcoord );	
     
-    float alpha = texture2D( character, v_vTexcoord ).a;
+    vec4 mask = texture2D( character, v_vTexcoord );
+    baseColor.a *= mask.a;
 	
 	gl_FragColor = baseColor;
 }
