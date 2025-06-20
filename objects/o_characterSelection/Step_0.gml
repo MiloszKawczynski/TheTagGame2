@@ -155,17 +155,17 @@ if (input_check_pressed("acceptKey", 0) and !isP1Selected)
     
     isP1Selected = true;
     ui.characterSelectionSlotBorderP1.setColor(global.c_darkBlue);
-    if (p1Selected == 0)
+    if (p1Selected == randomCharacter)
     {
         global.leftCharacter = irandom(array_length(global.characters) - 1);
-        p1Selected = global.leftCharacter + 1;
+        p1Selected = global.leftCharacter;
         charChangeP1 = true;
         p1Before = true;
         isChange = 1;
     }
     else 
     {
-    	global.leftCharacter = p1Selected - 1;
+    	global.leftCharacter = p1Selected;
     }
     
     audio_play_sound(global.characters[global.leftCharacter].selectAudio, 0, false);
@@ -177,17 +177,17 @@ if (input_check_pressed("acceptKey", 1) and !isP2Selected)
     
     isP2Selected = true;
     ui.characterSelectionSlotBorderP2.setColor(global.c_darkBlue);
-    if (p2Selected == 0)
+    if (p2Selected == randomCharacter)
     {
         global.rightCharacter = irandom(array_length(global.characters) - 1);
-        p2Selected = global.rightCharacter + 1;
+        p2Selected = global.rightCharacter;
         charChangeP2 = true;
         p2Before = true;
         isChange = 1;
     }
     else 
     {
-    	global.rightCharacter = p2Selected - 1;
+    	global.rightCharacter = p2Selected;
     }
     
     audio_play_sound(global.characters[global.rightCharacter].selectAudio, 0, false);
@@ -205,7 +205,7 @@ if (p1Before)
         characterLeft.setPositionInGrid(other.leftShow, 5.5);
         characterLeftBck.setPositionInGrid(other.leftHide, 5.5);
         
-        if (other.p1Selected == 0)
+        if (other.p1Selected == other.randomCharacter)
         {
             characterLeft.setSprite(characterLeftBck.state.sprite);
             characterLeftBck.setSprite(sVN_random); 
@@ -216,10 +216,10 @@ if (p1Before)
         else 
         {
         	characterLeft.setSprite(characterLeftBck.state.sprite);
-            characterLeftBck.setSprite(global.characters[other.p1Selected - 1].art); 
-            characterNameTextLeft.setContent(global.characters[other.p1Selected - 1].name); 
-            characterDescriptionTextLeft.setContent(global.characters[other.p1Selected - 1].desc); 
-            characterDificultyLeft.setValue(global.characters[other.p1Selected - 1].dificulty);
+            characterLeftBck.setSprite(global.characters[other.p1Selected].art); 
+            characterNameTextLeft.setContent(global.characters[other.p1Selected].name); 
+            characterDescriptionTextLeft.setContent(global.characters[other.p1Selected].desc); 
+            characterDificultyLeft.setValue(global.characters[other.p1Selected].dificulty);
         }
     }
 }
@@ -231,7 +231,7 @@ if (p2Before)
         characterRight.setPositionInGrid(other.rightShow, 5.5);
         characterRightBck.setPositionInGrid(other.rightHide, 5.5);
         
-        if (other.p2Selected == 0)
+        if (other.p2Selected == other.randomCharacter)
         {
             characterRight.setSprite(characterRightBck.state.sprite);
             characterRightBck.setSprite(sVN_random); 
@@ -242,10 +242,10 @@ if (p2Before)
         else 
         {
         	characterRight.setSprite(characterRightBck.state.sprite);
-            characterRightBck.setSprite(global.characters[other.p2Selected - 1].art); 
-            characterNameTextRight.setContent(global.characters[other.p2Selected - 1].name); 
-            characterDescriptionTextRight.setContent(global.characters[other.p2Selected - 1].desc); 
-            characterDificultyRight.setValue(global.characters[other.p2Selected - 1].dificulty);
+            characterRightBck.setSprite(global.characters[other.p2Selected].art); 
+            characterNameTextRight.setContent(global.characters[other.p2Selected].name); 
+            characterDescriptionTextRight.setContent(global.characters[other.p2Selected].desc); 
+            characterDificultyRight.setValue(global.characters[other.p2Selected].dificulty);
         }
     }
 }

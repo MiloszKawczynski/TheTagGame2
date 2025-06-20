@@ -79,11 +79,11 @@ function scr_createCharacters()
 		riley,
         miriam,
 		trickster,
+        clea,
         david,
         feather,
         snowWhite,
         karen,
-        clea,
 	}
     
     var emptyPasive = new pasiveSkills();
@@ -96,7 +96,7 @@ function scr_createCharacters()
     
     var adamDesc = "Umiejętność: Sprint\n\nPrzeciętny\nw każdej materii";
     
-    adam = new character("Adam", adamDesc, "adam", sVN_adam, 1, global.c_adam, sprint, adamPasive, adamStats);
+    adam = new character("Adam", adamDesc, "adam", sVN_adam, 0, global.c_adam, sprint, adamPasive, adamStats);
     adam.dificulty = [1, 0, 0];
     
     //--- RILEY ---
@@ -111,7 +111,7 @@ function scr_createCharacters()
     
     var rileyDesc = "Umiejętność: Drift\n\nZbiega z górki\nszybciej niż inni\n\nW powietrzu potrafi\nwykonać air dash";
     
-    riley = new character("Riley", rileyDesc, "riley", sVN_riley, 2, global.c_riley, drift, rileyPasive, rileyStats);
+    riley = new character("Riley", rileyDesc, "riley", sVN_riley, 1, global.c_riley, drift, rileyPasive, rileyStats);
     riley.dificulty = [1, 1, 0];
     
     //--- MIRIAM ---
@@ -141,7 +141,7 @@ function scr_createCharacters()
     
     var tricksterDesc = "Umiejętność: Drift\n\nWyżej skacze\n\nPotrafi skakać po\nścianach";
     
-    trickster = new character("Trickster", tricksterDesc, "trickster", sVN_trickster, 4, global.c_trickster, drift, tricksterPasive, tricksterStats);
+    trickster = new character("Trickster", tricksterDesc, "trickster", sVN_trickster, 2, global.c_trickster, drift, tricksterPasive, tricksterStats);
     trickster.dificulty = [1, 1, 0];
     
     //--- DAVID ---
@@ -212,13 +212,13 @@ function scr_createCharacters()
     
     var cleaDesc = "Umiejętność: Sprint\n\nSprintuje dłużej\ni szybciej\n\nWolniej biega"
     
-    clea = new character("Clea", cleaDesc, "clea", sVN_clea, 9, global.c_clea, sprint, cleaPasive, cleaStats);
+    clea = new character("Clea", cleaDesc, "clea", sVN_clea, 4, global.c_clea, sprint, cleaPasive, cleaStats);
     clea.dificulty = [1, 0, 0];
     
     //-----------
     
     global.characters = array_create();
-    array_push(global.characters, adam, riley, miriam, trickster, david, feather, snowWhite, karen, clea);
+    array_push(global.characters, adam, riley, trickster, miriam, clea, david, feather, snowWhite, karen);
 }
 
 function setActiveSkills()

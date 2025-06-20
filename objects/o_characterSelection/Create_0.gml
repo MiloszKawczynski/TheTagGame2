@@ -10,8 +10,8 @@ dividerColor = global.c_neon;
 
 tileY = 0;
 
-p1Selected = 1;
-p2Selected = 9;
+p1Selected = 0;
+p2Selected = 4;
 
 isP1Selected = false;
 isP2Selected = false;
@@ -21,6 +21,8 @@ charChangeP2 = true;
 
 init = true;
 introAlpha = 0;
+
+randomCharacter = 9;
 
 window_set_fullscreen(true);
 
@@ -138,16 +140,16 @@ with(ui)
     characterNameLeft = new Output();
     characterNameLeft.setSprite(s_characterSelectionName);
     
-    characterNameTextLeft = new Text(global.characters[other.p1Selected - 1].name, f_characterName, fa_left, fa_top);
+    characterNameTextLeft = new Text(global.characters[other.p1Selected].name, f_characterName, fa_left, fa_top);
     characterNameTextLeft.setColor(c_white);
     
     characterDescriptionLeft = new Output();
     characterDescriptionLeft.setSprite(s_characterSelectionDescription);
     
-    characterDescriptionTextLeft = new Text(global.characters[other.p1Selected - 1].desc, f_characterDesc, fa_left, fa_top);
+    characterDescriptionTextLeft = new Text(global.characters[other.p1Selected].desc, f_characterDesc, fa_left, fa_top);
     characterDescriptionTextLeft.setColor(c_white);
     
-    characterDificultyLeft = new LedBar(global.characters[other.p1Selected - 1].dificulty, 3, 50);
+    characterDificultyLeft = new LedBar(global.characters[other.p1Selected].dificulty, 3, 50);
     characterDificultyLeft.setSpriteSheet(s_characterSelectionDificulty);
     
     characterInfoGroupLeft.addComponent(0, 0, characterNameLeft);
@@ -163,17 +165,17 @@ with(ui)
     characterNameRight.setSprite(s_characterSelectionName);
     characterNameRight.setScale(-1, 1);
     
-    characterNameTextRight = new Text(global.characters[other.p2Selected - 1].name, f_characterName, fa_right, fa_top);
+    characterNameTextRight = new Text(global.characters[other.p2Selected].name, f_characterName, fa_right, fa_top);
     characterNameTextRight.setColor(c_white);
     
     characterDescriptionRight = new Output();
     characterDescriptionRight.setSprite(s_characterSelectionDescription);
     characterDescriptionRight.setScale(-1, 1);
     
-    characterDescriptionTextRight = new Text(global.characters[other.p2Selected - 1].desc, f_characterDesc, fa_right, fa_top);
+    characterDescriptionTextRight = new Text(global.characters[other.p2Selected].desc, f_characterDesc, fa_right, fa_top);
     characterDescriptionTextRight.setColor(c_white);
     
-    characterDificultyRight = new LedBar(global.characters[other.p2Selected - 1].dificulty, 3, 50);
+    characterDificultyRight = new LedBar(global.characters[other.p2Selected].dificulty, 3, 50);
     characterDificultyRight.setSpriteSheet(s_characterSelectionDificulty);
     
     characterInfoGroupRight.addComponent(0, 0, characterNameRight);
