@@ -1,6 +1,6 @@
 {
   "$GMSound":"",
-  "%Name":"sn_miriamSelect",
+  "%Name":"sn_miriamWin3",
   "audioGroupId":{
     "name":"audiogroup_default",
     "path":"audiogroups/audiogroup_default",
@@ -9,17 +9,17 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":1.2544671,
-  "name":"sn_miriamSelect",
+  "duration":1.2365986,
+  "name":"sn_miriamWin3",
   "parent":{
-    "name":"characterSelect",
-    "path":"folders/Sounds/characterSelect.yy",
+    "name":"winOneliners",
+    "path":"folders/Sounds/winOneliners.yy",
   },
   "preload":false,
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"sn_miriamSelect.wav",
+  "soundFile":"sn_miriamWin3.wav",
   "type":0,
   "volume":1.0,
 }
