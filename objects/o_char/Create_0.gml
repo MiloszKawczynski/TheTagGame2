@@ -251,6 +251,7 @@ function reset()
     glow = 0;
     
     isReady = false;
+    isSkillActive = 0;
     
     topDownAnimationState = topDownIdleState;
     platformAnimationState = platformIdleState;
