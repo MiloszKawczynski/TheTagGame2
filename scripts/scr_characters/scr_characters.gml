@@ -89,17 +89,18 @@ function scr_createCharacters()
     var emptyPasive = new pasiveSkills();
     var emptyStats = new statsModificators();
    
-    //--- ADAM ---
+    //--► ADAM ---
     
     var adamPasive = new pasiveSkills();
     var adamStats = new statsModificators();
     
-    var adamDesc = "Umiejętność: Sprint\n\nPrzeciętny\nw każdej materii";
+    //var adamDesc = "Umiejętność: Sprint\n\nPrzeciętny\nw każdej materii";
+    var adamDesc = "Skill: Sprint [rb]\n\n► Czysta karta,\nbiegacz dobry\nwe wszystkim.";
     
     adam = new character("Adam", adamDesc, "adam", sVN_adam, 0, global.c_adam, sprint, adamPasive, adamStats);
     adam.dificulty = [1, 0, 0];
     
-    //--- RILEY ---
+    //--► RILEY ---
     
     var rileyPasive = new pasiveSkills();
     rileyPasive.airDash = true;
@@ -109,12 +110,13 @@ function scr_createCharacters()
     rileyStats.slopeAccelerationModificator = 1.1;
     rileyStats.rampAccelerationModificator = 1.1;
     
-    var rileyDesc = "Umiejętność: Drift\n\nZbiega z górki\nszybciej niż inni\n\nW powietrzu potrafi\nwykonać air dash";
+    //var rileyDesc = "Umiejętność: Drift\n\nZbiega z górki\nszybciej niż inni\n\nW powietrzu potrafi\nwykonać air dash";
+    var rileyDesc = "Skill: Peelout [rb]\n\n► Szybciej zbiega\nz górki\n\n► [A] w powietrzu\nwykonuje 'air dash'";
     
     riley = new character("Riley", rileyDesc, "riley", sVN_riley, 1, global.c_riley, drift, rileyPasive, rileyStats);
     riley.dificulty = [1, 1, 0];
     
-    //--- MIRIAM ---
+    //--► MIRIAM ---
     
     var miriamPasive = new pasiveSkills();
     miriamPasive.autoCatch = true;
@@ -126,12 +128,13 @@ function scr_createCharacters()
     miriamStats.obstacleRangeModificator = 0.75;
     miriamStats.catchRangeModificator = 0.2;
     
-    var miriamDesc = "Umiejętność: Dash\n\nMniejszy zasięg\nłapania i wybicia\n\nŁapanie jest\nautomatyczne\n\nWybicie jest zawsze\nidealne";
+    //var miriamDesc = "Umiejętność: Dash\n\nMniejszy zasięg\nłapania i wybicia\n\nŁapanie jest\nautomatyczne\n\nWybicie jest zawsze\nidealne";
+    var miriamDesc = "Skill: Dash [rb]\n\n► Łapie przeciwnika\nautomatycznie\n\n► Zawsze idealne\nwybicie\n\n► Mniejszy zasięg\nłapania i wybicia";
     
     miriam = new character("Miriam", miriamDesc, "miriam", sVN_miriam, 3, global.c_miriam, dash, miriamPasive, miriamStats);
     miriam.dificulty = [1, 1, 0];
     
-    //--- TRICKSTER ---
+    //--► TRICKSTER ---
     
     var tricksterPasive = new pasiveSkills();
     tricksterPasive.wallJump = true;
@@ -139,12 +142,13 @@ function scr_createCharacters()
     var tricksterStats = new statsModificators();
     tricksterStats.jumpForceModificator = 1.15;
     
-    var tricksterDesc = "Umiejętność: Drift\n\nWyżej skacze\n\nPotrafi skakać po\nścianach";
+    //var tricksterDesc = "Umiejętność: Drift\n\nWyżej skacze\n\nPotrafi skakać po\nścianach";
+    var tricksterDesc = "Skill: Peelout [rb]\n\n► [A] przy ścianie\n'walljump'\n\n► Wyżej skacze";
     
     trickster = new character("Trickster", tricksterDesc, "trickster", sVN_trickster, 2, global.c_trickster, drift, tricksterPasive, tricksterStats);
     trickster.dificulty = [1, 1, 0];
     
-    //--- DAVID ---
+    //--► DAVID ---
     
     var davidPasive = new pasiveSkills();
     
@@ -152,24 +156,26 @@ function scr_createCharacters()
     davidStats.maxJumpNumberModificator = 3;
     davidStats.maximumDefaultSpeedModificator = 0.5;
     
-    var davidDesc = "Umiejętność: Float\n\nPotrafi trzy razy\nskoczyć\n\nWolniej biega"
+    //var davidDesc = "Umiejętność: Float\n\nPotrafi trzy razy\nskoczyć\n\nWolniej biega"
+    var davidDesc = "Skill: Float [rb]\n\n► Potrójny skok\n\n► Wolniejszy bieg"
     
     david = new character("David", davidDesc, "david", sVN_david, 5, global.c_david, float, davidPasive, davidStats);
     david.dificulty = [1, 1, 1];
     
-    //--- FEATHER ---
+    //--► FEATHER ---
     
     var featherPasive = new pasiveSkills();
     featherPasive.noUpHillPenalty = true;
     
     var featherStats = new statsModificators();
     
-    var featherDesc = "Umiejętność: Float\n\nNie zwalnia biegnąc\npod górę";
+    //var featherDesc = "Umiejętność: Float\n\nNie zwalnia biegnąc\npod górę";
+    var featherDesc = "Skill: Float [rb]\n\n► Nie zwalnia\nbiegnąc pod górę";
     
     feather = new character("Feather", featherDesc, "feather", sVN_feather, 6, global.c_feather, float, featherPasive, featherStats);
     feather.dificulty = [1, 1, 1];
     
-    //--- SNOW WHITE ---
+    //--► SNOW WHITE ---
     
     var snowWhitePasive = new pasiveSkills();
     
@@ -178,12 +184,13 @@ function scr_createCharacters()
     snowWhiteStats.minimumObstacleJumpForceModificator = 0.7;
     snowWhiteStats.maximumObstacleJumpForceModificator = 1.2;
     
-    var snowWhiteDesc = "Umiejętność: Dash\n\nŁapie przeszkody z\nwiększej odległości\n\nSłabe wybicia\nsą gorsze\n\nDobre wybicia\nsą lepsze"
+    //var snowWhiteDesc = "Umiejętność: Dash\n\nŁapie przeszkody z\nwiększej odległości\n\nSłabe wybicia\nsą gorsze\n\nDobre wybicia\nsą lepsze"
+    var snowWhiteDesc = "Skill: Dash [rb]\n\n► Większy zasięg\nchwytania przeszkód\n\n► Lepsze\ndobre wybicia\n\n► Gorsze\nsłabe wybicia";
     
     snowWhite = new character("Snow White", snowWhiteDesc, "snowWhite", sVN_snowWhite, 7, global.c_snowWhite, dash, snowWhitePasive, snowWhiteStats);
     snowWhite.dificulty = [1, 1, 0];
     
-    //--- KARENN ---
+    //--► KARENN ---
     
     var karenPasive = new pasiveSkills();
     
@@ -196,12 +203,13 @@ function scr_createCharacters()
     karenStats.rampDecelerationModificator = 2;
     karenStats.slopeDecelerationModificator = 2;
     
-    var karenDesc = "Umiejętność: Sprint\n\nDłużej się\nrozpędza i hamuje\n\nSzybciej biega\n\nGorzej wbiega\npod górę\n\nZbiega z górki\nszybciej niż inni"
+    //var karenDesc = "Umiejętność: Sprint\n\nDłużej się\nrozpędza i hamuje\n\nSzybciej biega\n\nGorzej wbiega\npod górę\n\nZbiega z górki\nszybciej niż inni"
+    var karenDesc = "Skill: Sprint [rb]\n\n► Szybszy bieg\ni zbieg z górki\n\n► Dłuższy rozpęd\ni zatrzymanie\n\n► Gorszy bieg\npod górę";
     
     karen = new character("Karen", karenDesc, "karen", sVN_karen, 8, global.c_karen, sprint, karenPasive, karenStats);
     karen.dificulty = [1, 1, 0];
     
-    //--- CLEA ---
+    //--► CLEA ---
     
     var cleaPasive = new pasiveSkills();
     
@@ -210,7 +218,8 @@ function scr_createCharacters()
     cleaStats.skillUsageModificator = 0.9;
     cleaStats.skillValueModificator = 1.2;
     
-    var cleaDesc = "Umiejętność: Sprint\n\nSprintuje dłużej\ni szybciej\n\nWolniej biega"
+    //var cleaDesc = "Umiejętność: Sprint\n\nSprintuje dłużej\ni szybciej\n\nWolniej biega"
+    var cleaDesc = "Skill: Sprint [rb]\n\n► Szybszy i dłuższy\nsprint\n\n► Wolniejszy bieg";
     
     clea = new character("Clea", cleaDesc, "clea", sVN_clea, 4, global.c_clea, sprint, cleaPasive, cleaStats);
     clea.dificulty = [1, 0, 0];

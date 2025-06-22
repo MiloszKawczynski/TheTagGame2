@@ -149,6 +149,63 @@ with(ui)
     characterDescriptionTextLeft = new Text(global.characters[other.p1Selected].desc, f_characterDesc, fa_left, fa_top);
     characterDescriptionTextLeft.setColor(c_white);
     
+    with(characterDescriptionTextLeft)
+    {
+        tagPosition = -1;
+        tagType = -1;
+        
+        skillTagPosition = -1;
+        
+        checkForTags = function()
+        {
+            tagPosition = -1;
+            tagType = -1;
+            
+            skillTagPosition = string_pos("[rb]", content);
+            
+            tagPosition = string_pos("[A]", content);
+            if (tagPosition!= 0)
+            {
+                tagType = 0;
+            }
+            
+            breakPosition = string_last_pos("\n", (string_copy(content, 0, tagPosition)));
+        }
+        
+        draw = function() 
+		{
+			draw_set_color(color);
+			draw_set_alpha(alpha);
+			draw_set_font(font);
+			draw_set_halign(horizontalAlign);
+			draw_set_valign(verticalAlign);
+            
+			if (!isSpacingEnable)
+			{
+				draw_text_transformed(posX, posY, string_replace(string_replace(content, "[A]", "  "), "[rb]", "  "), scaleX, scaleY, rotation);
+                if (o_characterSelection.p1Selected != o_characterSelection.randomCharacter)
+                {
+                    draw_sprite_ext(s_xboxBumperButtons, 1, posX + string_width(string_copy(content, 0, skillTagPosition + 1)), posY + string_height(string_copy(content, 0, skillTagPosition)), 0.75, 0.75, 0, c_white, 1);
+                }
+                if (tagType != -1)
+                {
+                    draw_sprite_ext(s_xboxFaceButtons, tagType, posX + string_width(string_copy(content, 0, tagPosition - breakPosition)), posY + string_height(string_copy(content, 0, tagPosition)), 0.75, 0.75, 0, c_white, 1);
+                }
+			}
+			else
+			{
+				for(var i = 0; i < ds_list_size(contentList); i++)
+				{
+					draw_text_transformed(posX + (spaceX * i), posY + (spaceY * i), ds_list_find_value(contentList, i), scaleX, scaleY, rotation);
+				}
+			}
+			
+			draw_set_alpha(1);
+		};
+    }
+    
+    characterDescriptionTextLeft.checkForTags();
+    
     characterDificultyLeft = new LedBar(global.characters[other.p1Selected].dificulty, 3, 50);
     characterDificultyLeft.setSpriteSheet(s_characterSelectionDificulty);
     
@@ -174,6 +231,84 @@ with(ui)
     
     characterDescriptionTextRight = new Text(global.characters[other.p2Selected].desc, f_characterDesc, fa_right, fa_top);
     characterDescriptionTextRight.setColor(c_white);
+    
+    with(characterDescriptionTextRight)
+    {
+        tagType = -1;
+        
+        checkForTags = function()
+        {
+            tagPositionWidth = -1;
+            skillTagPosition = -1;
+            
+            skillTagPositionWidth = -1;
+            skillTagPositionHeight = -1;
+            
+            tagType = -1;
+            
+            split = string_split(content, "\n");
+            
+            for(var i = 0; i < array_length(split); i++)
+            {
+                skillTagPositionWidth = string_pos("[rb]", split[i]);
+                if (skillTagPositionWidth != 0)
+                {
+                    skillTagPosition = string_pos("[rb]", content);
+                    skillTagPositionWidth = string_width(string_copy(split[i], 0, skillTagPositionWidth + 1)) - string_width(split[i])
+                    break;
+                }
+            }
+            
+            for(var i = 0; i < array_length(split); i++)
+            {    
+                tagPositionWidth = string_pos("[A]", split[i]);
+                if (tagPositionWidth != 0)
+                {
+                    tagPositionHeight = string_height(string_copy(content, 0, string_pos("[A]", content)));
+                    tagPositionWidth = string_width(string_copy(split[i], 0, tagPositionWidth + 1)) - string_width(split[i])
+                    tagType = 0;
+                    break;
+                }
+            }
+        }
+        
+        draw = function() 
+		{
+			draw_set_color(color);
+			draw_set_alpha(alpha);
+			draw_set_font(font);
+			draw_set_halign(horizontalAlign);
+			draw_set_valign(verticalAlign);
+            
+			if (!isSpacingEnable)
+			{
+				var contentStripped = string_replace(string_replace(content, "[A]", "  "), "[rb]", "    ");
+                var totalWidth = string_width(contentStripped);
+                
+                draw_text_transformed(posX, posY, contentStripped, scaleX, scaleY, rotation);
+                
+                if (o_characterSelection.p2Selected != o_characterSelection.randomCharacter)
+                {
+                    draw_sprite_ext(s_xboxBumperButtons, 1, posX + skillTagPositionWidth, posY +  + string_height(string_copy(content, 0, skillTagPosition)), 0.75, 0.75, 0, c_white, 1);
+                }
+                if (tagType != -1)
+                {
+                    draw_sprite_ext(s_xboxFaceButtons, tagType, posX + tagPositionWidth, posY + tagPositionHeight, 0.75, 0.75, 0, c_white, 1);
+                }
+			}
+			else
+			{
+				for(var i = 0; i < ds_list_size(contentList); i++)
+				{
+					draw_text_transformed(posX + (spaceX * i), posY + (spaceY * i), ds_list_find_value(contentList, i), scaleX, scaleY, rotation);
+				}
+			}
+			
+			draw_set_alpha(1);
+		};
+    }
+    
+    characterDescriptionTextRight.checkForTags();
     
     characterDificultyRight = new LedBar(global.characters[other.p2Selected].dificulty, 3, 50);
     characterDificultyRight.setSpriteSheet(s_characterSelectionDificulty);

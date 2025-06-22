@@ -210,7 +210,7 @@ if (p1Before)
             characterLeft.setSprite(characterLeftBck.state.sprite);
             characterLeftBck.setSprite(sVN_random); 
             characterNameTextLeft.setContent("Losowy biegacz"); 
-            characterDescriptionTextLeft.setContent("???"); 
+            characterDescriptionTextLeft.setContent("???\n\n???"); 
             characterDificultyLeft.setValue([1, 1, 1]);
         }
         else 
@@ -219,6 +219,7 @@ if (p1Before)
             characterLeftBck.setSprite(global.characters[other.p1Selected].art); 
             characterNameTextLeft.setContent(global.characters[other.p1Selected].name); 
             characterDescriptionTextLeft.setContent(global.characters[other.p1Selected].desc); 
+            characterDescriptionTextLeft.checkForTags();
             characterDificultyLeft.setValue(global.characters[other.p1Selected].dificulty);
         }
     }
@@ -236,7 +237,7 @@ if (p2Before)
             characterRight.setSprite(characterRightBck.state.sprite);
             characterRightBck.setSprite(sVN_random); 
             characterNameTextRight.setContent("Losowy biegacz"); 
-            characterDescriptionTextRight.setContent("???"); 
+            characterDescriptionTextRight.setContent("???\n\n???"); 
             characterDificultyRight.setValue([1, 1, 1]);
         }
         else 
@@ -245,6 +246,7 @@ if (p2Before)
             characterRightBck.setSprite(global.characters[other.p2Selected].art); 
             characterNameTextRight.setContent(global.characters[other.p2Selected].name); 
             characterDescriptionTextRight.setContent(global.characters[other.p2Selected].desc); 
+            characterDescriptionTextRight.checkForTags();
             characterDificultyRight.setValue(global.characters[other.p2Selected].dificulty);
         }
     }
