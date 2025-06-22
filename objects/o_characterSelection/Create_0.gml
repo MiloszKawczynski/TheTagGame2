@@ -75,7 +75,7 @@ with(ui)
                 
                 shader_set(shd_characterSlot);
                 texture_set_stage(sampler, slotTexture);
-        		draw_sprite_ext(s_chaseBarPortraits, charID, posX, posY, scaleX, scaleY, 0, c_white, 1); 
+        		draw_sprite_ext(s_characterSelectPortraits, charID, posX, posY, scaleX, scaleY, 0, c_white, 1); 
                 shader_reset();
         	}
         	setDrawFunction(drawSlot);
@@ -98,7 +98,7 @@ with(ui)
                 
                 shader_set(shd_characterSlot);
                 texture_set_stage(sampler, slotTexture);
-        		draw_sprite_ext(s_chaseBarPortraits, charID, posX, posY, scaleX, scaleY, 0, c_white, 1); 
+        		draw_sprite_ext(s_characterSelectPortraits, charID, posX, posY, scaleX, scaleY, 0, c_white, 1); 
                 shader_reset();
         	}
         	setDrawFunction(drawSlot);
