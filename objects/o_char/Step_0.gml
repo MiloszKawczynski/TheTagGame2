@@ -282,3 +282,8 @@ if (!isReady and input_check_long_pressed("acceptKey", player))
 {
     isReady = true;
 }
+
+if (input_check_released("acceptKey", player))
+{
+    isReady = false;
+}

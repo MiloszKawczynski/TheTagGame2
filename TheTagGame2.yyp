@@ -1285,6 +1285,7 @@
     {"id":{"name":"s_ramp","path":"sprites/s_ramp/s_ramp.yy",},},
     {"id":{"name":"s_rampCage","path":"sprites/s_rampCage/s_rampCage.yy",},},
     {"id":{"name":"s_rampCageSupport","path":"sprites/s_rampCageSupport/s_rampCageSupport.yy",},},
+    {"id":{"name":"s_readyButton","path":"sprites/s_readyButton/s_readyButton.yy",},},
     {"id":{"name":"s_rileyFall","path":"sprites/s_rileyFall/s_rileyFall.yy",},},
     {"id":{"name":"s_rileyIdle","path":"sprites/s_rileyIdle/s_rileyIdle.yy",},},
     {"id":{"name":"s_rileyJoy","path":"sprites/s_rileyJoy/s_rileyJoy.yy",},},

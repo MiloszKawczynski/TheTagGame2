@@ -123,3 +123,53 @@ function scr_makeDrawCircleChasingTag()
 	setDrawFunction(drawCircle);
 	setColor(c_white);
 }
+
+function scr_drawReadyCircle(id, surface, fillness)
+{
+    var pos = [];
+    
+    pos = world_to_gui(
+        players[id].instance.x,
+        players[id].instance.y,
+        0);
+    
+    var xx = pos[0]
+    var yy = pos[1]
+    var size = 150 * 0.2 / Camera.Zoom;
+    var scale = 2;
+    
+    if (input_check("acceptKey", id))
+    {
+        scale = 1.5;
+        fillness += 1 / 10;
+    }
+    else 
+    {
+        fillness -= 1 / 10;
+    }
+    
+    fillness = clamp(fillness, 0, 1);
+    
+    if (!surface_exists(surface))
+    {
+        surface = surface_create(200, 200);
+    }
+    
+    surface_set_target(surface);
+
+    draw_clear_alpha(c_white, 0);
+    
+    draw_sprite_ext(s_readyButton, 0, 75 + 50, 75 + 50, 1, 1, 0, c_white, 1);
+    gpu_set_colorwriteenable(1, 1, 1, 0);
+    draw_set_color(players[id].instance.color);
+    draw_rectangle(0, 150 + 50, 150 + 50, 150 + 50 - (150 + 50) * fillness, false);
+    gpu_set_colorwriteenable(1, 1, 1, 1);
+    draw_sprite_ext(s_readyButton, 1, 75 + 50, 75 + 50, 1, 1, 0, c_white, 1);
+    draw_sprite_ext(s_xboxFaceButtons, 0, 25 * scale, 50 * scale, scale, scale, 0, c_white, 1);
+
+    surface_reset_target();
+
+    draw_surface_ext(surface, xx, yy, 0.2 * lerp(1, -1, id), 0.2, 0, c_white, 1);
+    
+    return fillness
+}

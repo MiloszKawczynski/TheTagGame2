@@ -1,6 +1,12 @@
 function createUI()
 {
 	ui = new UI();
+    
+    readyFillnessLeft = 0;
+    readyFillnessRight = 0;
+    
+    readySurfaceLeft = undefined;
+    readySurfaceRight = undefined;
 	
 	with(ui)
 	{
@@ -208,6 +214,12 @@ function drawUI()
         var shockGUIPosition = world_to_gui(shockPosition[0], shockPosition[1], shockPosition[2]);
         
         draw_sprite_ext(s_shockBubble, 0, shockGUIPosition[0], shockGUIPosition[1], shockScale / Camera.Zoom, shockScale / Camera.Zoom, 0, c_white, 1);
+    }
+    
+    if (uiState == UIreadyState)
+    {
+        readyFillnessLeft = scr_drawReadyCircle(0, readySurfaceLeft, readyFillnessLeft);
+        readyFillnessRight = scr_drawReadyCircle(1, readySurfaceRight, readyFillnessRight);
     }
     
     ui.draw();
