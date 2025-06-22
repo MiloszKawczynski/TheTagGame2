@@ -175,7 +175,12 @@ function scr_TopDownObstaclesInteraction()
 			{
 				log("PERFECT VAULT!", c_aqua);
 				obst.success = 1;
+                audio_play_sound(sn_perfectVault, 0, false, random_range(0.93, 1.07));
 			}
+            else 
+            {
+            	audio_play_sound(sn_vault, 0, false, random_range(0.93, 1.07));
+            }
 			
 			if (abs(point_direction(0, 0, horizontalSpeed, verticalSpeed) - point_direction(0, 0, desiredHorizontalDirection, desiredVerticalDirection)) > 50)
 			{
@@ -484,7 +489,12 @@ function scr_platformerObstaclesInteraction()
 			{
 				log("PERFECT VAULT!", c_aqua);
 				obst.success = 1;
+			    audio_play_sound(sn_perfectVault, 0, false, random_range(0.93, 1.07));
 			}
+            else 
+            {
+            	audio_play_sound(sn_vault, 0, false, random_range(0.93, 1.07));
+            }
 			
 			vspeed -= lerp(minimumObstacleJumpForce, maximumObstacleJumpForce, 1 - (dist / obstacleRange));
 			if (desiredHorizontalDirection != sign(hspeed))
