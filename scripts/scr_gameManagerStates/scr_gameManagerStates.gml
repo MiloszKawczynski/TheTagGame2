@@ -481,6 +481,9 @@ function setupLogicStates()
         {
             logicOnce = false;
             
+            audio_play_sound(mus_victoryTheme, 0, true, 1, audio_sound_get_track_position(mus_mainTheme));
+            audio_stop_sound(mus_mainTheme);
+            
             with(ui)
         	{
                 with(winingScreenCover)
@@ -530,6 +533,9 @@ function setupLogicStates()
         
         if (transitionTimer == 1)
         {
+            audio_play_sound(mus_menuTheme, 0, true, 1, audio_sound_get_track_position(mus_menuTheme));
+            audio_stop_sound(mus_victoryTheme);
+            
             application_surface_enable(true);
             application_surface_draw_enable(true);
             room_goto(r_characterSelection);
@@ -592,8 +598,6 @@ function setupLogicStates()
     
     function stop()
     {
-        audio_stop_sound(mus_mainTheme);
-        
         logicOnce = true;
         logicState = changeState(true, logicState, freeState);
     
