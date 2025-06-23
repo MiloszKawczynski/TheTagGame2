@@ -15,11 +15,12 @@ function scr_createLevels()
     serpent = new level("serpent");
     dot = new level("dot");
     pillars = new level("pillars");
+    hourglass = new level("hourglass");
     empty = new level("empty");
     
     
     global.levels = array_create();
-    array_push(global.levels, basic, santa, fire, shaft, side, serpent, dot, pillars);
+    array_push(global.levels, basic, santa, fire, shaft, side, serpent, dot, pillars, hourglass);
     
     if (DEBUG)
     {
