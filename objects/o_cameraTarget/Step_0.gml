@@ -19,7 +19,12 @@ if (follow == -1)
         }
     }
 }
-else 
+else if (follow == -2)
+{
+    x = room_width / 2;
+    y = room_height / 2;
+}
+else
 {
 	scr_follow_one_character(follow);
 }

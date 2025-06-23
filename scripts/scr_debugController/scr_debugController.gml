@@ -176,6 +176,14 @@ function scr_cameraControll()
     
     o_cameraTarget.follow = ImGui.InputInt("Follow", o_cameraTarget.follow);
     o_gameManager.hideUI = ImGui.Checkbox("Hide UI", o_gameManager.hideUI);
+    
+    if (ImGui.Button("Center Camera"))
+    {
+        global.debugAutoCamera = false;
+        o_gameManager.hideUI = true;
+        o_cameraTarget.follow = -2;
+        Camera.Zoom = 4;
+    }
 	
 	ImGui.Separator();
 }
