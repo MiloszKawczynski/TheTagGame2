@@ -6,12 +6,12 @@ function scr_bake()
 
 function scr_bakeTopWall()
 {
-	var topWallMask = surface_create(1600, 896);
+	var topWallMask = surface_create(room_width, room_height);
 	surface_set_target(topWallMask);
 	draw_clear_alpha(c_white, 0);
 	draw_set_alpha(0.0001);
 	draw_point_color(0, 0, c_white);
-	draw_point_color(1600, 896, c_white);
+	draw_point_color(room_width, room_height, c_white);
 	draw_set_alpha(1);
 	with(o_collision)
 	{
@@ -26,12 +26,12 @@ function scr_bakeTopWall()
 
 function scr_bakeShadow()
 {
-	var topWallMask = surface_create(1600, 896);
+	var topWallMask = surface_create(room_width, room_height);
 	surface_set_target(topWallMask);
 	draw_clear_alpha(c_white, 0);
 	draw_set_alpha(0.0001);
 	draw_point_color(0, 0, c_white);
-	draw_point_color(1600, 896, c_white);
+	draw_point_color(room_width, room_height, c_white);
 	draw_set_alpha(1);
 	with(o_collision)
 	{

@@ -1,6 +1,6 @@
 //alarm[0] = 2;
 
-groundModel = fauxton_model_create_ext(s_tartanTexture, 0, 0, 0, 0, 0, 0, 1, 1, 0.1, c_white, 1);
+groundModel = fauxton_model_create_ext(s_tartanTexture, 0, 0, 0, 0, 0, 0, room_width / 1600, room_height / 896, 0.1, c_white, 1);
 color = make_color_rgb(58, 62, 93);
 
 hue = false;
@@ -23,7 +23,7 @@ if (global.gameLevelName != "")
 {
 	var shadowMaskPath = get_project_path() + string("shadowMask_{0}.png", global.gameLevelName);
 
-	shadowMapSprite = sprite_add(shadowMaskPath, 0, false, false, 1600 / 2, 896 / 2);
+	shadowMapSprite = sprite_add(shadowMaskPath, 0, false, false, room_width / 2, room_height / 2);
 	
 	if (shadowMapSprite != -1)
 	{

@@ -94,7 +94,7 @@ else
             
             if (DESTINATION == DebugDestination.PlotMap)
             {
-                global.gameLevelName = "metroChasev1.1";
+                global.gameLevelName = "metroChase";
 			    room_goto(r_levelEditorBig);
             }
             
