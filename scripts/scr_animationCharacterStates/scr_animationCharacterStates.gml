@@ -18,6 +18,7 @@ function scr_setupSprites(characterReference)
     
     tripAnimation = characterReference.tripAnimation;
     joyAnimation = characterReference.joyAnimation;
+    evolutionAnimation = characterReference.evolutionAnimation;
     airDashAnimation = characterReference.airDashAnimation;
 }
 
@@ -116,17 +117,18 @@ function scr_setupPlatformAnimationStates()
 	
 	platformJumpState = function()
 	{
-		sprite_index = jumpAnimation;
+        sprite_index = jumpAnimation;
 		setXScaleWithHSpeed();
 		playOnce();
 		angle = lerp(angle, (abs(hspeed) / maximumDefaultSpeed) * 15, 0.1);
 		stretch = clamp(1 + ((abs(vspeed) / jumpForce) * 0.3), 1, 1.3);
 		squash = (1 - (stretch - 1));
-		
-		platformAnimationState = changeAnimationState(vspeed >= 0 , platformAnimationState, platformFallState);
-		platformAnimationState = changeAnimationState(isGrounded == true, platformAnimationState, platformIdleState);
-		platformAnimationState = changeAnimationState(abs(hspeed) > maximumDefaultSpeed, platformAnimationState, platformLeapState);
+        
+		platformAnimationState = changeAnimationState(vspeed >= 0 and playOnce(), platformAnimationState, platformFallState);
+		platformAnimationState = changeAnimationState(isGrounded == true and playOnce(), platformAnimationState, platformIdleState);
+		platformAnimationState = changeAnimationState(abs(hspeed) > maximumDefaultSpeed and playOnce(), platformAnimationState, platformLeapState);
         platformAnimationState = changeAnimationState(airHorizontalSpeed != 0, platformAnimationState, airDashState);
+        platformAnimationState = changeAnimationState(input_check_pressed("jumpKey", player) and vspeed < 0 and maxJumpNumber > 1, platformAnimationState, evolutionState);
 	}
 	
 	platformFallState = function()
@@ -140,6 +142,7 @@ function scr_setupPlatformAnimationStates()
 		platformAnimationState = changeAnimationState(vspeed < 0, platformAnimationState, platformJumpState);
 		platformAnimationState = changeAnimationState(abs(hspeed) > maximumDefaultSpeed, platformAnimationState, platformLeapState);
         platformAnimationState = changeAnimationState(airHorizontalSpeed != 0, platformAnimationState, airDashState);
+        platformAnimationState = changeAnimationState(input_check_pressed("jumpKey", player) and vspeed < 0 and maxJumpNumber > 1, platformAnimationState, evolutionState);
 	}
 	
 	platformLeapState = function() 
@@ -152,6 +155,7 @@ function scr_setupPlatformAnimationStates()
 		platformAnimationState = changeAnimationState(isGrounded == true, platformAnimationState, platformIdleState);
 		platformAnimationState = changeAnimationState(abs(hspeed) <= maximumDefaultSpeed, platformAnimationState, platformFallState);
         platformAnimationState = changeAnimationState(airHorizontalSpeed != 0, platformAnimationState, airDashState);
+        platformAnimationState = changeAnimationState(input_check_pressed("jumpKey", player) and vspeed < 0 and maxJumpNumber > 1, platformAnimationState, evolutionState);
 	}
 	
 	platformParkourState = function()
@@ -162,6 +166,7 @@ function scr_setupPlatformAnimationStates()
 		
 		platformAnimationState = changeAnimationState(vspeed >= 0, platformAnimationState, platformJumpState);
         platformAnimationState = changeAnimationState(airHorizontalSpeed != 0, platformAnimationState, airDashState);
+        platformAnimationState = changeAnimationState(input_check_pressed("jumpKey", player) and vspeed < 0 and maxJumpNumber > 1, platformAnimationState, evolutionState);
 	}
 	
 	platformWallRunState = function()
@@ -198,6 +203,18 @@ function scr_setupPlatformAnimationStates()
 		setXScaleWithHSpeed();
 		
 		platformAnimationState = changeAnimationState(airHorizontalSpeed == 0, platformAnimationState, platformLeapState);
+	}
+    
+    evolutionState = function()
+	{
+		sprite_index = evolutionAnimation;
+        setXScaleWithHSpeed();
+		playOnce();
+		angle = lerp(angle, (abs(hspeed) / maximumDefaultSpeed) * 15, 0.1);
+		stretch = clamp(1 + ((abs(vspeed) / jumpForce) * 0.3), 1, 1.3);
+		squash = (1 - (stretch - 1));
+		
+		platformAnimationState = changeAnimationState(playOnce(), platformAnimationState, platformJumpState);
 	}
 	
 	platformAnimationState = platformIdleState;

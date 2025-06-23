@@ -1217,6 +1217,7 @@
     {"id":{"name":"s_cubeCageTop","path":"sprites/s_cubeCageTop/s_cubeCageTop.yy",},},
     {"id":{"name":"s_cubeCageZero","path":"sprites/s_cubeCageZero/s_cubeCageZero.yy",},},
     {"id":{"name":"s_cup","path":"sprites/s_cup/s_cup.yy",},},
+    {"id":{"name":"s_davidEvolution","path":"sprites/s_davidEvolution/s_davidEvolution.yy",},},
     {"id":{"name":"s_davidFall","path":"sprites/s_davidFall/s_davidFall.yy",},},
     {"id":{"name":"s_davidIdle","path":"sprites/s_davidIdle/s_davidIdle.yy",},},
     {"id":{"name":"s_davidJoy","path":"sprites/s_davidJoy/s_davidJoy.yy",},},

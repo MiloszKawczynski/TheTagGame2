@@ -37,6 +37,7 @@ function character(_name, _desc, _codeName, _art, _miniArt, _color, _active, _pa
     tripAnimation = asset_get_index(string("s_{0}Trip", codeName));
     joyAnimation = asset_get_index(string("s_{0}Joy", codeName));
     
+    evolutionAnimation = s_davidEvolution;
     airDashAnimation = s_rileyAirDash;
     stats = _stats;
 }
