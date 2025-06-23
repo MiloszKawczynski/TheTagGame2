@@ -382,10 +382,10 @@ function dialogMain(_width, _lines, _key, _color, _baseSpeed, _fastSpeed, _sprit
 		}
         
         draw_sprite_stretched(textboxSprite, 0, _x, _y, width, height)
-        draw_sprite_ext(s_characterSelectionName, 0, _x + 30, _y + 15, 0.4, 0.4, 0, c_white, 1);
-        draw_set_font(f_countDown);
-        draw_text(_x + 90, _y + 45, "Adam");
-        draw_set_font(font);
+        //draw_sprite_ext(s_characterSelectionName, 0, _x + 30, _y + 15, 0.4, 0.4, 0, c_white, 1);
+        //draw_set_font(f_countDown);
+        //draw_text(_x + 90, _y + 45, "Adam");
+        //draw_set_font(font);
 		
 		speak(box.getActiveLine());
 		
