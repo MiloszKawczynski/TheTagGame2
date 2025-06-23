@@ -1337,6 +1337,7 @@
     {"id":{"name":"s_tricksterTrip","path":"sprites/s_tricksterTrip/s_tricksterTrip.yy",},},
     {"id":{"name":"s_tricksterVault","path":"sprites/s_tricksterVault/s_tricksterVault.yy",},},
     {"id":{"name":"s_tricksterWalk","path":"sprites/s_tricksterWalk/s_tricksterWalk.yy",},},
+    {"id":{"name":"s_tricksterWallJump","path":"sprites/s_tricksterWallJump/s_tricksterWallJump.yy",},},
     {"id":{"name":"s_vignette","path":"sprites/s_vignette/s_vignette.yy",},},
     {"id":{"name":"s_walkCycle","path":"sprites/s_walkCycle/s_walkCycle.yy",},},
     {"id":{"name":"s_wall","path":"sprites/s_wall/s_wall.yy",},},

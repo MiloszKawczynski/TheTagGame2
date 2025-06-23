@@ -18,7 +18,9 @@ function scr_setupSprites(characterReference)
     
     tripAnimation = characterReference.tripAnimation;
     joyAnimation = characterReference.joyAnimation;
+    
     evolutionAnimation = characterReference.evolutionAnimation;
+    wallJumpAnimation = characterReference.wallJumpAnimation;
     airDashAnimation = characterReference.airDashAnimation;
 }
 
@@ -124,11 +126,14 @@ function scr_setupPlatformAnimationStates()
 		stretch = clamp(1 + ((abs(vspeed) / jumpForce) * 0.3), 1, 1.3);
 		squash = (1 - (stretch - 1));
         
+        var wallDirection = place_meeting_precise(x + 1, y - 1, o_collision) - place_meeting_precise(x - 1, y - 1, o_collision);
+		
 		platformAnimationState = changeAnimationState(vspeed >= 0 and playOnce(), platformAnimationState, platformFallState);
 		platformAnimationState = changeAnimationState(isGrounded == true and playOnce(), platformAnimationState, platformIdleState);
 		platformAnimationState = changeAnimationState(abs(hspeed) > maximumDefaultSpeed and playOnce(), platformAnimationState, platformLeapState);
-        platformAnimationState = changeAnimationState(airHorizontalSpeed != 0, platformAnimationState, airDashState);
-        platformAnimationState = changeAnimationState(input_check_pressed("jumpKey", player) and vspeed < 0 and maxJumpNumber > 1, platformAnimationState, evolutionState);
+        platformAnimationState = changeAnimationState(airHorizontalSpeed != 0, platformAnimationState, platformAirDashState);
+        platformAnimationState = changeAnimationState(input_check_pressed("jumpKey", player) and vspeed < 0 and maxJumpNumber > 1, platformAnimationState, platformEvolutionState);
+		platformAnimationState = changeAnimationState(wallDirection != 0 and pasive.wallJump, platformAnimationState, platformWallJumpState);
 	}
 	
 	platformFallState = function()
@@ -137,12 +142,15 @@ function scr_setupPlatformAnimationStates()
 		playOnce();
 		setXScaleWithHSpeed();
 		angle = lerp(angle, (-abs(hspeed) / maximumDefaultSpeed) * 15, 0.1);
+        
+        var wallDirection = place_meeting_precise(x + 1, y - 1, o_collision) - place_meeting_precise(x - 1, y - 1, o_collision);
 		
 		platformAnimationState = changeAnimationState(isGrounded == true, platformAnimationState, platformIdleState);
 		platformAnimationState = changeAnimationState(vspeed < 0, platformAnimationState, platformJumpState);
 		platformAnimationState = changeAnimationState(abs(hspeed) > maximumDefaultSpeed, platformAnimationState, platformLeapState);
-        platformAnimationState = changeAnimationState(airHorizontalSpeed != 0, platformAnimationState, airDashState);
-        platformAnimationState = changeAnimationState(input_check_pressed("jumpKey", player) and vspeed < 0 and maxJumpNumber > 1, platformAnimationState, evolutionState);
+        platformAnimationState = changeAnimationState(airHorizontalSpeed != 0, platformAnimationState, platformAirDashState);
+        platformAnimationState = changeAnimationState(input_check_pressed("jumpKey", player) and vspeed < 0 and maxJumpNumber > 1, platformAnimationState, platformEvolutionState);
+        platformAnimationState = changeAnimationState(wallDirection != 0 and pasive.wallJump, platformAnimationState, platformWallJumpState);
 	}
 	
 	platformLeapState = function() 
@@ -151,11 +159,14 @@ function scr_setupPlatformAnimationStates()
 		image_speed = 0.225;
 		angle = lerp(angle, (-abs(hspeed) / maximumDefaultSpeed) * 7, 0.1);
 		setXScaleWithHSpeed();
+        
+        var wallDirection = place_meeting_precise(x + 1, y - 1, o_collision) - place_meeting_precise(x - 1, y - 1, o_collision);
 		
 		platformAnimationState = changeAnimationState(isGrounded == true, platformAnimationState, platformIdleState);
 		platformAnimationState = changeAnimationState(abs(hspeed) <= maximumDefaultSpeed, platformAnimationState, platformFallState);
-        platformAnimationState = changeAnimationState(airHorizontalSpeed != 0, platformAnimationState, airDashState);
-        platformAnimationState = changeAnimationState(input_check_pressed("jumpKey", player) and vspeed < 0 and maxJumpNumber > 1, platformAnimationState, evolutionState);
+        platformAnimationState = changeAnimationState(airHorizontalSpeed != 0, platformAnimationState, platformAirDashState);
+        platformAnimationState = changeAnimationState(input_check_pressed("jumpKey", player) and vspeed < 0 and maxJumpNumber > 1, platformAnimationState, platformEvolutionState);
+        platformAnimationState = changeAnimationState(wallDirection != 0 and pasive.wallJump, platformAnimationState, platformWallJumpState);
 	}
 	
 	platformParkourState = function()
@@ -164,9 +175,12 @@ function scr_setupPlatformAnimationStates()
 		image_speed = 0.5;
 		playOnce();
 		
+        var wallDirection = place_meeting_precise(x + 1, y - 1, o_collision) - place_meeting_precise(x - 1, y - 1, o_collision);
+        
 		platformAnimationState = changeAnimationState(vspeed >= 0, platformAnimationState, platformJumpState);
-        platformAnimationState = changeAnimationState(airHorizontalSpeed != 0, platformAnimationState, airDashState);
-        platformAnimationState = changeAnimationState(input_check_pressed("jumpKey", player) and vspeed < 0 and maxJumpNumber > 1, platformAnimationState, evolutionState);
+        platformAnimationState = changeAnimationState(airHorizontalSpeed != 0, platformAnimationState, platformAirDashState);
+        platformAnimationState = changeAnimationState(input_check_pressed("jumpKey", player) and vspeed < 0 and maxJumpNumber > 1, platformAnimationState, platformEvolutionState);
+        platformAnimationState = changeAnimationState(wallDirection != 0 and pasive.wallJump, platformAnimationState, platformWallJumpState);
 	}
 	
 	platformWallRunState = function()
@@ -195,7 +209,7 @@ function scr_setupPlatformAnimationStates()
 		image_speed = 1;
 	}
     
-    airDashState = function()
+    platformAirDashState = function()
 	{
 		sprite_index = airDashAnimation;
 		image_speed = 1;
@@ -205,7 +219,7 @@ function scr_setupPlatformAnimationStates()
 		platformAnimationState = changeAnimationState(airHorizontalSpeed == 0, platformAnimationState, platformLeapState);
 	}
     
-    evolutionState = function()
+    platformEvolutionState = function()
 	{
 		sprite_index = evolutionAnimation;
         setXScaleWithHSpeed();
@@ -215,6 +229,23 @@ function scr_setupPlatformAnimationStates()
 		squash = (1 - (stretch - 1));
 		
 		platformAnimationState = changeAnimationState(playOnce(), platformAnimationState, platformJumpState);
+	}
+    
+    platformWallJumpState = function()
+	{
+		sprite_index = wallJumpAnimation;
+        stretch = 1;
+        squash = 1;
+        angle = 0;
+        
+        var wallDirection = place_meeting_precise(x + 1, y - 1, o_collision) - place_meeting_precise(x - 1, y - 1, o_collision);
+        
+        if (wallDirection != 0)
+        {
+            image_xscale = -wallDirection;
+        }
+		
+		platformAnimationState = changeAnimationState(wallDirection == 0, platformAnimationState, platformFallState);
 	}
 	
 	platformAnimationState = platformIdleState;

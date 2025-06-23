@@ -39,6 +39,8 @@ function character(_name, _desc, _codeName, _art, _miniArt, _color, _active, _pa
     
     evolutionAnimation = s_davidEvolution;
     airDashAnimation = s_rileyAirDash;
+    wallJumpAnimation = s_tricksterWallJump;
+    
     stats = _stats;
 }
 
