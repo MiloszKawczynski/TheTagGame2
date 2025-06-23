@@ -50,6 +50,7 @@ function scr_topDownMovement()
 {	
 	isGrounded = true;
     isAirDashUsed = false;
+    airHorizontalSpeed = 0;
     jumpNumber = maxJumpNumber - 1;
 
 	desiredHorizontalDirection = input_check("rightKey", player) - input_check("leftKey", player);
@@ -690,6 +691,7 @@ function scr_platformerCollision()
 				{
 					isGrounded = true;
                     isAirDashUsed = false;
+                    airHorizontalSpeed = 0;
                     jumpNumber = maxJumpNumber;
 					canBeOnCliff = false;
 					coyoteTime = maximumCoyoteTime;

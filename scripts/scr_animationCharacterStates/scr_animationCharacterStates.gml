@@ -18,6 +18,7 @@ function scr_setupSprites(characterReference)
     
     tripAnimation = characterReference.tripAnimation;
     joyAnimation = characterReference.joyAnimation;
+    airDashAnimation = characterReference.airDashAnimation;
 }
 
 //--- Top Down Animation States
@@ -125,6 +126,7 @@ function scr_setupPlatformAnimationStates()
 		platformAnimationState = changeAnimationState(vspeed >= 0 , platformAnimationState, platformFallState);
 		platformAnimationState = changeAnimationState(isGrounded == true, platformAnimationState, platformIdleState);
 		platformAnimationState = changeAnimationState(abs(hspeed) > maximumDefaultSpeed, platformAnimationState, platformLeapState);
+        platformAnimationState = changeAnimationState(airHorizontalSpeed != 0, platformAnimationState, airDashState);
 	}
 	
 	platformFallState = function()
@@ -137,17 +139,19 @@ function scr_setupPlatformAnimationStates()
 		platformAnimationState = changeAnimationState(isGrounded == true, platformAnimationState, platformIdleState);
 		platformAnimationState = changeAnimationState(vspeed < 0, platformAnimationState, platformJumpState);
 		platformAnimationState = changeAnimationState(abs(hspeed) > maximumDefaultSpeed, platformAnimationState, platformLeapState);
+        platformAnimationState = changeAnimationState(airHorizontalSpeed != 0, platformAnimationState, airDashState);
 	}
 	
 	platformLeapState = function() 
 	{
-		sprite_index = leapAnimation;
+        sprite_index = leapAnimation;
 		image_speed = 0.225;
 		angle = lerp(angle, (-abs(hspeed) / maximumDefaultSpeed) * 7, 0.1);
 		setXScaleWithHSpeed();
 		
 		platformAnimationState = changeAnimationState(isGrounded == true, platformAnimationState, platformIdleState);
 		platformAnimationState = changeAnimationState(abs(hspeed) <= maximumDefaultSpeed, platformAnimationState, platformFallState);
+        platformAnimationState = changeAnimationState(airHorizontalSpeed != 0, platformAnimationState, airDashState);
 	}
 	
 	platformParkourState = function()
@@ -157,6 +161,7 @@ function scr_setupPlatformAnimationStates()
 		playOnce();
 		
 		platformAnimationState = changeAnimationState(vspeed >= 0, platformAnimationState, platformJumpState);
+        platformAnimationState = changeAnimationState(airHorizontalSpeed != 0, platformAnimationState, airDashState);
 	}
 	
 	platformWallRunState = function()
@@ -183,6 +188,16 @@ function scr_setupPlatformAnimationStates()
 	{
 		sprite_index = joyAnimation;
 		image_speed = 1;
+	}
+    
+    airDashState = function()
+	{
+		sprite_index = airDashAnimation;
+		image_speed = 1;
+        angle = lerp(angle, (-abs(hspeed) / maximumDefaultSpeed) * 7, 0.1);
+		setXScaleWithHSpeed();
+		
+		platformAnimationState = changeAnimationState(airHorizontalSpeed == 0, platformAnimationState, platformLeapState);
 	}
 	
 	platformAnimationState = platformIdleState;
