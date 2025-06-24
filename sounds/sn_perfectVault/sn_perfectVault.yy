@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.6105669,
+  "duration":1.2259637,
   "name":"sn_perfectVault",
   "parent":{
     "name":"Sounds",

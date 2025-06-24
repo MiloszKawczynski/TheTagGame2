@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.53845805,
+  "duration":1.1250113,
   "name":"sn_vault",
   "parent":{
     "name":"Sounds",
