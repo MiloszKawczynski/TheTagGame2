@@ -1,6 +1,6 @@
 function place_meeting_precise(x2, y2, obj)
 {
-    var times30 = (speed div 30);
+    var times30 = (speed div 10);
     
     var halfDistX = (x + x2) / 2;
     var halfDistY = (y + y2) / 2;
@@ -23,7 +23,7 @@ function place_meeting_precise(x2, y2, obj)
 
 function instance_place_precise(x2, y2, obj)
 {
-    var times30 = (speed div 30);
+    var times30 = (speed div 10);
     
     var halfDistX = (x + x2) / 2;
     var halfDistY = (y + y2) / 2;
