@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":1.6026758,
+  "duration":1.6116099,
   "name":"sn_snowWhiteSelect",
   "parent":{
     "name":"characterSelect",

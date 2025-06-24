@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":1.5535601,
+  "duration":1.5580273,
   "name":"sn_miriamWin2",
   "parent":{
     "name":"winOneliners",

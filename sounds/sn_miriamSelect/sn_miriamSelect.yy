@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":1.2544671,
+  "duration":1.2589343,
   "name":"sn_miriamSelect",
   "parent":{
     "name":"characterSelect",

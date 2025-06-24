@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":2.3482087,
+  "duration":2.3437414,
   "name":"sn_snowWhiteWin2",
   "parent":{
     "name":"winOneliners",
