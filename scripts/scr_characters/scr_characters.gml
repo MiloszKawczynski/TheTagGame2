@@ -99,7 +99,7 @@ function scr_createCharacters()
     var adamStats = new statsModificators();
     
     //var adamDesc = "Umiejętność: Sprint\n\nPrzeciętny\nw każdej materii";
-    var adamDesc = "Skill: Sprint [rb]\n\n► Czysta karta,\nbiegacz dobry\nwe wszystkim.";
+    var adamDesc = "Skill: Sprint [rb]\n\n► Czysta karta,\nbiegacz dobry\nwe wszystkim";
     
     adam = new character("Adam", adamDesc, "adam", sVN_adam, 0, global.c_adam, sprint, adamPasive, adamStats);
     adam.dificulty = [1, 0, 0];
