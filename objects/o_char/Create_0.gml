@@ -39,6 +39,7 @@ skillUsageModificator = 1;
 skillReplenishModificator = 1;
 skillValueModificator = 1;
 
+vaultSuccess = 0;
 obstacleSurface = undefined;
 
 function setupStats(isCharacterSet)

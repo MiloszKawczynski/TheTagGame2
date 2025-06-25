@@ -287,3 +287,9 @@ if (input_check_released("acceptKey", player))
 {
     isReady = false;
 }
+
+vaultSuccess = lerp(vaultSuccess, 0, 0.05);
+if (vaultSuccess <= 0.1)
+{
+	vaultSuccess = 0;
+}

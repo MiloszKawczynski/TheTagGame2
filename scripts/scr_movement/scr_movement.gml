@@ -176,11 +176,11 @@ function scr_TopDownObstaclesInteraction()
             
 			var obstacleSpeedBoost = lerp(minimumObstacleJumpForce, maximumObstacleJumpForce, 1 - (dist / obstacleRange));
 			
-			obst.success = 0.5;
+			vaultSuccess = 0.5;
 			if (1 - (dist / obstacleRange) > 0.65)
 			{
 				log("PERFECT VAULT!", c_aqua);
-				obst.success = 1;
+				vaultSuccess = 1;
                 audio_play_sound(sn_perfectVault, 0, false, random_range(0.93, 1.07));
 			}
             else 
@@ -484,7 +484,7 @@ function scr_platformerObstaclesInteraction()
 	{
 		if (input_check_pressed("interactionKey", player))
 		{
-			obst.success = 0.5;
+			vaultSuccess = 0.5;
             
             if (pasive.alwaysPerfectVault)
             {
@@ -494,7 +494,7 @@ function scr_platformerObstaclesInteraction()
 			if (1 - (dist / obstacleRange) > 0.65)
 			{
 				log("PERFECT VAULT!", c_aqua);
-				obst.success = 1;
+				vaultSuccess = 1;
 			    audio_play_sound(sn_perfectVault, 0, false, random_range(0.93, 1.07));
 			}
             else 
