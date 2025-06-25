@@ -61,7 +61,8 @@ if (!isBindingFinilize)
 			}
 		}
 		
-		if (input_check_long_pressed("interactionKey", i) and firstFreePlayer >= 2)
+		//if (input_check_long_pressed("interactionKey", i) and firstFreePlayer >= 2)
+		if (firstFreePlayer >= 2)
 		{
 			isBindingFinilize = true;
 			break;
@@ -84,11 +85,11 @@ else
 			isBindingFinilize = false;
 		}
 		
-		if (input_check_pressed("interactionKey", i))
+		//if (input_check_pressed("interactionKey", i))
 		{
             if (DESTINATION == DebugDestination.Arena)
             {
-                global.gameLevelName = "fire";
+                global.gameLevelName = "shaft";
                 room_goto(r_levelEditor);
             }
             
