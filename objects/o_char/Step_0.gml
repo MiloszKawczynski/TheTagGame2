@@ -92,6 +92,20 @@ if (input_check("skillKey", player) and !skillRecharging and !skillUsed)
                     isSkillActive = 1;
                     isUsed = true;
                 }
+                
+                var dir = choose(-90, 90);
+                if (o_gameManager.isGravitationOn)
+                {
+                    part_emitter_region(runTrailSystem, 0, x - 5, x + 5, y, y + 32, ps_shape_rectangle, ps_distr_linear);
+                    part_type_direction(floatType, 90 + dir, 90 + dir, 0, 0);
+                }
+                else 
+                {
+                	part_emitter_region(runTrailSystem, 0, x - 5, x + 5, y - 5, y + 5, ps_shape_rectangle, ps_distr_linear);
+                    part_type_direction(floatType, direction + dir, direction + dir, 0, 0);
+                }
+                part_emitter_burst(runTrailSystem, 0, floatType, 1);
+                
 				break;
 			}
             case(skillTypes.drift):
@@ -267,7 +281,7 @@ else
 	ds_list_delete(afterimageList, 0);
 }
 
-if ((!o_gameManager.isGravitationOn or (isGrounded or coyoteTime != 0 or vspeed < jumpForce * -0.75)) and speed >= maximumDefaultSpeed)
+if ((!o_gameManager.isGravitationOn or (isGrounded or coyoteTime != 0 or vspeed < jumpForce * -0.75)) and speed >= maximumDefaultSpeed and (skillType != skillTypes.float or !isUsed))
 {
 	part_type_direction(runTrailType, direction + 180 - 5, direction + 180 + 5, 0, 2);
 	part_emitter_region(runTrailSystem, 0, x - 8, x + 8, y - 4, y + 4, ps_shape_rectangle, ps_distr_linear);
