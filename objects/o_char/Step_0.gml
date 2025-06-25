@@ -62,7 +62,11 @@ if (input_check("skillKey", player) and !skillRecharging and !skillUsed)
 						maximumSpeed = point_distance(0, 0, horizontalSpeed, verticalSpeed);
 					}
 					isUsed = true;
-				}
+                    
+                    part_emitter_region(runTrailSystem, 0, x + horizontalSpeed * 5 - 5, x + horizontalSpeed * 5 + 5, y + verticalSpeed * 5 - 5, y + verticalSpeed * 5 + 5, ps_shape_rectangle, ps_distr_linear);
+                    part_type_direction(dashType, direction + 180 - 45, direction + 180 + 45, 0, 0);
+                    part_emitter_burst(runTrailSystem, 0, dashType, 32 * 4); 
+                }
 				break;
 			}
             case(skillTypes.float):
