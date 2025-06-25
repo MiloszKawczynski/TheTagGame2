@@ -520,7 +520,7 @@ function setupLogicStates()
             uiState = changeState(true, uiState, UIWinState);
         }
         
-        if (input_check_long_pressed("jumpKey", 0) or input_check_long_pressed("jumpKey", 1))
+        if (input_check_pressed("jumpKey", 0) or input_check_pressed("jumpKey", 1))
         {
             logicOnce = true;
             logicState = changeState(true, logicState, transitionEndState);
