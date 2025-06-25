@@ -27,6 +27,7 @@ function setupUIStates()
     {
         updateBar();
         updateStamina();
+        updateCountdown();
     }
     
     UIbreathState = function()
@@ -394,10 +395,18 @@ function setupLogicStates()
         if (logicOnce)
         {
             logicOnce = false;
+            showGO = true;
             
             uiState = changeState(true, uiState, UIgameState);
         }
         
+        if (showGO and countdownLogic())
+        {
+            showGO = false;
+        }
+    {
+        
+    }
         updateGameTime();
     }
     
@@ -669,17 +678,27 @@ function setupLogicStates()
             
         if (countDownScale <= 0.1)
         {
-            countDownScale = 5;
-
-            if (countDownContent <= 1)
+            if (countDownContent == "GO!")
             {
                 countDownScale = 0;
-                uiState();
                 return true;
             }
-            else 
+            
+            countDownScale = 5;
+
+            if (countDownContent != "GO!")
             {
-                countDownContent--;
+                if (countDownContent <= 1)
+                {
+                    countDownScale = 5;
+                    countDownContent = "GO!";
+                    uiState();
+                    return true;
+                }
+                else 
+                {
+                    countDownContent--;
+                }
             }
         }
         
