@@ -127,6 +127,30 @@ if (input_check("skillKey", player) and !skillRecharging and !skillUsed)
                 
                 if (isSkillActive)
                 { 
+                    var dir = 0;
+                    if (o_gameManager.isGravitationOn)
+					{
+                        var dir = sign(desiredHorizontalDirection);
+                        if (dir == 0)
+                        {
+                            dir = 90 - sign(image_xscale) * 90;
+                        }
+                    }
+                    else
+                    { 
+                        if (desiredHorizontalDirection == 0 and desiredVerticalDirection == 0)
+                        {
+                            dir = lastDirection;
+                        }
+                        else 
+                        {
+                        	dir = point_direction(0, 0, desiredHorizontalDirection, desiredVerticalDirection);
+                        }
+                    }
+                    
+                    part_emitter_region(runTrailSystem, 0, x - 5, x + 5, y - 5, y + 5, ps_shape_rectangle, ps_distr_linear);
+                    part_type_direction(dustType, dir + 180, dir + 180, 0, 0);
+                    part_emitter_burst(runTrailSystem, 0, dustType, 1);
                     isUsed = true;
                 }
 				break;

@@ -646,6 +646,7 @@
     {"id":{"name":"SpotLight","path":"objects/SpotLight/SpotLight.yy",},},
     {"id":{"name":"WorldEnvironment","path":"objects/WorldEnvironment/WorldEnvironment.yy",},},
     {"id":{"name":"ps_airDash","path":"particles/ps_airDash/ps_airDash.yy",},},
+    {"id":{"name":"ps_dust","path":"particles/ps_dust/ps_dust.yy",},},
     {"id":{"name":"ps_float","path":"particles/ps_float/ps_float.yy",},},
     {"id":{"name":"ps_godRays","path":"particles/ps_godRays/ps_godRays.yy",},},
     {"id":{"name":"ps_iCatched","path":"particles/ps_iCatched/ps_iCatched.yy",},},
