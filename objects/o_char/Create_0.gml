@@ -144,8 +144,8 @@ function setupStats(isCharacterSet)
     dashType = part_type_copy(ps_dash, 0);
     floatType = part_type_copy(ps_float, 0);
     dustType = part_type_copy(ps_dust, 0);
+    sprintType = part_type_copy(ps_sprint, 0);
     part_type_color1(runTrailType, color)
-    part_type_color1(floatType, color)
     part_emitter_type(runTrailSystem, 0, runTrailType);
     
     part_system_automatic_draw(runTrailSystem, false);

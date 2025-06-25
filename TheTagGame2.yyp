@@ -653,6 +653,7 @@
     {"id":{"name":"ps_iCatched","path":"particles/ps_iCatched/ps_iCatched.yy",},},
     {"id":{"name":"ps_imChasing","path":"particles/ps_imChasing/ps_imChasing.yy",},},
     {"id":{"name":"ps_runTrail","path":"particles/ps_runTrail/ps_runTrail.yy",},},
+    {"id":{"name":"ps_sprint","path":"particles/ps_sprint/ps_sprint.yy",},},
     {"id":{"name":"atpth_circle","path":"paths/atpth_circle/atpth_circle.yy",},},
     {"id":{"name":"atpth_line","path":"paths/atpth_line/atpth_line.yy",},},
     {"id":{"name":"atr_example","path":"rooms/atr_example/atr_example.yy",},},

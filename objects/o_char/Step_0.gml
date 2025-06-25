@@ -43,6 +43,10 @@ if (input_check("skillKey", player) and !skillRecharging and !skillUsed)
 						maximumSpeed += skillValue;
 					}
 					isUsed = true;
+                    
+                    part_emitter_region(runTrailSystem, 0, x - 10, x + 10, y - 10, y + 10, ps_shape_rectangle, ps_distr_linear);
+                    part_type_direction(sprintType, direction, direction, 0, 0);
+                    part_emitter_burst(runTrailSystem, 0, sprintType, 1); 
 				}
 				break;
 			}
@@ -65,7 +69,7 @@ if (input_check("skillKey", player) and !skillRecharging and !skillUsed)
                     
                     part_emitter_region(runTrailSystem, 0, x + horizontalSpeed * 5 - 5, x + horizontalSpeed * 5 + 5, y + verticalSpeed * 5 - 5, y + verticalSpeed * 5 + 5, ps_shape_rectangle, ps_distr_linear);
                     part_type_direction(dashType, direction + 180 - 45, direction + 180 + 45, 0, 0);
-                    part_emitter_burst(runTrailSystem, 0, dashType, 32 * 4); 
+                    part_emitter_burst(runTrailSystem, 0, dashType, 32); 
                 }
 				break;
 			}
@@ -309,7 +313,7 @@ else
 	ds_list_delete(afterimageList, 0);
 }
 
-if ((!o_gameManager.isGravitationOn or (isGrounded or coyoteTime != 0 or vspeed < jumpForce * -0.75)) and speed >= maximumDefaultSpeed and (skillType != skillTypes.float or !isUsed))
+if ((!o_gameManager.isGravitationOn or (isGrounded or coyoteTime != 0 or vspeed < jumpForce * -0.75)) and speed >= maximumDefaultSpeed)
 {
 	part_type_direction(runTrailType, direction + 180 - 5, direction + 180 + 5, 0, 2);
 	part_emitter_region(runTrailSystem, 0, x - 8, x + 8, y - 4, y + 4, ps_shape_rectangle, ps_distr_linear);
